@@ -5,47 +5,57 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 	requires: ['VBI.Workspace.view.FeatureToolbar'],
 	id: 'workspace_featureview',
 	border: 0,
-	columns: [{
+	columns: {
+		defaults: {
+			align:'center'
+		},
+		items:[{
 			text: 'Genome',
 			dataIndex: 'genome_name',
 			flex: 2,
+			align: 'left',
 			renderer: function(value, p, record) {
 				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
 			}
 		},{
 			text: 'Product Description', 
 			dataIndex: 'product', 
-			flex: 3
+			flex: 3,
+			align: 'left'
 		}, {
 			text: 'Locus Tag', 
 			dataIndex: 'locus_tag', 
-			flex: 1,
+			flex: 2,
+			align: 'left',
 			renderer: function(value, p, record) {
 				return Ext.String.format('<a href="Feature?cType=feature&cId={0}">{1}</a>', record.data.na_feature_id, value);
 			}
 		}, {
 			text: 'Annotation', 
-			dataIndex: 'annotation', 
+			dataIndex: 'annotation',
 			flex: 1
 		}, {
 			text: 'Feature Type', 
-			dataIndex: 'feature_type', 
+			dataIndex: 'feature_type',
 			flex: 1
 		}, {		
 			text: 'Start', 
 			dataIndex: 'start_max', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'End', 
 			dataIndex: 'end_min', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'Length (NT)', 
 			dataIndex: 'na_length', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'Strand', 
-			dataIndex: 'strand', 
+			dataIndex: 'strand',
 			flex: 1
 		}, {
 			text: 'Accession',
@@ -62,8 +72,8 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 			dataIndex: 'refseq_protein_id',
 			flex: 1,
 			hidden: true
-		}
-	],
+		}]
+	},
 	dockedItems: [{
 		xtype: 'featuretoolbar',
 		height: 70,

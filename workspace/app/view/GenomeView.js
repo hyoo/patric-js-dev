@@ -5,10 +5,15 @@ Ext.define('VBI.Workspace.view.GenomeView', {
 	requires: ['VBI.Workspace.view.GenomeToolbar'],
 	id: 'workspace_genomeview',
 	border: 0,
-	columns: [{
+	columns: {
+		defaults: {
+			align: 'center'
+		},
+		items: [{
 			text: 'Organism Name', 
 			dataIndex: 'genome_name', 
 			flex: 2,
+			align: 'left',
 			renderer: function(value, p, record) {
 				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
 			}
@@ -36,8 +41,8 @@ Ext.define('VBI.Workspace.view.GenomeView', {
 			text: 'plasmid', 
 			dataIndex: 'plasmid', 
 			flex: 1
-		}
-	],
+		}]
+	},
 	dockedItems: [{
 		xtype: 'genometoolbar',
 		height: 70,

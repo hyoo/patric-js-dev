@@ -37,7 +37,7 @@ Ext.define('VBI.Workspace.view.group.GenomeGrid', {
 		flex: 1
 	}],
 	dockedItems: [{
-		xtype: 'pagingtoolbar',
+		xtype: 'patricpagingtoolbar',
 		store: 'Genomes',
 		dock: 'bottom',
 		displayInfo: true

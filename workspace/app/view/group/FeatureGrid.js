@@ -64,7 +64,7 @@ Ext.define('VBI.Workspace.view.group.FeatureGrid', {
 		}
 	],
 	dockedItems: [{
-		xtype: 'pagingtoolbar',
+		xtype: 'patricpagingtoolbar',
 		store: 'Features',
 		dock: 'bottom',
 		displayInfo: true

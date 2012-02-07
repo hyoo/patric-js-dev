@@ -3,6 +3,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 	requires: [
 		'VBI.Workspace.view.Toolbar',
 		'VBI.Workspace.view.GlobalToolbar',
+		'VBI.Workspace.view.PagingToolbar',
 		'VBI.Workspace.view.StationsList',
 		'VBI.Workspace.view.ListView',
 		'VBI.Workspace.view.GroupView'

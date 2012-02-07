@@ -79,7 +79,7 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 		height: 70,
 		dock: 'top'
 	}, {
-		xtype: 'pagingtoolbar',
+		xtype: 'patricpagingtoolbar',
 		store: 'Features',
 		dock: 'bottom',
 		displayInfo: true

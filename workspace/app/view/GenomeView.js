@@ -48,7 +48,7 @@ Ext.define('VBI.Workspace.view.GenomeView', {
 		height: 70,
 		dock: 'top'
 	}, {
-		xtype: 'pagingtoolbar',
+		xtype: 'patricpagingtoolbar',
 		store: 'Genomes',
 		dock: 'bottom',
 		displayInfo: true

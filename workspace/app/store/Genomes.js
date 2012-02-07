@@ -19,7 +19,7 @@ Ext.define('VBI.Workspace.store.Genomes', {
 		},
 		noCache: false
 	},
-	pageSize: 100,
+	stateId: 'workspace_pagesize',
 	remoteSort: true,
 	filterByTracks: function(tracks) {
 		if (Ext.isArray(tracks)) {

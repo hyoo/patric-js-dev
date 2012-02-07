@@ -463,7 +463,7 @@ Ext.define('VBI.Workspace.store.Features', {
 		},
 		noCache: false
 	},
-	pageSize: 100,
+	stateId: 'workspace_pagesize',
 	remoteSort: true,
 	filterByTracks: function(tracks) {
 		if (Ext.isArray(tracks)) {
@@ -497,7 +497,7 @@ Ext.define('VBI.Workspace.store.Genomes', {
 		},
 		noCache: false
 	},
-	pageSize: 100,
+	stateId: 'workspace_pagesize',
 	remoteSort: true,
 	filterByTracks: function(tracks) {
 		if (Ext.isArray(tracks)) {
@@ -1644,47 +1644,57 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 	requires: ['VBI.Workspace.view.FeatureToolbar'],
 	id: 'workspace_featureview',
 	border: 0,
-	columns: [{
+	columns: {
+		defaults: {
+			align:'center'
+		},
+		items:[{
 			text: 'Genome',
 			dataIndex: 'genome_name',
 			flex: 2,
+			align: 'left',
 			renderer: function(value, p, record) {
 				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
 			}
 		},{
 			text: 'Product Description', 
 			dataIndex: 'product', 
-			flex: 3
+			flex: 3,
+			align: 'left'
 		}, {
 			text: 'Locus Tag', 
 			dataIndex: 'locus_tag', 
-			flex: 1,
+			flex: 2,
+			align: 'left',
 			renderer: function(value, p, record) {
 				return Ext.String.format('<a href="Feature?cType=feature&cId={0}">{1}</a>', record.data.na_feature_id, value);
 			}
 		}, {
 			text: 'Annotation', 
-			dataIndex: 'annotation', 
+			dataIndex: 'annotation',
 			flex: 1
 		}, {
 			text: 'Feature Type', 
-			dataIndex: 'feature_type', 
+			dataIndex: 'feature_type',
 			flex: 1
 		}, {		
 			text: 'Start', 
 			dataIndex: 'start_max', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'End', 
 			dataIndex: 'end_min', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'Length (NT)', 
 			dataIndex: 'na_length', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'Strand', 
-			dataIndex: 'strand', 
+			dataIndex: 'strand',
 			flex: 1
 		}, {
 			text: 'Accession',
@@ -1701,14 +1711,14 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 			dataIndex: 'refseq_protein_id',
 			flex: 1,
 			hidden: true
-		}
-	],
+		}]
+	},
 	dockedItems: [{
 		xtype: 'featuretoolbar',
 		height: 70,
 		dock: 'top'
 	}, {
-		xtype: 'pagingtoolbar',
+		xtype: 'patricpagingtoolbar',
 		store: 'Features',
 		dock: 'bottom',
 		displayInfo: true
@@ -1931,10 +1941,15 @@ Ext.define('VBI.Workspace.view.GenomeView', {
 	requires: ['VBI.Workspace.view.GenomeToolbar'],
 	id: 'workspace_genomeview',
 	border: 0,
-	columns: [{
+	columns: {
+		defaults: {
+			align: 'center'
+		},
+		items: [{
 			text: 'Organism Name', 
 			dataIndex: 'genome_name', 
 			flex: 2,
+			align: 'left',
 			renderer: function(value, p, record) {
 				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
 			}
@@ -1962,14 +1977,14 @@ Ext.define('VBI.Workspace.view.GenomeView', {
 			text: 'plasmid', 
 			dataIndex: 'plasmid', 
 			flex: 1
-		}
-	],
+		}]
+	},
 	dockedItems: [{
 		xtype: 'genometoolbar',
 		height: 70,
 		dock: 'top'
 	}, {
-		xtype: 'pagingtoolbar',
+		xtype: 'patricpagingtoolbar',
 		store: 'Genomes',
 		dock: 'bottom',
 		displayInfo: true
@@ -2003,7 +2018,7 @@ Ext.define('VBI.Workspace.view.GlobalToolbar', {
 				//text: 'Workspace > Features > Staph group for Class > CDS'
 				text: ''
 			},
-			'->', /*
+			'->', 
 			{
 				text: '(new feature group)',
 				handler: function() {
@@ -2047,7 +2062,7 @@ Ext.define('VBI.Workspace.view.GlobalToolbar', {
 					});
 				}
 			}, 
-			'-', */ 
+			'-', 
 			{
 				xtype: 'button',
 				itemId: 'btnItemView',
@@ -2244,7 +2259,7 @@ Ext.define('VBI.Workspace.view.group.DetailToolbar', {
 		}
 	],
 	dockedItems: [{
-		xtype: 'pagingtoolbar',
+		xtype: 'patricpagingtoolbar',
 		store: 'Features',
 		dock: 'bottom',
 		displayInfo: true
@@ -2293,7 +2308,7 @@ Ext.define('VBI.Workspace.view.group.GenomeGrid', {
 		flex: 1
 	}],
 	dockedItems: [{
-		xtype: 'pagingtoolbar',
+		xtype: 'patricpagingtoolbar',
 		store: 'Genomes',
 		dock: 'bottom',
 		displayInfo: true
@@ -2846,17 +2861,23 @@ Ext.define('VBI.Workspace.view.ListView', {
 		'VBI.Workspace.view.GenomeView'
 	],
 	height: '100%',
-	border: false,
+	border: false,/*
 	layout: {
 		type: 'hbox',
 		align: 'stretch'
-	},
+		},*/
+	layout: 'border',
 	items: [{
 			xtype: 'columnbrowser', //column browser
-			width: 200
+			title: 'Column Browser',
+			width: 200,
+			region: 'west',
+			collapsible: true,
+			resizable: true
 		},
 		{
 			xtype: 'panel',
+			region: 'center',
 			layout: 'card',
 			activeItem: 'featureview',
 			id: 'workspace_listview',
@@ -2876,7 +2897,144 @@ Ext.define('VBI.Workspace.view.ListView', {
 		this.callParent(arguments);
 	}
 });
-Ext.define('VBI.Workspace.view.StationsList', {
+Ext.define('VBI.Workspace.view.PagingToolbar', {
+	extend: 'Ext.PagingToolbar',
+	alias: 'widget.patricpagingtoolbar',
+	beforePageSizeText: 'Show',
+	afterPageSizeText: 'per page',
+	displayMsg : 'Displaying record {0} - {1} of {2}',
+	getPagingItems: function() {
+		var me = this;
+		return [{
+			itemId: 'first',
+			tooltip: me.firstText,
+			overflowText: me.firstText,
+			iconCls: Ext.baseCSSPrefix + 'tbar-page-first',
+			disabled: true,
+			handler: me.moveFirst,
+			scope: me
+		},{
+			itemId: 'prev',
+			tooltip: me.prevText,
+			overflowText: me.prevText,
+			iconCls: Ext.baseCSSPrefix + 'tbar-page-prev',
+			disabled: true,
+			handler: me.movePrevious,
+			scope: me
+		},
+		'-',
+		me.beforePageText,
+		{
+			xtype: 'numberfield',
+			itemId: 'inputItem',
+			name: 'inputItem',
+			cls: Ext.baseCSSPrefix + 'tbar-page-number',
+			allowDecimals: false,
+			minValue: 1,
+			hideTrigger: true,
+			enableKeyEvents: true,
+			selectOnFocus: true,
+			submitValue: false,
+			width: me.inputItemWidth,
+			margins: '-1 2 3 2',
+			listeners: {
+				scope: me,
+				keydown: me.onPagingKeyDown,
+				blur: me.onPagingBlur
+			}
+		},{
+			xtype: 'tbtext',
+			itemId: 'afterTextItem',
+			text: Ext.String.format(me.afterPageText, 1)
+		},
+		'-',
+		{
+			itemId: 'next',
+			tooltip: me.nextText,
+			overflowText: me.nextText,
+			iconCls: Ext.baseCSSPrefix + 'tbar-page-next',
+			disabled: true,
+			handler: me.moveNext,
+			scope: me
+		},{
+			itemId: 'last',
+			tooltip: me.lastText,
+			overflowText: me.lastText,
+			iconCls: Ext.baseCSSPrefix + 'tbar-page-last',
+			disabled: true,
+			handler: me.moveLast,
+			scope: me
+		},
+		'-', 
+		/* modification start */
+		me.beforePageSizeText,
+		{
+			xtype: 'numberfield',
+			itemId: 'pagesize',
+			cls: Ext.baseCSSPrefix + 'tbar-page-number',
+			allowDecimals: false,
+			minValue: 1,
+			maxValue: 64000,
+			hideTrigger: true,
+			enableKeyEvents: true,
+			selectOnFocus: true,
+			submitValue: false,
+			width: 50,
+			margins: '-1 2 3 2',
+			value: undefined,
+			stateId: 'workspace_pagesize',
+			stateEvents:['change'],
+			getState: function() {
+				//console.log("getState:"+this.value);
+				return { pageSize: this.value };
+			},
+			applyState: function(state) {
+				//console.log(state.pageSize, this.value);
+				if ((state == undefined || state.pageSize == undefined) && this.value == undefined) {
+					var state = { pageSize: 100 };
+					this.setValue(state.pageSize);
+				}
+				else if (state != undefined && this.value != state.pageSize) {
+					this.setValue(state.pageSize);
+				}
+			},
+			listeners: {
+				scope: me,
+				specialKey: function(field, e) {
+					if (e.getKey() == e.ENTER) {
+						this.doRefresh();
+					}
+				}
+			},
+			onChange: function(newValue, oldValue, options) {
+				var	value = newValue,
+					valueIsNull = value === null;
+					
+				if (valueIsNull == false) {
+					if (Ext.isString(me.store)) {
+						var store = Ext.StoreManager.lookup(me.store);
+						store.currentPage = 1;
+						store.pageSize = value;
+					} else {
+						me.store.currentPage = 1;
+						me.store.pageSize = value;
+					}
+				}
+			}
+		},
+		me.afterPageSizeText,
+		'-',
+		/* end of modification */
+		{
+			itemId: 'refresh',
+			tooltip: me.refreshText,
+			overflowText: me.refreshText,
+			iconCls: Ext.baseCSSPrefix + 'tbar-loading',
+			handler: me.doRefresh,
+			scope: me
+		}];
+	}
+});Ext.define('VBI.Workspace.view.StationsList', {
 	extend: 'Ext.tree.Panel',
 	alias: 'widget.stationslist',
 	store: 'Stations',
@@ -3033,6 +3191,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 	requires: [
 		'VBI.Workspace.view.Toolbar',
 		'VBI.Workspace.view.GlobalToolbar',
+		'VBI.Workspace.view.PagingToolbar',
 		'VBI.Workspace.view.StationsList',
 		'VBI.Workspace.view.ListView',
 		'VBI.Workspace.view.GroupView'

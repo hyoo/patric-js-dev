@@ -4,7 +4,7 @@ Ext.define('VBI.Workspace.view.GenomeView', {
 	store: 'Genomes',
 	requires: ['VBI.Workspace.view.GenomeToolbar'],
 	id: 'workspace_genomeview',
-	border: 1,
+	border: 0,
 	columns: {
 		defaults: {
 			align: 'center'

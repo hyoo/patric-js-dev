@@ -1675,26 +1675,31 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 		}, {
 			text: 'Annotation', 
 			dataIndex: 'annotation',
-			flex: 1
+			flex: 1,
+			renderer: BasicRenderer
 		}, {
 			text: 'Feature Type', 
 			dataIndex: 'feature_type',
-			flex: 1
+			flex: 1,
+			renderer: BasicRenderer
 		}, {		
 			text: 'Start', 
 			dataIndex: 'start_max', 
 			flex: 1,
-			align: 'right'
+			align: 'right',
+			renderer: BasicRenderer
 		}, {
 			text: 'End', 
 			dataIndex: 'end_min', 
 			flex: 1,
-			align: 'right'
+			align: 'right',
+			renderer: BasicRenderer
 		}, {
 			text: 'Length (NT)', 
 			dataIndex: 'na_length', 
 			flex: 1,
-			align: 'right'
+			align: 'right',
+			renderer: BasicRenderer
 		}, {
 			text: 'Strand', 
 			dataIndex: 'strand',
@@ -2025,7 +2030,7 @@ Ext.define('VBI.Workspace.view.GlobalToolbar', {
 				//text: 'Workspace > Features > Staph group for Class > CDS'
 				text: ''
 			},
-			'->', 
+			'->', /*
 			{
 				text: '(new feature group)',
 				handler: function() {
@@ -2068,7 +2073,7 @@ Ext.define('VBI.Workspace.view.GlobalToolbar', {
 						}
 					});
 				}
-			}, 
+			}, */
 			'-', 
 			{
 				xtype: 'button',
@@ -2230,26 +2235,31 @@ Ext.define('VBI.Workspace.view.group.DetailToolbar', {
 		}, {
 			text: 'Annotation', 
 			dataIndex: 'annotation', 
-			flex: 1
+			flex: 1,
+			renderer: BasicRenderer
 		}, {
 			text: 'Feature Type', 
 			dataIndex: 'feature_type', 
-			flex: 1
+			flex: 1,
+			renderer: BasicRenderer
 		}, {		
 			text: 'Start', 
 			dataIndex: 'start_max', 
 			flex: 1,
-			align: 'right'
+			align: 'right',
+			renderer: BasicRenderer
 		}, {
 			text: 'End', 
 			dataIndex: 'end_min', 
 			flex: 1,
-			align: 'right'
+			align: 'right',
+			renderer: BasicRenderer
 		}, {
 			text: 'Length (NT)', 
 			dataIndex: 'na_length', 
 			flex: 1,
-			align: 'right'
+			align: 'right',
+			renderer: BasicRenderer
 		}, {
 			text: 'Strand', 
 			dataIndex: 'strand', 

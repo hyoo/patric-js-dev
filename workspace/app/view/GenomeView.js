@@ -14,7 +14,8 @@ Ext.define('VBI.Workspace.view.GenomeView', {
 			dataIndex: 'genome_name', 
 			flex: 2,
 			align: 'left',
-			renderer: function(value, p, record) {
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
 			}
 		}, {

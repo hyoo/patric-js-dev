@@ -22,7 +22,7 @@ Ext.define('VBI.Workspace.view.GlobalToolbar', {
 				//text: 'Workspace > Features > Staph group for Class > CDS'
 				text: ''
 			},
-			'->', 
+			'->', /*
 			{
 				text: '(new feature group)',
 				handler: function() {
@@ -65,7 +65,7 @@ Ext.define('VBI.Workspace.view.GlobalToolbar', {
 						}
 					});
 				}
-			}, 
+			}, */
 			'-', 
 			{
 				xtype: 'button',

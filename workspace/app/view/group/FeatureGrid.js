@@ -8,18 +8,21 @@ Ext.define('VBI.Workspace.view.group.FeatureGrid', {
 			text: 'Genome',
 			dataIndex: 'genome_name',
 			flex: 2,
-			renderer: function(value, p, record) {
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
 			}
 		},{
 			text: 'Product Description', 
 			dataIndex: 'product', 
-			flex: 3
+			flex: 3,
+			renderer: BasicRenderer
 		}, {
 			text: 'Locus Tag', 
 			dataIndex: 'locus_tag', 
 			flex: 1,
-			renderer: function(value, p, record) {
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 				return Ext.String.format('<a href="Feature?cType=feature&cId={0}">{1}</a>', record.data.na_feature_id, value);
 			}
 		}, {
@@ -33,34 +36,41 @@ Ext.define('VBI.Workspace.view.group.FeatureGrid', {
 		}, {		
 			text: 'Start', 
 			dataIndex: 'start_max', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'End', 
 			dataIndex: 'end_min', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'Length (NT)', 
 			dataIndex: 'na_length', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'Strand', 
 			dataIndex: 'strand', 
-			flex: 1
+			flex: 1,
+			align: 'center'
 		}, {
 			text: 'Accession',
 			dataIndex: 'accession',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}, {
 			text: 'RefSeq Locus Tag',
 			dataIndex: 'refseq_locus_tag',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}, {
 			text: 'RefSeq Protein',
 			dataIndex: 'refseq_protein_id',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}
 	],
 	dockedItems: [{

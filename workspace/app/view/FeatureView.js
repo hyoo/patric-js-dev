@@ -14,20 +14,23 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 			dataIndex: 'genome_name',
 			flex: 2,
 			align: 'left',
-			renderer: function(value, p, record) {
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
 			}
 		},{
 			text: 'Product Description', 
 			dataIndex: 'product', 
 			flex: 3,
-			align: 'left'
+			align: 'left',
+			renderer: BasicRenderer
 		}, {
 			text: 'Locus Tag', 
 			dataIndex: 'locus_tag', 
 			flex: 2,
 			align: 'left',
-			renderer: function(value, p, record) {
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 				return Ext.String.format('<a href="Feature?cType=feature&cId={0}">{1}</a>', record.data.na_feature_id, value);
 			}
 		}, {
@@ -61,17 +64,20 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 			text: 'Accession',
 			dataIndex: 'accession',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}, {
 			text: 'RefSeq Locus Tag',
 			dataIndex: 'refseq_locus_tag',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}, {
 			text: 'RefSeq Protein',
 			dataIndex: 'refseq_protein_id',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}]
 	},
 	dockedItems: [{

@@ -144,3 +144,8 @@ function formatRelativeDate(dateExt) {
 
 	return fullDate;
 };
+
+function BasicRenderer(value, metadata, record, rowIndex, colIndex, store){
+	metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
+	return value;
+}

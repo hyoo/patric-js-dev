@@ -1653,20 +1653,23 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 			dataIndex: 'genome_name',
 			flex: 2,
 			align: 'left',
-			renderer: function(value, p, record) {
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
 			}
 		},{
 			text: 'Product Description', 
 			dataIndex: 'product', 
 			flex: 3,
-			align: 'left'
+			align: 'left',
+			renderer: BasicRenderer
 		}, {
 			text: 'Locus Tag', 
 			dataIndex: 'locus_tag', 
 			flex: 2,
 			align: 'left',
-			renderer: function(value, p, record) {
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 				return Ext.String.format('<a href="Feature?cType=feature&cId={0}">{1}</a>', record.data.na_feature_id, value);
 			}
 		}, {
@@ -1700,17 +1703,20 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 			text: 'Accession',
 			dataIndex: 'accession',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}, {
 			text: 'RefSeq Locus Tag',
 			dataIndex: 'refseq_locus_tag',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}, {
 			text: 'RefSeq Protein',
 			dataIndex: 'refseq_protein_id',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}]
 	},
 	dockedItems: [{
@@ -1950,7 +1956,8 @@ Ext.define('VBI.Workspace.view.GenomeView', {
 			dataIndex: 'genome_name', 
 			flex: 2,
 			align: 'left',
-			renderer: function(value, p, record) {
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
 			}
 		}, {
@@ -2203,18 +2210,21 @@ Ext.define('VBI.Workspace.view.group.DetailToolbar', {
 			text: 'Genome',
 			dataIndex: 'genome_name',
 			flex: 2,
-			renderer: function(value, p, record) {
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
 			}
 		},{
 			text: 'Product Description', 
 			dataIndex: 'product', 
-			flex: 3
+			flex: 3,
+			renderer: BasicRenderer
 		}, {
 			text: 'Locus Tag', 
 			dataIndex: 'locus_tag', 
 			flex: 1,
-			renderer: function(value, p, record) {
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 				return Ext.String.format('<a href="Feature?cType=feature&cId={0}">{1}</a>', record.data.na_feature_id, value);
 			}
 		}, {
@@ -2228,34 +2238,41 @@ Ext.define('VBI.Workspace.view.group.DetailToolbar', {
 		}, {		
 			text: 'Start', 
 			dataIndex: 'start_max', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'End', 
 			dataIndex: 'end_min', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'Length (NT)', 
 			dataIndex: 'na_length', 
-			flex: 1
+			flex: 1,
+			align: 'right'
 		}, {
 			text: 'Strand', 
 			dataIndex: 'strand', 
-			flex: 1
+			flex: 1,
+			align: 'center'
 		}, {
 			text: 'Accession',
 			dataIndex: 'accession',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}, {
 			text: 'RefSeq Locus Tag',
 			dataIndex: 'refseq_locus_tag',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}, {
 			text: 'RefSeq Protein',
 			dataIndex: 'refseq_protein_id',
 			flex: 1,
-			hidden: true
+			hidden: true,
+			renderer: BasicRenderer
 		}
 	],
 	dockedItems: [{
@@ -2275,38 +2292,45 @@ Ext.define('VBI.Workspace.view.group.GenomeGrid', {
 	store: 'Genomes',
 	id: 'workspace_genomegrid',
 	border: 0,
-	columns: [{
-		text: 'Organism Name', 
-		dataIndex: 'genome_name', 
-		flex: 2,
-		renderer: function(value, p, record) {
-			return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
-		}
-	}, {
-		text: 'Size', 
-		dataIndex: 'length', 
-		flex: 1
-	}, {
-		text: 'PATRIC CDS', 
-		dataIndex: 'rast_cds', 
-		flex: 1
-	}, {
-		text: 'Legacy BRC CDS', 
-		dataIndex: 'brc_cds', 
-		flex: 1
-	}, {		
-		text: 'RefSeq CDS', 
-		dataIndex: 'refseq_cds', 
-		flex: 1
-	}, {
-		text: 'chromosome', 
-		dataIndex: 'chromosome', 
-		flex: 1
-	}, {
-		text: 'plasmid', 
-		dataIndex: 'plasmid', 
-		flex: 1
-	}],
+	columns: {
+		defaults: {
+			align: 'center'
+		},
+		items: [{
+			text: 'Organism Name', 
+			dataIndex: 'genome_name', 
+			flex: 2,
+			align: 'left',
+			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+				metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
+				return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
+			}
+		}, {
+			text: 'Size', 
+			dataIndex: 'length', 
+			flex: 1
+		}, {
+			text: 'PATRIC CDS', 
+			dataIndex: 'rast_cds', 
+			flex: 1
+		}, {
+			text: 'Legacy BRC CDS', 
+			dataIndex: 'brc_cds', 
+			flex: 1
+		}, {		
+			text: 'RefSeq CDS', 
+			dataIndex: 'refseq_cds', 
+			flex: 1
+		}, {
+			text: 'chromosome', 
+			dataIndex: 'chromosome', 
+			flex: 1
+		}, {
+			text: 'plasmid', 
+			dataIndex: 'plasmid', 
+			flex: 1
+		}]
+	},
 	dockedItems: [{
 		xtype: 'patricpagingtoolbar',
 		store: 'Genomes',
@@ -3416,3 +3440,8 @@ function formatRelativeDate(dateExt) {
 
 	return fullDate;
 };
+
+function BasicRenderer(value, metadata, record, rowIndex, colIndex, store){
+	metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
+	return value;
+}

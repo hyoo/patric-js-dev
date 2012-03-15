@@ -35,7 +35,7 @@ Ext.define('CoordView.view.AccessionChart', {
 				'itemmouseup': function(item, obj){
 					//console.log('heard it!');
 					console.log(item.storeItem.getId());
-					CoordView.filter('accession', item.storeItem.getId());
+					CoordView.filter('exp_accession', item.storeItem.getId());
 					return true;
 				}
 			}

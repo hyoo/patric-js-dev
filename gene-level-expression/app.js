@@ -45,7 +45,7 @@ Ext.onReady(function() {
   		CoordView.filter=function(field, value, re){
   			//console.log(newValue);
 				
-				var store=Ext.getStore('Genomes');
+				var store=Ext.getStore('Features');
 				//store.suspendEvents();
 				store.clearFilter();
 				//store.resumeEvents();
@@ -54,16 +54,16 @@ Ext.onReady(function() {
 				var count=0;
 				if (value=='' || value==null || value=='Filter') {
 					store.filter();
-					count=Ext.getStore('Genomes').getCount();
-					(count==1) ? countStr=count+' genome' : countStr=count+' genomes';
+					count=Ext.getStore('Features').getCount();
+					(count==1) ? countStr=count+' record' : countStr=count+' records';
 					Ext.getCmp('filterReport').setText(countStr);
 				} else {
 					(re) ? store.filter(field, new RegExp(value, 'gi')) : store.filter(field, value);
-					count=Ext.getStore('Genomes').getCount();
-					(count==1) ? countStr=count+' genome matches' : countStr=count+' genomes match';
+					count=Ext.getStore('Features').getCount();
+					(count==1) ? countStr=count+' record matches' : countStr=count+' records match';
 					var valueStr='<i>'+value+'</i>';
 					if (field!='indx_str') {
-						valueStr=field.replace('_', ' ')+' '+valueStr;
+						//valueStr=field.replace('_', ' ')+' '+valueStr;
 						Ext.getCmp('filterTextField').reset();
 					}
 					Ext.getCmp('filterReport').setText(countStr+' '+valueStr);
@@ -204,21 +204,21 @@ Ext.onReady(function() {
 											clearTimeout(CoordView.filterCall);
 											CoordView.filterCall=null;
 											var val=field.getValue();
-											CoordView.filter('indx_str', val, true);
+											CoordView.filter('exp_name', val, true);
 										}
-									},
+									}/*,
 									
 									change: function(field, newValue, oldValue, options){
 										if (newValue!=oldValue) {
 											clearTimeout(CoordView.filterCall);
 											CoordView.filterCall=null;
 											CoordView.filterCall=setTimeout(
-												"CoordView.filter('indx_str', '"+newValue+"', true)", 
+												"CoordView.filter('exp_name', '"+newValue+"', true)", 
 												200
 											);
 										}
 									}
-									
+									*/
 								}
 								
 							},

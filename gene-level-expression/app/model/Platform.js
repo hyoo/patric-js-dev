@@ -8,7 +8,7 @@
 Ext.define('CoordView.model.Platform', {
 	extend: 'Ext.data.Model',
 
-	idProperty: 'exp_stat_platform',
+	idProperty: 'name',
 
 	fields: [
 		{name: 'name', type: 'string'},

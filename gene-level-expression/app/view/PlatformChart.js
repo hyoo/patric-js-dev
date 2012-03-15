@@ -35,7 +35,7 @@ Ext.define('CoordView.view.PlatformChart', {
 				'itemmouseup': function(item, obj){
 					//console.log('heard it!');
 					console.log(item.storeItem.getId());
-					CoordView.filter('platform', item.storeItem.getId());
+					CoordView.filter('exp_platform', item.storeItem.getId());
 					return true;
 				}
 			}

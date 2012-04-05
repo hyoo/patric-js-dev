@@ -1,8 +1,8 @@
 /**
- * @class CoordView.store.Genomes
+ * @class CoordView.store.Features
  * @extends Ext.data.Store
  *
- * This class implements the store for genomes.
+ * This class implements the store for features.
  */
 Ext.define('CoordView.store.Features', {
 	extend: 'Ext.data.Store',
@@ -11,6 +11,10 @@ Ext.define('CoordView.store.Features', {
 	proxy: {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
+		extraParams: {
+			featureId: '',
+			figfamId: ''
+		},
 		reader: {
 			type: 'json',
 			root: 'results'
@@ -27,5 +31,4 @@ Ext.define('CoordView.store.Features', {
 		},
 		single: true
 	}
-	
 });

@@ -29,16 +29,16 @@ Ext.define('CoordView.view.ExpRatioChart', {
 			}
 		],
 		series: [
-				{
-					type: 'scatter',
-					markerConfig: {
-						radius: 2,
-						size: 2
-					},
-					axis: 'left',
-					yField: 'exp_pratio',
-					xField: 'rownum'
-				}
-	    ]   
+			{
+				type: 'scatter',
+				markerConfig: {
+					radius: 2,
+					size: 2
+				},
+				axis: 'left',
+				yField: 'exp_pratio',
+				xField: 'rownum'
+			}
+		]
 	}]
 });

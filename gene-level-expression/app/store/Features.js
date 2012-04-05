@@ -12,9 +12,13 @@ Ext.define('CoordView.store.Features', {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
 		extraParams: {
+			storeType: 'features',
 			featureId: '',
 			figfamId: ''
 		},
+		pageParam: undefined,
+		startParam: undefined,
+		limitParam: undefined,
 		reader: {
 			type: 'json',
 			root: 'results'

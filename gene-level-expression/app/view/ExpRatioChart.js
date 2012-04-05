@@ -1,19 +1,17 @@
 /**
- * @class CoordView.view.SizeVsGCChart
+ * @class CoordView.view.ExpRatioChart
  * @extends Ext.panel.Panel
- * @xtype diseasechart
+ * @xtype expratiochart
  *
- * This class implements a chart of genome size vs gc content.
+ * This class implements a chart of expression ratio level.
  */
 Ext.define('CoordView.view.ExpRatioChart', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.expratiochart',
 	id: 'p-expratiochart',
-	
 	items: [{
 		xtype: 'chart',
 		store: 'Features',
-//		theme: 'Base',
 		axes: [
 			{
 				type: 'Numeric',
@@ -30,20 +28,17 @@ Ext.define('CoordView.view.ExpRatioChart', {
 				minimum: 0
 			}
 		],
-    series: [
-			{
-				type: 'scatter',
-				markerConfig: {
-					radius: 2,
-					size: 2
-				},
-				axis: 'left',
-				yField: 'exp_pratio',
-				xField: 'rownum'
-			}
-    ]   
+		series: [
+				{
+					type: 'scatter',
+					markerConfig: {
+						radius: 2,
+						size: 2
+					},
+					axis: 'left',
+					yField: 'exp_pratio',
+					xField: 'rownum'
+				}
+	    ]   
 	}]
-	
 });
-
-

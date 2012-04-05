@@ -1,19 +1,18 @@
 /**
- * @class CoordView.view.SizeVsGCChart
+ * @class CoordView.view.ExpAvgChart
  * @extends Ext.panel.Panel
- * @xtype diseasechart
+ * @xtype expavgchart
  *
- * This class implements a chart of genome size vs gc content.
+ * This class implements a chart of expression avg level.
  */
 Ext.define('CoordView.view.ExpAvgChart', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.expavgchart',
 	id: 'p-expavgchart',
-	
 	items: [{
 		xtype: 'chart',
 		store: 'Features',
-//		theme: 'Base',
+		id: 'expavgchart',
 		axes: [
 			{
 				type: 'Numeric',
@@ -37,8 +36,7 @@ Ext.define('CoordView.view.ExpAvgChart', {
 				minimum: 0
 			}*/
 		],
-    series: [
-			{
+		series: [{
 				type: 'scatter',
 				markerConfig: {
 					radius: 2,
@@ -48,9 +46,12 @@ Ext.define('CoordView.view.ExpAvgChart', {
 				yField: 'exp_pavg',
 				xField: 'rownum'
 			}
-    ]   
+		],
+		listeners: {
+			refresh: function(chart, eOpts) {
+				chart.surface.removeAll();
+				chart.redraw();
+			}
+		}
 	}]
-	
 });
-
-

@@ -1,7 +1,7 @@
 /**
- * @class CoordView.view.GenomeTypeChart
+ * @class CoordView.view.AccessionChart
  * @extends Ext.panel.Panel
- * @xtype genometypechart
+ * @xtype accessionchart
  *
  * This class implements a chart of genome types.
  */
@@ -9,7 +9,6 @@ Ext.define('CoordView.view.AccessionChart', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.accessionchart',
 	id: 'p-accessionchart',
-	
 	items: [{
 		xtype: 'chart',
 		store: 'Accessions',
@@ -19,7 +18,9 @@ Ext.define('CoordView.view.AccessionChart', {
 			type: 'pie',
 			field: 'count',
 			highlight: {
-				segment: {margin:10}
+				segment: {
+					margin:10
+				}
 			},
 			donut: 6,
 			label: {
@@ -41,5 +42,4 @@ Ext.define('CoordView.view.AccessionChart', {
 			}
 		}]
 	}]
-	
 });

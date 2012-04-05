@@ -1,7 +1,7 @@
 Ext.define('CoordView.controller.ViewController', {
 	extend: 'Ext.app.Controller',
 	id: 'ViewController',
-
+	
 	views: [
 		'FeatureGrid',
 		'AccessionChart',
@@ -45,13 +45,13 @@ Ext.define('CoordView.controller.ViewController', {
 	init: function() {
 	
 		console.log('Initialized controller!');
-/*
+		/*
 		this.control({
 			'panel > chart > pie': {
 				itemmouseup: this.seriesClick
 			}
 		});
-*/
+		*/
 	},
 	
 	/**
@@ -64,5 +64,4 @@ Ext.define('CoordView.controller.ViewController', {
 		console.log('ViewController.seriesClick');
 		console.log(arguments);
 	}
-			
 });

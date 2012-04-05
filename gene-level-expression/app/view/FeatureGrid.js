@@ -26,20 +26,14 @@ Ext.define('CoordView.view.FeatureGrid', {
 	*/
 	
 	columns: [
+		{dataIndex: 'rownum',			header: 'ID',			flex: 1},
 		{dataIndex: 'exp_accession',	header: 'Accession',	flex: 1},
 		{dataIndex: 'exp_samples',		header: 'Samples',		flex: 1},
 		{dataIndex: 'exp_platform',		header: 'Platform',		flex: 1},
 		{dataIndex: 'exp_name',			header: 'Condition',	flex: 3},
 		{dataIndex: 'exp_locustag',		header: 'Locus Tag',	flex: 1},
 		{dataIndex: 'exp_pavg',			header: 'Avg',			flex: 1},
-		{dataIndex: 'exp_pratio',		header: 'Ratio',		flex: 1}/*,
-		{dataIndex: 'locus_tag',		header: 'Locus Tag',	flex: 1},
-		{dataIndex: 'genome_name',		header: 'Genome',		flex: 1},
-		{dataIndex: 'start_max',		header: 'Start',		flex: 1},
-		{dataIndex: 'end_min',			header: 'End',			flex: 1},
-		{dataIndex: 'na_length',		header: 'NA Length',	flex: 1},
-		{dataIndex: 'proudct',			header: 'Product',		flex: 1},
-		{dataIndex: 'aa_length',		header: 'AA Length',	flex: 1}*/
+		{dataIndex: 'exp_pratio',		header: 'Ratio',		flex: 1}
 	],
 	
 	/**

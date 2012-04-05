@@ -1,15 +1,14 @@
 /**
- * @class CoordView.view.GenomeTypeChart
+ * @class CoordView.view.PlatformChart
  * @extends Ext.panel.Panel
- * @xtype genometypechart
+ * @xtype platformchart
  *
- * This class implements a chart of genome types.
+ * This class implements a chart of platform types.
  */
 Ext.define('CoordView.view.PlatformChart', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.platformchart',
 	id: 'p-platformchart',
-	
 	items: [{
 		xtype: 'chart',
 		store: 'Platforms',
@@ -19,7 +18,9 @@ Ext.define('CoordView.view.PlatformChart', {
 			type: 'pie',
 			field: 'count',
 			highlight: {
-				segment: {margin:10}
+				segment: {
+					margin:10
+				}
 			},
 			donut: 6,
 			label: {
@@ -41,5 +42,4 @@ Ext.define('CoordView.view.PlatformChart', {
 			}
 		}]
 	}]
-	
 });

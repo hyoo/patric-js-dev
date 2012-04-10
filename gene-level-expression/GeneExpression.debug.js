@@ -62,9 +62,13 @@ Ext.define('CoordView.store.Accessions', {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
 		extraParams: {
+			storeType: 'accessions',
 			featureId: '',
 			figfamId: ''
 		},
+		pageParam: undefined,
+		startParam: undefined,
+		limitParam: undefined,
 		reader: {
 			type: 'json',
 			root: 'exp_stat_accession'
@@ -95,9 +99,13 @@ Ext.define('CoordView.store.Features', {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
 		extraParams: {
+			storeType: 'features',
 			featureId: '',
 			figfamId: ''
 		},
+		pageParam: undefined,
+		startParam: undefined,
+		limitParam: undefined,
 		reader: {
 			type: 'json',
 			root: 'results'
@@ -129,9 +137,13 @@ Ext.define('CoordView.store.Platforms', {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
 		extraParams: {
+			storeType: 'platforms',
 			featureId: '',
 			figfamId: ''
 		},
+		pageParam: undefined,
+		startParam: undefined,
+		limitParam: undefined,
 		reader: {
 			type: 'json',
 			root: 'exp_stat_platform'
@@ -273,17 +285,17 @@ Ext.define('CoordView.view.ExpRatioChart', {
 			}
 		],
 		series: [
-				{
-					type: 'scatter',
-					markerConfig: {
-						radius: 2,
-						size: 2
-					},
-					axis: 'left',
-					yField: 'exp_pratio',
-					xField: 'rownum'
-				}
-	    ]   
+			{
+				type: 'scatter',
+				markerConfig: {
+					radius: 2,
+					size: 2
+				},
+				axis: 'left',
+				yField: 'exp_pratio',
+				xField: 'rownum'
+			}
+		]
 	}]
 });
 /**
@@ -474,13 +486,13 @@ Ext.onReady(function() {
 		appFolder: 'app',
 		models: [
 			'Genome',
-			'Feature',
+			'Feature'/*,
 			'Disease',
 			'GenomeType',
 			'SeqStatus',
 			'SeqPlatform',
 			'IsoSource',
-			'Pathovar'
+			'Pathovar'*/
 		],
 		controllers: [
 			'ViewController'

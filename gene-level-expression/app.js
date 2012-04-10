@@ -7,13 +7,13 @@ Ext.onReady(function() {
 		appFolder: 'app',
 		models: [
 			'Genome',
-			'Feature',
+			'Feature'/*,
 			'Disease',
 			'GenomeType',
 			'SeqStatus',
 			'SeqPlatform',
 			'IsoSource',
-			'Pathovar'
+			'Pathovar'*/
 		],
 		controllers: [
 			'ViewController'

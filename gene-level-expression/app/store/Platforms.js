@@ -13,8 +13,7 @@ Ext.define('CoordView.store.Platforms', {
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
 		extraParams: {
 			storeType: 'platforms',
-			featureId: '',
-			figfamId: ''
+			featureId: ''
 		},
 		pageParam: undefined,
 		startParam: undefined,

@@ -13,8 +13,7 @@ Ext.define('CoordView.store.Accessions', {
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
 		extraParams: {
 			storeType: 'accessions',
-			featureId: '',
-			figfamId: ''
+			featureId: ''
 		},
 		pageParam: undefined,
 		startParam: undefined,

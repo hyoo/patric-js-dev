@@ -1,42 +1,22 @@
 Ext.onReady(function() {
-	//console.log('Ext ready!');
 	// create the app
 	Ext.application({
-		
 		name: 'CoordView',
 		appFolder: 'app',
 		models: [
 			'Genome',
-			'Feature'/*,
-			'Disease',
-			'GenomeType',
-			'SeqStatus',
-			'SeqPlatform',
-			'IsoSource',
-			'Pathovar'*/
+			'Feature'
 		],
 		controllers: [
 			'ViewController'
 		],
-		
 		launch: function() {
-			
-			console.log('launched app!');
-			
-			/*
-			Ext.chart.theme.CatTheme = Ext.extend(Object, {
-				constructor: function(config) {
-					Ext.chart.theme.call(this, config, {
-						baseColor: '#FF883B'
-					});
-				}
-			});
-			*/
 			var featureId = Ext.getDom('featureId').value;
-			//console.log("featureId="+featureId);
 			Ext.getStore('Features').getProxy().extraParams.featureId = featureId;
 			Ext.getStore('Accessions').getProxy().extraParams.featureId = featureId;
 			Ext.getStore('Platforms').getProxy().extraParams.featureId = featureId;
+			Ext.getStore('ExpressionAvgs').getProxy().extraParams.featureId = featureId;
+			Ext.getStore('ExpressionRatios').getProxy().extraParams.featureId = featureId;
 		
 			CoordView.filterCall=null;
 		
@@ -86,17 +66,33 @@ Ext.onReady(function() {
 				closable: false,
 				items: [
 					{
-						region: 'center',
-						layout: 'border',
+						region: 'north',
+						border: 0,
 						items: [
 							{
-								region: 'center',
-								xtype: 'featuregrid'
-							},
+								xtype: 'filterpanel',
+								height: 35
+							}
+						]
+					},
+					{
+						region: 'south',
+						xtype: 'featuregrid',
+						height: 400
+					},
+					{
+						region: 'center',
+						height: 250,
+						border: 0,
+						layout: {
+							type: 'hbox'
+						},
+						items: [
 							{
-								region: 'south',
 								height: 250,
+								width: 500,
 								layout: 'fit',
+								border: 0,
 								items: [
 									{
 										xtype: 'tabpanel',
@@ -114,59 +110,22 @@ Ext.onReady(function() {
 										]
 									}
 								]
-							}
-						]
-					},
-					{
-						region: 'east',
-						width: 320,
-						layout: {
-							type: 'vbox',
-							align: 'center'
-						},
-						items: [
+							},
 							{
 								xtype: 'tabpanel',
-								width: 320,
-								flex: 1,
+								width: 500,
+								height: 250,
 								items: [
 									{
 										title: 'Accession',
 										layout: 'fit',
 										xtype: 'accessionchart'
-									}/*,
-									{
-										title: 'Platform',
-										layout: 'fit',
-										xtype: 'seqplatformchart'
-									}*/
-								]
-							},
-							{
-								xtype: 'tabpanel',
-								width: 320,
-								flex: 1,
-								items: [
+									},
 									{
 										title: 'Platform',
 										layout: 'fit',
 										xtype: 'platformchart'
-									}/*
-									{
-										title: 'Disease',
-										layout: 'fit',
-										xtype: 'diseasechart'
-									},
-									{
-										title: 'Pathovar',
-										layout: 'fit',
-										xtype: 'pathovarchart'
-									},
-									{
-										title: 'Isolation Source',
-										layout: 'fit',
-										xtype: 'isosourcechart'
-									}*/
+									}
 								]
 							}
 						]
@@ -177,45 +136,10 @@ Ext.onReady(function() {
 						xtype: 'toolbar',
 						dock: 'bottom',
 						items: [
-							{
-								xtype: 'textfield',
-								name: 'filterField',
-								id: 'filterTextField',
-								itemId: 'filterText',
-								width: 125,
-								hideLabel: true,
-								allowBlank: true,
-								value: '',
-								emptyText: 'Filter',
-								scope: this,
-								listeners: {
-									
-									specialkey: function(field, e){
-										// e.HOME, e.END, e.PAGE_UP, e.PAGE_DOWN,
-										// e.TAB, e.ESC, arrow keys: e.LEFT, e.RIGHT, e.UP, e.DOWN
-										if (e.getKey() == e.ENTER) {
-											clearTimeout(CoordView.filterCall);
-											CoordView.filterCall=null;
-											var val=field.getValue();
-											CoordView.filter('exp_name', val, true);
-										}
-									}/*,
-									change: function(field, newValue, oldValue, options){
-										if (newValue!=oldValue) {
-											clearTimeout(CoordView.filterCall);
-											CoordView.filterCall=null;
-											CoordView.filterCall=setTimeout(
-												"CoordView.filter('exp_name', '"+newValue+"', true)", 
-												200
-											);
-										}
-									}
-									*/
-								}
-							},
 							'->',
 							{
 								xtype: 'tbtext',
+								height: 15,
 								text: '',
 								id: 'filterReport'
 							}

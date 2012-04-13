@@ -5,45 +5,29 @@ Ext.define('CoordView.controller.ViewController', {
 	views: [
 		'FeatureGrid',
 		'AccessionChart',
-		'PlatformChart',/*
-		'DiseaseChart',
-		'GenomeTypeChart',
-		'SeqStatusChart',
-		'SeqPlatformChart',
-		'SizeVsGCChart',
-		'IsoSourceChart',
-		'PathovarChart',
-		'SizeVsCDSChart',*/
+		'PlatformChart',
 		'ExpAvgChart',
-		'ExpRatioChart'
+		'ExpRatioChart',
+		'FilterPanel'
 	],
 	
 	stores: [
 		'Features',
 		'Accessions',
-		'Platforms'/*,
-		'Diseases',
-		'GenomeTypes',
-		'SeqStatuses',
-		'SeqPlatforms',
-		'IsoSources',
-		'Pathovars'*/
+		'Platforms', 
+		'ExpressionAvgs',
+		'ExpressionRatios'
 	],
 	
 	models: [
 		'Feature',
 		'Accession',
-		'Platform'/*,
-		'Disease',
-		'GenomeType',
-		'SeqStatus',
-		'SeqPlatform',
-		'IsoSource',
-		'Pathovar'*/
+		'Platform',
+		'ExpressionAvg',
+		'ExpressionRatio'
 	],
 	
 	init: function() {
-	
 		console.log('Initialized controller!');
 		/*
 		this.control({

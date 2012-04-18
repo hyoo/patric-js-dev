@@ -26,7 +26,7 @@ Ext.define('CoordView.view.FeatureGrid', {
 	*/
 	
 	columns: [
-		{dataIndex: 'rownum',			header: 'ID',			flex: 1},
+		{dataIndex: 'exp_geneid',		header: 'ID',			flex: 1},
 		{dataIndex: 'exp_accession',	header: 'Accession',	flex: 1},
 		{dataIndex: 'exp_samples',		header: 'Samples',		flex: 1},
 		{dataIndex: 'exp_platform',		header: 'Platform',		flex: 1},

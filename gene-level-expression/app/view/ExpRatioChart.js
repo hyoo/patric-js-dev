@@ -1,42 +1,40 @@
 /**
  * @class CoordView.view.ExpRatioChart
- * @extends Ext.panel.Panel
+ * @extends Ext.chart.Chart
  * @xtype expratiochart
  *
  * This class implements a chart of expression ratio level.
  */
  Ext.define('CoordView.view.ExpRatioChart', {
- 	extend: 'Ext.panel.Panel',
+ 	extend: 'Ext.chart.Chart',
  	alias: 'widget.expratiochart',
  	id: 'p-expratiochart',
- 	items: [{
- 		xtype: 'chart',
- 		store: 'ExpressionRatios',
- 		id: 'expavgchart',
- 		axes: [
- 			{
- 				type: 'Numeric',
- 				position: 'left',
- 				fields: ['count'],
- 				title: 'Records'
- 			},
- 			{
- 				type: 'Category',
- 				position: 'bottom',
- 				fields: ['range'],
- 				title: 'Range'
- 			}
- 		],
- 		series: [{
- 				type: 'bar',
- 				column: true,
- 				yField: ['count'],
- 				xField: 'range',
-				label: {
-					display: 'insideEnd',
-					field: 'count'
-				}
- 			}
- 		]
- 	}]
+	store: 'ExpressionRatios',
+	id: 'expavgchart',
+	axes: [
+		{
+			type: 'Numeric',
+			position: 'left',
+			fields: ['count'],
+			title: 'Records',
+			majorTickSteps: 1
+		},
+		{
+			type: 'Category',
+			position: 'bottom',
+			fields: ['range'],
+			title: 'Range'
+		}
+	],
+	series: [{
+			type: 'bar',
+			column: true,
+			yField: ['count'],
+			xField: 'range',
+			label: {
+				display: 'insideEnd',
+				field: 'count'
+			}
+		}
+	]
  });

@@ -12,8 +12,7 @@ Ext.define('CoordView.store.ExpressionRatios', {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
 		extraParams: {
-			storeType: 'dist_ratio',
-			featureId: ''
+			storeType: 'dist_ratio'
 		},
 		pageParam: undefined,
 		startParam: undefined,
@@ -25,12 +24,10 @@ Ext.define('CoordView.store.ExpressionRatios', {
 		noCache: false
 	},
 	autoLoad: true,
-	pageSize: 500
-	/*
-	this.load({
-		callback: function(records, operation, success) {
-			//console.log(records);
+	pageSize: 500,
+	listeners: {
+		beforeload: function(store, operation, eOpts) {
+			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
 		}
-	});
-	*/
+	}
 });

@@ -12,8 +12,7 @@ Ext.define('CoordView.store.Platforms', {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
 		extraParams: {
-			storeType: 'platforms',
-			featureId: ''
+			storeType: 'platforms'
 		},
 		pageParam: undefined,
 		startParam: undefined,
@@ -25,5 +24,10 @@ Ext.define('CoordView.store.Platforms', {
 		noCache: false
 	},
 	autoLoad: true,
-	pageSize: 500
+	pageSize: 500,
+	listeners: {
+		beforeload: function(store, operation, eOpts) {
+			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
+		}
+	}
 });

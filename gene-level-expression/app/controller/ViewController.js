@@ -4,23 +4,17 @@ Ext.define('CoordView.controller.ViewController', {
 	views: [
 		'FeatureGrid',
 		'AccessionChart',
-		'PlatformChart',
-		'ExpAvgChart',
 		'ExpRatioChart',
 		'FilterPanel'
 	],
 	stores: [
 		'Features',
-		'Accessions',/*
-		'Platforms', 
-		'ExpressionAvgs',*/
+		'Accessions',
 		'ExpressionRatios'
 	],
 	models: [
 		'Feature',
 		'Accession',
-		'Platform',
-		'ExpressionAvg',
 		'ExpressionRatio'
 	],
 	init: function() {
@@ -35,11 +29,9 @@ Ext.define('CoordView.controller.ViewController', {
 		})
 	},
 	resetFilter: function() {
-		//console.log("reset Filter");
 		var param = new Object({keyword:'', threshold:'', accession:''});
 		CoordView.param = Ext.Object.merge(CoordView.param, param);
-		//CoordView.param = new Object();
-				
+		
 		// reload
 		Ext.getStore('Features').clearFilter();
 		Ext.getStore('Features').updateRecordCount();
@@ -48,9 +40,10 @@ Ext.define('CoordView.controller.ViewController', {
 		
 	},
 	doFilter: function(param) {
-		//console.log(param);
-		CoordView.param = Ext.Object.merge(CoordView.param, param);
-				
+		if (param != null) {
+			CoordView.param = Ext.Object.merge(CoordView.param, param);
+		}
+		
 		Ext.getStore('Features').filterOnFly(CoordView.param);
 		Ext.getStore('ExpressionRatios').load();
 		Ext.getStore('Accessions').load();

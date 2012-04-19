@@ -32,12 +32,9 @@ Ext.define('CoordView.view.AccessionChart', {
 		},
 		listeners: {
 			'itemmouseup': function(item, obj){
-				var accession = item.storeItem.getId();
-				CoordView.param.accession = accession;
-				
-				Ext.getStore('ExpressionRatios').load();
-				Ext.getStore('Accessions').load();
-				Ext.getStore('Features').filterOnFly(CoordView.param);
+				var param = new Object();
+				param.accession = item.storeItem.getId();
+				this.chart.fireEvent('filter', param);
 				return true;
 			}
 		}

@@ -10,7 +10,6 @@
  	alias: 'widget.expratiochart',
  	id: 'p-expratiochart',
 	store: 'ExpressionRatios',
-	id: 'expavgchart',
 	axes: [
 		{
 			type: 'Numeric',

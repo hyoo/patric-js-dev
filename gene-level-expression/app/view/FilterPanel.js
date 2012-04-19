@@ -61,15 +61,12 @@ Ext.define('CoordView.view.FilterPanel', {
 			text: 'Filter',
 			itemId: 'filter',
 			handler: function() {
+				// collect parameters
 				var param = new Object();
 				param.keyword = this.ownerCt.getComponent("keyword").value;
 				param.threshold = this.ownerCt.getComponent("threshold").value;
-				
-				CoordView.param = Ext.Object.merge(CoordView.param, param);
-				
-				Ext.getStore('Features').filterOnFly(CoordView.param);
-				Ext.getStore('ExpressionRatios').load();
-				Ext.getStore('Accessions').load();
+				// fire filter
+				this.fireEvent('filter', param);
 			}
 		},
 		{
@@ -83,16 +80,8 @@ Ext.define('CoordView.view.FilterPanel', {
 				// reset interface
 				this.ownerCt.getComponent("keyword").setValue('');
 				this.ownerCt.getComponent("threshold").setValue(0);
-				
-				// reset CoordView.param
-				var param = new Object({keyword:'', threshold:''});
-				CoordView.param = Ext.Object.merge(CoordView.param, param);
-				
-				// reload
-				Ext.getStore('Features').clearFilter();
-				Ext.getStore('Features').updateRecordCount();
-				Ext.getStore('ExpressionRatios').load();
-				Ext.getStore('Accessions').load();
+				// fire reset
+				this.fireEvent('reset');
 			}
 		}
 	]

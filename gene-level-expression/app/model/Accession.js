@@ -7,12 +7,9 @@
  */
 Ext.define('CoordView.model.Accession', {
 	extend: 'Ext.data.Model',
-
 	idProperty: 'name',
-
 	fields: [
 		{name: 'name', type: 'string'},
 		{name: 'count', type: 'int'}
 	]
 });
-

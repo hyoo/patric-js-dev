@@ -1,8 +1,7 @@
 Ext.define('CoordView.view.Viewport', {
 	extend: 'Ext.panel.Panel', 
 	renderTo: 'expression_panel',
-	//title: 'I Can Has E coli Plz?',
-	id: 'p-genomelist-ui',
+	//title: '',
 	layout: 'border',
 	minHeight: 600,
 	minWidth: 700,

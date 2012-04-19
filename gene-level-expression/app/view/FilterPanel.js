@@ -26,10 +26,7 @@ Ext.define('CoordView.view.FilterPanel', {
 					// e.HOME, e.END, e.PAGE_UP, e.PAGE_DOWN,
 					// e.TAB, e.ESC, arrow keys: e.LEFT, e.RIGHT, e.UP, e.DOWN
 					if (e.getKey() == e.ENTER) {
-						//clearTimeout(CoordView.filterCall);
-						//CoordView.filterCall=null;
-						var val=field.getValue();
-						CoordView.filter('exp_name', val, true);
+						//
 					}
 				}
 			}*/
@@ -44,7 +41,7 @@ Ext.define('CoordView.view.FilterPanel', {
 			fieldLabel: 'Select fold change',
 			queryMode: 'local',
 			displayField: 'name',
-			labelWidth: 105,
+			labelWidth: 115,
 			value: 0,
 			store: Ext.create('Ext.data.Store', {
 				fields: ['name'],
@@ -63,8 +60,8 @@ Ext.define('CoordView.view.FilterPanel', {
 			handler: function() {
 				// collect parameters
 				var param = new Object();
-				param.keyword = this.ownerCt.getComponent("keyword").value;
-				param.threshold = this.ownerCt.getComponent("threshold").value;
+				param.keyword = this.ownerCt.getComponent("keyword").getValue();
+				param.threshold = this.ownerCt.getComponent("threshold").getValue();
 				// fire filter
 				this.fireEvent('filter', param);
 			}

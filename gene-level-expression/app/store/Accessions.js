@@ -24,10 +24,14 @@ Ext.define('CoordView.store.Accessions', {
 		noCache: false
 	},
 	autoLoad: true,
-	pageSize: 500,
 	listeners: {
 		beforeload: function(store, operation, eOpts) {
 			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
+			//console.log(this);
+			Ext.get("p-accessionchart").mask("wait");
+		},
+		load: function() {
+			Ext.get("p-accessionchart").unmask();
 		}
 	}
 });

@@ -24,10 +24,13 @@ Ext.define('CoordView.store.ExpressionRatios', {
 		noCache: false
 	},
 	autoLoad: true,
-	pageSize: 500,
 	listeners: {
 		beforeload: function(store, operation, eOpts) {
 			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
+			Ext.get("p-expratiochart").mask("wait");
+		},
+		load: function() {
+			Ext.get("p-expratiochart").unmask();
 		}
 	}
 });

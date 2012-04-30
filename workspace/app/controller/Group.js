@@ -32,8 +32,8 @@ Ext.define('VBI.Workspace.controller.Group', {
 		storeMap.setTrackFilter("String", null);
 		var targetTracks = storeMap.getFilteredTracks();
 		
-		if (record.get('type') == 'Feature') {		
-
+		if (record.get('type') == 'Feature') {
+			
 			grpView.showFeatureGroupDetail();
 			
 			grid.getLayout().setActiveItem('features');
@@ -42,7 +42,7 @@ Ext.define('VBI.Workspace.controller.Group', {
 			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
 		}
 		else if (record.get('type') == 'Genome') {
-
+			
 			grpView.showGenomeGroupDetail();
 			
 			grid.getLayout().setActiveItem('genomes');

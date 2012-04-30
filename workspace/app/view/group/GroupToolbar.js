@@ -1,6 +1,6 @@
 Ext.define('VBI.Workspace.view.group.GroupToolbar', {
 	extend: 'Ext.toolbar.Toolbar',
-    alias: 'widget.grouptoolbar',
+	alias: 'widget.grouptoolbar',
 	border: 0,
 	layout: {
 		type: 'hbox',
@@ -39,8 +39,8 @@ Ext.define('VBI.Workspace.view.group.GroupToolbar', {
 			}
 		});
 	},
-    initComponent: function() {
-
+	initComponent: function() {
+		
 		this.items = [
 			{
 				title: 'Workspace', 
@@ -52,7 +52,7 @@ Ext.define('VBI.Workspace.view.group.GroupToolbar', {
 						
 						var idList = this.findParentByType('grouptoolbar').getSelectedID();
 						if (idList == null) { return false; }
-												
+						
 						Ext.Msg.show({
 							msg: 'Do you want to delete this group from your workspace?',
 							buttons: Ext.Msg.OKCANCEL,
@@ -139,7 +139,7 @@ Ext.define('VBI.Workspace.view.group.GroupToolbar', {
 			{
 				xtype: 'tbar_btngrp_help'
 			}
-		];		
+		];
 		this.callParent(arguments);
-    }
+	}
 });

@@ -1,6 +1,6 @@
 Ext.define('VBI.Workspace.view.GlobalToolbar', {
-    extend: 'Ext.toolbar.Toolbar',
-    alias: 'widget.globaltoolbar',
+	extend: 'Ext.toolbar.Toolbar',
+	alias: 'widget.globaltoolbar',
 	id: 'workspace_globaltoolbar',
 	stateful: false,
 	switchViewButtons: function(cView) {
@@ -15,8 +15,8 @@ Ext.define('VBI.Workspace.view.GlobalToolbar', {
 			this.getComponent('btnGroupView').toggle(true, true);
 		}
 	},
-    initComponent: function() {
-
+	initComponent: function() {
+		
 		this.items = [{
 				xtype: 'tbtext',
 				//text: 'Workspace > Features > Staph group for Class > CDS'
@@ -93,6 +93,6 @@ Ext.define('VBI.Workspace.view.GlobalToolbar', {
 				}
 		}];
 		
-        this.callParent(arguments);
-    }
+		this.callParent(arguments);
+	}
 });

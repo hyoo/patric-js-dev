@@ -131,8 +131,6 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 			enableToggle: true
 		}
 	],
-
-
 	/**
 	 * Loads a given record into the panel. Updates the dataview containing the 
 	 * group thumbnail and the form containing the group details.
@@ -174,7 +172,7 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 			allowBlank: false,
 			value: 'none'
 		});
-
+		
 		this.remove('description');
 		this.insert(4, {
 			xtype: 'textareafield',
@@ -187,11 +185,11 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 			growMax: 100, 
 			value: 'none'
 		});
-
+		
 		this.loadRecord(this.record);		
 		this.getComponent('editInfoBtn').setText('Save');
 	}, 
-		
+	
 	finishEdit: function() {
 		
 		var newInfo = this.getForm().getValues();
@@ -233,5 +231,4 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 		this.loadRecord(this.record);
 		this.getComponent('editInfoBtn').setText('Edit');
 	}
-	
 });

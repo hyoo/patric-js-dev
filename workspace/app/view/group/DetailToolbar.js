@@ -16,7 +16,7 @@ Ext.define('VBI.Workspace.view.group.DetailToolbar', {
 			scope: this
 		}
 	] //, 
-
+	
 	/**
 	 * Add a title string to this toolbar. If the string is longer than 80% of 
 	 * the total toolbar width, it is truncated. Pass an alignment argument to 

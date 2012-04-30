@@ -1,6 +1,6 @@
 Ext.define('VBI.Workspace.view.group.ViewDetail', {
-    extend: 'Ext.panel.Panel',
-    alias : 'widget.groupviewdetail',
+	extend: 'Ext.panel.Panel',
+	alias : 'widget.groupviewdetail',
 	requires:[
 		'VBI.Workspace.view.group.GroupInfoEditor',
 		'VBI.Workspace.view.group.DetailToolbar',
@@ -34,7 +34,7 @@ Ext.define('VBI.Workspace.view.group.ViewDetail', {
 		xtype: 'detailtoolbar', 
 		dock: 'top'
 	}],
-    initComponent: function() {	
+	initComponent: function() {	
 		this.callParent(arguments);
 	}
 });

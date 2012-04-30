@@ -1,6 +1,6 @@
 Ext.define('VBI.Workspace.view.GenomeToolbar', {
 	extend: 'Ext.toolbar.Toolbar',
-    alias: 'widget.genometoolbar',
+	alias: 'widget.genometoolbar',
 	id: 'workspace_genometoolbar',
 	stateful: false,
 	getSelectedGroup: function() {
@@ -42,7 +42,7 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 		}
 	},
 	refreshWorkspaceViews: function() {
-
+		
 		Ext.StoreManager.lookup('Mappings').load({
 			callback: function() {
 				Ext.StoreManager.lookup('Groups').load({
@@ -62,8 +62,8 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 			}
 		});
 	},
-    initComponent: function() {
-
+	initComponent: function() {
+		
 		this.items = [
 			{
 				title: 'Workspace', 
@@ -151,7 +151,7 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 								Ext.getCmp('workspace_genometoolbar').refreshWorkspaceViews();
 							}
 						});
-					 	
+						
 						popup = Ext.create('VBI.Workspace.view.Toolbar.window.AddToGroup', {
 								title: 'Add Selected Genomes to Group',
 								buttons: [btnGroupPopupSave,{
@@ -163,37 +163,37 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 					}
 				}]
 			}, '-',
-	        {
-	            title: 'Download',
-	            columns: 1,
-	            xtype: 'buttongroup',
-	            width: 115,
-	            items: [
+			{
+				title: 'Download',
+				columns: 1,
+				xtype: 'buttongroup',
+				width: 115,
+				items: [
 					{
-		                scale: 'small',
-		                iconAlign: 'left',
-		                width: 110,
-		                text: 'Table',
-		                icon: '/patric/images/toolbar_table.png',
-		                xtype: 'splitbutton',
-		                menu: [{
-		                    xtype: 'tbar_menu_dn_tb_txt',
-		                    handler: function() {
-		                        this.fireEvent('downloadGrid','txt');
-		                    }
-		                },
-		                {
-		                    xtype: 'tbar_menu_dn_tb_xls',
-		                    handler: function() {
-		                        this.fireEvent('downloadGrid','xls');
-		                    }
-		                }]
-		            }
+						scale: 'small',
+						iconAlign: 'left',
+						width: 110,
+						text: 'Table',
+						icon: '/patric/images/toolbar_table.png',
+						xtype: 'splitbutton',
+						menu: [{
+							xtype: 'tbar_menu_dn_tb_txt',
+							handler: function() {
+								this.fireEvent('downloadGrid','txt');
+							}
+						},
+						{
+							xtype: 'tbar_menu_dn_tb_xls',
+							handler: function() {
+								this.fireEvent('downloadGrid','xls');
+							}
+						}]
+					}
 				]
-	        }, '->', '-',
-	        {
-	            xtype: 'tbar_btngrp_help'
-	        }
+			}, '->', '-',
+			{
+				xtype: 'tbar_btngrp_help'
+			}
 		];
 		
 		this.layout = {
@@ -201,6 +201,6 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 			align: 'stretch'
 		};
 		
-        this.callParent(arguments);
-    }
+		this.callParent(arguments);
+	}
 });

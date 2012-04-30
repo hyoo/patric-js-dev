@@ -41,7 +41,7 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 		var storeGroups = Ext.data.StoreManager.lookup('Groups');
 		
 		if (type == "groups") {
-
+			
 			// 1. get Prepared			
 				var targetGroupTags = new Array();
 				Ext.each(selected, function(r) {
@@ -58,11 +58,11 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 				var targetTracks = storeMap.getFilteredTracks();
 				storeFeatures.filterByTracks(targetTracks);
 				storeGenomes.filterByTracks(targetTracks);
-
+				
 			// 3. update Tags
 				var targetStringTags = storeMap.getTagsByTrack(targetTracks);
 				storeCBTag.filterByTag(targetStringTags);
-
+				
 			// 4. update Group view - done
 				storeGroups.filterByTag(targetGroupTags);
 			

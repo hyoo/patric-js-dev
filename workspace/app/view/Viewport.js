@@ -56,25 +56,24 @@ Ext.define('VBI.Workspace.view.Viewport', {
 		//this.callParent();
 		
 		var me = this,
-	     	html = Ext.fly(document.body.parentNode),
-	    	el;
-        me.callParent(arguments);
-        //html.addCls(Ext.baseCSSPrefix + 'viewport');
-        //if (me.autoScroll) {
-        //    html.setStyle('overflow', 'auto');
-        //}
-        //me.el = el = Ext.getBody();
+			html = Ext.fly(document.body.parentNode),
+			el;
+		me.callParent(arguments);
+		//html.addCls(Ext.baseCSSPrefix + 'viewport');
+		//if (me.autoScroll) {
+		//    html.setStyle('overflow', 'auto');
+		//}
+		//me.el = el = Ext.getBody();
 		me.el = el = Ext.get('wksp');
-        // el.setHeight = Ext.emptyFn;
-        // el.setWidth = Ext.emptyFn;
-        //el.setSize = Ext.emptyFn;
-		
-        // el.dom.scroll = 'no';
-        // me.allowDomMove = false;
-         Ext.EventManager.onWindowResize(me.fireResize, me);
-        // me.renderTo = me.el;
-        // me.width = Ext.Element.getViewportWidth();
-        // me.height = Ext.Element.getViewportHeight();
+		// el.setHeight = Ext.emptyFn;
+		// el.setWidth = Ext.emptyFn;
+		// el.setSize = Ext.emptyFn;
+		// el.dom.scroll = 'no';
+		// me.allowDomMove = false;
+		 Ext.EventManager.onWindowResize(me.fireResize, me);
+		// me.renderTo = me.el;
+		// me.width = Ext.Element.getViewportWidth();
+		// me.height = Ext.Element.getViewportHeight();
 		me.width = Ext.Element.getViewportWidth() - 20;
 		me.height = Ext.Element.getViewportHeight() - 300;
 	},

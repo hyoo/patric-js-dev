@@ -1,4 +1,3 @@
-
 Ext.define('VBI.Workspace.store.ColumnBrowser.Groups', {
 	extend: 'Ext.data.Store',
 	requires: 'VBI.Workspace.model.ColumnBrowser',

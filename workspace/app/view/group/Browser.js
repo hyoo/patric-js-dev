@@ -1,7 +1,7 @@
 Ext.define('VBI.Workspace.view.group.Browser', {
-    extend: 'Ext.view.View',
-    alias : 'widget.groupbrowser',
-    store: 'Groups', 
+	extend: 'Ext.view.View',
+	alias : 'widget.groupbrowser',
+	store: 'Groups', 
 	id: 'workspace_groupbrowser',
 	stateful: false,
 	tpl: [
@@ -16,12 +16,11 @@ Ext.define('VBI.Workspace.view.group.Browser', {
 					'<div class="updated">Updated: {[Ext.Date.format(Ext.Date.parse(values.mdate, "Y-m-d H:i:s"), "x-date-relative")]}</div>',
 				'</div>',
 			'</tpl>'
-    ],
+	],
 	autoScroll: true,
 	multiSelect: true,
-	//simpleSelect: true,
 	itemSelector: 'div.thumb-wrap',
-    cls: 'x-browser-view',
+	cls: 'x-browser-view',
 	initComponent: function() {
 		this.callParent(arguments);
 	},

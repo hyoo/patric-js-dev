@@ -1,8 +1,8 @@
 /**
- * @class CoordView.store.Features
+ * @class CoordView.store.Genes
  * @extends Ext.data.Store
  *
- * This class implements the store for features.
+ * This class implements the store for genes.
  */
 Ext.define('CoordView.store.Genes', {
 	extend: 'Ext.data.Store',

@@ -3,7 +3,7 @@
  * @extends Ext.panel.Panel
  * @xtype chartcondition
  *
- * This class implements a chart of genome types.
+ * This class implements a chart of condition types.
  */
 Ext.define('CoordView.view.ChartCondition', {
 	extend: 'Ext.chart.Chart',
@@ -33,7 +33,7 @@ Ext.define('CoordView.view.ChartCondition', {
 		listeners: {
 			'itemmouseup': function(item, obj){
 				var param = new Object();
-				param.accession = item.storeItem.getId();
+				param.condition = item.storeItem.getId();
 				this.chart.fireEvent('filter', param);
 				return true;
 			}

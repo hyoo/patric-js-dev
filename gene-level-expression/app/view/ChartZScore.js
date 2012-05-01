@@ -1,14 +1,14 @@
 /**
  * @class CoordView.view.ZscoreChart
  * @extends Ext.chart.Chart
- * @xtype expratiochart
+ * @xtype chartzscore
  *
- * This class implements a chart of expression ratio level.
+ * This class implements a chart of expression z score.
  */
-Ext.define('CoordView.view.ZscoreChart', {
+Ext.define('CoordView.view.ChartZScore', {
 	extend: 'Ext.chart.Chart',
-	alias: 'widget.zscorechart',
-	id: 'p-zscorechart',
+	alias: 'widget.chartzscore',
+	id: 'p-chartzscore',
 	store: 'ZScores',
 	//animate: true,
 	axes: [

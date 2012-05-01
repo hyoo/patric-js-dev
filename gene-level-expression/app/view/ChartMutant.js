@@ -3,7 +3,7 @@
  * @extends Ext.panel.Panel
  * @xtype chartmutant
  *
- * This class implements a chart of genome types.
+ * This class implements a chart of mutant types.
  */
 Ext.define('CoordView.view.ChartMutant', {
 	extend: 'Ext.chart.Chart',
@@ -33,7 +33,7 @@ Ext.define('CoordView.view.ChartMutant', {
 		listeners: {
 			'itemmouseup': function(item, obj){
 				var param = new Object();
-				param.accession = item.storeItem.getId();
+				param.mutant = item.storeItem.getId();
 				this.chart.fireEvent('filter', param);
 				return true;
 			}

@@ -13,13 +13,13 @@ Ext.define('CoordView.view.Viewport', {
 			border: false,
 			height: 35,
 			xtype: 'filterpanel'
-		},/*
+		},
 		{
 			region: 'south',
 			border: false,
 			height: 400,
 			xtype: 'featuregrid'
-		},*/
+		},
 		{
 			region: 'center',
 			layout: {
@@ -30,17 +30,17 @@ Ext.define('CoordView.view.Viewport', {
 					xtype: 'tabpanel',
 					width: 500,
 					height: 241,
-					items: [/*
+					items: [
 						{
 							title: 'Ratio',
 							layout: 'fit',
-							xtype: 'expratiochart'
+							xtype: 'chartlogratio'
 						},
 						{
-							title: 'Z score',
+							title: 'Z Score',
 							layout: 'fit',
-							xtype: 'zscorechart'
-						}*/
+							xtype: 'chartzscore'
+						}
 					]
 				},
 				{
@@ -52,7 +52,7 @@ Ext.define('CoordView.view.Viewport', {
 							title: 'Strain',
 							layout: 'fit',
 							xtype: 'chartstrain'
-						}/*,
+						},
 						{
 							title: 'Mutant',
 							layout: 'fit',
@@ -62,7 +62,12 @@ Ext.define('CoordView.view.Viewport', {
 							title: 'Condition',
 							layout: 'fit',
 							xtype: 'chartcondition'
-						}*/
+						},
+						{
+							title: 'Condition-Bar',
+							layout: 'fit',
+							xtype: 'barchartcondition'
+						}
 					]
 				}
 			]

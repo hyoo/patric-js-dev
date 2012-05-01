@@ -4,12 +4,12 @@ Ext.define('CoordView.controller.ViewController', {
 	models: ['Gene', 'CategoryCount'],
 	views: [
 		'FilterPanel', 'FeatureGrid',
-		'ChartStrain', 'ChartMutant', 'ChartCondition',
+		'ChartStrain', 'ChartMutant', 'ChartCondition', 'BarChartCondition', 
 		'ChartLogRatio', 'ChartZScore'
 	],
 	stores: [
 		'Genes',
-		'Strains', 'Mutants', 'Conditions', 
+		'Strains', 'Mutants', 'Conditions', 'Conditions2', 
 		'LogRatios', 'ZScores'
 	],
 	init: function() {
@@ -18,20 +18,23 @@ Ext.define('CoordView.controller.ViewController', {
 				reset: this.resetFilter,
 				filter: this.doFilter
 			},
-			'accessionchart': {
+			'chartstrain': {
 				filter: this.doFilter
 			}
 		})
 	},
 	resetFilter: function() {
-		var param = new Object({keyword:'', threshold:'', accession:''});
+		var param = new Object({keyword:'', threshold:'', strain:'', mutant:'', condition:''});
 		CoordView.param = Ext.Object.merge(CoordView.param, param);
 		
 		// reload
-		Ext.getStore('Features').clearFilter();
-		Ext.getStore('Features').updateRecordCount();
-		Ext.getStore('ExpressionRatios').load();
-		Ext.getStore('Accessions').load();
+		Ext.getStore('Genes').clearFilter();
+		Ext.getStore('Genes').updateRecordCount();
+		Ext.getStore('LogRatios').load();
+		Ext.getStore('ZScores').load();
+		Ext.getStore('Strains').load();
+		Ext.getStore('Mutants').load();
+		Ext.getStore('Conditions').load();
 		
 	},
 	doFilter: function(param) {
@@ -39,8 +42,11 @@ Ext.define('CoordView.controller.ViewController', {
 			CoordView.param = Ext.Object.merge(CoordView.param, param);
 		}
 		
-		Ext.getStore('Features').filterOnFly(CoordView.param);
-		Ext.getStore('ExpressionRatios').load();
-		Ext.getStore('Accessions').load();
+		Ext.getStore('Genes').filterOnFly(CoordView.param);
+		Ext.getStore('LogRatios').load();
+		Ext.getStore('ZScores').load();
+		Ext.getStore('Strains').load();
+		Ext.getStore('Mutants').load();
+		Ext.getStore('Conditions').load();
 	}
 });

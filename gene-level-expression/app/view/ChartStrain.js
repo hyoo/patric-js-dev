@@ -3,7 +3,7 @@
  * @extends Ext.panel.Panel
  * @xtype chartstrain
  *
- * This class implements a chart of genome types.
+ * This class implements a chart of strain types.
  */
 Ext.define('CoordView.view.ChartStrain', {
 	extend: 'Ext.chart.Chart',
@@ -33,7 +33,7 @@ Ext.define('CoordView.view.ChartStrain', {
 		listeners: {
 			'itemmouseup': function(item, obj){
 				var param = new Object();
-				param.accession = item.storeItem.getId();
+				param.strain = item.storeItem.getId();
 				this.chart.fireEvent('filter', param);
 				return true;
 			}

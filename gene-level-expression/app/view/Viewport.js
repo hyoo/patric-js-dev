@@ -13,13 +13,13 @@ Ext.define('CoordView.view.Viewport', {
 			border: false,
 			height: 35,
 			xtype: 'filterpanel'
-		},
+		},/*
 		{
 			region: 'south',
 			border: false,
 			height: 400,
 			xtype: 'featuregrid'
-		},
+		},*/
 		{
 			region: 'center',
 			layout: {
@@ -30,12 +30,17 @@ Ext.define('CoordView.view.Viewport', {
 					xtype: 'tabpanel',
 					width: 500,
 					height: 241,
-					items: [
+					items: [/*
 						{
 							title: 'Ratio',
 							layout: 'fit',
 							xtype: 'expratiochart'
-						}
+						},
+						{
+							title: 'Z score',
+							layout: 'fit',
+							xtype: 'zscorechart'
+						}*/
 					]
 				},
 				{
@@ -44,10 +49,20 @@ Ext.define('CoordView.view.Viewport', {
 					height: 241,
 					items: [
 						{
-							title: 'Accession',
+							title: 'Strain',
 							layout: 'fit',
-							xtype: 'accessionchart'
-						}
+							xtype: 'chartstrain'
+						}/*,
+						{
+							title: 'Mutant',
+							layout: 'fit',
+							xtype: 'chartmutant'
+						},
+						{
+							title: 'Condition',
+							layout: 'fit',
+							xtype: 'chartcondition'
+						}*/
 					]
 				}
 			]

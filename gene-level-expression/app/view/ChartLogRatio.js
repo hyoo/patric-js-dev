@@ -5,11 +5,11 @@
  *
  * This class implements a chart of expression ratio level.
  */
-Ext.define('CoordView.view.ExpRatioChart', {
+Ext.define('CoordView.view.ChartLogRatio', {
 	extend: 'Ext.chart.Chart',
 	alias: 'widget.expratiochart',
 	id: 'p-expratiochart',
-	store: 'ExpressionRatios',
+	store: 'LogRatios',
 	//animate: true,
 	axes: [
 		{
@@ -22,7 +22,7 @@ Ext.define('CoordView.view.ExpRatioChart', {
 		{
 			type: 'Category',
 			position: 'bottom',
-			fields: ['range'],
+			fields: ['category'],
 			title: 'Range'
 		}
 	],
@@ -30,7 +30,7 @@ Ext.define('CoordView.view.ExpRatioChart', {
 			type: 'bar',
 			column: true,
 			yField: ['count'],
-			xField: 'range',
+			xField: 'category',
 			label: {
 				display: 'insideEnd',
 				field: 'count'

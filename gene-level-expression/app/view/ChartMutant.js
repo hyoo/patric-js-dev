@@ -1,15 +1,15 @@
 /**
- * @class CoordView.view.AccessionChart
+ * @class CoordView.view.ChartMutant
  * @extends Ext.panel.Panel
- * @xtype accessionchart
+ * @xtype chartmutant
  *
  * This class implements a chart of genome types.
  */
-Ext.define('CoordView.view.AccessionChart', {
+Ext.define('CoordView.view.ChartMutant', {
 	extend: 'Ext.chart.Chart',
-	alias: 'widget.accessionchart',
-	id: 'p-accessionchart',
-	store: 'Accessions',
+	alias: 'widget.chartmutant',
+	id: 'p-chartmutant',
+	store: 'Mutants',
 	theme: 'Base',
 	animate: true,
 	series: [{
@@ -22,7 +22,7 @@ Ext.define('CoordView.view.AccessionChart', {
 		},
 		donut: 6,
 		label: {
-			field: 'name',
+			field: 'category',
 			display: 'rotate',
 			contrast: true,
 			font: '11px Arial',

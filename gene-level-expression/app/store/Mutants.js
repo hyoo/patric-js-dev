@@ -1,25 +1,24 @@
 /**
- * @class CoordView.store.Accessions
+ * @class CoordView.store.Mutants
  * @extends Ext.data.Store
  *
  * This class implements the store for accessions.
  */
-Ext.define('CoordView.store.Accessions', {
+Ext.define('CoordView.store.Mutants', {
 	extend: 'Ext.data.Store',
-	model: 'CoordView.model.Accession',
-	storeId: 'accessionStore',
+	model: 'CoordView.model.CategoryCount',
 	proxy: {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
 		extraParams: {
-			storeType: 'accessions'
+			storeType: 'mutant'
 		},
 		pageParam: undefined,
 		startParam: undefined,
 		limitParam: undefined,
 		reader: {
 			type: 'json',
-			root: 'exp_stat_accession'
+			root: 'exp_stat'
 		},
 		noCache: false
 	},
@@ -28,10 +27,10 @@ Ext.define('CoordView.store.Accessions', {
 		beforeload: function(store, operation, eOpts) {
 			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
 			//console.log(this);
-			Ext.get("p-accessionchart").mask("wait");
+			//Ext.get("p-chartmutant").mask("wait");
 		},
 		load: function() {
-			Ext.get("p-accessionchart").unmask();
+			//Ext.get("p-chartmutant").unmask();
 		}
 	}
 });

@@ -4,22 +4,21 @@
  *
  * This class implements the store for accessions.
  */
-Ext.define('CoordView.store.ExpressionRatios', {
+Ext.define('CoordView.store.Zscores', {
 	extend: 'Ext.data.Store',
-	model: 'CoordView.model.ExpressionRatio',
-	storeId: 'avgStore',
+	model: 'CoordView.model.CategoryCount',
 	proxy: {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
 		extraParams: {
-			storeType: 'dist_ratio'
+			storeType: 'z_score'
 		},
 		pageParam: undefined,
 		startParam: undefined,
 		limitParam: undefined,
 		reader: {
 			type: 'json',
-			root: 'exp_dist_ratio'
+			root: 'exp_stat'
 		},
 		noCache: false
 	},
@@ -27,10 +26,10 @@ Ext.define('CoordView.store.ExpressionRatios', {
 	listeners: {
 		beforeload: function(store, operation, eOpts) {
 			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
-			Ext.get("p-expratiochart").mask("wait");
+			//Ext.get("p-zscorechart").mask("wait");
 		},
 		load: function() {
-			Ext.get("p-expratiochart").unmask();
+			//Ext.get("p-zscorechart").unmask();
 		}
 	}
 });

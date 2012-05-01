@@ -8,7 +8,6 @@
 Ext.define('CoordView.view.FilterPanel', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.filterpanel',
-	id: 'p-filterpanel',
 	bodyPadding: 5,
 	layout: 'hbox',
 	items: [
@@ -56,7 +55,6 @@ Ext.define('CoordView.view.FilterPanel', {
 		{
 			xtype: 'button',
 			text: 'Filter',
-			itemId: 'filter',
 			handler: function() {
 				// collect parameters
 				var param = new Object();

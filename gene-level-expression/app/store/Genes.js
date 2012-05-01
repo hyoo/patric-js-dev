@@ -4,10 +4,9 @@
  *
  * This class implements the store for features.
  */
-Ext.define('CoordView.store.Features', {
+Ext.define('CoordView.store.Genes', {
 	extend: 'Ext.data.Store',
-	model: 'CoordView.model.Feature',
-	storeId: 'featureStore',
+	model: 'CoordView.model.Gene',
 	proxy: {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',

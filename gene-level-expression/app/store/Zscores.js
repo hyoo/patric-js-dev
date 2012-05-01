@@ -1,10 +1,10 @@
 /**
- * @class CoordView.store.ExpressionRatios
+ * @class CoordView.store.ZScores
  * @extends Ext.data.Store
  *
  * This class implements the store for accessions.
  */
-Ext.define('CoordView.store.Zscores', {
+Ext.define('CoordView.store.ZScores', {
 	extend: 'Ext.data.Store',
 	model: 'CoordView.model.CategoryCount',
 	proxy: {

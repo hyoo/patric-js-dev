@@ -6,7 +6,9 @@ Ext.application({
 	launch: function() {
 		var param = new Object();
 		param.featureId = Ext.getDom('featureId').value;
-		param.exp_geneId = Ext.getDom('exp_geneId').value;
+		param.sampleId = Ext.getDom('sampleId').value;
+		param.filter = Ext.getDom('filter').value;
+		param.cutoff = Ext.getDom('cutoff').value;
 		CoordView.param = param;
 	}
 });	

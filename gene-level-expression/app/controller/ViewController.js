@@ -1,21 +1,16 @@
 Ext.define('CoordView.controller.ViewController', {
 	extend: 'Ext.app.Controller',
 	id: 'ViewController',
+	models: ['Gene', 'CategoryCount'],
 	views: [
-		'FeatureGrid',
-		'AccessionChart',
-		'ExpRatioChart',
-		'FilterPanel'
+		'FilterPanel', 'FeatureGrid',
+		'ChartStrain', 'ChartMutant', 'ChartCondition',
+		'ChartLogRatio', 'ChartZScore'
 	],
 	stores: [
-		'Features',
-		'Accessions',
-		'ExpressionRatios'
-	],
-	models: [
-		'Feature',
-		'Accession',
-		'ExpressionRatio'
+		'Genes',
+		'Strains', 'Mutants', 'Conditions', 
+		'LogRatios', 'ZScores'
 	],
 	init: function() {
 		this.control({

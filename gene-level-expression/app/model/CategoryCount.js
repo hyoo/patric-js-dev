@@ -7,8 +7,9 @@
  */
 Ext.define('CoordView.model.CategoryCount', {
 	extend: 'Ext.data.Model',
-	idProperty: 'category',
+	idProperty: 'rownum',
 	fields: [
+		{name: 'rownum', type: 'int'},
 		{name: 'category', type: 'string'},
 		{name: 'count', type: 'int'}
 	]

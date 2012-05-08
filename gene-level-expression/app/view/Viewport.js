@@ -32,7 +32,7 @@ Ext.define('CoordView.view.Viewport', {
 					height: 241,
 					items: [
 						{
-							title: 'Ratio',
+							title: 'Log Ratio',
 							layout: 'fit',
 							xtype: 'chartlogratio'
 						},

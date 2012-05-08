@@ -16,14 +16,14 @@ Ext.define('CoordView.view.ChartZScore', {
 			type: 'Numeric',
 			position: 'left',
 			fields: ['count'],
-			title: 'Records',
+			title: 'Samples',
 			majorTickSteps: 1
 		},
 		{
 			type: 'Category',
 			position: 'bottom',
 			fields: ['category'],
-			title: 'Range'
+			title: 'Z Score'
 		}
 	],
 	series: [{

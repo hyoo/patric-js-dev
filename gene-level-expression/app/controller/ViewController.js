@@ -16,7 +16,8 @@ Ext.define('CoordView.controller.ViewController', {
 		this.control({
 			'filterpanel button': {
 				reset: this.resetFilter,
-				filter: this.doFilter
+				filter: this.doFilter,
+				showall: this.showAll
 			},
 			'chartstrain': {
 				filter: this.doFilter
@@ -36,6 +37,8 @@ Ext.define('CoordView.controller.ViewController', {
 		Ext.getStore('Mutants').load();
 		Ext.getStore('Conditions').load();
 		
+		Ext.getStore('Conditions2').load();
+		
 	},
 	doFilter: function(param) {
 		if (param != null) {
@@ -48,5 +51,23 @@ Ext.define('CoordView.controller.ViewController', {
 		Ext.getStore('Strains').load();
 		Ext.getStore('Mutants').load();
 		Ext.getStore('Conditions').load();
+		
+		Ext.getStore('Conditions2').load();
+	},
+	showAll: function() {
+		var param = new Object({sampleId:'', keyword:'', threshold:'', strain:'', mutant:'', condition:''});
+		CoordView.param = Ext.Object.merge(CoordView.param, param);
+		
+		// reload
+		Ext.getStore('Genes').proxy.extraParams = Ext.Object.merge(Ext.getStore('Genes').proxy.extraParams,CoordView.param);
+		Ext.getStore('Genes').load();
+		Ext.getStore('Genes').updateRecordCount();
+		Ext.getStore('LogRatios').load();
+		Ext.getStore('ZScores').load();
+		Ext.getStore('Strains').load();
+		Ext.getStore('Mutants').load();
+		Ext.getStore('Conditions').load();
+		
+		Ext.getStore('Conditions2').load();
 	}
 });

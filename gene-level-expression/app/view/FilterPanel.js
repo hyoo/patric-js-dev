@@ -8,6 +8,7 @@
 Ext.define('CoordView.view.FilterPanel', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.filterpanel',
+	id: 'p-filterpanel',
 	bodyPadding: 5,
 	layout: 'hbox',
 	items: [
@@ -36,11 +37,30 @@ Ext.define('CoordView.view.FilterPanel', {
 		},
 		{
 			xtype: 'combobox',
-			itemId: 'threshold',
-			fieldLabel: 'Select fold change',
+			itemId: 'filter',
+			fieldLabel: 'Select filter',
 			queryMode: 'local',
 			displayField: 'name',
-			labelWidth: 115,
+			valueField: 'value',
+			labelWidth: 70,
+			value: "log_ratio",
+			store: Ext.create('Ext.data.Store', {
+				fields: ['name', 'value'],
+				data: [{name:"Log Ratio Fold Change", value:"log_ratio"}, {name:"Z Score", value:"z_score"}]
+			}),			
+			editable: false
+		},
+		{
+			xtype: 'tbspacer',
+			width: 20
+		},
+		{
+			xtype: 'combobox',
+			itemId: 'cutoff',
+			fieldLabel: 'Select cutoff',
+			queryMode: 'local',
+			displayField: 'name',
+			labelWidth: 90,
 			value: 0,
 			store: Ext.create('Ext.data.Store', {
 				fields: ['name'],
@@ -59,7 +79,8 @@ Ext.define('CoordView.view.FilterPanel', {
 				// collect parameters
 				var param = new Object();
 				param.keyword = this.ownerCt.getComponent("keyword").getValue();
-				param.threshold = this.ownerCt.getComponent("threshold").getValue();
+				param.filter = this.ownerCt.getComponent("filter").getValue();
+				param.cutoff = this.ownerCt.getComponent("cutoff").getValue();
 				// fire filter
 				this.fireEvent('filter', param);
 			}
@@ -74,9 +95,26 @@ Ext.define('CoordView.view.FilterPanel', {
 			handler: function() {
 				// reset interface
 				this.ownerCt.getComponent("keyword").setValue('');
-				this.ownerCt.getComponent("threshold").setValue(0);
+				this.ownerCt.getComponent("filter").setValue("log_ratio");
+				this.ownerCt.getComponent("cutoff").setValue(0);
 				// fire reset
 				this.fireEvent('reset');
+			}
+		},
+		{
+			xtype: 'tbspacer',
+			width: 20
+		},
+		{
+			xtype: 'button',
+			text: 'Show All Samples',
+			handler: function() {
+				// reset interface
+				this.ownerCt.getComponent("keyword").setValue('');
+				this.ownerCt.getComponent("filter").setValue("log_ratio");
+				this.ownerCt.getComponent("cutoff").setValue(0);
+				// fire filter
+				this.fireEvent('showall');
 			}
 		}
 	]

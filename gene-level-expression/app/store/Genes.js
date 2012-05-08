@@ -43,12 +43,19 @@ Ext.define('CoordView.store.Genes', {
 			//console.log("filter on exp_name:"+param.keyword);
 			this.filter("exp_name", param.keyword);
 		}
-		if (param.threshold != null && param.threshold > 0) {
-			//console.log("filter on threshold:"+param.threshold);
+		if (param.filter != null && param.cutoff > 0) {
+			var fieldname = "";
+			if (param.filter == 'log_ratio') {
+				fieldname = "exp_pratio";
+			} else if (param.filter == 'z_score') {
+				fieldname = "exp_zscore";
+			} else {
+				return false;
+			}
 			this.filter([
 				Ext.create('Ext.util.Filter', {
 					filterFn: function(item) {
-						if (item.get("exp_pratio")>=param.threshold || item.get("exp_pratio")<=(-1)*param.threshold) {
+						if (item.get(fieldname)>=param.cutoff || item.get(fieldname)<=(-1)*param.cutoff) {
 							return true;
 						} else {
 							return false;

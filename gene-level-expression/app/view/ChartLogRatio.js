@@ -16,14 +16,14 @@ Ext.define('CoordView.view.ChartLogRatio', {
 			type: 'Numeric',
 			position: 'left',
 			fields: ['count'],
-			title: 'Records',
+			title: 'Samples',
 			majorTickSteps: 1
 		},
 		{
 			type: 'Category',
 			position: 'bottom',
 			fields: ['category'],
-			title: 'Range'
+			title: 'Log Ratio'
 		}
 	],
 	series: [{

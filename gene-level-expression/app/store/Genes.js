@@ -26,11 +26,12 @@ Ext.define('CoordView.store.Genes', {
 	listeners: {
 		beforeload: function(store, operation, eOpts) {
 			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
+			Ext.get("p-featuregrid").mask("wait");
 		},
 		load: function(){
 			this.updateRecordCount();
-		},
-		single: true
+			Ext.get("p-featuregrid").unmask();
+		}
 	},
 	updateRecordCount: function() {
 		count = this.getCount();

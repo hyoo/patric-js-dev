@@ -61,7 +61,6 @@ Ext.define('CoordView.controller.ViewController', {
 		// reload
 		Ext.getStore('Genes').proxy.extraParams = Ext.Object.merge(Ext.getStore('Genes').proxy.extraParams,CoordView.param);
 		Ext.getStore('Genes').load();
-		Ext.getStore('Genes').updateRecordCount();
 		Ext.getStore('LogRatios').load();
 		Ext.getStore('ZScores').load();
 		Ext.getStore('Strains').load();

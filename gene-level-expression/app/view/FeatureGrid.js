@@ -13,6 +13,7 @@ function BasicRenderer(value, metadata, record, rowIndex, colIndex, store){
 Ext.define('CoordView.view.FeatureGrid', {
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.featuregrid',
+	id: 'p-featuregrid',
 	store: 'Genes',
 	autoScroll: true,
 	columns: [

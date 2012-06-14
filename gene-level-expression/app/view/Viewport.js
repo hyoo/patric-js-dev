@@ -28,7 +28,7 @@ Ext.define('CoordView.view.Viewport', {
 			items: [
 				{
 					xtype: 'tabpanel',
-					width: 500,
+					width: 480,
 					height: 241,
 					items: [
 						{
@@ -45,7 +45,7 @@ Ext.define('CoordView.view.Viewport', {
 				},
 				{
 					xtype: 'tabpanel',
-					width: 500,
+					width: 485,
 					height: 241,
 					items: [
 						{

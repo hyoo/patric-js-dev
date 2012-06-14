@@ -37,17 +37,17 @@ Ext.define('CoordView.view.FilterPanel', {
 		},
 		{
 			xtype: 'combobox',
-			itemId: 'filter',
-			fieldLabel: 'Select filter',
+			itemId: 'log_ratio',
+			fieldLabel: 'log ratio',
 			queryMode: 'local',
 			displayField: 'name',
-			valueField: 'value',
-			labelWidth: 70,
-			value: "log_ratio",
+			labelWidth: 50,
+			width: 120,
+			value: 0,
 			store: Ext.create('Ext.data.Store', {
-				fields: ['name', 'value'],
-				data: [{name:"Log Ratio Fold Change", value:"log_ratio"}, {name:"Z Score", value:"z_score"}]
-			}),			
+				fields: ['name'],
+				data: [{name:"0"}, {name:"0.5"}, {name:"1"}, {name:"1.5"}, {name:"2"}, {name:"2.5"}, {name:"3"}, {name:">3"}]
+			}),		
 			editable: false
 		},
 		{
@@ -56,11 +56,12 @@ Ext.define('CoordView.view.FilterPanel', {
 		},
 		{
 			xtype: 'combobox',
-			itemId: 'cutoff',
-			fieldLabel: 'Select cutoff',
+			itemId: 'zscore',
+			fieldLabel: 'z score',
 			queryMode: 'local',
 			displayField: 'name',
-			labelWidth: 90,
+			labelWidth: 50,
+			width: 120,
 			value: 0,
 			store: Ext.create('Ext.data.Store', {
 				fields: ['name'],
@@ -78,9 +79,9 @@ Ext.define('CoordView.view.FilterPanel', {
 			handler: function() {
 				// collect parameters
 				var param = new Object();
-				param.keyword = this.ownerCt.getComponent("keyword").getValue();
-				param.filter = this.ownerCt.getComponent("filter").getValue();
-				param.cutoff = this.ownerCt.getComponent("cutoff").getValue();
+				param.keyword 	= this.ownerCt.getComponent("keyword").getValue();
+				param.log_ratio = this.ownerCt.getComponent("log_ratio").getValue();
+				param.zscore 	= this.ownerCt.getComponent("zscore").getValue();
 				// fire filter
 				this.fireEvent('filter', param);
 			}
@@ -95,8 +96,8 @@ Ext.define('CoordView.view.FilterPanel', {
 			handler: function() {
 				// reset interface
 				this.ownerCt.getComponent("keyword").setValue('');
-				this.ownerCt.getComponent("filter").setValue("log_ratio");
-				this.ownerCt.getComponent("cutoff").setValue(0);
+				this.ownerCt.getComponent("log_ratio").setValue(0);
+				this.ownerCt.getComponent("zscore").setValue(0);
 				// fire reset
 				this.fireEvent('reset');
 			}
@@ -111,8 +112,8 @@ Ext.define('CoordView.view.FilterPanel', {
 			handler: function() {
 				// reset interface
 				this.ownerCt.getComponent("keyword").setValue('');
-				this.ownerCt.getComponent("filter").setValue("log_ratio");
-				this.ownerCt.getComponent("cutoff").setValue(0);
+				this.ownerCt.getComponent("log_ratio").setValue(0);
+				this.ownerCt.getComponent("zscore").setValue(0);
 				// fire filter
 				this.fireEvent('showall');
 			}

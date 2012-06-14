@@ -6,14 +6,14 @@ Ext.application({
 	launch: function() {
 		var param = new Object();
 		param.featureId = Ext.getDom('featureId').value;
-		param.sampleId = Ext.getDom("sampleId")?Ext.getDom('sampleId').value:"";
-		param.filter = Ext.getDom("filter")?Ext.getDom('filter').value:"";
-		param.cutoff = Ext.getDom("cutoff")?Ext.getDom('cutoff').value:"";
-		if (param.filter != "" && param.cutoff != "") {
+		param.sampleId 	= Ext.getDom("sampleId")?Ext.getDom('sampleId').value:"";
+		param.log_ratio = Ext.getDom("log_ratio")?Ext.getDom('log_ratio').value:0;
+		param.zscore 	= Ext.getDom("zscore")?Ext.getDom('zscore').value:0;
+		if (param.log_ratio != "" && param.zscore != "") {
 			fp = Ext.getCmp("p-filterpanel");
 			//console.log(fp);
-			fp.getComponent("filter").setValue(param.filter);
-			fp.getComponent("cutoff").setValue(param.cutoff);
+			fp.getComponent("log_ratio").setValue(param.log_ratio);
+			fp.getComponent("zscore").setValue(param.zscore);
 		}
 		CoordView.param = param;
 	}

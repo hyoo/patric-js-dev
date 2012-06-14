@@ -5,7 +5,7 @@ Ext.define('CoordView.view.Viewport', {
 	layout: 'border',
 	minHeight: 600,
 	minWidth: 700,
-	width: 1000,
+	width: 967,
 	height: 700,
 	items: [
 		{

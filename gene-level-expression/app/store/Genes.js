@@ -37,36 +37,35 @@ Ext.define('CoordView.store.Genes', {
 		(count==1) ? countStr=count+' record' : countStr=count+' records';
 		Ext.getCmp('filterReport').setText(countStr);
 	},
+	filterField: function(fieldname, cutoff) {
+		console.log("filter on "+fieldname+", "+cutoff);
+		this.filter([
+			Ext.create('Ext.util.Filter', {
+				filterFn: function(item) {
+					if (item.get(fieldname)>=cutoff || item.get(fieldname)<=(-1)*cutoff) {
+						return true;
+					} else {
+						return false;
+					}
+				}
+			})
+		]);
+	},
 	filterOnFly: function(param) {
 		this.clearFilter();
 		if (param.keyword != null && param.keyword != "") {
 			//console.log("filter on exp_name:"+param.keyword);
 			this.filter("exp_name", param.keyword);
 		}
-		if (param.filter != null && param.cutoff > 0) {
-			var fieldname = "";
-			if (param.filter == 'log_ratio') {
-				fieldname = "exp_pratio";
-			} else if (param.filter == 'z_score') {
-				fieldname = "exp_zscore";
-			} else {
-				return false;
-			}
-			this.filter([
-				Ext.create('Ext.util.Filter', {
-					filterFn: function(item) {
-						if (item.get(fieldname)>=param.cutoff || item.get(fieldname)<=(-1)*param.cutoff) {
-							return true;
-						} else {
-							return false;
-						}
-					}
-				})
-			]);
+		if (param.log_ratio > 0) {
+			this.filterField("exp_pratio", param.log_ratio);			
+		}
+		if (param.zscore > 0) {
+			this.filterField("exp_zscore", param.zscore);
 		}
 		//other filters
 		if (param.accession != null && param.accession != "") {
-			console.log("filter on accession:"+param.accession);
+			//console.log("filter on accession:"+param.accession);
 			this.filter("exp_accession", param.accession);
 		}
 		

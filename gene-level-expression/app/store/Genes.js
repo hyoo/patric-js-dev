@@ -38,7 +38,7 @@ Ext.define('CoordView.store.Genes', {
 		Ext.getCmp('filterReport').setText(countStr);
 	},
 	filterField: function(fieldname, cutoff) {
-		console.log("filter on "+fieldname+", "+cutoff);
+		//console.log("filter on "+fieldname+", "+cutoff);
 		this.filter([
 			Ext.create('Ext.util.Filter', {
 				filterFn: function(item) {

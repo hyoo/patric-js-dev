@@ -26,7 +26,7 @@ Ext.define('CoordView.store.Genes', {
 	listeners: {
 		beforeload: function(store, operation, eOpts) {
 			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
-			Ext.get("p-featuregrid").mask("wait");
+			Ext.get("p-featuregrid").mask("loading");
 		},
 		load: function(){
 			this.updateRecordCount();
@@ -36,7 +36,7 @@ Ext.define('CoordView.store.Genes', {
 	updateRecordCount: function() {
 		count = this.getCount();
 		(count==1) ? countStr=count+' record' : countStr=count+' records';
-		Ext.getCmp('filterReport').setText(countStr);
+		Ext.getCmp('filterReport').setText("<b>"+countStr+"</b>");
 	},
 	filterField: function(fieldname, cutoff) {
 		//console.log("filter on "+fieldname+", "+cutoff);

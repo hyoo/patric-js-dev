@@ -23,7 +23,7 @@ Ext.define('CoordView.view.ChartZScore', {
 			type: 'Category',
 			position: 'bottom',
 			fields: ['category'],
-			title: 'Z Score'
+			title: 'Z-score'
 		}
 	],
 	series: [{

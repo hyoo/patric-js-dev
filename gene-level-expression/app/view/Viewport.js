@@ -37,7 +37,7 @@ Ext.define('CoordView.view.Viewport', {
 							xtype: 'chartlogratio'
 						},
 						{
-							title: 'Z Score',
+							title: 'Z-score',
 							layout: 'fit',
 							xtype: 'chartzscore'
 						}
@@ -76,9 +76,8 @@ Ext.define('CoordView.view.Viewport', {
 	dockedItems: [
 		{
 			xtype: 'toolbar',
-			dock: 'bottom',
+			dock: 'top',
 			items: [
-				'->',
 				{
 					xtype: 'tbtext',
 					height: 15,

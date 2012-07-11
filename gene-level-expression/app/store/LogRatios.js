@@ -26,7 +26,7 @@ Ext.define('CoordView.store.LogRatios', {
 	listeners: {
 		beforeload: function(store, operation, eOpts) {
 			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
-			Ext.get("p-chartlogratio").mask("wait");
+			Ext.get("p-chartlogratio").mask("loading");
 		},
 		load: function() {
 			Ext.get("p-chartlogratio").unmask();

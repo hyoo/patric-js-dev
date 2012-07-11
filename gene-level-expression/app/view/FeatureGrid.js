@@ -26,7 +26,7 @@ Ext.define('CoordView.view.FeatureGrid', {
 		{dataIndex: 'exp_mutant',		header: 'Mutant',		flex: 1,	renderer:BasicRenderer},
 		{dataIndex: 'exp_condition',	header: 'Condition',	flex: 2,	renderer:BasicRenderer},
 		{dataIndex: 'exp_pavg',			header: 'Avg Intensity',flex: 1},
-		{dataIndex: 'exp_pratio',		header: 'Ratio',		flex: 1},
-		{dataIndex: 'exp_zscore',		header: 'Z Score',		flex: 1}
+		{dataIndex: 'exp_pratio',		header: 'Log Ratio',	flex: 1},
+		{dataIndex: 'exp_zscore',		header: 'Z-score',		flex: 1}
 	]
 });

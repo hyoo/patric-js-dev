@@ -38,10 +38,10 @@ Ext.define('CoordView.view.FilterPanel', {
 		{
 			xtype: 'combobox',
 			itemId: 'log_ratio',
-			fieldLabel: 'log ratio',
+			fieldLabel: 'Log Ratio',
 			queryMode: 'local',
 			displayField: 'name',
-			labelWidth: 50,
+			labelWidth: 60,
 			width: 120,
 			value: 0,
 			store: Ext.create('Ext.data.Store', {
@@ -57,7 +57,7 @@ Ext.define('CoordView.view.FilterPanel', {
 		{
 			xtype: 'combobox',
 			itemId: 'zscore',
-			fieldLabel: 'z score',
+			fieldLabel: 'Z-score',
 			queryMode: 'local',
 			displayField: 'name',
 			labelWidth: 50,

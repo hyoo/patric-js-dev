@@ -27,7 +27,7 @@ Ext.define('CoordView.store.Strains', {
 		beforeload: function(store, operation, eOpts) {
 			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
 			//console.log(this);
-			Ext.get("p-chartstrain").mask("wait");
+			Ext.get("p-chartstrain").mask("loading");
 		},
 		load: function() {
 			Ext.get("p-chartstrain").unmask();

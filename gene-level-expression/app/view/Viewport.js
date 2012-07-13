@@ -36,6 +36,7 @@ Ext.define('CoordView.view.Viewport', {
 							title: 'Log Ratio',
 							id: 'p-chartlogratio',
 							store: 'LogRatios',
+							theme: 'Category1',
 							axes: [
 								{
 									type: 'Numeric',
@@ -67,6 +68,7 @@ Ext.define('CoordView.view.Viewport', {
 							title: 'Z-score',
 							id: 'p-chartzscore',
 							store: 'ZScores',
+							theme: 'Category2',
 							axes: [
 								{
 									type: 'Numeric',
@@ -113,7 +115,8 @@ Ext.define('CoordView.view.Viewport', {
 								xtype: 'categorypiechart',
 								title: 'All',
 								id: 'CategoryPieStrain',
-								store: 'Strains'
+								store: 'Strains',
+								theme: 'Category3'
 							},{
 								title: 'Top 5',
 								xtype: 'categorybarchart',
@@ -134,7 +137,8 @@ Ext.define('CoordView.view.Viewport', {
 								xtype: 'categorypiechart',
 								title: 'All',
 								id: 'CategoryPieMutant',
-								store: 'Mutants'
+								store: 'Mutants',
+								theme: 'Category4'
 							},{
 								title: 'Top 5',
 								xtype: 'categorybarchart',
@@ -155,7 +159,8 @@ Ext.define('CoordView.view.Viewport', {
 								title: 'All',
 								xtype: 'categorypiechart',
 								id: 'CategoryPieCondition',
-								store: 'Conditions'
+								store: 'Conditions',
+								theme: 'Category5'
 							},{
 								title: 'Top 5',
 								xtype: 'categorybarchart',

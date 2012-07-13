@@ -23,7 +23,7 @@ Ext.define('CoordView.view.CategoryBarChart', {
 	],
 	series: [{
 			type: 'bar',
-			yField: ['count'],
+			yField: 'count',
 			xField: 'category',
 			label: {
 				display: 'insideEnd',

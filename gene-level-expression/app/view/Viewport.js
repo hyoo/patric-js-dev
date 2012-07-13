@@ -32,14 +32,66 @@ Ext.define('CoordView.view.Viewport', {
 					height: 241,
 					items: [
 						{
+							xtype: 'chart',
 							title: 'Log Ratio',
-							layout: 'fit',
-							xtype: 'chartlogratio'
+							id: 'p-chartlogratio',
+							store: 'LogRatios',
+							axes: [
+								{
+									type: 'Numeric',
+									position: 'left',
+									fields: ['count'],
+									title: 'Samples',
+									minimum: 0
+								},
+								{
+									type: 'Category',
+									position: 'bottom',
+									fields: ['category'],
+									title: 'Log Ratio'
+								}
+							],
+							series: [{
+									type: 'column',
+									yField: 'count',
+									xField: 'category',
+									label: {
+										display: 'insideEnd',
+										field: 'count'
+									}
+								}
+							]
 						},
 						{
+							xtype: 'chart',
 							title: 'Z-score',
-							layout: 'fit',
-							xtype: 'chartzscore'
+							id: 'p-chartzscore',
+							store: 'ZScores',
+							axes: [
+								{
+									type: 'Numeric',
+									position: 'left',
+									fields: ['count'],
+									title: 'Samples',
+									minimum: 0
+								},
+								{
+									type: 'Category',
+									position: 'bottom',
+									fields: ['category'],
+									title: 'Z-score'
+								}
+							],
+							series: [{
+									type: 'column',
+									yField: 'count',
+									xField: 'category',
+									label: {
+										display: 'insideEnd',
+										field: 'count'
+									}
+								}
+							]
 						}
 					]
 				},
@@ -49,24 +101,60 @@ Ext.define('CoordView.view.Viewport', {
 					height: 241,
 					items: [
 						{
+							xtype: 'tabpanel',
 							title: 'Strain',
-							layout: 'fit',
-							xtype: 'chartstrain'
+							tabPosition: 'left',
+							bodyBorder: false,
+							tabBar: {
+								plain: true,
+								baseCls: ''
+							},
+							items:[{
+								xtype: 'categorypiechart',
+								title: 'All',
+								id: 'p-chartstrain',
+								store: 'Strains'
+							}]
 						},
 						{
+							xtype: 'tabpanel',
 							title: 'Mutant',
-							layout: 'fit',
-							xtype: 'chartmutant'
+							tabPosition: 'left',
+							bodyBorder: false,
+							tabBar: {
+								plain: true,
+								baseCls: ''
+							},
+							items: [{
+								xtype: 'categorypiechart',
+								title: 'All',
+								id: 'p-chartmutant',
+								store: 'Mutants'
+							}]
 						},
 						{
+							xtype: 'tabpanel',
 							title: 'Condition',
-							layout: 'fit',
-							xtype: 'chartcondition'
-						},
-						{
-							title: 'Condition-Bar',
-							layout: 'fit',
-							xtype: 'barchartcondition'
+							tabPosition: 'left',
+							bodyBorder: false,
+							tabBar: {
+								plain: true,
+								baseCls: ''
+							},
+							items: [
+								{
+									title: 'All',
+									xtype: 'categorypiechart',
+									id: 'p-chartcondition',
+									store: 'Conditions'
+								},
+								{
+									title: 'Top 5',
+									xtype: 'categorybarchart',
+									id: 'p-barchartcondition',
+									store: 'Conditions2'
+								}
+							]
 						}
 					]
 				}

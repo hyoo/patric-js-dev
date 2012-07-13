@@ -5,30 +5,23 @@
  *
  * This class implements a chart of condition types.
  */
-Ext.define('CoordView.view.ChartCondition', {
+Ext.define('CoordView.view.CategoryPieChart', {
 	extend: 'Ext.chart.Chart',
-	alias: 'widget.chartcondition',
-	id: 'p-chartcondition',
-	store: 'Conditions',
-	theme: 'Base',
+	alias: 'widget.categorypiechart',
 	animate: true,
 	series: [{
 		type: 'pie',
 		field: 'count',
 		highlight: {
 			segment: {
-				margin:10
+				margin:20
 			}
 		},
-		donut: 6,
+		donut: 20,
 		label: {
 			field: 'category',
 			display: 'rotate',
-			contrast: true,
-			font: '11px Arial',
-			renderer:function(val){
-				return Ext.String.ellipsis(val, 30, true);
-			}
+			contrast: true
 		},
 		listeners: {
 			'itemmouseup': function(item, obj){

@@ -4,8 +4,7 @@ Ext.define('CoordView.controller.ViewController', {
 	models: ['Gene', 'CategoryCount'],
 	views: [
 		'FilterPanel', 'FeatureGrid',
-		'ChartStrain', 'ChartMutant', 'ChartCondition', 'BarChartCondition', 
-		'ChartLogRatio', 'ChartZScore'
+		'CategoryPieChart', 'CategoryBarChart'
 	],
 	stores: [
 		'Genes',

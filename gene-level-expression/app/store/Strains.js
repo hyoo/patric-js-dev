@@ -24,13 +24,24 @@ Ext.define('CoordView.store.Strains', {
 	},
 	autoLoad: true,
 	listeners: {
-		beforeload: function(store, operation, eOpts) {
-			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
-			//console.log(this);
-			Ext.get("p-chartstrain").mask("loading");
+		beforeload: function(me, operation, eOpts) {
+			me.proxy.extraParams = Ext.Object.merge(me.proxy.extraParams, CoordView.param);
+			Ext.get("CategoryPieStrain").mask("loading");
 		},
-		load: function() {
-			Ext.get("p-chartstrain").unmask();
+		load: function(me, records, successful, eOpts) {
+			Ext.get("CategoryPieStrain").unmask();
+			if (successful) {
+				var data = new Array();
+				for (i=0; i<records.length; i++) {
+					if (records[i].get("rownum") < 6) {
+						data[i] = records[i].data;
+					}
+				}
+				//console.log("loading to top5 store:", data);
+				Ext.getStore('StrainsTop5').loadData(data);
+				Ext.getStore('StrainsTop5').sort('count', 'ASC');
+			}
 		}
+		
 	}
 });

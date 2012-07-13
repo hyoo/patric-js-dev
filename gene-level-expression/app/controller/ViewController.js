@@ -8,7 +8,7 @@ Ext.define('CoordView.controller.ViewController', {
 	],
 	stores: [
 		'Genes',
-		'Strains', 'Mutants', 'Conditions', 'Conditions2', 
+		'Strains', 'Mutants', 'Conditions', 'StrainsTop5', 'MutantsTop5', 'ConditionsTop5',
 		'LogRatios', 'ZScores'
 	],
 	init: function() {
@@ -17,10 +17,10 @@ Ext.define('CoordView.controller.ViewController', {
 				reset: this.resetFilter,
 				filter: this.doFilter,
 				showall: this.showAll
-			},
-			'chartstrain': {
+			}/*,
+			'categorypiechart': {
 				filter: this.doFilter
-			}
+			}*/
 		})
 	},
 	resetFilter: function() {
@@ -35,9 +35,6 @@ Ext.define('CoordView.controller.ViewController', {
 		Ext.getStore('Strains').load();
 		Ext.getStore('Mutants').load();
 		Ext.getStore('Conditions').load();
-		
-		Ext.getStore('Conditions2').load();
-		
 	},
 	doFilter: function(param) {
 		if (param != null) {
@@ -50,8 +47,6 @@ Ext.define('CoordView.controller.ViewController', {
 		Ext.getStore('Strains').load();
 		Ext.getStore('Mutants').load();
 		Ext.getStore('Conditions').load();
-		
-		Ext.getStore('Conditions2').load();
 	},
 	showAll: function() {
 		var param = new Object({sampleId:'', keyword:'', threshold:'', strain:'', mutant:'', condition:''});
@@ -65,7 +60,5 @@ Ext.define('CoordView.controller.ViewController', {
 		Ext.getStore('Strains').load();
 		Ext.getStore('Mutants').load();
 		Ext.getStore('Conditions').load();
-		
-		Ext.getStore('Conditions2').load();
 	}
 });

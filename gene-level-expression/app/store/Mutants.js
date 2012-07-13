@@ -24,13 +24,21 @@ Ext.define('CoordView.store.Mutants', {
 	},
 	autoLoad: true,
 	listeners: {
-		beforeload: function(store, operation, eOpts) {
-			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
-			//console.log(this);
-			//Ext.get("p-chartmutant").mask("wait");
+		beforeload: function(me, operation, eOpts) {
+			me.proxy.extraParams = Ext.Object.merge(me.proxy.extraParams, CoordView.param);
 		},
-		load: function() {
-			//Ext.get("p-chartmutant").unmask();
+		load: function(me, records, successful, eOpts) {
+			if (successful) {
+				var data = new Array();
+				for (i=0; i<records.length; i++) {
+					if (records[i].get("rownum") < 6) {
+						data[i] = records[i].data;
+					}
+				}
+				//console.log("loading to top5 store:", data);
+				Ext.getStore('MutantsTop5').loadData(data);
+				Ext.getStore('MutantsTop5').sort('count', 'ASC');
+			}
 		}
 	}
 });

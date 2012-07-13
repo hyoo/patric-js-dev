@@ -22,14 +22,15 @@ Ext.define('CoordView.view.CategoryPieChart', {
 			field: 'category',
 			display: 'rotate',
 			contrast: true
-		},
+		}/*,
 		listeners: {
 			'itemmouseup': function(item, obj){
+				console.log(item);
 				var param = new Object();
 				param.condition = item.storeItem.getId();
 				this.chart.fireEvent('filter', param);
 				return true;
 			}
-		}
+		}*/
 	}]
 });

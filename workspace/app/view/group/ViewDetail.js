@@ -33,8 +33,5 @@ Ext.define('VBI.Workspace.view.group.ViewDetail', {
 	dockedItems: [{
 		xtype: 'detailtoolbar', 
 		dock: 'top'
-	}],
-	initComponent: function() {	
-		this.callParent(arguments);
-	}
+	}]
 });

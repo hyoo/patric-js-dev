@@ -24,8 +24,5 @@ Ext.define('VBI.Workspace.view.StationsList', {
 			var node = this.getStore().getNodeById(2);
 			this.fireEvent('itemclick', this.getView(), node);
 		}
-	},
-	initComponent: function() {
-		this.callParent(arguments);
 	}
 });

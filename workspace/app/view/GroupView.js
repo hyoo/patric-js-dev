@@ -23,9 +23,6 @@ Ext.define('VBI.Workspace.view.GroupView', {
 		itemId: 'detail',
 		xtype: 'groupviewdetail'
 	}],
-	initComponent: function() {
-		this.callParent(arguments);
-	},
 	showGroupBrowser: function() {
 		var tbar = this.getDockedComponent(0);
 		if (tbar.getXType() != "grouptoolbar") {	

@@ -1,14 +1,13 @@
 Ext.define('VBI.Workspace.view.ColumnBrowser', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.columnbrowser',
-	border: 0,
+	border: false,
 	layout: {
 		type: 'hbox',
 		align: 'stretch'
 	},
-	initComponent: function() {
-	
-		this.items = [{
+	items: [
+		{
 			xtype: 'grid', //column browser
 			id: 'columnbrowser_groups',
 			stateful: false,
@@ -32,7 +31,6 @@ Ext.define('VBI.Workspace.view.ColumnBrowser', {
 				}]
 			}],
 			listeners: {
-				scope: this,
 				'selectionchange': {
 					fn: function (model, selected, options) { 
 						if (selected.length > 0) {
@@ -65,7 +63,6 @@ Ext.define('VBI.Workspace.view.ColumnBrowser', {
 				}]
 			}],
 			listeners: {
-				scope: this,
 				'selectionchange': {
 					fn: function (model, selected, options) { 
 						if (selected.length > 0) {
@@ -74,9 +71,7 @@ Ext.define('VBI.Workspace.view.ColumnBrowser', {
 					}
 				}
 			}
-		}];
-		
-		this.callParent(arguments);
-	}
+		}
+	]
 });
 

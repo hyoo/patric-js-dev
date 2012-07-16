@@ -21,9 +21,6 @@ Ext.define('VBI.Workspace.view.group.Browser', {
 	multiSelect: true,
 	itemSelector: 'div.thumb-wrap',
 	cls: 'x-browser-view',
-	initComponent: function() {
-		this.callParent(arguments);
-	},
 	listeners: { /*
 		itemclick: {
 			fn: function(view, record, item, index, e, options) {

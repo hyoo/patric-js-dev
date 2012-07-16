@@ -7,11 +7,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 		'VBI.Workspace.view.GenomeView'
 	],
 	height: '100%',
-	border: false,/*
-	layout: {
-		type: 'hbox',
-		align: 'stretch'
-		},*/
+	border: false,
 	layout: 'border',
 	items: [{
 			xtype: 'columnbrowser', //column browser
@@ -38,8 +34,5 @@ Ext.define('VBI.Workspace.view.ListView', {
 				xtype: 'genomeview'
 			}]
 		}
-	],
-	initComponent: function() {	
-		this.callParent(arguments);
-	}
+	]
 });

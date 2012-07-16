@@ -95,8 +95,5 @@ Ext.define('VBI.Workspace.view.FeatureView', {
 		dock: 'bottom',
 		displayInfo: true
 	}],
-	selModel: Ext.create('Ext.selection.CheckboxModel'),
-	initComponent: function() {
-		this.callParent(arguments);
-	}
+	selModel: Ext.create('Ext.selection.CheckboxModel')
 });

@@ -2,7 +2,7 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 	extend: 'Ext.app.Controller',
 	init: function() {
 		this.control({
-			'columnbrowser': {
+			'columnbrowser grid': {
 				columnbrowserfilter: this.onColumnBrowserFilter
 			},
 			'columnbrowser button': {
@@ -42,7 +42,7 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 		
 		if (type == "groups") {
 			
-			// 1. get Prepared			
+			// 1. get Prepared
 				var targetGroupTags = new Array();
 				Ext.each(selected, function(r) {
 					targetGroupTags.push(r.get("tagId"));
@@ -83,8 +83,7 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 			// 3. update Group view
 			//	storeGroups.filterByTag(targetStringTags);
 			// TODO: should we go through the Tracks?
-		} 
-		
+		}
 	},
 	resetColumnBrowserGroupsUI: function() {
 		Ext.getCmp('columnbrowser_groups').getSelectionModel().deselectAll();

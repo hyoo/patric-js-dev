@@ -42,13 +42,13 @@ Ext.define('VBI.Workspace.view.FeatureToolbar', {
 		}
 	},
 	refreshWorkspaceViews: function() {
-		Ext.StoreManager.lookup('Mappings').load({
+		Ext.getStore('Mappings').load({
 			callback: function() {
-				Ext.StoreManager.lookup('Groups').load({
+				Ext.getStore('Groups').load({
 					callback: function() {
-						Ext.StoreManager.lookup('ColumnBrowser').refresh({
+						Ext.getStore('ColumnBrowser').refresh({
 							callback:function() {
-								Ext.StoreManager.lookup('Stations').load({
+								Ext.getStore('Stations').load({
 									callback: function() {
 										Ext.getCmp('workspace_station').setDefault("Features");
 										updateCartInfo();
@@ -241,7 +241,7 @@ Ext.define('VBI.Workspace.view.FeatureToolbar', {
 						{
 							xtype: 'tbar_menu_dn_tb_xls',
 							handler: function() {
-								this.fireEvent('downloadGrid','xls');
+								this.fireEvent('downloadGrid','xlsx');
 							}
 						}]
 					},

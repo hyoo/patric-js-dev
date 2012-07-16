@@ -28,118 +28,114 @@ Ext.define('VBI.Workspace.view.group.GroupToolbar', {
 		}
 	},
 	refreshWorkspaceViews: function() {
-		Ext.StoreManager.lookup('ColumnBrowser').refresh({
+		Ext.getStore('ColumnBrowser').refresh({
 			callback:function() {
-				Ext.StoreManager.lookup('Groups').load({
+				Ext.getStore('Groups').load({
 					callback: function() {
-						Ext.StoreManager.lookup('Stations').load();
+						Ext.getStore('Stations').load();
 						updateCartInfo();
 					}
 				});
 			}
 		});
 	},
-	initComponent: function() {
-		
-		this.items = [
-			{
-				title: 'Workspace', 
-				xtype: 'buttongroup', 
-				columns: 1,
-				items:[{
-					xtype:'tbar_btn_remove',
-					handler: function(btn, e) {
+	items: [
+		{
+			title: 'Workspace', 
+			xtype: 'buttongroup', 
+			columns: 1,
+			items:[{
+				xtype:'tbar_btn_remove',
+				handler: function(me, e) {
 						
-						var idList = this.findParentByType('grouptoolbar').getSelectedID();
-						if (idList == null) { return false; }
+					var idList = me.findParentByType('grouptoolbar').getSelectedID();
+					if (idList == null) { return false; }
 						
-						Ext.Msg.show({
-							msg: 'Do you want to delete this group from your workspace?',
-							buttons: Ext.Msg.OKCANCEL,
-							icon: Ext.Msg.QUESTION,
-							fn: function(buttonId, opt) {
-								if (buttonId == "ok" && idList.length > 0) {
-									Ext.Ajax.request({
-										url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=removeGroup',
-										params: {
-											idList: idList.join(",")
-										},
-										success: function(response) {
-											Ext.getCmp('workspace_grouptoolbar').refreshWorkspaceViews();
-										}
-									});
-								}
+					Ext.Msg.show({
+						msg: 'Do you want to delete this group from your workspace?',
+						buttons: Ext.Msg.OKCANCEL,
+						icon: Ext.Msg.QUESTION,
+						fn: function(buttonId, opt) {
+							if (buttonId == "ok" && idList.length > 0) {
+								Ext.Ajax.request({
+									url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=removeGroup',
+									params: {
+										idList: idList.join(",")
+									},
+									success: function(response) {
+										Ext.getCmp('workspace_grouptoolbar').refreshWorkspaceViews();
+									}
+								});
 							}
-						});
+						}
+					});
 						
-					}
-				}]
-			}, '-',
-			{
-				title: 'Tools',
-				xtype: 'buttongroup',
-				items: [{
-					scale: 'large',
-					iconAlign: 'left',
-					text: 'Group Explorer',
-					icon: '/patric/images/toolbar_gse.png',
-					handler: function() {
-						var idList = this.findParentByType('grouptoolbar').getSelectedID();
-						if (idList == null) { return false; }
+				}
+			}]
+		}, '-',
+		{
+			title: 'Tools',
+			xtype: 'buttongroup',
+			items: [{
+				scale: 'large',
+				iconAlign: 'left',
+				text: 'Group Explorer',
+				icon: '/patric/images/toolbar_gse.png',
+				handler: function(me, e) {
+					var idList = me.findParentByType('grouptoolbar').getSelectedID();
+					if (idList == null) { return false; }
 						
-						var type = this.findParentByType('grouptoolbar').getSelectedGroupType();
+					var type = me.findParentByType('grouptoolbar').getSelectedGroupType();
 						
-						this.fireEvent("runGroupExplorer", idList.join(","), type);
-					}
-				}]
-			},
-			{
-				title: 'Sort',
-				xtype: 'buttongroup',
-				columns: 3,
-				items: [{
-					text: 'Name Ascending',
-					icon: '/patric/js/extjs4/resources/themes/images/default/grid/hmenu-asc.gif',
-					handler: function() {
-						Ext.StoreManager.lookup('Groups').sort('name','ASC');
-					}
-				}, {
-					text: 'Oldest First',
-					icon: '/patric/images/calendar_icon.png',
-					handler: function() {
-						Ext.StoreManager.lookup('Groups').sort('mdate','ASC');
-					}
-				}, {
-					text: 'Smallest First',
-					icon: '/patric/images/sort_count_asc.png',
-					handler: function() {
-						Ext.StoreManager.lookup('Groups').sort('members','ASC');
-					}
-				}, {
-					text: 'Name Descending',
-					icon: '/patric/js/extjs4/resources/themes/images/default/grid/hmenu-desc.gif',
-					handler: function() {
-						Ext.StoreManager.lookup('Groups').sort('name','DESC');
-					}
-				}, {
-					text: 'Newest First',
-					icon: '/patric/images/calendar_icon.png',
-					handler: function() {
-						Ext.StoreManager.lookup('Groups').sort('mdate','DESC');
-					}
-				}, {
-					text: 'Largest First',
-					icon: '/patric/images/sort_count_des.png',
-					handler: function() {
-						Ext.StoreManager.lookup('Groups').sort('members','DESC');
-					}
-				}]
-			},
-			'->', '-',
-			{
-				xtype: 'tbar_btngrp_help'
-			}
-		];
-		this.callParent(arguments);
-	}
+					me.fireEvent("runGroupExplorer", idList.join(","), type);
+				}
+			}]
+		},
+		{
+			title: 'Sort',
+			xtype: 'buttongroup',
+			columns: 3,
+			items: [{
+				text: 'Name Ascending',
+				icon: '/patric/js/extjs4/resources/themes/images/default/grid/hmenu-asc.gif',
+				handler: function() {
+					Ext.getStore('Groups').sort('name','ASC');
+				}
+			}, {
+				text: 'Oldest First',
+				icon: '/patric/images/calendar_icon.png',
+				handler: function() {
+					Ext.getStore('Groups').sort('mdate','ASC');
+				}
+			}, {
+				text: 'Smallest First',
+				icon: '/patric/images/sort_count_asc.png',
+				handler: function() {
+					Ext.getStore('Groups').sort('members','ASC');
+				}
+			}, {
+				text: 'Name Descending',
+				icon: '/patric/js/extjs4/resources/themes/images/default/grid/hmenu-desc.gif',
+				handler: function() {
+					Ext.getStore('Groups').sort('name','DESC');
+				}
+			}, {
+				text: 'Newest First',
+				icon: '/patric/images/calendar_icon.png',
+				handler: function() {
+					Ext.getStore('Groups').sort('mdate','DESC');
+				}
+			}, {
+				text: 'Largest First',
+				icon: '/patric/images/sort_count_des.png',
+				handler: function() {
+					Ext.getStore('Groups').sort('members','DESC');
+				}
+			}]
+		},
+		'->', '-',
+		{
+			xtype: 'tbar_btngrp_help'
+		}
+	]
 });

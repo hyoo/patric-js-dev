@@ -195,8 +195,7 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 		var newInfo = this.getForm().getValues();
 		this.record.set("desc", newInfo.description);
 		this.record.set("name", newInfo.groupname);
-		//console.log(this.record);
-		Ext.StoreManager.lookup('Groups').sync();
+		Ext.getStore('Groups').sync();
 		
 		this.disableFields();
 	}, 

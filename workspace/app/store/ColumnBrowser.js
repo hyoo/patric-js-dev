@@ -32,18 +32,18 @@ Ext.define('VBI.Workspace.store.ColumnBrowser', {
 		}
 	},
 	refresh: function(callback) {
-		Ext.StoreManager.lookup('ColumnBrowser.Groups').removeAll(false);
-		Ext.StoreManager.lookup('ColumnBrowser.Tags').removeAll(false);
+		Ext.getStore('ColumnBrowser.Groups').removeAll(false);
+		Ext.getStore('ColumnBrowser.Tags').removeAll(false);
 		this.load(callback);
 	},
 	listeners: {
 		load: function(store) {	
 			store.clearFilter();
 			store.filter("tagType", "Group");
-			Ext.data.StoreManager.lookup('ColumnBrowser.Groups').add(store.getRange());
+			Ext.getStore('ColumnBrowser.Groups').add(store.getRange());
 			store.clearFilter();
 			store.filter("tagType", "String");
-			Ext.data.StoreManager.lookup('ColumnBrowser.Tags').add(store.getRange());
+			Ext.getStore('ColumnBrowser.Tags').add(store.getRange());
 		}
 	}
 });

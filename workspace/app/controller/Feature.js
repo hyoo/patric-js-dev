@@ -49,7 +49,7 @@ Ext.define('VBI.Workspace.controller.Feature', {
 	},
 	downloadGrid: function(type) {
 		var idList = new Array();
-		var store = Ext.StoreManager.lookup("Features");
+		var store = Ext.getStore("Features");
 		Ext.Array.each(store.getRange(), function(item) {
 			idList.push(item.internalId);
 		});

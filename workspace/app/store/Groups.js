@@ -3,7 +3,6 @@ Ext.define('VBI.Workspace.store.Groups', {
 	requires: 'VBI.Workspace.model.Group',
 	model: 'VBI.Workspace.model.Group',
 	autoLoad: true,
-	//autoSync: true,
 	proxy: {
 		type: 'ajax',
 		api: {
@@ -24,7 +23,7 @@ Ext.define('VBI.Workspace.store.Groups', {
 	},
 	listeners: {
 		write: function(store, operation) {
-			Ext.StoreManager.lookup('ColumnBrowser').refresh();
+			Ext.getStore('ColumnBrowser').refresh();
 		}
 	},
 	filterByTag: function(tagId) {

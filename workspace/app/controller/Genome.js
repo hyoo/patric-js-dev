@@ -9,7 +9,7 @@ Ext.define('VBI.Workspace.controller.Genome', {
 	},
 	downloadGrid: function(type) {
 		var idList = new Array();
-		var store = Ext.StoreManager.lookup("Genomes");
+		var store = Ext.getStore("Genomes");
 		Ext.Array.each(store.getRange(), function(item) {
 			idList.push(item.internalId);
 		});

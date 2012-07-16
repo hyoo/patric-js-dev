@@ -56,7 +56,7 @@ Ext.define('VBI.Workspace.view.Toolbar.menu.Download_Table_Xls', {
 	alias: 'widget.tbar_menu_dn_tb_xls',
 	scale: 'small',  
 	iconAlign: 'left', 
-	text: 'Excel file (.xls)',
+	text: 'Excel file (.xlsx)',
 	icon: '/patric/images/toolbar_excel.png'
 });
 

@@ -2,7 +2,7 @@ Ext.define('VBI.Workspace.controller.GlobalToolbar', {
 	extend: 'Ext.app.Controller',
 	init: function() {
 		this.control({
-			'globaltoolbar': {
+			'globaltoolbar button': {
 				switchToListView: this.onSwitchToListView,
 				switchToGroupView: this.onSwitchToGroupView
 			}

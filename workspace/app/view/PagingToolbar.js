@@ -113,7 +113,7 @@ Ext.define('VBI.Workspace.view.PagingToolbar', {
 					
 				if (valueIsNull == false) {
 					if (Ext.isString(me.store)) {
-						var store = Ext.StoreManager.lookup(me.store);
+						var store = Ext.getStore(me.store);
 						store.currentPage = 1;
 						store.pageSize = value;
 					} else {

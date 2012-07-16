@@ -4,7 +4,6 @@ Ext.define('VBI.Workspace.view.GroupView', {
 	id: 'workspace_groupview',
 	requires: [
 		'VBI.Workspace.view.group.GroupToolbar',
-		//'VBI.Workspace.view.group.GroupGrid',
 		'VBI.Workspace.view.group.Browser',
 		'VBI.Workspace.view.group.ViewDetail'
 	],

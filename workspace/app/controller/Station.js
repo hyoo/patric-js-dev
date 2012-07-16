@@ -19,12 +19,12 @@ Ext.define('VBI.Workspace.controller.Station', {
 			//console.log(selectedType);
 			if (selectedType == "") { return false; }
 			
-			var storeMap = Ext.data.StoreManager.lookup('Mappings');
-			var storeCBGrp = Ext.data.StoreManager.lookup('ColumnBrowser.Groups');
-			var storeCBTag = Ext.data.StoreManager.lookup('ColumnBrowser.Tags');
-			var storeFeatures = Ext.data.StoreManager.lookup('Features');
-			var storeGenomes = Ext.data.StoreManager.lookup('Genomes');
-			var storeGroups = Ext.data.StoreManager.lookup('Groups');
+			var storeMap = Ext.getStore('Mappings');
+			var storeCBGrp = Ext.getStore('ColumnBrowser.Groups');
+			var storeCBTag = Ext.getStore('ColumnBrowser.Tags');
+			var storeFeatures = Ext.getStore('Features');
+			var storeGenomes = Ext.getStore('Genomes');
+			var storeGroups = Ext.getStore('Groups');
 			
 		// 2. update ColumnBrowser
 			

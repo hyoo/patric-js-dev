@@ -2,18 +2,18 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 	extend: 'Ext.app.Controller',
 	init: function() {
 		this.control({
-			'columnbrowser grid': {
+			'columnbrowser > grid': {
 				columnbrowserfilter: this.onColumnBrowserFilter
 			},
-			'columnbrowser button': {
+			'columnbrowser > grid > toolbar > button': {
 				columnbrowserfilter_reset: this.onColumnBrowserReset
 			}
 		});
 	},
 	onColumnBrowserReset: function(type) {
 		
-		var storeMap = Ext.data.StoreManager.lookup('Mappings');
-		var storeFeatures = Ext.data.StoreManager.lookup('Features');
+		var storeMap = Ext.getStore('Mappings');
+		var storeFeatures = Ext.getStore('Features');
 		
 		if (type == "groups") {	
 		
@@ -34,11 +34,11 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 	},
 	onColumnBrowserFilter: function(type, selected) {
 		
-		var storeMap = Ext.data.StoreManager.lookup('Mappings');
-		var storeCBTag = Ext.data.StoreManager.lookup('ColumnBrowser.Tags');
-		var storeFeatures = Ext.data.StoreManager.lookup('Features');
-		var storeGenomes = Ext.data.StoreManager.lookup('Genomes');
-		var storeGroups = Ext.data.StoreManager.lookup('Groups');
+		var storeMap = Ext.getStore('Mappings');
+		var storeCBTag = Ext.getStore('ColumnBrowser.Tags');
+		var storeFeatures = Ext.getStore('Features');
+		var storeGenomes = Ext.getStore('Genomes');
+		var storeGroups = Ext.getStore('Groups');
 		
 		if (type == "groups") {
 			

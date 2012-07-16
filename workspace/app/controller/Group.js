@@ -27,7 +27,7 @@ Ext.define('VBI.Workspace.controller.Group', {
 		
 		//console.log(view, record, item, index, e, options);
 		// data processing
-		var storeMap = Ext.data.StoreManager.lookup('Mappings');
+		var storeMap = Ext.data.getStore('Mappings');
 		storeMap.setTrackFilter("Group", record.getId());
 		storeMap.setTrackFilter("String", null);
 		var targetTracks = storeMap.getFilteredTracks();
@@ -37,7 +37,7 @@ Ext.define('VBI.Workspace.controller.Group', {
 			grpView.showFeatureGroupDetail();
 			
 			grid.getLayout().setActiveItem('features');
-			Ext.StoreManager.lookup('Features').filterByTracks(targetTracks);
+			Ext.getStore('Features').filterByTracks(targetTracks);
 			
 			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
 		}
@@ -46,7 +46,7 @@ Ext.define('VBI.Workspace.controller.Group', {
 			grpView.showGenomeGroupDetail();
 			
 			grid.getLayout().setActiveItem('genomes');
-			Ext.StoreManager.lookup('Genomes').filterByTracks(targetTracks);
+			Ext.getStore('Genomes').filterByTracks(targetTracks);
 			
 			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
 		}

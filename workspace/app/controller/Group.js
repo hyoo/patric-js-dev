@@ -27,7 +27,7 @@ Ext.define('VBI.Workspace.controller.Group', {
 		
 		//console.log(view, record, item, index, e, options);
 		// data processing
-		var storeMap = Ext.data.getStore('Mappings');
+		var storeMap = Ext.getStore('Mappings');
 		storeMap.setTrackFilter("Group", record.getId());
 		storeMap.setTrackFilter("String", null);
 		var targetTracks = storeMap.getFilteredTracks();

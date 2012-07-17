@@ -82,7 +82,7 @@ Ext.define('VBI.Workspace.view.PagingToolbar', {
 			submitValue: false,
 			width: 50,
 			margins: '-1 2 3 2',
-			value: undefined,
+			value: me.pageSize,
 			stateId: 'workspace_pagesize',
 			stateEvents:['change'],
 			getState: function() {
@@ -134,5 +134,19 @@ Ext.define('VBI.Workspace.view.PagingToolbar', {
 			handler: me.doRefresh,
 			scope: me
 		}];
+	},
+	initComponent: function() {
+		var me = this;
+		if (me.store != null && typeof me.store == 'string') {
+			me.store = Ext.getStore(me.store);
+		}
+		if (me.store != null && me.store.pageSize != null) {
+			if (typeof me.store.pageSize == 'string') {
+				me.pageSize = parseInt(me.store.pageSize);
+			} else if (typeof me.store.pageSize == 'number') {
+				me.pageSize = me.store.pageSize;
+			}
+		}
+		this.callParent();
 	}
 });

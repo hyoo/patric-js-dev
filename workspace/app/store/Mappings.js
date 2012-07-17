@@ -5,7 +5,8 @@ Ext.define('VBI.Workspace.store.Mappings', {
 	autoLoad: true,
 	proxy: {
 		type: 'ajax',
-		url: '/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=WSSupport&action=getMappings'
+		url: '/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=WSSupport&action=getMappings',
+		noCache: false
 	},
 	filterCriteria: {
 		"Group": [],

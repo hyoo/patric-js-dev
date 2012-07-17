@@ -19,7 +19,8 @@ Ext.define('VBI.Workspace.store.Groups', {
 			writeAllFields: false,
 			root: 'group_info',
 			encode: true
-		}
+		},
+		noCache: false
 	},
 	listeners: {
 		write: function(store, operation) {

@@ -40,6 +40,7 @@ Ext.define('VBI.Workspace.store.Stations', {
 	autoLoad: false,
 	proxy: {
 		type: 'ajax',
-		url: '/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=WSSupport&action=getLibrary'
+		url: '/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=WSSupport&action=getLibrary',
+		noCache: false
 	}
 });

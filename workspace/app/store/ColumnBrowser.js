@@ -29,7 +29,8 @@ Ext.define('VBI.Workspace.store.ColumnBrowser', {
 		reader: {
 			type: 'json',
 			root: 'results'
-		}
+		},
+		noCache: false
 	},
 	refresh: function(callback) {
 		Ext.getStore('ColumnBrowser.Groups').removeAll(false);

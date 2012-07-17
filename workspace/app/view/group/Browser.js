@@ -20,19 +20,5 @@ Ext.define('VBI.Workspace.view.group.Browser', {
 	autoScroll: true,
 	multiSelect: true,
 	itemSelector: 'div.thumb-wrap',
-	cls: 'x-browser-view',
-	listeners: { /*
-		itemclick: {
-			fn: function(view, record, item, index, e, options) {
-				console.log(view, record, item, index, e, options);
-			}
-		},
-		itemdblclick: {
-			fn: function(view, record, item, index, e, options) {
-				
-				console.log(view, record, item, index, e, options);
-				console.log("*** itemdblclick");
-			}
-		}*/
-	}
+	cls: 'x-browser-view'
 });

@@ -3,14 +3,10 @@ Ext.define('VBI.Workspace.controller.Station', {
 	init: function() {
 		this.control({
 			'stationslist': {
-				//selectionchange: this.onStationSelect
-				//select: this.StationSelected,
 				itemclick: this.onStationSelect
 			}
 		});
 	},
-	//onStationSelect: function (selModel, selected, options) {
-	//onStationSelect: function(rowModel, record, index, options) {
 	onStationSelect: function(view, record, item, index, e, options) {
 		//console.log("on stations select: fired");
 		// 1. get Prepared

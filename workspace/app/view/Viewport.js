@@ -52,33 +52,23 @@ Ext.define('VBI.Workspace.view.Viewport', {
 				}]
 		}]
 	},
-	initComponent: function() {
-		//this.callParent();
-		
-		var me = this,
-			html = Ext.fly(document.body.parentNode),
-			el;
+	onRender: function() {
+		var me = this;
 		me.callParent(arguments);
-		//html.addCls(Ext.baseCSSPrefix + 'viewport');
-		//if (me.autoScroll) {
-		//    html.setStyle('overflow', 'auto');
-		//}
-		//me.el = el = Ext.getBody();
-		me.el = el = Ext.get('wksp');
-		// el.setHeight = Ext.emptyFn;
-		// el.setWidth = Ext.emptyFn;
-		// el.setSize = Ext.emptyFn;
-		// el.dom.scroll = 'no';
-		// me.allowDomMove = false;
-		 Ext.EventManager.onWindowResize(me.fireResize, me);
-		// me.renderTo = me.el;
-		// me.width = Ext.Element.getViewportWidth();
-		// me.height = Ext.Element.getViewportHeight();
-		me.width = Ext.Element.getViewportWidth() - 20;
-		me.height = Ext.Element.getViewportHeight() - 300;
+		me.width = Ext.Element.getViewportWidth() - 15;
+		me.height = Ext.Element.getViewportHeight() - 320;
 	},
-	fireResize: function(w,h) {
-		//console.log("resizing",w,h-300);
-		this.setSize(w-20,h-300);
+	initComponent : function() {
+		var me = this,
+			html = document.body.parentNode,
+			el;
+			
+		me.callParent(arguments);
+		me.el = el = Ext.get('wksp');
+	},
+	fireResize: function(width, height) {
+		if (width != this.width || height != this.height) {
+			this.setSize(width - 15, height - 320);
+		}
 	}
 });

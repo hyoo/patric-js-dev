@@ -11,6 +11,11 @@ Ext.application({
 	autoCreateViewport: true,
 	launch: function() {
 		// This is fired as soon as the page is ready
+		var task = new Ext.util.DelayedTask(function() {
+				Ext.getCmp('workspace_station').setDefault("Features");
+				Ext.getCmp('workspace_globaltoolbar').switchViewButtons();
+		});
+		task.delay(500);
 	},
 	id: 'workspace',
 	models: ['ColumnBrowser', 'Station', 'Feature', 'Genome', 'Group'],

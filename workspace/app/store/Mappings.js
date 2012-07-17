@@ -96,14 +96,5 @@ Ext.define('VBI.Workspace.store.Mappings', {
 		}
 		target = Ext.Array.unique(target);
 		return target;
-	},
-	listeners: {
-		load: function(store) {
-			var task = new Ext.util.DelayedTask(function() {
-				Ext.getCmp('workspace_station').setDefault("Features");
-				Ext.getCmp('workspace_globaltoolbar').switchViewButtons();
-			});
-			task.delay(500);
-		}
 	}
 });

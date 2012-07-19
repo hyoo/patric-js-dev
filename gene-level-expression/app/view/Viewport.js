@@ -114,12 +114,14 @@ Ext.define('CoordView.view.Viewport', {
 							items:[{
 								xtype: 'categorypiechart',
 								title: 'All',
+								iconCls: 'icon-pie-chart',
 								id: 'CategoryPieStrain',
 								store: 'Strains',
 								theme: 'Category3'
 							},{
-								title: 'Top 5',
 								xtype: 'categorybarchart',
+								title: 'Top 5',
+								iconCls: 'icon-bar-chart',
 								id: 'CategoryBarStrain',
 								store: 'StrainsTop5'
 							}]
@@ -136,12 +138,14 @@ Ext.define('CoordView.view.Viewport', {
 							items: [{
 								xtype: 'categorypiechart',
 								title: 'All',
+								iconCls: 'icon-pie-chart',
 								id: 'CategoryPieMutant',
 								store: 'Mutants',
 								theme: 'Category4'
 							},{
-								title: 'Top 5',
 								xtype: 'categorybarchart',
+								title: 'Top 5',
+								iconCls: 'icon-bar-chart',
 								id: 'CategoryBarMutant',
 								store: 'MutantsTop5'
 							}]
@@ -156,14 +160,16 @@ Ext.define('CoordView.view.Viewport', {
 								baseCls: ''
 							},
 							items: [{
-								title: 'All',
 								xtype: 'categorypiechart',
+								title: 'All',
+								iconCls: 'icon-pie-chart',
 								id: 'CategoryPieCondition',
 								store: 'Conditions',
 								theme: 'Category5'
 							},{
-								title: 'Top 5',
 								xtype: 'categorybarchart',
+								title: 'Top 5',
+								iconCls: 'icon-bar-chart',
 								id: 'CategoryBarCondition',
 								store: 'ConditionsTop5'
 							}]

@@ -10,23 +10,27 @@ Ext.define('TranscriptomicsUploader.view.Viewport', {
 		tabBar: {
 			hidden: true
 		},
-		height: 50,
+		height: 40,
 		items: [{
 			xtype: 'imagecomponent',
 			itemId: 'step01',
-			src: 'http://www.patricbrc.org/patric/images/logo.png'
+			padding: '5 3',
+			src: '/patric/images/transcriptomics_uploader_step1.png'
 		}, {
 			xtype: 'imagecomponent',
 			itemId: 'step02',
-			src: 'http://www.patricbrc.org/patric/images/logo.png'
+			padding: '5 3',
+			src: '/patric/images/transcriptomics_uploader_step2.png'
 		}, {
 			xtype: 'imagecomponent',
 			itemId: 'step03',
-			src: 'http://www.patricbrc.org/patric/images/logo.png'
+			padding: '5 3',
+			src: '/patric/images/transcriptomics_uploader_step3.png'
 		}, {
 			xtype: 'imagecomponent',
 			itemId: 'step04',
-			src: 'http://www.patricbrc.org/patric/images/logo.png'
+			padding: '5 3',
+			src: '/patric/images/transcriptomics_uploader_step4.png'
 		}]
 	}, {
 		xtype: 'tabpanel',

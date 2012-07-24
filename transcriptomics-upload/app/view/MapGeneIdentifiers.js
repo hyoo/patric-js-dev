@@ -13,78 +13,82 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 	fieldDefaults: {
 		labelAlign: 'right'
 	},
-	items: [/*{
-		xtype: 'fieldset',
-		title: 'my-super-gool-data.csv (1232 gene IDs, 53 samples)',
-		items: [{
-			xtype: 'textarea',
-			name: 'parsed_dataset'
-		}]
-	}, */ 
-	{
-		xtype: 'label',
-		text: 'my-super-cool-data.csv (1232 gene IDs, 43 samples)'
+	items: [{
+		xtype: 'displayfield',
+		value: '<b>my-super-cool-data.csv (1232 gene IDs, 43 samples)</b>'
 	}, {
 		xtype: 'textarea',
 		anchor: '100%'
 	}, {
-		xtype: 'fieldset',
-		title: 'Specify organism name and ID typ to map data into PATRIC',
+		xtype: 'displayfield',
+		value: '<b>Specify organism name and ID typ to map data into PATRIC</b>'
+	},{
+		xtype: 'textfield',
+		fieldLabel: 'Organism Name',
+		anchor: '100%'
+	}, {
+		xtype: 'container',
+		layout: 'hbox',
 		items: [{
-			xtype: 'textfield',
-			fieldLabel: 'Organism Name',
-			//width: 300
-			anchor: '100%'
+			xtype: 'combobox',
+			fieldLabel: 'Gene ID Type',
+			width: 300,
+			value: 'patric',
+			store: 'GeneIDTypes',
+			queryMode: 'local',
+			displayField: 'text',
+			valueField: 'name',
+			editable: false
 		}, {
-			xtype: 'container',
-			layout: 'hbox',
-			items: [{
-				xtype: 'combobox',
-				fieldLabel: 'Gene ID Type',
-				width: 300,
-				store: 'GeneIDTypes',
-				queryMode: 'local',
-				displayField: 'text',
-				valueField: 'name',
-				editable: false
-			}, {
-				xtype: 'component',
-				autoEl: {
-					tag: 'a',
-					href: 'http://enews.patricbrc.org',
-					html: "what's this?",
-					target: '_blank'
-				},
-				padding: '0 0 0 15px'
-			}, {
-				xtype: 'label',
-				text: "Don't see your ID Type (",
-				padding: '0 0 0 5px'
-			}, {
-				xtype: 'component',
-				autoEl: {
-					tag: 'a',
-					href: 'http://enews.patricbrc.org',
-					html: "FAQ",
-					target: '_blank'
-				}
-			}, {
-				xtype: 'label',
-				text: ')'
-			}]
+			xtype: 'component',
+			autoEl: {
+				tag: 'a',
+				href: 'http://enews.patricbrc.org',
+				html: "what's this?",
+				target: '_blank'
+			},
+			padding: '0 0 0 15px'
 		}, {
-			xtype: 'button',
-			text: 'Mapping',
-			align: 'right'
+			xtype: 'label',
+			text: "Don't see your ID Type (",
+			padding: '0 0 0 5px'
+		}, {
+			xtype: 'component',
+			autoEl: {
+				tag: 'a',
+				href: 'http://enews.patricbrc.org',
+				html: "FAQ",
+				target: '_blank'
+			}
+		}, {
+			xtype: 'label',
+			text: ')'
 		}]
 	}, {
-		xtype: 'fieldset',
-		title: 'Mapping Result',
+		//spacer between lines
+		xtype: 'displayfield',
+		value: ''
+	}, {
+		xtype: 'container',
+		layout: 'hbox',
 		items: [{
-			xtype: 'label',
-			//text: 'All 1232 Brucella genes mapped to PATRIC'
-			text: '14 of 1232 genes did NOT map to PATRIC'
+			xtype: 'displayfield',
+			value: '<b>Map your genes into PATRIC</b>'
+		}, {
+			xtype: 'button',
+			text: 'Map Genes',
+			margin: '0 0 0 20px',
+			handler: function() {
+				//enable next button
+				//set mapping result
+				//Ext.getCmp("mapping_result").setValue('All 1232 Brucella genes mapped to PATRIC');
+				//Ext.getCmp("mapping_result").setValue('14 of 1232 genes did NOT map to PATRIC');
+			}
 		}]
+	},{
+		xtype: 'displayfield',
+		id: 'mapping_result',
+		value: 'You must map your genes into PATRIC before procedding to the next step'
 	}],
 	buttons: [{
 		text: 'Previous',
@@ -94,6 +98,8 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 		}
 	}, {
 		text: 'Next',
+		formBind: true,
+		disabled: true,
 		handler: function() {
 			Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step03");
 			Ext.getCmp("uploader").getComponent("steps").setActiveTab("step03");

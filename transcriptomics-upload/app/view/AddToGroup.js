@@ -15,26 +15,25 @@ Ext.define('TranscriptomicsUploader.view.AddToGroup', {
 		anchor: '100%'
 	},
 	items: [{
-		xtype: 'fieldset',
-		title: 'Add this experiment to a Workspace Group (optional)',
-		items: [{
-			xtype: 'combobox',
-			name: 'atg',
-			fieldLabel: 'Add to Group'
-		}, {
-			xtype: 'textfield',
-			name: 'group_name',
-			emptyText: 'New group name'
-		}, {
-			xtype: 'textareafield',
-			name: 'group_desc',
-			emptyText: 'Group Description'
-		}, {
-			xtype: 'textfield',
-			name: 'group_tags',
-			fieldLabel: 'Group Tags',
-			emptyText: '(comma separated)'
-		}]
+		xtype: 'displayfield',
+		value: '<b>Specify a Group for this Experiment (optional)</b>'
+	}, {
+		xtype: 'combobox',
+		name: 'atg',
+		fieldLabel: 'Add to Group'
+	}, {
+		xtype: 'textfield',
+		name: 'group_name',
+		emptyText: 'New group name'
+	}, {
+		xtype: 'textareafield',
+		name: 'group_desc',
+		emptyText: 'Group Description'
+	}, {
+		xtype: 'textfield',
+		name: 'group_tags',
+		fieldLabel: 'Group Tags',
+		emptyText: '(comma separated)'
 	}],
 	buttons: [{
 		text: 'Previous',

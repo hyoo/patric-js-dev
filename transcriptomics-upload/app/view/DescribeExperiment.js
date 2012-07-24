@@ -16,20 +16,19 @@ Ext.define('TranscriptomicsUploader.view.DescribeExperiment', {
 		anchor: '100%'
 	},	
 	items: [{
-		xtype: 'fieldset',
-		title: 'Provide additional information for this experiment data',
-		items: [{
-			xtype: 'textfield',
-			name: 'experiment_title',
-			fieldLabel: 'Experiment Title',
-			emptyText: 'Title',
-			allowBlank: false
-		}, {
-			xtype: 'textareafield',
-			name: 'expeirment_description',
-			fieldLabel: 'Experiment Description',
-			emptyText: 'Description'
-		}]
+		xtype: 'displayfield',
+		value: '<b>Provide additional information for this experiment data</b>'
+	}, {
+		xtype: 'textfield',
+		name: 'experiment_title',
+		fieldLabel: 'Experiment Title',
+		emptyText: 'Title',
+		allowBlank: false
+	}, {
+		xtype: 'textareafield',
+		name: 'expeirment_description',
+		fieldLabel: 'Experiment Description',
+		emptyText: 'Description'
 	}],
 	buttons: [{
 		text: 'Previous',
@@ -39,6 +38,8 @@ Ext.define('TranscriptomicsUploader.view.DescribeExperiment', {
 		}
 	}, {
 		text: 'Next',
+		formBind: true,
+		disabled: true,
 		handler: function() {
 			Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step04");
 			Ext.getCmp("uploader").getComponent("steps").setActiveTab("step04");

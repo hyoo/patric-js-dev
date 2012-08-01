@@ -14,22 +14,22 @@ Ext.define('TranscriptomicsUploader.view.Viewport', {
 		items: [{
 			xtype: 'imagecomponent',
 			itemId: 'step01',
-			padding: '5 3',
+			padding: 3,
 			src: '/patric/images/transcriptomics_uploader_step1.png'
 		}, {
 			xtype: 'imagecomponent',
 			itemId: 'step02',
-			padding: '5 3',
+			padding: 3,
 			src: '/patric/images/transcriptomics_uploader_step2.png'
 		}, {
 			xtype: 'imagecomponent',
 			itemId: 'step03',
-			padding: '5 3',
+			padding: 3,
 			src: '/patric/images/transcriptomics_uploader_step3.png'
 		}, {
 			xtype: 'imagecomponent',
 			itemId: 'step04',
-			padding: '5 3',
+			padding: 3,
 			src: '/patric/images/transcriptomics_uploader_step4.png'
 		}]
 	}, {

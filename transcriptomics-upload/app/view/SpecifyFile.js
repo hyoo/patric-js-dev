@@ -14,11 +14,10 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		msgTarget: 'under',
 		labelAlign: 'right'
 	},
-	items: [ {
+	items: [{
 		xtype: 'displayfield',
 		value: '<b>Specify the file type to upload</b>'
-	},
-	{
+	}, {
 		xtype: 'combobox',
 		name: 'upload_file_type',
 		fieldLabel: 'File Type',
@@ -73,7 +72,8 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		}
 	},{
 		xtype: 'displayfield',
-		value: '----- or -----'
+		padding: '0 0 0 190px',
+		value: '--- or ---'
 	},{
 		xtype: 'textfield',
 		itemId: 'file2',
@@ -85,7 +85,7 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 			if (file1.isValid() && file1.getValue()!="") {
 				return true;
 			} else {
-				//if (value != "") { // validate url form
+				// validate url form
 				if (Ext.form.field.VTypes.url(value)) { 
 					return true;
 				} else {

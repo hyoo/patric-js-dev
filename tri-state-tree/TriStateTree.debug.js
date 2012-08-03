@@ -26,17 +26,11 @@ Ext.define('Ext.tree.tristate.Plugin', {
 	extend: 'Ext.AbstractPlugin',
 	alias: 'plugin.tristatetreeplugin',
 	init: function(view) {
-		view.on('checkchange', this.onCheckboxChange, this);
-	},
-	onCheckboxChange: function(node, checked, opts) {
-		var me = this,
-			record = node,
-			value = record.get("checked");
-		me.updateRecord(record, value);
+		view.on('checkchange', this.updateRecord, this);
 	},
 	updateRecord: function(record, value) {
 		var me = this;
-		//console.log("updteRecord is called", record, value);
+		//console.log("updteRecord is called");
 		record.cascadeBy(function(child) {
 			child.set('checked', value);
 			child.set('partial', false);
@@ -46,7 +40,7 @@ Ext.define('Ext.tree.tristate.Plugin', {
 		}
 	},
 	updateAncestor: function(record) {
-		//console.log("updateAncestor is called", record);
+		//console.log("updateAncestor is called");
 		var count,
 			partial;
 		record.bubble(function(parent) {

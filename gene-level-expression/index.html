@@ -1,43 +1,33 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
 <head>
+	<title>GeneExpression prototype</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-<title>PATRIC Coordinated View</title>
+	<link rel="stylesheet" type="text/css" href="http://cdn.sencha.io/ext-4.1.1-gpl/resources/css/ext-all.css"/>
+	<script type="text/javascript" charset="utf-8" src="http://cdn.sencha.io/ext-4.1.1-gpl/ext-all.js"></script>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta http-equiv="Content-Style-Type" content="text/css">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<link rel="stylesheet" type="text/css" href="/patric/css/patric.css"/>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript">
+		/* 
+		 * Using the loader for dev environment. 
+		 * Replace with a 'compiled' js file for production.
+		*/
+		Ext.Loader.setConfig({enabled: true});
 
-<!-- load ExtJS framework -->
-<!--
-<link rel="stylesheet" type="text/css" href="/patric/js/extjs4/resources/css/ext-all.css"/>
-<script type="text/javascript" src="/patric/js/extjs4/ext-all.js"></script>-->
-
-<link rel="stylesheet" type="text/css" href="http://cdn.sencha.io/ext-4.1.0-gpl/resources/css/ext-all.css"/>
-<script type="text/javascript" charset="utf-8" src="http://cdn.sencha.io/ext-4.1.0-gpl/ext-all.js"></script>
-
-<!-- where the magic really happens -->
-<script type="text/javascript" src="app.js"></script>
-
-<script type="text/javascript">
-	/* 
-	 * Using the loader for dev environment. 
-	 * Replace with a 'compiled' js file for production.
-	*/
-	Ext.Loader.setConfig({enabled: true});
-
-	Ext.require([
-		'Ext.data.proxy.Ajax',
-		'Ext.panel.Panel',
-		'Ext.grid.Panel',
-		'Ext.chart.*',
-		'Ext.chart.theme.Theme',
-		'Ext.chart.theme.Base'
-	]);
-</script>
-
+		Ext.require([
+			'Ext.data.proxy.Ajax',
+			'Ext.panel.Panel',
+			'Ext.grid.Panel',
+			'Ext.chart.*',
+			'Ext.chart.theme.Theme',
+			'Ext.chart.theme.Base'
+		]);
+	</script>
 </head>
-
 <body>
 	<div id="expression_panel"></div>
 	<form id="expression_param" action="" method="post">

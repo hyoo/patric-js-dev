@@ -1,0 +1,77 @@
+[{
+    "id": 234,
+    "name": "Brucella",
+    "children": [
+    {
+        "id": 29459,
+        "name": "Brucella melitensis ",
+        "children": [{
+            "id": 941967,
+            "name": "Brucella melitensis M28",
+            "leaf": true
+        },
+        {
+            "id": 644337,
+            "name": "Brucella melitensis bv. 1 ",
+            "children": [{
+                "id": 224914,
+                "name": "Brucella melitensis bv. 1 str. 16M",
+                "leaf": true,
+            },
+            {
+                "id": 1004955,
+                "name": "Brucella melitensis bv. 1 str. M111",
+                "leaf": true
+            },
+            {
+                "id": 1004956,
+                "name": "Brucella melitensis bv. 1 str. M28-12",
+                "leaf": true
+            },
+            {
+                "id": 1004957,
+                "name": "Brucella melitensis bv. 1 str. M5",
+                "leaf": true
+            },
+            {
+                "id": 520464,
+                "name": "Brucella melitensis bv. 1 str. Rev.1",
+                "leaf": true
+            }],
+            "leaf": false
+        },
+        {
+            "id": 645169,
+            "name": "Brucella melitensis bv. 2 ",
+            "children": [{
+                "id": 546272,
+                "name": "Brucella melitensis ATCC 23457",
+                "leaf": true
+            },
+            {
+                "id": 520465,
+                "name": "Brucella melitensis bv. 2 str. 63\/9",
+                "leaf": true
+            }],
+            "leaf": false
+        },
+        {
+            "id": 644340,
+            "name": "Brucella melitensis bv. 3 ",
+            "children": [{
+                "id": 520466,
+                "name": "Brucella melitensis bv. 3 str. Ether",
+                "leaf": true
+            }],
+            "leaf": false
+        }],
+        "leaf": false
+    },
+    {
+        "id": 520448,
+        "name": "Brucella sp. NVSL 07-0026",
+        "leaf": true
+    }],
+    "leaf": false
+}]
+

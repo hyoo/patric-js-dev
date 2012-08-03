@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<title>Tri-State-Tree Prototype</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+<link rel="stylesheet" type="text/css" href="http://cdn.sencha.io/ext-4.1.1-gpl/resources/css/ext-all.css"/>
+<script type="text/javascript" charset="utf-8" src="http://cdn.sencha.io/ext-4.1.1-gpl/ext-all.js"></script>
+
+<script type="text/javascript" src="./TriStateTree.debug.js"></script>
+<link rel="stylesheet" type="text/css" href="/patric/css/patric.css"/>
+<!--<style type="text/css">
+#GenomeSelector .x-tree-checkbox { 
+	position: relative;
+	background: url('checkboxes.gif') no-repeat top left;
+	width: 13px;
+	height: 13px;
+	margin: 2px 3px 0 0;
+}
+#GenomeSelector .x-tree-checkbox-checked {
+	background-position: 0px -13px;
+}
+#GenomeSelector .x-tree-checkbox-partial {
+	background-position: 0px -26px;
+}
+#GenomeSelector .x-tree-noicon{
+	width: 0px;
+}
+#GenomeSelector .x-grid-cell-inner {
+	padding: 0px;
+}
+</style>-->
+<script type="text/javascript">
+Ext.onReady(function(){
+	store =  Ext.create('Ext.data.TreeStore', {
+		model: 'Ext.tree.tristate.Model',
+		proxy: {
+			type: 'ajax',
+			url: 'TriStateTree.json',
+			noCache: false
+		}
+	});
+	
+	tree = Ext.create('Ext.tree.Panel', {
+		title:'Tri-State-Tree',
+		renderTo:'GenomeSelector',
+		width: 400,
+		height: 400,
+		store: store,
+		rootVisible: false,
+		hideHeaders: true,
+		viewConfig: {
+			plugins: {
+				ptype: 'tristatetreeplugin'
+			}
+		},
+		columns: [{
+			xtype: 'tristatetreecolumn',
+			flex: 1,
+			dataIndex: 'name',
+		}],
+		listeners: {
+			load: function() {
+				//this.getRootNode().expand(true,false);
+				r = this.getRootNode();
+				r.expand(false,false);
+				r.firstChild.expand(false, false);
+			}
+		}
+    });
+});
+</script>
+</head>
+<body>
+	<div id="GenomeSelector"></div>
+</body>
+</html>

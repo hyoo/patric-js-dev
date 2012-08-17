@@ -7,5 +7,5 @@
 Ext.define('TranscriptomicsUploader.store.FileFormats', {
 	extend: 'Ext.data.Store',
 	fields: ['name', 'text'],
-	data: [{name:"genematrix", text:'Gene Matrix'}]
+	data: [{name:"matrix", text:'Gene Matrix'},{name:"list", text:'Gene List'}]
 });

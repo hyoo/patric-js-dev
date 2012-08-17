@@ -7,5 +7,5 @@
 Ext.define('TranscriptomicsUploader.store.FileTypes', {
 	extend: 'Ext.data.Store',
 	fields: ['name', 'text'],
-	data: [{name:"csv", text:'Comma delimited (.csv)'}]
+	data: [{name:"csv", text:'Comma delimited (.csv)'}, {name:"txt", text:'Tab delimited (.txt)'}]
 });

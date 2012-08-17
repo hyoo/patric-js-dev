@@ -3,6 +3,7 @@ Ext.define('TranscriptomicsUploader.view.Viewport', {
 	title: 'Upload Transcriptomics Data to Workspace',
 	width: 600,
 	id: "uploader",
+	params: {},
 	items: [{
 		xtype: 'tabpanel',
 		itemId: 'breadcrumb',
@@ -39,7 +40,7 @@ Ext.define('TranscriptomicsUploader.view.Viewport', {
 		tabBar: {
 			hidden: true
 		},
-		//activeTab: 'step04',
+		//activeTab: 'step03',
 		items: [{
 			xtype: 'specifyfile',
 			itemId: 'step01',

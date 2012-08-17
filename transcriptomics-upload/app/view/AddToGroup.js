@@ -24,11 +24,13 @@ Ext.define('TranscriptomicsUploader.view.AddToGroup', {
 	}, {
 		xtype: 'textfield',
 		name: 'group_name',
-		emptyText: 'New group name'
+		emptyText: 'New group name',
+		disabled: true
 	}, {
 		xtype: 'textareafield',
 		name: 'group_desc',
-		emptyText: 'Group Description'
+		emptyText: 'Group Description',
+		disabled: true
 	}, {
 		xtype: 'textfield',
 		name: 'group_tags',

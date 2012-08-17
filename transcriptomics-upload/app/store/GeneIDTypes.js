@@ -7,5 +7,5 @@
 Ext.define('TranscriptomicsUploader.store.GeneIDTypes', {
 	extend: 'Ext.data.Store',
 	fields: ['name', 'text'],
-	data: [{name:"refseq", text:'RefSeq'}, {name:"patric", text:'PATRIC'}]
+	data: [{name:"refseq_source_id", text:'RefSeq'}, {name:"na_feature_id", text:'PATRIC'}]
 });

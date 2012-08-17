@@ -19,10 +19,10 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		value: '<b>Specify the file type to upload</b>'
 	}, {
 		xtype: 'combobox',
-		name: 'upload_file_type',
+		name: 'file0_type',
 		fieldLabel: 'File Type',
 		width: 300,
-		value: 'csv',
+		value: 'txt',
 		padding: '0 0 0 50px',
 		store: 'FileTypes',
 		queryMode: 'local',
@@ -35,10 +35,10 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		padding: '0 0 0 50px',
 		items: [{
 			xtype: 'combobox',
-			name: 'upload_file_format',
+			name: 'file0_format',
 			fieldLabel: 'File Format',
 			width: 300,
-			value: 'genematrix',
+			value: 'matrix',
 			store: 'FileFormats',
 			queryMode: 'local',
 			displayField: 'text',
@@ -58,30 +58,44 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		xtype: 'displayfield',
 		value: ' '
 	}, {
-		xtype: 'filefield',
-		itemId: 'file1',
-		buttonOnly: true,
-		buttonText: 'Choose File',
-		fieldLabel: 'Specify a file on your computer',
-		labelWidth: 180,
-		anchor: '100%',
-		listeners: {
-			'change': function (me, value, eOpts) {
-				console.log(me, value);
+		xtype: 'container',
+		layout: 'hbox',
+		padding: '0px',
+		items: [{
+			xtype: 'filefield',
+			name: 'file0',
+			buttonOnly: true,
+			buttonText: 'Choose File',
+			fieldLabel: 'Specify a file on your computer',
+			labelWidth: 180,
+			anchor: '100%',
+			listeners: {
+				'change': function (me, value, eOpts) {
+					var arr = value.split("\\");
+					var filename = arr[arr.length-1];
+					me.up('form').getForm().findField("expression_filename").setValue(filename);
+				}
 			}
-		}
+		}, {
+			xtype: 'displayfield',
+			name: 'expression_filename',
+			value: '',
+			padding: '0 20px'
+		}]
 	},{
 		xtype: 'displayfield',
 		padding: '0 0 0 190px',
 		value: '--- or ---'
 	},{
 		xtype: 'textfield',
-		itemId: 'file2',
+		name: 'file0_url',
 		fieldLabel: 'Specify a URL for a file',
 		labelWidth: 180,
 		anchor: '100%',
 		validator: function (value) {
-			var file1 = this.up('panel').getComponent("file1");
+			return true;
+			/*
+			var file1 = this.up('panel').getComponent("file0");
 			if (file1.isValid() && file1.getValue()!="") {
 				return true;
 			} else {
@@ -91,30 +105,110 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 				} else {
 					return false;
 				}
-			}
+			}*/
 		}
+	},{
+		xtype: 'displayfield',
+		value: '<b>Specify the sample metadata to upload (optional)</b>'
+	}, {
+		xtype: 'container',
+		layout: 'hbox',
+		padding: '0px',
+		items: [{
+			xtype: 'filefield',
+			name: 'file1',
+			buttonOnly: true,
+			buttonText: 'Choose File',
+			fieldLabel: 'Specify a file on your computer',
+			labelWidth: 180,
+			anchor: '100%',
+			listeners: {
+				'change': function (me, value, eOpts) {
+					var arr = value.split("\\");
+					var filename = arr[arr.length-1];
+					me.up('form').getForm().findField("sample_filename").setValue(filename);
+				}
+			}
+		}, {
+			xtype: 'displayfield',
+			name: 'sample_filename',
+			value: '',
+			padding: '0 20px'
+		}]
 	}],
 	buttons: [{
 		text: 'Next',
 		formBind: true,
 		disabled: true,
-		handler: function() {
-			/*
-			// process upload
-			var form = this.up('form').getForm();
-			if (form.isValid()) {
-				form.submit({
-					url: '',
-					waitMsg: 'Uploading your file...',
-					success: function(fp, o) {
-						msg('Success', 'Processed file "'+o.result.file+'" on the server');
+		handler: function(me, e) {
+			
+			Ext.Ajax.request({
+				url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
+				params: {
+					mode: "create_collection"
+				},
+				success: function(response) {
+					var jsonResponse = Ext.JSON.decode(response.responseText);
+					var authToken = jsonResponse.token;
+					var collectionId = jsonResponse.collection;
+					
+					var authToken = "e955d813d306ff00ceea6516a2c567dd49aea1937a4893c5abe3b13fc95de8ee375162665d7be4e9";
+					//var collectionId = "ecbe6c2d-7aee-4138-88a1-d1b56e8c020b";
+					//var collectionId = "98a49336-8f5c-4b95-ad51-0676d1c40bce";
+					
+					console.log("token="+authToken,"collection="+collectionId);
+					
+					uploader.params = {"authToken":authToken, "collectionId": collectionId};
+					
+					
+					// check if url is set, skip now
+					var form = me.up('form').getForm();
+					
+					if (form.isValid()) {
+						form.submit({
+							url: 'http://dayhoff.vbi.vt.edu:8888/Collection/'+collectionId+"?http_accept=application/json&http_authorized_session=polyomic%20authorization_token%3D"+authToken,
+							params: {
+								'file0_content': 'expression',
+								'file0_orientation': 'svg',
+								'file1_type': 'txt',
+								'file1_format': 'list',
+								'file1_content': 'sample'
+							},
+							//waitMsg: 'Uploading your file...',
+							success: function(fm, action) {
+								//console.log('success', action);
+								//fm.unmask();
+								
+								Ext.Ajax.request({
+									url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
+									params: {
+										mode: 'parse_collection',
+										collectionId: collectionId
+									},
+									timeout: 60000,
+									success: function(response) {
+										uploader.params.parsed = Ext.JSON.decode(response.responseText);
+										Ext.getCmp("MapGeneIdentifiersPanel").initParsedResult();
+										
+										Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step02");
+										Ext.getCmp("uploader").getComponent("steps").setActiveTab("step02");
+									},
+									failure: function(response) {
+										console.log('Parsing failed', response);
+									}
+								});
+								
+							},
+							failure: function(fm, action) {
+								console.log('Form submission failed', action);
+							}
+						});
 					}
-				});
-			}
-			*/
-			// navigation
-			Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step02");
-			Ext.getCmp("uploader").getComponent("steps").setActiveTab("step02");
+					// end of file upload
+				
+				}
+			});
+			
 		}
 	}]
 });

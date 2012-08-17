@@ -151,61 +151,63 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 					var jsonResponse = Ext.JSON.decode(response.responseText);
 					var authToken = jsonResponse.token;
 					var collectionId = jsonResponse.collection;
-					
-					var authToken = "e955d813d306ff00ceea6516a2c567dd49aea1937a4893c5abe3b13fc95de8ee375162665d7be4e9";
+					var baseUrl = jsonResponse.url;
+					//var authToken = "e955d813d306ff00ceea6516a2c567dd49aea1937a4893c5abe3b13fc95de8ee375162665d7be4e9";
 					//var collectionId = "ecbe6c2d-7aee-4138-88a1-d1b56e8c020b";
 					//var collectionId = "98a49336-8f5c-4b95-ad51-0676d1c40bce";
+					//console.log("token="+authToken,"collection="+collectionId);
+					var success = jsonResponse.success;
 					
-					console.log("token="+authToken,"collection="+collectionId);
+					if (success) {
 					
-					uploader.params = {"authToken":authToken, "collectionId": collectionId};
+						uploader.params = {"baseUrl": baseUrl, "authToken":authToken, "collectionId": collectionId};
+						var form = me.up('form').getForm();
 					
-					
-					// check if url is set, skip now
-					var form = me.up('form').getForm();
-					
-					if (form.isValid()) {
-						form.submit({
-							url: 'http://dayhoff.vbi.vt.edu:8888/Collection/'+collectionId+"?http_accept=application/json&http_authorized_session=polyomic%20authorization_token%3D"+authToken,
-							params: {
-								'file0_content': 'expression',
-								'file0_orientation': 'svg',
-								'file1_type': 'txt',
-								'file1_format': 'list',
-								'file1_content': 'sample'
-							},
-							//waitMsg: 'Uploading your file...',
-							success: function(fm, action) {
-								//console.log('success', action);
-								//fm.unmask();
-								
-								Ext.Ajax.request({
-									url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
-									params: {
-										mode: 'parse_collection',
-										collectionId: collectionId
-									},
-									timeout: 60000,
-									success: function(response) {
-										uploader.params.parsed = Ext.JSON.decode(response.responseText);
-										Ext.getCmp("MapGeneIdentifiersPanel").initParsedResult();
+						if (form.isValid()) {
+							form.submit({
+								url: baseUrl+'/Collection/'+collectionId+"?http_accept=application/json&http_authorized_session=polyomic%20authorization_token%3D"+authToken,
+								params: {
+									'file0_content': 'expression',
+									'file0_orientation': 'svg',
+									'file1_type': 'txt',
+									'file1_format': 'list',
+									'file1_content': 'sample'
+								},
+								waitMsg: 'Uploading your file...',
+								success: function(fm, action) {
+									//console.log('success', action);
+									Ext.Msg.alert('Success', 'Proceed file(s) on the server.');
+									
+									Ext.Ajax.request({
+										url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
+										params: {
+											mode: 'parse_collection',
+											collectionId: collectionId
+										},
+										timeout: 60000,
+										success: function(response) {
+											uploader.params.parsed = Ext.JSON.decode(response.responseText);
+											Ext.getCmp("MapGeneIdentifiersPanel").initParsedResult();
 										
-										Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step02");
-										Ext.getCmp("uploader").getComponent("steps").setActiveTab("step02");
-									},
-									failure: function(response) {
-										console.log('Parsing failed', response);
-									}
-								});
-								
-							},
-							failure: function(fm, action) {
-								console.log('Form submission failed', action);
-							}
-						});
+											Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step02");
+											Ext.getCmp("uploader").getComponent("steps").setActiveTab("step02");
+										},
+										failure: function(response) {
+											console.log('Parsing failed', response);
+										}
+									});
+								},
+								failure: function(fm, action) {
+									console.log('Form submission failed', action);
+								}
+							});
+						}
+						// end of file upload
 					}
-					// end of file upload
-				
+					else {
+						// "create_collection" mode is failed
+						Ext.Msg.alert("Status", jsonResponse.msg);
+					}
 				}
 			});
 			

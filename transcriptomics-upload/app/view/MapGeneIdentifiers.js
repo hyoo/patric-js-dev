@@ -26,10 +26,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 		
 		var strResult = "";
 		for (i=0; i<p.snapshot.length; i++) {
-			strResult += p.snapshot[i].line;
-			if (i>0) {
-				strResult += "\n";
-			}
+			strResult += p.snapshot[i].line + "\n";
 		}
 		
 		me.getComponent("parsed_result").setRawValue(strResult);
@@ -49,6 +46,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 	},{
 		xtype: 'combobox',
 		fieldLabel: 'Organism Name',
+		name: "organismName",
 		anchor: '100%',
 		store: 'GenomeNames',
 		typeAhead: false,
@@ -66,6 +64,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 				var org = record[0].data;
 				uploader.params.organism = org;
 				me.setValue(org.display_name);
+				Ext.getCmp("map_genes_btn").setDisabled(false);
 			}
 		}
 	}, {
@@ -119,12 +118,20 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 			value: '<b>Map your genes into PATRIC</b>'
 		}, {
 			xtype: 'button',
+			id: 'map_genes_btn',
 			text: 'Map Genes',
 			margin: '0 0 0 20px',
+			disabled: true,
 			handler: function(me) {
 				var panel = me.up('panel');
 				var form = me.up('form').getForm();
-				var organismName	= uploader.params.organism.display_name;
+				var organismName = form.findField("organismName").getValue();
+				
+				if (organismName == "" || organismName == undefined) {
+					Ext.Msg.alert("Status", "Please specify your organism name.");
+					return false;
+				}
+				
 				var collectionId 	= uploader.params.collectionId;
 				var ncbi_taxon_id	= uploader.params.organism.ncbi_taxon_id;	// not sure how to use this
 				var gene_id_type	= form.findField("geneIdType").getValue();
@@ -175,7 +182,6 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 	}, {
 		text: 'Next',
 		id: 'next_btn_to_experiment',
-		//formBind: true,
 		disabled: true,
 		handler: function() {
 			Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step03");

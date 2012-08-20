@@ -48,6 +48,9 @@ Ext.define('VBI.Workspace.controller.Station', {
 			} else if (selectedType == "Genome") {
 				storeGenomes.filterByTracks(targetTracks);
 				this.showGenomeListPanel();
+			} else if (selectedType == "Experiment") {
+				
+				this.showExperimentListPanel();
 			}
 			
 		// 3.5 update column browser tags
@@ -68,5 +71,8 @@ Ext.define('VBI.Workspace.controller.Station', {
 	},
 	showGenomeListPanel: function() {
 		Ext.getCmp('workspace_listview').getLayout().setActiveItem('genomeview');
+	},
+	showExperimentListPanel: function() {
+		Ext.getCmp('workspace_listview').getLayout().setActiveItem('experimentview');
 	}
 });

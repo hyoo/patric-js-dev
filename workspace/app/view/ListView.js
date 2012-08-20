@@ -4,7 +4,8 @@ Ext.define('VBI.Workspace.view.ListView', {
 	requires: [
 		'VBI.Workspace.view.ColumnBrowser',
 		'VBI.Workspace.view.FeatureView',
-		'VBI.Workspace.view.GenomeView'
+		'VBI.Workspace.view.GenomeView',
+		'VBI.Workspace.view.ExperimentView'
 	],
 	height: '100%',
 	border: false,
@@ -32,6 +33,9 @@ Ext.define('VBI.Workspace.view.ListView', {
 			}, {
 				itemId: 'genomeview',
 				xtype: 'genomeview'
+			}, {
+				itemId: 'experimentview',
+				xtype: 'experimentview'
 			}]
 		}
 	]

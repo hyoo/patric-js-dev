@@ -56,7 +56,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 		var me = this;
 		me.callParent(arguments);
 		me.width = Ext.Element.getViewportWidth() - 15;
-		me.height = Ext.Element.getViewportHeight() - 320;
+		me.height = Math.max(580, Ext.Element.getViewportHeight() - 320);
 	},
 	initComponent : function() {
 		var me = this,
@@ -68,7 +68,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 	},
 	fireResize: function(width, height) {
 		if (width != this.width || height != this.height) {
-			this.setSize(width - 15, height - 320);
+			this.setSize(width - 15, Math.max(580, height - 320));
 		}
 	}
 });

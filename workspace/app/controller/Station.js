@@ -64,7 +64,6 @@ Ext.define('VBI.Workspace.controller.Station', {
 		// 4. update Group view
 			storeGroups.clearFilter();
 			storeGroups.filter("type", selectedType);
-			Ext.getCmp('workspace_groupview').showGroupBrowser();
 	},
 	showFeatureListPanel: function() {
 		Ext.getCmp('workspace_listview').getLayout().setActiveItem('featureview');

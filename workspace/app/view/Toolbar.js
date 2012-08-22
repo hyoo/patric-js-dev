@@ -39,6 +39,16 @@ Ext.define('VBI.Workspace.view.Toolbar.button.MapIDsTo', {
 	icon: '/patric/images/toolbar_id_mapping.png'
 });
 
+Ext.define('VBI.Workspace.view.Toolbar.button.GeneList', {
+	extend: 'Ext.Button',
+	alias: 'widget.tbar_btn_genelist',
+	scale: 'small',  
+	iconAlign: 'left', 
+	text: 'Gene List',
+	width: 110/*,
+	icon: '/patric/images/toolbar_workspace_add.png'*/
+});
+
 /**
 * define menu Items
 */

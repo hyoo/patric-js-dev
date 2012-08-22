@@ -1,14 +1,14 @@
-Ext.define('VBI.Workspace.store.Experiments', {
+Ext.define('VBI.Workspace.store.ExpressionExperiments', {
 	extend: 'Ext.data.Store',
-	requires: 'VBI.Workspace.model.Experiment',
-	model: 'VBI.Workspace.model.Experiment',
+	requires: 'VBI.Workspace.model.ExpressionExperiment',
+	model: 'VBI.Workspace.model.ExpressionExperiment',
 	autoLoad: true,
 	proxy: {
 		type: 'ajax',
 		actionMethods: {
 			read: 'POST'
 		},
-		url: '/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=WSSupport&action=getFeatures',
+		url: '/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=WSSupport&action=getExperiments',
 		extraParams: {
 			trackIds: ''
 		},

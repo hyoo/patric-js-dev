@@ -19,7 +19,7 @@ Ext.application({
 	},
 	id: 'workspace',
 	models: ['ColumnBrowser', 'Station', 'Feature', 'Genome', 'Group'],
-	stores: ['ColumnBrowser', 'ColumnBrowser.Groups', 'ColumnBrowser.Tags', 'Stations', 'Features', 'Genomes', 'Groups', 'Mappings'],
+	stores: ['ColumnBrowser', 'ColumnBrowser.Groups', 'ColumnBrowser.Tags', 'Stations', 'Features', 'Genomes', 'Groups', 'Mappings', 'ExpressionExperiments'],
 	controllers: ['ColumnBrowser', 'Station', 'Feature', 'Genome', 'Group', 'GlobalToolbar']
 });
 

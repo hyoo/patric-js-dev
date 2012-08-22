@@ -22,8 +22,9 @@ Ext.define('VBI.Workspace.controller.Group', {
 	},
 	switchToGroupViewer: function(view, record, item, index, e, options) {
 		
-		var grpView = view.findParentByType('groupview')
-		var grid = Ext.getCmp('workspace_ingroupgrid');
+		//var grpView = view.findParentByType('groupview')
+		//var grid = Ext.getCmp('workspace_ingroupgrid');
+		var grid = Ext.getCmp('workspace_detailview_grid');
 		
 		//console.log(view, record, item, index, e, options);
 		// data processing
@@ -34,25 +35,29 @@ Ext.define('VBI.Workspace.controller.Group', {
 		
 		if (record.get('type') == 'Feature') {
 			
-			grpView.showFeatureGroupDetail();
+			//grpView.showFeatureGroupDetail();
+			Ext.getCmp('workspace_view').getLayout().setActiveItem('detailview');
 			
-			grid.getLayout().setActiveItem('features');
+			//grid.getLayout().setActiveItem('features');
+			grid.getLayout().setActiveItem('feature_group');
 			Ext.getStore('Features').filterByTracks(targetTracks);
 			
 			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
 		}
 		else if (record.get('type') == 'Genome') {
 			
-			grpView.showGenomeGroupDetail();
+			//grpView.showGenomeGroupDetail();
+			Ext.getCmp('workspace_view').getLayout().setActiveItem('detailview');
 			
-			grid.getLayout().setActiveItem('genomes');
+			//grid.getLayout().setActiveItem('genomes');
+			grid.getLayout().setActiveItem('genome_group');
 			Ext.getStore('Genomes').filterByTracks(targetTracks);
 			
 			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
 		}
 	},
 	switchToBrowser: function(button, event, options) {
-		button.findParentByType('groupview').showGroupBrowser();
+		//button.findParentByType('groupview').showGroupBrowser();
 	},
 	/**
 		* Toggles the editability of the group info panel form fields.

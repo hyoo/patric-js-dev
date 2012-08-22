@@ -1,8 +1,8 @@
-Ext.define('VBI.Workspace.view.FeatureToolbar', {
+Ext.define('VBI.Workspace.view.toolbar.Feature', {
 	extend: 'Ext.toolbar.Toolbar',
 	alias: 'widget.featuretoolbar',
-	id: 'workspace_featuretoolbar',
 	stateful: false,
+	height: 70,
 	getSelectedGroup: function() {
 		var viewport = Ext.getCmp('workspace_view');
 		var selection;
@@ -72,7 +72,8 @@ Ext.define('VBI.Workspace.view.FeatureToolbar', {
 						
 				var idList = this.findParentByType('featuretoolbar').getSelectedID();
 				if (idList == null) { return false; }
-						
+				var me = this;
+				
 				if (groupList.length == 0) {
 					Ext.Msg.show({
 						msg: 'Do you want to delete this feature from your workspace?',
@@ -88,7 +89,7 @@ Ext.define('VBI.Workspace.view.FeatureToolbar', {
 										idList: idList.join(",")
 									},
 									success: function(response) {
-										Ext.getCmp('workspace_featuretoolbar').refreshWorkspaceViews();
+										me.findParentByType('toolbar').refreshWorkspaceViews();
 									}
 								});
 							}
@@ -112,7 +113,7 @@ Ext.define('VBI.Workspace.view.FeatureToolbar', {
 										idList: idList.join(",")
 									},
 									success: function(response) {
-										Ext.getCmp('workspace_featuretoolbar').refreshWorkspaceViews();
+										me.findParentByType('toolbar').refreshWorkspaceViews();
 									}
 								});
 							} else if (buttonId == "no") {
@@ -124,7 +125,7 @@ Ext.define('VBI.Workspace.view.FeatureToolbar', {
 										idList: idList.join(",")
 									},
 									success: function(response) {
-										Ext.getCmp('workspace_featuretoolbar').refreshWorkspaceViews();
+										me.findParentByType('toolbar').refreshWorkspaceViews();
 									}
 								});
 							}
@@ -137,14 +138,14 @@ Ext.define('VBI.Workspace.view.FeatureToolbar', {
 			handler: function(btn, e) {
 				var idList = this.findParentByType('featuretoolbar').getSelectedID();
 				if (idList == null) { return false; }
-						
+				var me = this;
+				
 				var btnGroupPopupSave = new Ext.Button({
 					text:'Save to Group',
 					handler: function(btn, e) {
 						//console.log("custom button for save to group - feature level");
 						saveToGroup(idList.join(","), 'Feature');
-								
-						Ext.getCmp('workspace_featuretoolbar').refreshWorkspaceViews();
+						me.findParentByType('toolbar').refreshWorkspaceViews();
 					}
 				});
 					 	

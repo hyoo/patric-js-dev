@@ -2,11 +2,12 @@ Ext.define('VBI.Workspace.view.Viewport', {
 	extend: 'Ext.container.Viewport',
 	requires: [
 		'VBI.Workspace.view.Toolbar',
-		'VBI.Workspace.view.GlobalToolbar',
-		'VBI.Workspace.view.PagingToolbar',
+		'VBI.Workspace.view.toolbar.Global',
+		'VBI.Workspace.view.toolbar.Paging',
 		'VBI.Workspace.view.StationsList',
 		'VBI.Workspace.view.ListView',
-		'VBI.Workspace.view.GroupView'
+		'VBI.Workspace.view.GroupView',
+		'VBI.Workspace.view.DetailView'
 	],
 	layout: 'fit',
 	border: false,
@@ -42,13 +43,15 @@ Ext.define('VBI.Workspace.view.Viewport', {
 				},
 				flex: 1,
 				border: false,
-				items: [
-					{
-						itemId: 'listview',
-						xtype: 'listview'
-					}, {
-						itemId: 'groupview',
-						xtype: 'groupview'
+				items: [{
+					itemId: 'listview',
+					xtype: 'listview'
+				}, {
+					itemId: 'groupview',
+					xtype: 'groupview'
+				}, {
+					itemId: 'detailview',
+					xtype: 'detailview'
 				}]
 		}]
 	},

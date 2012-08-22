@@ -1,9 +1,8 @@
-Ext.define('VBI.Workspace.view.ExperimentToolbar', {
+Ext.define('VBI.Workspace.view.toolbar.Genome', {
 	extend: 'Ext.toolbar.Toolbar',
-	alias: 'widget.experimenttoolbar',
-	id: 'workspace_experimenttoolbar',
+	alias: 'widget.genometoolbar',
 	stateful: false,
-	/* need to implement to work with experiment data */
+	height: 70,
 	getSelectedGroup: function() {
 		var viewport = Ext.getCmp('workspace_view');
 		var selection;
@@ -19,7 +18,6 @@ Ext.define('VBI.Workspace.view.ExperimentToolbar', {
 				groupList.push(item.get("tagId"));
 			});
 		}
-		*/
 		return groupList;
 	},
 	getSelectedID: function() {
@@ -72,16 +70,15 @@ Ext.define('VBI.Workspace.view.ExperimentToolbar', {
 		{
 			title: 'Workspace', 
 			xtype: 'buttongroup',
-			columns: 1,
+			columns: 1, 
 			items:[{
-				xtype: 'tbar_btn_remove',
-				text: 'Remove Experiment(s)',
-				width: 150,
+				xtype:'tbar_btn_remove',
 				handler: function(btn, e) {
 					var groupList = btn.findParentByType('genometoolbar').getSelectedGroup();
 					var idList = btn.findParentByType('genometoolbar').getSelectedID();
 					if (idList == null) { return false; }
-						
+					var me = this;
+					
 					if (groupList.length == 0) {
 						// no group selected, delete from workspace
 						Ext.Msg.show({
@@ -98,7 +95,7 @@ Ext.define('VBI.Workspace.view.ExperimentToolbar', {
 											idList: idList.join(",")
 										},
 										success: function(response) {
-											Ext.getCmp('workspace_genometoolbar').refreshWorkspaceViews();
+											me.findParentByType('toolbar').refreshWorkspaceViews();
 										}
 									});
 								}
@@ -122,7 +119,7 @@ Ext.define('VBI.Workspace.view.ExperimentToolbar', {
 											idList: idList.join(",")
 										},
 										success: function(response) {
-											Ext.getCmp('workspace_genometoolbar').refreshWorkspaceViews();
+											me.findParentByType('toolbar').refreshWorkspaceViews();
 										}
 									});
 								} else if (buttonId == "no") {
@@ -134,7 +131,7 @@ Ext.define('VBI.Workspace.view.ExperimentToolbar', {
 											idList: idList.join(",")
 										},
 										success: function(response) {
-											Ext.getCmp('workspace_genometoolbar').refreshWorkspaceViews();
+											me.findParentByType('toolbar').refreshWorkspaceViews();
 										}
 									});
 								}
@@ -143,19 +140,18 @@ Ext.define('VBI.Workspace.view.ExperimentToolbar', {
 					}
 				}
 			},{
-				xtype: 'tbar_btn_create',
-				text: 'Add to Group',
+				xtype:'tbar_btn_create',
 				handler: function(btn, e) {
 					var idList = btn.findParentByType('genometoolbar').getSelectedID();
 					if (idList == null) { return false; }
-						
+					var me = this;
 					var btnGroupPopupSave = new Ext.Button({
 						text:'Save to Group',
 						handler: function(btn, e) {
 							//console.log("custom button for save to group - genome level");
 							saveToGroup(idList.join(","), 'Genome');
-								
-							Ext.getCmp('workspace_genometoolbar').refreshWorkspaceViews();
+							
+							me.findParentByType('toolbar').refreshWorkspaceViews();
 						}
 					});
 						

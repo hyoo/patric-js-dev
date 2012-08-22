@@ -1,4 +1,4 @@
-Ext.define('VBI.Workspace.view.group.GroupToolbar', {
+Ext.define('VBI.Workspace.view.toolbar.Group', {
 	extend: 'Ext.toolbar.Toolbar',
 	alias: 'widget.grouptoolbar',
 	border: 0,
@@ -6,8 +6,6 @@ Ext.define('VBI.Workspace.view.group.GroupToolbar', {
 		type: 'hbox',
 		align: 'stretch'
 	},
-	id: 'workspace_grouptoolbar',
-	stateful: false,
 	getSelectedID: function() {
 		var selection = Ext.getCmp('workspace_groupbrowser').getSelectionModel().getSelection();
 		if (selection.length == 0) {

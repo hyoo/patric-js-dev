@@ -1,4 +1,4 @@
-Ext.define('VBI.Workspace.view.GlobalToolbar', {
+Ext.define('VBI.Workspace.view.toolbar.Global', {
 	extend: 'Ext.toolbar.Toolbar',
 	alias: 'widget.globaltoolbar',
 	id: 'workspace_globaltoolbar',
@@ -52,7 +52,7 @@ Ext.define('VBI.Workspace.view.GlobalToolbar', {
 					disableCaching: false
 				});
 			}
-		},
+		}, */
 		{
 			text: '(status)',
 			handler: function() {
@@ -63,7 +63,7 @@ Ext.define('VBI.Workspace.view.GlobalToolbar', {
 					}
 				});
 			}
-		}, */
+		},
 		'-', 
 		{
 			xtype: 'button',

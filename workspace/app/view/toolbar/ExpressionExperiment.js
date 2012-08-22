@@ -1,8 +1,8 @@
-Ext.define('VBI.Workspace.view.GenomeToolbar', {
+Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 	extend: 'Ext.toolbar.Toolbar',
-	alias: 'widget.genometoolbar',
-	id: 'workspace_genometoolbar',
+	alias: 'widget.experimenttoolbar',
 	stateful: false,
+	/* need to implement to work with experiment data */
 	getSelectedGroup: function() {
 		var viewport = Ext.getCmp('workspace_view');
 		var selection;
@@ -70,14 +70,17 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 		{
 			title: 'Workspace', 
 			xtype: 'buttongroup',
-			columns: 1, 
+			columns: 1,
 			items:[{
-				xtype:'tbar_btn_remove',
+				xtype: 'tbar_btn_remove',
+				text: 'Remove Experiment(s)',
+				width: 150,
 				handler: function(btn, e) {
 					var groupList = btn.findParentByType('genometoolbar').getSelectedGroup();
 					var idList = btn.findParentByType('genometoolbar').getSelectedID();
 					if (idList == null) { return false; }
-						
+					var me = this;
+					
 					if (groupList.length == 0) {
 						// no group selected, delete from workspace
 						Ext.Msg.show({
@@ -94,7 +97,7 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 											idList: idList.join(",")
 										},
 										success: function(response) {
-											Ext.getCmp('workspace_genometoolbar').refreshWorkspaceViews();
+											me.findParentByType('toolbar').refreshWorkspaceViews();
 										}
 									});
 								}
@@ -118,7 +121,7 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 											idList: idList.join(",")
 										},
 										success: function(response) {
-											Ext.getCmp('workspace_genometoolbar').refreshWorkspaceViews();
+											me.findParentByType('toolbar').refreshWorkspaceViews();
 										}
 									});
 								} else if (buttonId == "no") {
@@ -130,7 +133,7 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 											idList: idList.join(",")
 										},
 										success: function(response) {
-											Ext.getCmp('workspace_genometoolbar').refreshWorkspaceViews();
+											me.findParentByType('toolbar').refreshWorkspaceViews();
 										}
 									});
 								}
@@ -139,18 +142,20 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 					}
 				}
 			},{
-				xtype:'tbar_btn_create',
+				xtype: 'tbar_btn_create',
+				text: 'Add to Group',
 				handler: function(btn, e) {
 					var idList = btn.findParentByType('genometoolbar').getSelectedID();
 					if (idList == null) { return false; }
-						
+					var me = this;
+					
 					var btnGroupPopupSave = new Ext.Button({
 						text:'Save to Group',
 						handler: function(btn, e) {
 							//console.log("custom button for save to group - genome level");
 							saveToGroup(idList.join(","), 'Genome');
 								
-							Ext.getCmp('workspace_genometoolbar').refreshWorkspaceViews();
+							me.findParentByType('toolbar').refreshWorkspaceViews();
 						}
 					});
 						
@@ -164,34 +169,39 @@ Ext.define('VBI.Workspace.view.GenomeToolbar', {
 					loadATGCombo();
 				}
 			}]
-		}, '-',
-		{
+		}, {
+			title: 'View',
+			columns: 1,
+			xtype: 'buttongroup',
+			width: 115,
+			items: [{
+				xtype: 'tbar_btn_genelist'
+			}]
+		}, {
 			title: 'Download',
 			columns: 1,
 			xtype: 'buttongroup',
 			width: 115,
-			items: [
+			items: [{
+				scale: 'small',
+				iconAlign: 'left',
+				width: 110,
+				text: 'Table',
+				icon: '/patric/images/toolbar_table.png',
+				xtype: 'splitbutton',
+				menu: [{
+					xtype: 'tbar_menu_dn_tb_txt',
+					handler: function() {
+						this.fireEvent('downloadGrid','txt');
+					}
+				},
 				{
-					scale: 'small',
-					iconAlign: 'left',
-					width: 110,
-					text: 'Table',
-					icon: '/patric/images/toolbar_table.png',
-					xtype: 'splitbutton',
-					menu: [{
-						xtype: 'tbar_menu_dn_tb_txt',
-						handler: function() {
-							this.fireEvent('downloadGrid','txt');
-						}
-					},
-					{
-						xtype: 'tbar_menu_dn_tb_xls',
-						handler: function() {
-							this.fireEvent('downloadGrid','xlsx');
-						}
-					}]
-				}
-			]
+					xtype: 'tbar_menu_dn_tb_xls',
+					handler: function() {
+						this.fireEvent('downloadGrid','xlsx');
+					}
+				}]
+			}]
 		}, '->', '-',
 		{
 			xtype: 'tbar_btngrp_help'

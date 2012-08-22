@@ -1,4 +1,4 @@
-Ext.define('VBI.Workspace.view.PagingToolbar', {
+Ext.define('VBI.Workspace.view.toolbar.Paging', {
 	extend: 'Ext.PagingToolbar',
 	alias: 'widget.patricpagingtoolbar',
 	beforePageSizeText: 'Show',

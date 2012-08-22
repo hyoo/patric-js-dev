@@ -1,8 +1,9 @@
 Ext.define('VBI.Workspace.view.DetailView', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.detailview',
-	requires: ['VBI.Workspace.view.group.GroupInfoEditor',
-		'VBI.Workspace.view.group.DetailToolbar',
+	requires: [
+		'VBI.Workspace.view.group.GroupInfoEditor',
+		'VBI.Workspace.view.group.ExperimentInfoEditor',
 		'VBI.Workspace.view.toolbar.Group',
 		'VBI.Workspace.view.columns.Genome', 
 		'VBI.Workspace.view.columns.Feature'],
@@ -10,23 +11,46 @@ Ext.define('VBI.Workspace.view.DetailView', {
 	border: false,
 	layout: 'border',
 	items: [{
+		itemId: 'panel_info',
 		region: 'west',
-		xtype: 'groupinfoeditor'
+		xtype: 'panel',
+		layout: 'card',
+		border: false,
+		activeItem: 'groupinfo',
+		items:[{
+			itemId: 'groupinfo',
+			xtype: 'groupinfoeditor'
+		}, {
+			itemId: 'experimentinfo',
+			xtype: 'experimentinfoeditor'
+		}]
 	}, {
+		itemId: 'panel_toolbar',
 		region: 'north',
 		xtype: 'panel',
 		layout: 'card',
-		activeItem: 'tbar_group',
+		border: false,
+		activeItem: 'group',
 		items: [{
-			itemId: 'tbar_group',
+			itemId: 'group',
 			xtype: 'grouptoolbar',
 			height: 80
+		}, {
+			itemId: 'feature',
+			xtype: 'featuretoolbar'
+		}, {
+			itemId: 'genome',
+			xtype: 'genometoolbar'
+		}, {
+			itemId: 'experiment',
+			xtype: 'experimenttoolbar'
 		}]
 	}, {
+		itemId: 'panel_grid',
 		region: 'center',
 		xtype: 'panel',
-		id: 'workspace_detailview_grid',
 		layout: 'card',
+		border: false,
 		activeItem: 'genome_group',
 		items: [{
 			// feature group detail view
@@ -58,10 +82,32 @@ Ext.define('VBI.Workspace.view.DetailView', {
 			selModel: Ext.create('Ext.selection.CheckboxModel')
 		}, {
 			// expression experiment group detail view
-			itemId: 'experiment_group'
+			itemId: 'experiment_group',
+			xtype: 'grid',
+			store: 'ExpressionExperiments',
+			border: false,
+			columns: Ext.create('VBI.Workspace.view.columns.ExpressionExperiment'),
+			dockedItems: [{
+				xtype: 'patricpagingtoolbar',
+				store: 'ExpressionExperiments',
+				dock: 'bottom',
+				displayInfo: true
+			}],
+			selModel: Ext.create('Ext.selection.CheckboxModel')
 		}, {
 			// expression experiment detail view
-			itemId: 'experiment_detail'
+			itemId: 'experiment_detail',
+			xtype: 'grid',
+			store: 'ExpressionSamples',
+			border: false,
+			columns: Ext.create('VBI.Workspace.view.columns.ExpressionSample'),
+			dockedItems: [{
+				xtype: 'patricpagingtoolbar',
+				store: 'ExpressionSamples',
+				dock: 'bottom',
+				displayInfo: true
+			}],
+			selModel: Ext.create('Ext.selection.CheckboxModel')
 		}]
 	}]
 });

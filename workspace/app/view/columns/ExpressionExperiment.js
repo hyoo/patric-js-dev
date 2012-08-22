@@ -18,7 +18,8 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 		dataIndex: 'expid', 
 		flex: 1,
 		renderer: function(value, metadata, record, rowIndex, colIndex, store) {
-			return Ext.String.format('<a href="Feature?cType=feature&cId={0}">E</a>', value);
+			//return Ext.String.format('<a href="Feature?cType=feature&cId={0}">E</a>', value);
+			return Ext.String.format('<img src="/patric/images/icon_txt.gif" onclick="launchExperimentDetail(\'{0}\')" />', value);
 		}
 	}, {
 		text: 'PubMed', 

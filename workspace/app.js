@@ -19,7 +19,8 @@ Ext.application({
 	},
 	id: 'workspace',
 	models: ['ColumnBrowser', 'Station', 'Feature', 'Genome', 'Group'],
-	stores: ['ColumnBrowser', 'ColumnBrowser.Groups', 'ColumnBrowser.Tags', 'Stations', 'Features', 'Genomes', 'Groups', 'Mappings', 'ExpressionExperiments'],
+	stores: ['ColumnBrowser', 'ColumnBrowser.Groups', 'ColumnBrowser.Tags', 'Stations', 'Features', 'Genomes', 'Groups', 'Mappings', 
+		'ExpressionExperiments', 'ExpressionSamples'],
 	controllers: ['ColumnBrowser', 'Station', 'Feature', 'Genome', 'Group', 'GlobalToolbar']
 });
 
@@ -153,4 +154,8 @@ function formatRelativeDate(dateExt) {
 function BasicRenderer(value, metadata, record, rowIndex, colIndex, store){
 	metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 	return value;
+}
+
+function launchExperimentDetail(expid) {
+	Ext.getCmp("workspace_detailview").fireEvent('viewExpDetail', expid);
 }

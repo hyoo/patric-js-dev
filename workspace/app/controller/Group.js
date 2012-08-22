@@ -13,6 +13,9 @@ Ext.define('VBI.Workspace.controller.Group', {
 			},
 			'groupinfoeditor > button': {
 				click: this.toggleEditorFields
+			},
+			'detailview': {
+				viewExpDetail: this.viewExperimentDetail
 			}
 		});
 	},
@@ -22,9 +25,8 @@ Ext.define('VBI.Workspace.controller.Group', {
 	},
 	switchToGroupViewer: function(view, record, item, index, e, options) {
 		
-		//var grpView = view.findParentByType('groupview')
-		//var grid = Ext.getCmp('workspace_ingroupgrid');
-		var grid = Ext.getCmp('workspace_detailview_grid');
+		var detailview = Ext.getCmp('workspace_detailview');
+		detailview.child('#panel_info').getLayout().setActiveItem('groupinfo');
 		
 		//console.log(view, record, item, index, e, options);
 		// data processing
@@ -35,26 +37,42 @@ Ext.define('VBI.Workspace.controller.Group', {
 		
 		if (record.get('type') == 'Feature') {
 			
-			//grpView.showFeatureGroupDetail();
-			Ext.getCmp('workspace_view').getLayout().setActiveItem('detailview');
-			
-			//grid.getLayout().setActiveItem('features');
-			grid.getLayout().setActiveItem('feature_group');
+			detailview.child('#panel_toolbar').getLayout().setActiveItem('feature');
+			detailview.child('#panel_grid').getLayout().setActiveItem('feature_group');
 			Ext.getStore('Features').filterByTracks(targetTracks);
 			
 			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
 		}
 		else if (record.get('type') == 'Genome') {
 			
-			//grpView.showGenomeGroupDetail();
-			Ext.getCmp('workspace_view').getLayout().setActiveItem('detailview');
-			
-			//grid.getLayout().setActiveItem('genomes');
-			grid.getLayout().setActiveItem('genome_group');
+			detailview.child('#panel_toolbar').getLayout().setActiveItem('genome');
+			detailview.child('#panel_grid').getLayout().setActiveItem('genome_group');
 			Ext.getStore('Genomes').filterByTracks(targetTracks);
 			
 			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
 		}
+		else if (record.get('type') == 'ExpressionExperiment') {
+			
+			detailview.child('#panel_toolbar').getLayout().setActiveItem('experiment');
+			detailview.child('#panel_grid').getLayout().setActiveItem('experiment_group');
+			Ext.getStore('ExpressionExperiments').filterByTracks(targetTracks);
+			
+			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
+		}
+		
+		//switch to group detail view page
+		Ext.getCmp('workspace_view').getLayout().setActiveItem('detailview');
+	},
+	viewExperimentDetail: function(expid) {
+		console.log(expid);
+		//console.log('viewExperimentDetail is called');
+		var detailview = Ext.getCmp('workspace_detailview');
+		detailview.child('#panel_info').getLayout().setActiveItem('experimentinfo');
+		detailview.child('#panel_toolbar').getLayout().setActiveItem('experiment');
+		detailview.child('#panel_grid').getLayout().setActiveItem('experiment_detail');
+		
+		Ext.getCmp('workspace_experimentinfoeditor').loadRecord(expid);
+		Ext.getCmp('workspace_view').getLayout().setActiveItem('detailview');
 	},
 	switchToBrowser: function(button, event, options) {
 		//button.findParentByType('groupview').showGroupBrowser();

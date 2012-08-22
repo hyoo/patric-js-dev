@@ -4,7 +4,7 @@ Ext.define('VBI.Workspace.model.ExpressionExperiment', {
 	fields: [ 	
 		'source', 'accession', 'author', 'description',
 		{name:'eid', type:'int'},
-		{name:'expid', type:'int'},
+		'expid',
 		'growthcond', 'institution', 'modification', 'organism', 'pi',
 		{name:'platforms', type:'int'},
 		{name:'pmid', type:'int'},

@@ -23,36 +23,35 @@ Ext.define('VBI.Workspace.view.Viewport', {
 			align: 'stretch'
 		},
 		items: [{
-				xtype: 'stationslist', //source list
-				width: 150
-			}, 
-			{
-				xtype: 'panel',
-				id: 'workspace_view',
-				layout: 'card',
-				activeItem: 'listview',
-				stateEvents:['updateview'],
-				getState: function() {
-					return { activeItem: this.activeItem };
-				},
-				applyState: function(state) {
-					if (state != undefined && this.activeItem != state.activeItem ) {
-						this.activeItem = state.activeItem;
-						this.fireEvent('updateview');
-					}
-				},
-				flex: 1,
-				border: false,
-				items: [{
-					itemId: 'listview',
-					xtype: 'listview'
-				}, {
-					itemId: 'groupview',
-					xtype: 'groupview'
-				}, {
-					itemId: 'detailview',
-					xtype: 'detailview'
-				}]
+			xtype: 'stationslist', //source list
+			width: 150
+		}, {
+			xtype: 'panel',
+			id: 'workspace_view',
+			layout: 'card',
+			activeItem: 'listview',
+			stateEvents:['updateview'],
+			getState: function() {
+				return { activeItem: this.activeItem };
+			},
+			applyState: function(state) {
+				if (state != undefined && this.activeItem != state.activeItem ) {
+					this.activeItem = state.activeItem;
+					this.fireEvent('updateview');
+				}
+			},
+			flex: 1,
+			border: false,
+			items: [{
+				itemId: 'listview',
+				xtype: 'listview'
+			}, {
+				itemId: 'groupview',
+				xtype: 'groupview'
+			}, {
+				itemId: 'detailview',
+				xtype: 'detailview'
+			}]
 		}]
 	},
 	onRender: function() {

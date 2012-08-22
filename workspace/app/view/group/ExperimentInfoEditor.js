@@ -5,10 +5,10 @@
  *
  * This class implements an info/edit panel for a single group.
  */
-Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
+Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 	extend: 'Ext.form.Panel',
-	alias: 'widget.groupinfoeditor',
-	id: 'workspace_groupinfoeditor',
+	alias: 'widget.experimentinfoeditor',
+	id: 'workspace_experimentinfoeditor',
 	stateful: false,
 	width: 225, 
 	minWidth: 225, 
@@ -21,59 +21,46 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 		labelStyle: 'font-weight:bold'
 	},
 	items: [{
-		xtype: 'component', 
-		id: 'group-viewer-thumb',
-		stateful: false,
-		tpl: [
-			'<tpl for=".">',
-				'<div class="thumb-wrap">',
-					'<img src="{thumb}" alt="{title}" title="{title}" />',
-					'<span class="title">{title}</span>',
-					'<div>{desc}</div>',
-					'<div class="clear"></div>', 
-				'</div>',
-			'</tpl>'
-		] 
-	}, {
-		xtype: 'displayfield',
-		name: 'groupname', 
-		itemId: 'groupname', 
-		hideLabel: true, 
-		allowBlank: false, 
+		xtype: 'displayfield', 
+		name: 'title',
+		hideLabel: true,
 		fieldStyle: {
-			fontSize: '13px',
-			fontWeight: 'bold', 
-			paddingBottom: '5px',
-			borderBottom: '1px dashed #000000'
-		}, 
-		value: 'none'
+			fontSize: '15px',
+			fontWeight: 'bold'
+		}
 	}, {
 		xtype: 'displayfield',
-		fieldLabel: 'Description',
+		value: 'Transcriptomics Experiment', 
+		fieldStyle: {
+			paddingBottom: '5px',
+			borderTop: '1px dashed #000000',
+			borderBottom: '1px dashed #000000'
+		}
+	}, {
+		xtype: 'displayfield',
+		name: 'organism', 
+		itemId: 'organism', 
+		fieldLabel: 'Platform Organism',
+		labelAlign: 'top',
 		value: ''
 	}, {
 		xtype: 'displayfield',
 		name: 'description', 
 		itemId: 'description', 
-		hideLabel: true,
+		fieldLabel: 'Description',
+		labelAlign: 'top',
 		value: ''
 	}, {
 		xtype: 'displayfield',
-		name: 'tags',
-		fieldLabel: 'Tags',
-		labelWidth: 32,
-		value: 'none'
-	}, {
-		xtype: 'displayfield',
 		name: 'updated',
-		fieldLabel: 'Last Updated',
-		labelWidth: 85,
+		fieldLabel: 'Last modified',
+		labelWidth: 90,
 		value: 'none'
 	}, {
 		xtype: 'displayfield',
 		name: 'created',
-		fieldLabel: 'Created',
-		labelWidth: 50,
+		fieldLabel: 'Uploaded',
+		labelWidth: 70,
 		value: 'none'
 	}, { 
 		xtype: 'button', 
@@ -90,8 +77,9 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 	 * @param {Ext.data.Model} record The data record to load.
 	 */
 	loadRecord: function(record) {
-		console.log(record.data);
 		
+		console.log(record);
+		/*
 		this.record = record;
 		var title, desc;
 		
@@ -148,6 +136,16 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 			updated: Ext.Date.format(Ext.Date.parse(record.get("mdate"), 'Y-m-d H:i:s'), 'M j, Y'),
 			created: Ext.Date.format(Ext.Date.parse(record.get("cdate"), 'Y-m-d H:i:s'), 'M j, Y'),
 			owner: record.get("owner")
+		});
+		*/
+		
+		this.getForm().setValues({
+			title: 'Expression of Escherichia coli trated with cefsulodin and mecillinam', 
+			description: 'In this experiment, we trated a number of e coli samples with varying levels of cefusolodin and mecillinam', 
+			organism: 'Escherichia coli K-12',
+			updated: "Aug 8, 2012",
+			created: "Aug 6, 2012",
+			file: "my-cool-data.csv"
 		});
 		
 	}, 

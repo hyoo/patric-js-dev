@@ -21,6 +21,7 @@ Ext.define('VBI.Workspace.controller.Station', {
 			var storeFeatures = Ext.getStore('Features');
 			var storeGenomes = Ext.getStore('Genomes');
 			var storeGroups = Ext.getStore('Groups');
+			var storeExpressionExperiments = Ext.getStore('ExpressionExperiments');
 			
 		// 2. update ColumnBrowser
 			
@@ -48,8 +49,8 @@ Ext.define('VBI.Workspace.controller.Station', {
 			} else if (selectedType == "Genome") {
 				storeGenomes.filterByTracks(targetTracks);
 				this.showGenomeListPanel();
-			} else if (selectedType == "Experiment") {
-				
+			} else if (selectedType == "ExpressionExperiment") {
+				storeExpressionExperiments.filterByTracks(targetTracks);
 				this.showExperimentListPanel();
 			}
 			

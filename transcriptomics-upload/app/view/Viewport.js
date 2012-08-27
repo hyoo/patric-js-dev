@@ -3,7 +3,11 @@ Ext.define('TranscriptomicsUploader.view.Viewport', {
 	title: 'Upload Transcriptomics Data to Workspace',
 	width: 600,
 	id: "uploader",
-	params: {},
+	params: {
+		//collectionId: "80ed8f0c-a155-4d3b-b1ed-c7a64f5c9cef",
+		//authToken: "7bdef354fda3a014fd26e19d2c3d7a41e2c9b88ccc64d14f10fa1228ebad114ded06a5bd101813c1",
+		//baseUrl: "http://dayhoff.vbi.vt.edu:8888"
+	},
 	items: [{
 		xtype: 'tabpanel',
 		itemId: 'breadcrumb',
@@ -40,7 +44,7 @@ Ext.define('TranscriptomicsUploader.view.Viewport', {
 		tabBar: {
 			hidden: true
 		},
-		//activeTab: 'step02',
+		//activeTab: 'step04',
 		items: [{
 			xtype: 'specifyfile',
 			itemId: 'step01',

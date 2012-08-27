@@ -21,13 +21,12 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 		return groupList;
 	},
 	getSelectedID: function() {
-		var viewport = Ext.getCmp('workspace_view');
 		var selection;
 		
-		if (viewport.activeItem == "groupview") {
-			selection = Ext.getCmp('workspace_featuregrid').getSelectionModel().getSelection();
+		if (Ext.getCmp('workspace_view').activeItem == "groupview") {
+			selection = Ext.getCmp('workspace_detailview').child('#panel_grid').child('#featureview').getSelectionModel().getSelection();
 		} else {
-			selection = Ext.getCmp('workspace_featureview').getSelectionModel().getSelection();
+			selection = Ext.getCmp('workspace_listview').child('#featureview').getSelectionModel().getSelection();
 		}
 		
 		if (selection.length == 0) {
@@ -68,9 +67,9 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 		items:[{
 			xtype:'tbar_btn_remove',
 			handler: function(btn, e) {
-				var groupList = this.findParentByType('featuretoolbar').getSelectedGroup();
+				var groupList = this.findParentByType('toolbar').getSelectedGroup();
 						
-				var idList = this.findParentByType('featuretoolbar').getSelectedID();
+				var idList = this.findParentByType('toolbar').getSelectedID();
 				if (idList == null) { return false; }
 				var me = this;
 				
@@ -136,7 +135,7 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 		}, {
 			xtype: 'tbar_btn_create',
 			handler: function(btn, e) {
-				var idList = this.findParentByType('featuretoolbar').getSelectedID();
+				var idList = this.findParentByType('toolbar').getSelectedID();
 				if (idList == null) { return false; }
 				var me = this;
 				

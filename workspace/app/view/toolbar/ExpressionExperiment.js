@@ -1,6 +1,6 @@
 Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 	extend: 'Ext.toolbar.Toolbar',
-	alias: 'widget.experimenttoolbar',
+	alias: 'widget.expressionexperimenttoolbar',
 	stateful: false,
 	/* need to implement to work with experiment data */
 	getSelectedGroup: function() {
@@ -21,22 +21,21 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 		return groupList;
 	},
 	getSelectedID: function() {
-		var viewport = Ext.getCmp('workspace_view');
 		var selection;
 		
-		if (viewport.activeItem == "groupview") {
-			selection = Ext.getCmp('workspace_genomegrid').getSelectionModel().getSelection();
+		if (Ext.getCmp('workspace_view').activeItem == "groupview") {
+			selection = Ext.getCmp('workspace_detailview').child('#panel_grid').child('#experimentview').getSelectionModel().getSelection();
 		} else {
-			selection = Ext.getCmp('workspace_genomeview').getSelectionModel().getSelection();
+			selection = Ext.getCmp('workspace_listview').child('#experimentview').getSelectionModel().getSelection();
 		}
 		
 		if (selection.length == 0) {
-			Ext.Msg.alert("Alert", "No genome was selected");
+			Ext.Msg.alert("Alert", "No experiment was selected");
 			return null;
 		} else {
 			var selectedIDs = new Array();
 			Ext.Array.each(selection, function(item) {
-				selectedIDs.push(item.get("gid"));
+				selectedIDs.push(item.get("expid"));
 			});
 			return selectedIDs;
 		}
@@ -76,8 +75,8 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 				text: 'Remove Experiment(s)',
 				width: 150,
 				handler: function(btn, e) {
-					var groupList = btn.findParentByType('genometoolbar').getSelectedGroup();
-					var idList = btn.findParentByType('genometoolbar').getSelectedID();
+					var groupList = btn.findParentByType('toolbar').getSelectedGroup();
+					var idList = btn.findParentByType('toolbar').getSelectedID();
 					if (idList == null) { return false; }
 					var me = this;
 					
@@ -145,7 +144,7 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 				xtype: 'tbar_btn_create',
 				text: 'Add to Group',
 				handler: function(btn, e) {
-					var idList = btn.findParentByType('genometoolbar').getSelectedID();
+					var idList = btn.findParentByType('toolbar').getSelectedID();
 					if (idList == null) { return false; }
 					var me = this;
 					
@@ -175,7 +174,23 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 			xtype: 'buttongroup',
 			width: 115,
 			items: [{
-				xtype: 'tbar_btn_genelist'
+				xtype: 'tbar_btn_genelist',
+				handler: function(btn, e) {
+					var selection = btn.findParentByType('toolbar').getSelectedID(),
+						expIds = new Array(),
+						colIds = new Array();
+					
+					Ext.Array.each(selection, function(item) {
+						if (typeof item == "number") {
+							expIds.push(item);
+						}
+						else if (typeof item == "string") {
+							colIds.push(item);
+						}
+					});
+					var param = "&expId=" + expIds.join(",") + "&colId=" + colIds.join(",");
+					this.fireEvent('runGeneList', param);
+				}
 			}]
 		}, {
 			title: 'Download',

@@ -61,7 +61,7 @@ Ext.define('VBI.Workspace.view.toolbar.Group', {
 										idList: idList.join(",")
 									},
 									success: function(response) {
-										Ext.getCmp('workspace_grouptoolbar').refreshWorkspaceViews();
+										me.findParentByType('toolbar').refreshWorkspaceViews();
 									}
 								});
 							}

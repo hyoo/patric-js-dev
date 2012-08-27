@@ -162,17 +162,24 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 					
 						uploader.params = {"baseUrl": baseUrl, "authToken":authToken, "collectionId": collectionId};
 						var form = me.up('form').getForm();
-					
+						var params = new Object();
+						params.file0_content = "expression";
+						params.file0_orientation = "svg";
+						if (form.findField("file1").getValue() != "") {
+							params.file1_type = "txt";
+							params.file1_format = "list";
+							params.file1_content = "sample";
+						}
 						if (form.isValid()) {
 							form.submit({
 								url: baseUrl+'/Collection/'+collectionId+"?http_accept=application/json&http_authorized_session=polyomic%20authorization_token%3D"+authToken,
-								params: {
+								params: params, /*{
 									'file0_content': 'expression',
 									'file0_orientation': 'svg',
 									'file1_type': 'txt',
 									'file1_format': 'list',
 									'file1_content': 'sample'
-								},
+								},*/
 								waitMsg: 'Uploading your file...',
 								success: function(fm, action) {
 									//console.log('success', action);

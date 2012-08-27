@@ -67,12 +67,15 @@ Ext.define('VBI.Workspace.controller.Station', {
 			storeGroups.filter("type", selectedType);
 	},
 	showFeatureListPanel: function() {
+		Ext.getCmp('workspace_view').getLayout().setActiveItem(Ext.getCmp('workspace_view').activeItem);
 		Ext.getCmp('workspace_listview').getLayout().setActiveItem('featureview');
 	},
 	showGenomeListPanel: function() {
+		Ext.getCmp('workspace_view').getLayout().setActiveItem(Ext.getCmp('workspace_view').activeItem);
 		Ext.getCmp('workspace_listview').getLayout().setActiveItem('genomeview');
 	},
 	showExperimentListPanel: function() {
+		Ext.getCmp('workspace_view').getLayout().setActiveItem(Ext.getCmp('workspace_view').activeItem);
 		Ext.getCmp('workspace_listview').getLayout().setActiveItem('experimentview');
 	}
 });

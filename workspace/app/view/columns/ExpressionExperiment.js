@@ -19,7 +19,11 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 		flex: 1,
 		renderer: function(value, metadata, record, rowIndex, colIndex, store) {
 			//return Ext.String.format('<a href="Feature?cType=feature&cId={0}">E</a>', value);
-			return Ext.String.format('<img src="/patric/images/icon_txt.gif" onclick="launchExperimentDetail(\'{0}\')" />', value);
+			if (typeof value == "number") {
+				return Ext.String.format('<img src="/patric/images/icon_txt.gif" onclick="launchExperimentDetail({0})" />', value);
+			} else {
+				return Ext.String.format('<img src="/patric/images/icon_txt.gif" onclick="launchExperimentDetail(\'{0}\')" />', value);
+			}
 		}
 	}, {
 		text: 'PubMed', 

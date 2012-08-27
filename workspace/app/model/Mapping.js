@@ -1,5 +1,5 @@
 Ext.define('VBI.Workspace.model.Mapping', {
 	extend: 'Ext.data.Model',
-	fields: ['trackId', 'tagId']
+	fields: [{name:'trackId', type:'int'}, {name:'tagId', type:'int'}]
 });
 

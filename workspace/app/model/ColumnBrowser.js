@@ -1,5 +1,5 @@
 Ext.define('VBI.Workspace.model.ColumnBrowser', {
 	extend: 'Ext.data.Model',
-	fields: ['tagId', 'name', 'tagType', 'type'],
+	fields: [{name:'tagId', type:'int'}, 'name', 'tagType', 'type'],
 	idProperty: 'tagId',
 });

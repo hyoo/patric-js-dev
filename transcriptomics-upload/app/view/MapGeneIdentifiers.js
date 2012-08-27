@@ -21,12 +21,14 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 			return false;
 		}
 		var p = uploader.params.parsed;
-		var strLabel = "<b>"+p.origFileName+" ("+p.countGeneIDs+" gene IDs, "+p.countSamples+" samples)";
+		var strLabel =  "<b>"+p.origFileName+" ("+p.countGeneIDs+" gene IDs, "+p.countSamples+" samples)";
 		me.getComponent("parsed_label").setValue(strLabel);
 		
 		var strResult = "";
-		for (i=0; i<p.snapshot.length; i++) {
-			strResult += p.snapshot[i].line + "\n";
+		if (p.snapshot != undefined && p.snapshot.length > 0) {
+			for (i=0; i<p.snapshot.length; i++) {
+				strResult += p.snapshot[i].line + "\n";
+			}
 		}
 		
 		me.getComponent("parsed_result").setRawValue(strResult);

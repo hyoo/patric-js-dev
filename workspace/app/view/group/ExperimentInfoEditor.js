@@ -12,9 +12,8 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 	stateful: false,
 	width: 225, 
 	minWidth: 225, 
-	bodyPadding: 8, 
+	bodyPadding: 5, 
 	cls: 'x-infoeditor-view',
-	defaultType: 'displayfield',
 	fieldDefaults: {
 		labelAlign: 'left',
 		anchor: '100%',
@@ -27,6 +26,16 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		fieldStyle: {
 			fontSize: '15px',
 			fontWeight: 'bold'
+		},
+		style: {
+			marginBottom: '0px'
+		}
+	}, {
+		xtype: 'displayfield', 
+		name: 'samples',
+		hideLabel: true,
+		fieldStyle: {
+			paddingTop: '0px'
 		}
 	}, {
 		xtype: 'displayfield',
@@ -62,6 +71,12 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		fieldLabel: 'Uploaded',
 		labelWidth: 70,
 		value: 'none'
+	}, {
+		xtype: 'displayfield',
+		name: 'file',
+		fieldLabel: 'Source file',
+		labelWidth: 70,
+		value: 'none'
 	}, { 
 		xtype: 'button', 
 		itemId: 'editInfoBtn', 
@@ -77,8 +92,8 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 	 * @param {Ext.data.Model} record The data record to load.
 	 */
 	loadRecord: function(record) {
-		
-		console.log(record);
+		this.record = record;
+		//console.log(record);
 		/*
 		this.record = record;
 		var title, desc;
@@ -141,6 +156,7 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		
 		this.getForm().setValues({
 			title: 'Expression of Escherichia coli trated with cefsulodin and mecillinam', 
+			samples: '(17 samples)',
 			description: 'In this experiment, we trated a number of e coli samples with varying levels of cefusolodin and mecillinam', 
 			organism: 'Escherichia coli K-12',
 			updated: "Aug 8, 2012",

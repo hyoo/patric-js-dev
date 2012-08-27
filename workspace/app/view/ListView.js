@@ -31,7 +31,6 @@ Ext.define('VBI.Workspace.view.ListView', {
 				// list of features
 				itemId: 'featureview',
 				xtype: 'gridpanel',
-				id: 'workspace_featureview', //??
 				store: 'Features',
 				border: false,
 				columns: Ext.create('VBI.Workspace.view.columns.Feature'),
@@ -50,7 +49,6 @@ Ext.define('VBI.Workspace.view.ListView', {
 				itemId: 'genomeview',
 				xtype: 'gridpanel',
 				store: 'Genomes',
-				id: 'workspace_genomeview', //?
 				border: false,
 				columns: Ext.create('VBI.Workspace.view.columns.Genome'),
 				dockedItems: [{
@@ -68,11 +66,10 @@ Ext.define('VBI.Workspace.view.ListView', {
 				itemId: 'experimentview',
 				xtype: 'gridpanel',
 				store: 'ExpressionExperiments',
-				id: 'workspace_experimentview', //??
 				border: false,
 				columns: Ext.create('VBI.Workspace.view.columns.ExpressionExperiment'),
 				dockedItems: [{
-					xtype: 'experimenttoolbar',
+					xtype: 'expressionexperimenttoolbar',
 					dock: 'top'
 				}, {
 					xtype: 'patricpagingtoolbar',

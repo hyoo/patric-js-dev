@@ -38,7 +38,7 @@ Ext.define('VBI.Workspace.controller.Group', {
 		if (record.get('type') == 'Feature') {
 			
 			detailview.child('#panel_toolbar').getLayout().setActiveItem('feature');
-			detailview.child('#panel_grid').getLayout().setActiveItem('feature_group');
+			detailview.child('#panel_grid').getLayout().setActiveItem('featureview');
 			Ext.getStore('Features').filterByTracks(targetTracks);
 			
 			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
@@ -46,7 +46,7 @@ Ext.define('VBI.Workspace.controller.Group', {
 		else if (record.get('type') == 'Genome') {
 			
 			detailview.child('#panel_toolbar').getLayout().setActiveItem('genome');
-			detailview.child('#panel_grid').getLayout().setActiveItem('genome_group');
+			detailview.child('#panel_grid').getLayout().setActiveItem('genomeview');
 			Ext.getStore('Genomes').filterByTracks(targetTracks);
 			
 			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
@@ -54,7 +54,7 @@ Ext.define('VBI.Workspace.controller.Group', {
 		else if (record.get('type') == 'ExpressionExperiment') {
 			
 			detailview.child('#panel_toolbar').getLayout().setActiveItem('experiment');
-			detailview.child('#panel_grid').getLayout().setActiveItem('experiment_group');
+			detailview.child('#panel_grid').getLayout().setActiveItem('experimentview');
 			Ext.getStore('ExpressionExperiments').filterByTracks(targetTracks);
 			
 			Ext.getCmp('workspace_groupinfoeditor').loadRecord(record);
@@ -64,12 +64,12 @@ Ext.define('VBI.Workspace.controller.Group', {
 		Ext.getCmp('workspace_view').getLayout().setActiveItem('detailview');
 	},
 	viewExperimentDetail: function(expid) {
-		console.log(expid);
+		//console.log(expid, typeof expid);
 		//console.log('viewExperimentDetail is called');
 		var detailview = Ext.getCmp('workspace_detailview');
 		detailview.child('#panel_info').getLayout().setActiveItem('experimentinfo');
-		detailview.child('#panel_toolbar').getLayout().setActiveItem('experiment');
-		detailview.child('#panel_grid').getLayout().setActiveItem('experiment_detail');
+		detailview.child('#panel_toolbar').getLayout().setActiveItem('sample');
+		detailview.child('#panel_grid').getLayout().setActiveItem('experimentdetail');
 		
 		Ext.getCmp('workspace_experimentinfoeditor').loadRecord(expid);
 		Ext.getCmp('workspace_view').getLayout().setActiveItem('detailview');

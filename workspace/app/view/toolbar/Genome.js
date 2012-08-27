@@ -21,13 +21,12 @@ Ext.define('VBI.Workspace.view.toolbar.Genome', {
 		return groupList;
 	},
 	getSelectedID: function() {
-		var viewport = Ext.getCmp('workspace_view');
 		var selection;
 		
-		if (viewport.activeItem == "groupview") {
-			selection = Ext.getCmp('workspace_genomegrid').getSelectionModel().getSelection();
+		if ( Ext.getCmp('workspace_view').activeItem == "groupview") {
+			selection = Ext.getCmp('workspace_detailview').child('#panel_grid').child('#genomeview').getSelectionModel().getSelection();
 		} else {
-			selection = Ext.getCmp('workspace_genomeview').getSelectionModel().getSelection();
+			selection = Ext.getCmp('workspace_listview').child('#genomeview').getSelectionModel().getSelection();
 		}
 		
 		if (selection.length == 0) {

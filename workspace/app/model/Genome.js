@@ -1,5 +1,7 @@
 Ext.define('VBI.Workspace.model.Genome', {
 	extend: 'Ext.data.Model',
 	idProperty: 'gid',
-	fields: ['ncbi_tax_id', 'genome_name', 'rast_cds', 'refseq_cds', 'brc_cds', 'chromosome', 'contig', 'plasmid', 'length', 'gid']
+	fields: [{name:'ncbi_tax_id', type:'int'}, 'genome_name', {name:'rast_cds', type:'int'}, 
+		{name:'refseq_cds', type:'int'}, {name:'brc_cds', type:'int'}, {name:'chromosome', type:'int'}, 
+		{name:'contig',  type:'int'}, {name:'plasmid', type:'int'}, {name:'length', type:'int'}, {name:'gid', type:'int'}]
 });

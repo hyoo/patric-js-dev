@@ -12,9 +12,8 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 	stateful: false,
 	width: 225, 
 	minWidth: 225, 
-	bodyPadding: 8, 
+	bodyPadding: 5, 
 	cls: 'x-infoeditor-view',
-	defaultType: 'displayfield',
 	fieldDefaults: {
 		labelAlign: 'left',
 		anchor: '100%',
@@ -45,36 +44,28 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 			fontWeight: 'bold', 
 			paddingBottom: '5px',
 			borderBottom: '1px dashed #000000'
-		}, 
-		value: 'none'
-	}, {
-		xtype: 'displayfield',
-		fieldLabel: 'Description',
-		value: ''
+		}
 	}, {
 		xtype: 'displayfield',
 		name: 'description', 
 		itemId: 'description', 
-		hideLabel: true,
-		value: ''
+		fieldLabel: 'Description',
+		labelAlign: 'top'
 	}, {
 		xtype: 'displayfield',
 		name: 'tags',
 		fieldLabel: 'Tags',
-		labelWidth: 32,
-		value: 'none'
+		labelWidth: 32
 	}, {
 		xtype: 'displayfield',
 		name: 'updated',
 		fieldLabel: 'Last Updated',
-		labelWidth: 85,
-		value: 'none'
+		labelWidth: 85
 	}, {
 		xtype: 'displayfield',
 		name: 'created',
 		fieldLabel: 'Created',
-		labelWidth: 50,
-		value: 'none'
+		labelWidth: 50
 	}, { 
 		xtype: 'button', 
 		itemId: 'editInfoBtn', 
@@ -165,11 +156,12 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 		});
 		
 		this.remove('description');
-		this.insert(3, {
+		this.insert(2, {
 			xtype: 'textareafield',
 			name: 'description', 
 			itemId: 'description', 
-			hideLabel: true, 
+			fieldLabel: 'Description',
+			labelAlign: 'top',
 			allowBlank: true,
 			grow: true, 
 			growMin: 20, 
@@ -200,22 +192,21 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 			itemId: 'groupname', 
 			hideLabel: true, 
 			allowBlank: false, 
-			style: {
+			fieldStyle: {
+				fontSize: '13px',
 				fontWeight: 'bold', 
-				marginBottom: '3px'
+				paddingBottom: '5px',
+				borderBottom: '1px dashed #000000'
 			}, 
 			value: 'none'
 		});
 		this.remove('description');
-		this.insert(3, {
+		this.insert(2, {
 			xtype: 'displayfield',
 			name: 'description', 
 			itemId: 'description', 
-			hideLabel: true, 
-			style: {
-				marginTop: '0px', 
-				marginBottom: '15px' 
-			}, 
+			fieldLabel: 'Description',
+			labelAlign: 'top',
 			value: ''
 		});
 		this.loadRecord(this.record);

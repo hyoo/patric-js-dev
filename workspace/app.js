@@ -21,7 +21,7 @@ Ext.application({
 	models: ['ColumnBrowser', 'Station', 'Feature', 'Genome', 'Group'],
 	stores: ['ColumnBrowser', 'ColumnBrowser.Groups', 'ColumnBrowser.Tags', 'Stations', 'Features', 'Genomes', 'Groups', 'Mappings', 
 		'ExpressionExperiments', 'ExpressionSamples'],
-	controllers: ['ColumnBrowser', 'Station', 'Feature', 'Genome', 'Group', 'GlobalToolbar']
+	controllers: ['ColumnBrowser', 'Station', 'Feature', 'Genome', 'Group', 'GlobalToolbar', 'Experiment']
 });
 
 Date.prototype.getDayOfYear = function(){

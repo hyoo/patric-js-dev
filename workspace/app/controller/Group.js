@@ -71,7 +71,11 @@ Ext.define('VBI.Workspace.controller.Group', {
 		detailview.child('#panel_toolbar').getLayout().setActiveItem('sample');
 		detailview.child('#panel_grid').getLayout().setActiveItem('experimentdetail');
 		
-		Ext.getCmp('workspace_experimentinfoeditor').loadRecord(expid);
+		Ext.getStore('ExpressionSamples').getProxy().setExtraParam("expid", expid);
+		Ext.getStore('ExpressionSamples').load();
+		
+		var record = Ext.getStore('ExpressionExperiments').getById(expid);
+		Ext.getCmp('workspace_experimentinfoeditor').loadRecord(record);
 		Ext.getCmp('workspace_view').getLayout().setActiveItem('detailview');
 	},
 	switchToBrowser: function(button, event, options) {

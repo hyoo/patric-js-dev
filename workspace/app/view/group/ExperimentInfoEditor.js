@@ -92,58 +92,19 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 	 * @param {Ext.data.Model} record The data record to load.
 	 */
 	loadRecord: function(record) {
-		this.record = record;
 		//console.log(record);
-		/*
+		
 		this.record = record;
-		var title, desc;
 		
-		if (record.get("type") == "Feature") {
-			title = "Feature Group";
-			if (record.get("members") > 1) {
-				desc = "(" + record.get("members") + " features)";
-			} else {
-				desc = "("+record.get("members")+" feature)";
-			}
-		} 
-		else if (record.get("type") == "Genome")
-		{
-			title = "Genome Group";
-			if (record.get("members") > 1) {
-				desc = "(" + record.get("members") + " genomes)";
-			} else {
-				desc = "("+record.get("members")+" genome)";
-			}
+		var subtitle;
+		if (record.get("samples") > 1) {
+			subtitle = "(" + record.get("samples") + " samples)";
+		} else {
+			subtitle = "(" + record.get("samples") + " sample)";
 		}
-		else if (record.get("type") == "ExpressionExperiment")
-		{
-			title = "Transcriptomics Experiment Group";
-			if (record.get("members") > 1) {
-				desc = "(" + record.get("members") + " experiments)";
-			} else {
-				desc = "("+record.get("members")+" experiment)";
-			}
-		} 
-		else
-		{
-			title = "Unknown Group";
-			if (record.get("members") > 1) {
-				desc = "(" + record.get("members") + " members)";
-			} else {
-				desc = "("+record.get("members")+" member)";
-			}
-			
-		}
-		
-		// update the thumbnail for the group
-		//console.log(Ext.ComponentQuery.query('infoviewer > dataview')[0]);
-		Ext.getCmp('group-viewer-thumb').update({
-			thumb: record.get("thumb"),
-			title: title,
-			desc: desc
-		});
 		
 		// update the form elements
+		/*
 		this.getForm().setValues({
 			groupname: record.get("name"), 
 			description: record.get("desc"), 
@@ -155,13 +116,13 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		*/
 		
 		this.getForm().setValues({
-			title: 'Expression of Escherichia coli trated with cefsulodin and mecillinam', 
-			samples: '(17 samples)',
-			description: 'In this experiment, we trated a number of e coli samples with varying levels of cefusolodin and mecillinam', 
-			organism: 'Escherichia coli K-12',
+			title: record.get("title"), 
+			samples: subtitle,
+			description: record.get("desc"), 
+			organism: record.get("organism"),
 			updated: "Aug 8, 2012",
 			created: "Aug 6, 2012",
-			file: "my-cool-data.csv"
+			file: record.get("origFileName")
 		});
 		
 	}, 

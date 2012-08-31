@@ -116,7 +116,7 @@ Ext.define('TranscriptomicsUploader.view.AddToGroup', {
 					submitEmptyText: false,
 					success: function(fm, action) {
 						Ext.Msg.alert('Success', 'Saved in workspace');
-						
+						uploader.close();
 					},
 					failure: function(fm, action) {
 						console.log('Form submission failed', action);

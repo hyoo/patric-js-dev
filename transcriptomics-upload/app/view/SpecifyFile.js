@@ -194,10 +194,11 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 										timeout: 60000,
 										success: function(response) {
 											uploader.params.parsed = Ext.JSON.decode(response.responseText);
-											Ext.getCmp("MapGeneIdentifiersPanel").initParsedResult();
-										
+											
 											Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step02");
 											Ext.getCmp("uploader").getComponent("steps").setActiveTab("step02");
+											
+											Ext.getCmp("MapGeneIdentifiersPanel").initParsedResult();
 										},
 										failure: function(response) {
 											console.log('Parsing failed', response);

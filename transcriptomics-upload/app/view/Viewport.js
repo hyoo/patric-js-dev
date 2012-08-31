@@ -44,7 +44,7 @@ Ext.define('TranscriptomicsUploader.view.Viewport', {
 		tabBar: {
 			hidden: true
 		},
-		//activeTab: 'step04',
+		//activeTab: 'step02',
 		items: [{
 			xtype: 'specifyfile',
 			itemId: 'step01',

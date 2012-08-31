@@ -24,22 +24,49 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 		var strLabel =  "<b>"+p.origFileName+" ("+p.countGeneIDs+" gene IDs, "+p.countSamples+" samples)";
 		me.getComponent("parsed_label").setValue(strLabel);
 		
-		var strResult = "";
-		if (p.snapshot != undefined && p.snapshot.length > 0) {
-			for (i=0; i<p.snapshot.length; i++) {
-				strResult += p.snapshot[i].line + "\n";
+		var data = [], fields = [], cols = [], grid, header;
+		
+		if (p.snapshot!= undefined && p.snapshot.length > 0) {
+			
+			header = p.snapshot[0].line.split("\t");
+			
+			for (i=1; i<=header.length; i++) {
+				fields.push("C"+i);
+				cols.push({
+					text: "Column "+i,
+					dataIndex: "C"+i
+				})
+			}
+			
+			for (rowId=1; rowId<p.snapshot.length; rowId++) {
+				
+				row = p.snapshot[rowId].line.split("\t");
+				tmpDataRow = {};
+				for (i=1; i<=header.length; i++) {
+					tmpDataRow["C"+i] = row[i-1];
+				}
+				data.push(tmpDataRow);
 			}
 		}
 		
-		me.getComponent("parsed_result").setRawValue(strResult);
+		grid = Ext.create('Ext.grid.Panel', {
+			store: {
+				data: data,
+				fields: fields
+			},
+			columns: cols,
+			height: 100
+		});
+		//console.log(me.child('#parsed_result'),Ext.getDom(me.child('#parsed_result').id));
+		grid.render(me.child('#parsed_result').el, 0);
 	},
 	items: [{
 		xtype: 'displayfield',
 		itemId: 'parsed_label',
 		value: '<b>my-super-cool-data.csv (1232 gene IDs, 43 samples)</b>'
 	}, {
-		xtype: 'textarea',
 		itemId: 'parsed_result',
+		height: 100,
 		anchor: '100%',
 		readOnly: true
 	}, {

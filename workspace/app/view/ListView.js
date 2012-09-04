@@ -73,7 +73,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 					dock: 'top'
 				}, {
 					xtype: 'patricpagingtoolbar',
-					store: 'Experiments',
+					store: 'ExpressionExperiments',
 					dock: 'bottom',
 					displayInfo: true
 				}],

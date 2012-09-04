@@ -50,7 +50,7 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 							callback:function() {
 								Ext.getStore('Stations').load({
 									callback: function() {
-										Ext.getCmp('workspace_station').setDefault("Genomes");
+										Ext.getCmp('workspace_station').setDefault("ExpressionExperiments");
 										updateCartInfo();
 									}
 								});
@@ -76,23 +76,30 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 				width: 150,
 				handler: function(btn, e) {
 					var groupList = btn.findParentByType('toolbar').getSelectedGroup();
+					
 					var idList = btn.findParentByType('toolbar').getSelectedID();
 					if (idList == null) { return false; }
+					
+					//var idList = new Array();
+					//idList.push('b5ed6492-f333-4ade-a40e-1a34fdd86cfa');
+					
 					var me = this;
 					
 					if (groupList.length == 0) {
 						// no group selected, delete from workspace
 						Ext.Msg.show({
-							msg: 'Do you want to delete this genome from your workspace?',
+							msg: 'Do you want to delete this experiment from your workspace?',
 							buttons: Ext.Msg.OKCANCEL,
 							icon: Ext.Msg.QUESTION,
 							fn: function(buttonId, opt) {
 								if (buttonId == "ok" && idList.length > 0) {
 									Ext.Ajax.request({
-										url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=removeTrack',
+										url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE',
 										params: {
+											action_type: 'groupAction',
+											action: 'removeTrack',
 											removeFrom: 'workspace',
-											idType: 'Genome',
+											idType: 'ExpressionExperiment',
 											idList: idList.join(",")
 										},
 										success: function(response) {
@@ -112,11 +119,13 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 							fn: function(buttonId, opt) {
 								if (buttonId == "yes") {
 									Ext.Ajax.request({
-										url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=removeTrack',
+										url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE',
 										params: {
+											action_type: 'groupAction',
+											action: 'removeTrack',
 											removeFrom:'groups',
 											groups: groupList.join(","),
-											idType: 'Genome',
+											idType: 'ExpressionExperiment',
 											idList: idList.join(",")
 										},
 										success: function(response) {
@@ -125,10 +134,12 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 									});
 								} else if (buttonId == "no") {
 									Ext.Ajax.request({
-										url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=removeTrack',
+										url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE',
 										params: {
+											action_type: 'groupAction',
+											action: 'removeTrack',
 											removeFrom:'workspace',
-											idType: 'Genome',
+											idType: 'ExpressionExperiment',
 											idList: idList.join(",")
 										},
 										success: function(response) {
@@ -152,14 +163,14 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 						text:'Save to Group',
 						handler: function(btn, e) {
 							//console.log("custom button for save to group - genome level");
-							saveToGroup(idList.join(","), 'Genome');
+							saveToGroup(idList.join(","), 'ExpressionExperiment');
 								
 							me.findParentByType('toolbar').refreshWorkspaceViews();
 						}
 					});
 						
 					popup = Ext.create('VBI.Workspace.view.Toolbar.window.AddToGroup', {
-							title: 'Add Selected Genomes to Group',
+							title: 'Add Selected Experiments to Group',
 							buttons: [btnGroupPopupSave,{
 								text: 'Cancel',
 								handler: function(){popup.hide();}
@@ -189,7 +200,9 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 						}
 					});
 					var param = "&expId=" + expIds.join(",") + "&colId=" + colIds.join(",");
-					this.fireEvent('runGeneList', param);
+					if (expIds.length > 0 || colIds.length >0) {
+						this.fireEvent('runGeneList', param);
+					}
 				}
 			}]
 		}, {

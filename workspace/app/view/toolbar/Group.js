@@ -56,8 +56,10 @@ Ext.define('VBI.Workspace.view.toolbar.Group', {
 						fn: function(buttonId, opt) {
 							if (buttonId == "ok" && idList.length > 0) {
 								Ext.Ajax.request({
-									url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=removeGroup',
+									url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE',
 									params: {
+										action_type: 'groupAction',
+										action: 'removeGroup',
 										idList: idList.join(",")
 									},
 									success: function(response) {

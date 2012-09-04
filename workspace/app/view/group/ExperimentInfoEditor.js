@@ -21,6 +21,7 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 	},
 	items: [{
 		xtype: 'displayfield', 
+		itemId: 'title',
 		name: 'title',
 		hideLabel: true,
 		fieldStyle: {
@@ -86,11 +87,6 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		scope: this, 
 		enableToggle: true
 	}],
-	/**
-	 * Loads a given record into the panel. Updates the dataview containing the 
-	 * group thumbnail and the form containing the group details.
-	 * @param {Ext.data.Model} record The data record to load.
-	 */
 	loadRecord: function(record) {
 		//console.log(record);
 		
@@ -103,25 +99,13 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 			subtitle = "(" + record.get("samples") + " sample)";
 		}
 		
-		// update the form elements
-		/*
-		this.getForm().setValues({
-			groupname: record.get("name"), 
-			description: record.get("desc"), 
-			tags: record.get("tags"),
-			updated: Ext.Date.format(Ext.Date.parse(record.get("mdate"), 'Y-m-d H:i:s'), 'M j, Y'),
-			created: Ext.Date.format(Ext.Date.parse(record.get("cdate"), 'Y-m-d H:i:s'), 'M j, Y'),
-			owner: record.get("owner")
-		});
-		*/
-		
 		this.getForm().setValues({
 			title: record.get("title"), 
 			samples: subtitle,
 			description: record.get("desc"), 
 			organism: record.get("organism"),
-			updated: "Aug 8, 2012",
-			created: "Aug 6, 2012",
+			updated: Ext.Date.format(Ext.Date.parse(record.get("mdate"), 'Y-m-d H:i:s'), 'M j, Y'),
+			created: Ext.Date.format(Ext.Date.parse(record.get("cdate"), 'Y-m-d H:i:s'), 'M j, Y'),
 			file: record.get("origFileName")
 		});
 		
@@ -129,22 +113,23 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 	
 	startEdit: function() {
 		
-		this.remove('groupname');
-		this.insert(1, {
+		this.remove('title');
+		this.insert(0, {
 			xtype: 'textfield',
-			name: 'groupname', 
-			itemId: 'groupname', 
-			hideLabel: true, 
-			allowBlank: false,
-			value: 'none'
+			name: 'title', 
+			itemId: 'title', 
+			fieldLabel: 'Experiment title',
+			labelAlign: 'top',
+			allowBlank: false
 		});
 		
 		this.remove('description');
-		this.insert(3, {
+		this.insert(4, {
 			xtype: 'textareafield',
 			name: 'description', 
 			itemId: 'description', 
-			hideLabel: true, 
+			fieldLabel: 'Description',
+			labelAlign: 'top',
 			allowBlank: true,
 			grow: true, 
 			growMin: 20, 
@@ -159,38 +144,36 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 	finishEdit: function() {
 		
 		var newInfo = this.getForm().getValues();
+		this.record.set("title", newInfo.title);
 		this.record.set("desc", newInfo.description);
-		this.record.set("name", newInfo.groupname);
-		Ext.getStore('Groups').sync();
+		Ext.getStore('ExpressionExperiments').sync();
 		
 		this.disableFields();
 	}, 
 	
 	disableFields: function() {
 		// disable the form elements by changing their types to displayfield
-		this.remove('groupname');
-		this.insert(1, {
-			xtype: 'displayfield',
-			name: 'groupname', 
-			itemId: 'groupname', 
-			hideLabel: true, 
-			allowBlank: false, 
+		this.remove('title');
+		this.insert(0, {
+			xtype: 'displayfield', 
+			itemId: 'title',
+			name: 'title',
+			hideLabel: true,
+			fieldStyle: {
+				fontSize: '15px',
+				fontWeight: 'bold'
+			},
 			style: {
-				fontWeight: 'bold', 
-				marginBottom: '3px'
-			}, 
-			value: 'none'
+				marginBottom: '0px'
+			}
 		});
 		this.remove('description');
-		this.insert(3, {
+		this.insert(4, {
 			xtype: 'displayfield',
 			name: 'description', 
 			itemId: 'description', 
-			hideLabel: true, 
-			style: {
-				marginTop: '0px', 
-				marginBottom: '15px' 
-			}, 
+			fieldLabel: 'Description',
+			labelAlign: 'top',
 			value: ''
 		});
 		this.loadRecord(this.record);

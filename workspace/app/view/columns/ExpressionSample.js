@@ -3,6 +3,12 @@ Ext.define('VBI.Workspace.view.columns.ExpressionSample', {
 		align: 'center'
 	},
 	items: [{
+		text: 'Accession',
+		dataIndex: 'accession',
+		flex: 1,
+		align: 'left',
+		hidden: true
+	}, {
 		text: 'Sample', 
 		dataIndex: 'expname', 
 		flex: 4,
@@ -20,6 +26,13 @@ Ext.define('VBI.Workspace.view.columns.ExpressionSample', {
 		text: 'Significant genes(Z Score)', 
 		dataIndex: 'sig_z_score',
 		flex: 1
+	}, {		
+		text: 'Organism', 
+		dataIndex: 'organism', 
+		flex: 1,
+		align: 'left',
+		hidden: true,
+		renderer: BasicRenderer
 	}, {		
 		text: 'Sample Strain', 
 		dataIndex: 'strain', 

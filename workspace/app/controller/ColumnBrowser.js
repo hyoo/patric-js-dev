@@ -38,6 +38,7 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 		var storeCBTag = Ext.getStore('ColumnBrowser.Tags');
 		var storeFeatures = Ext.getStore('Features');
 		var storeGenomes = Ext.getStore('Genomes');
+		var storeExpressionExperiments = Ext.getStore('ExpressionExperiments');
 		var storeGroups = Ext.getStore('Groups');
 		
 		if (type == "groups") {
@@ -58,6 +59,7 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 				var targetTracks = storeMap.getFilteredTracks();
 				storeFeatures.filterByTracks(targetTracks);
 				storeGenomes.filterByTracks(targetTracks);
+				//storeExpressionExperiments.filterByTracks(targetTracks);
 				
 			// 3. update Tags
 				var targetStringTags = storeMap.getTagsByTrack(targetTracks);

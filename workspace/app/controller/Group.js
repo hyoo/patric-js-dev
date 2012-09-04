@@ -72,6 +72,11 @@ Ext.define('VBI.Workspace.controller.Group', {
 		detailview.child('#panel_grid').getLayout().setActiveItem('experimentdetail');
 		
 		Ext.getStore('ExpressionSamples').getProxy().setExtraParam("expid", expid);
+		if (typeof expid == "number") {
+			Ext.getStore('ExpressionSamples').getProxy().setExtraParam("expsource", "PATRIC");
+		} else {
+			Ext.getStore('ExpressionSamples').getProxy().setExtraParam("expsource", "User");
+		}
 		Ext.getStore('ExpressionSamples').load();
 		
 		var record = Ext.getStore('ExpressionExperiments').getById(expid);

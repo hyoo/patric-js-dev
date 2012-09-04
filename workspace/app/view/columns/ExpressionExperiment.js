@@ -43,7 +43,7 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 	}, {		
 		text: 'Organism', 
 		dataIndex: 'organism', 
-		flex: 2,
+		flex: 3,
 		align: 'left',
 		renderer: BasicRenderer
 	}]

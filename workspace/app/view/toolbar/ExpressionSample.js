@@ -2,24 +2,6 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 	extend: 'Ext.toolbar.Toolbar',
 	alias: 'widget.expressionsampletoolbar',
 	stateful: false,
-	/* need to implement to work with experiment data */
-	getSelectedGroup: function() {
-		var viewport = Ext.getCmp('workspace_view');
-		var selection;
-		var groupList = new Array();
-		
-		if (viewport.activeItem == "groupview") {
-			selection = new Array();
-			groupList.push( Ext.getCmp('workspace_groupinfoeditor').record.get("tagId") );
-			
-		} else {
-			selection = Ext.getCmp('columnbrowser_groups').getSelectionModel().getSelection();
-			Ext.Array.each(selection, function(item) {
-				groupList.push(item.get("tagId"));
-			});
-		}
-		return groupList;
-	},
 	getSelectedID: function() {
 		var selection = Ext.getCmp('workspace_detailview').child('#panel_grid').child('#experimentdetail').getSelectionModel().getSelection();
 		
@@ -44,7 +26,7 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 							callback:function() {
 								Ext.getStore('Stations').load({
 									callback: function() {
-										Ext.getCmp('workspace_station').setDefault("Genomes");
+										Ext.getCmp('workspace_station').setDefault("ExpressionExperiments");
 										updateCartInfo();
 									}
 								});
@@ -59,7 +41,7 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 		type: 'hbox',
 		align: 'stretch'
 	},
-	items: [
+	items: [/* // comment out for now
 		{
 			title: 'Workspace', 
 			xtype: 'buttongroup',
@@ -69,72 +51,33 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 				text: 'Remove Sample(s)',
 				width: 150,
 				handler: function(btn, e) {
-					var groupList = btn.findParentByType('toolbar').getSelectedGroup();
 					var idList = btn.findParentByType('toolbar').getSelectedID();
 					if (idList == null) { return false; }
 					var me = this;
 					
-					if (groupList.length == 0) {
-						// no group selected, delete from workspace
-						Ext.Msg.show({
-							msg: 'Do you want to delete this genome from your workspace?',
-							buttons: Ext.Msg.OKCANCEL,
-							icon: Ext.Msg.QUESTION,
-							fn: function(buttonId, opt) {
-								if (buttonId == "ok" && idList.length > 0) {
-									Ext.Ajax.request({
-										url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=removeTrack',
-										params: {
-											removeFrom: 'workspace',
-											idType: 'Genome',
-											idList: idList.join(",")
-										},
-										success: function(response) {
-											me.findParentByType('toolbar').refreshWorkspaceViews();
-										}
-									});
-								}
+					// no group selected, delete from workspace
+					Ext.Msg.show({
+						msg: 'Do you want to delete this genome from your workspace?',
+						buttons: Ext.Msg.OKCANCEL,
+						icon: Ext.Msg.QUESTION,
+						fn: function(buttonId, opt) {
+							if (buttonId == "ok" && idList.length > 0) {
+								Ext.Ajax.request({
+									url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=removeTrack',
+									params: {
+										removeFrom: 'workspace',
+										idType: 'Genome',
+										idList: idList.join(",")
+									},
+									success: function(response) {
+										me.findParentByType('toolbar').refreshWorkspaceViews();
+									}
+								});
 							}
-						});
-						
-					} else {
-							
-						Ext.Msg.show({
-							msg: 'Do you want to delete this genome from your selected groups? Click No if you want to delete from entire workspace',
-							buttons: Ext.Msg.YESNOCANCEL,
-							icon: Ext.Msg.QUESTION,
-							fn: function(buttonId, opt) {
-								if (buttonId == "yes") {
-									Ext.Ajax.request({
-										url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=removeTrack',
-										params: {
-											removeFrom:'groups',
-											groups: groupList.join(","),
-											idType: 'Genome',
-											idList: idList.join(",")
-										},
-										success: function(response) {
-											me.findParentByType('toolbar').refreshWorkspaceViews();
-										}
-									});
-								} else if (buttonId == "no") {
-									Ext.Ajax.request({
-										url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=removeTrack',
-										params: {
-											removeFrom:'workspace',
-											idType: 'Genome',
-											idList: idList.join(",")
-										},
-										success: function(response) {
-											me.findParentByType('toolbar').refreshWorkspaceViews();
-										}
-									});
-								}
-							}
-						});
-					}
+						}
+					});
 				}
-			}/*,{
+			},{
 				xtype: 'tbar_btn_create',
 				text: 'Add to Group',
 				handler: function(btn, e) {
@@ -161,8 +104,8 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 					}).show();
 					loadATGCombo();
 				}
-			}*/]
-		}, {
+			}]
+		}, */{
 			title: 'View',
 			columns: 1,
 			xtype: 'buttongroup',
@@ -171,20 +114,19 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 				xtype: 'tbar_btn_genelist',
 				handler: function(btn, e) {
 					var selection = btn.findParentByType('toolbar').getSelectedID(),
-						expId = Ext.getCmp('workspace_experimentinfoeditor').record,
+						expId = Ext.getCmp('workspace_experimentinfoeditor').record.get("expid"),
 						param = "";
 					
-						console.log(typeof expId);
+					if (selection != undefined) {
+						if (typeof expId == "number") {
+							param = "&expId=" + expId + "&sampleId=" + selection.join(",");
+						} 
+						else if (typeof expId == "string") {
+							param = "&colId=" + expId + ":" + selection.join("+").replace(new RegExp(expId, 'g'), '');
+						}
 					
-					if (typeof expId == "number") {
-						param = "&expId=" + expId + "&sampleId=" + selection.join(",");
-					} 
-					else if (typeof expId == "string") {
-						param = "&colId=" + expId + ":" + selection.join("+");
+						this.fireEvent('runGeneList', param);
 					}
-					
-					//console.log(selection, param)
-					this.fireEvent('runGeneList', param);
 				}
 			}]
 		}, {

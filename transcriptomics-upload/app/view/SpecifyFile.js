@@ -88,7 +88,8 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		value: '--- or ---'
 	},{
 		xtype: 'textfield',
-		name: 'file0_url',
+		//name: 'file0_url',
+		name: 'remoteData_1',
 		fieldLabel: 'Specify a URL for a file',
 		labelWidth: 180,
 		anchor: '100%',
@@ -152,9 +153,10 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 					var authToken = jsonResponse.token;
 					var collectionId = jsonResponse.collection;
 					var baseUrl = jsonResponse.url;
-					//var authToken = "e955d813d306ff00ceea6516a2c567dd49aea1937a4893c5abe3b13fc95de8ee375162665d7be4e9";
-					//var collectionId = "ecbe6c2d-7aee-4138-88a1-d1b56e8c020b";
-					//var collectionId = "98a49336-8f5c-4b95-ad51-0676d1c40bce";
+					
+					//var baseUrl = "http://hyun-imac.vbi.vt.edu:8888";
+					//var authToken = "e2b312c24450165da171590264a0dbf27328f45f7af53cb69e03c1cf6c754d1d16557ba58a75ae6d";
+					//var collectionId = "1957dafa-abf0-4dd3-9b68-147592e63c42";
 					//console.log("token="+authToken,"collection="+collectionId);
 					var success = jsonResponse.success;
 					
@@ -162,6 +164,7 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 					
 						uploader.params = {"baseUrl": baseUrl, "authToken":authToken, "collectionId": collectionId};
 						var form = me.up('form').getForm();
+						/*
 						var params = new Object();
 						params.file0_content = "expression";
 						params.file0_orientation = "svg";
@@ -169,21 +172,34 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 							params.file1_type = "txt";
 							params.file1_format = "list";
 							params.file1_content = "sample";
+						}*/
+						var params = {
+							file0_content: "expression",
+							file0_orientation: "svg"
+						};
+						if (form.findField("file1").getValue() != "") {
+							Ext.applyif(params, {
+								file1_type: "txt",
+								file1_format: "list",
+								file1_content: "sample"
+							});
+						}
+						if (form.findField("remoteData_1").getValue() != "") {
+							// url upload
+							Ext.applyIf (params, {
+								remoteData_1_type: form.findField("file0_type").getValue(),
+								remoteData_1_format: form.findField("file0_format").getValue(),
+								remoteData_1_content: "expression",
+								remoteData_1_orientation: "svg"
+							});
 						}
 						if (form.isValid()) {
 							form.submit({
 								url: baseUrl+'/Collection/'+collectionId+"?http_accept=application/json&http_authorized_session=polyomic%20authorization_token%3D"+authToken,
-								params: params, /*{
-									'file0_content': 'expression',
-									'file0_orientation': 'svg',
-									'file1_type': 'txt',
-									'file1_format': 'list',
-									'file1_content': 'sample'
-								},*/
+								params: params,
 								waitMsg: 'Uploading your file...',
 								success: function(fm, action) {
 									//console.log('success', action);
-									Ext.Msg.alert('Success', 'Proceed file(s) on the server.');
 									
 									Ext.Ajax.request({
 										url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',

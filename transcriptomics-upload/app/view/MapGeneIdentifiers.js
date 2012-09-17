@@ -152,7 +152,6 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 			margin: '0 0 0 20px',
 			disabled: true,
 			handler: function(me) {
-				var panel = me.up('panel');
 				var form = me.up('form').getForm();
 				var organismName = form.findField("organismName").getValue();
 				
@@ -166,7 +165,9 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 				var gene_id_type	= form.findField("geneIdType").getValue();
 				
 				//console.log(ncbi_taxon_id, form, gene_id_type);
-				panel.mask("mapping in progress");
+				var myMask = new Ext.LoadMask(uploader, {msg:"Mapping genes"});
+				myMask.show();
+				
 				
 				Ext.Ajax.request({
 					url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
@@ -186,11 +187,11 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 						//enable next button
 						Ext.getCmp("next_btn_to_experiment").setDisabled(false);
 						
-						panel.unmask();
+						myMask.hide();
 					},
 					failure: function(response) {
 						console.log(response.status);
-						panel.unmask();
+						myMask.hide();
 					}
 				});
 				

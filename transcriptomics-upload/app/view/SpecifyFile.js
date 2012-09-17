@@ -142,7 +142,7 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		formBind: true,
 		disabled: true,
 		handler: function(me, e) {
-			
+			/*
 			Ext.Ajax.request({
 				url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
 				params: {
@@ -153,12 +153,14 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 					var authToken = jsonResponse.token;
 					var collectionId = jsonResponse.collection;
 					var baseUrl = jsonResponse.url;
-					
-					//var baseUrl = "http://hyun-imac.vbi.vt.edu:8888";
-					//var authToken = "e2b312c24450165da171590264a0dbf27328f45f7af53cb69e03c1cf6c754d1d16557ba58a75ae6d";
-					//var collectionId = "1957dafa-abf0-4dd3-9b68-147592e63c42";
-					//console.log("token="+authToken,"collection="+collectionId);
 					var success = jsonResponse.success;
+					*/
+					var baseUrl = "http://hyun-imac.vbi.vt.edu:8888";
+					var authToken = "396aad9c4f921985878e0b66c66f665cb5b608baf5333976c61a3289bbc6eef703fd456e4ee4e571";
+					var collectionId = "41216877-ccbc-42b9-ba10-bfca2afd9452";
+					var success = true;
+					//console.log("token="+authToken,"collection="+collectionId);
+					
 					
 					if (success) {
 					
@@ -178,7 +180,7 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 							file0_orientation: "svg"
 						};
 						if (form.findField("file1").getValue() != "") {
-							Ext.applyif(params, {
+							Ext.applyIf(params, {
 								file1_type: "txt",
 								file1_format: "list",
 								file1_content: "sample"
@@ -197,9 +199,12 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 							form.submit({
 								url: baseUrl+'/Collection/'+collectionId+"?http_accept=application/json&http_authorized_session=polyomic%20authorization_token%3D"+authToken,
 								params: params,
-								waitMsg: 'Uploading your file...',
+								//waitMsg: 'Uploading your file...',
 								success: function(fm, action) {
 									//console.log('success', action);
+									
+									var myMask = new Ext.LoadMask(uploader, {msg:"Uploading your file"});
+									myMask.show();
 									
 									Ext.Ajax.request({
 										url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
@@ -215,6 +220,8 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 											Ext.getCmp("uploader").getComponent("steps").setActiveTab("step02");
 											
 											Ext.getCmp("MapGeneIdentifiersPanel").initParsedResult();
+											
+											myMask.hide();
 										},
 										failure: function(response) {
 											console.log('Parsing failed', response);
@@ -232,9 +239,10 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 						// "create_collection" mode is failed
 						Ext.Msg.alert("Status", jsonResponse.msg);
 					}
+					/*
 				}
 			});
-			
+			*/
 		}
 	}]
 });

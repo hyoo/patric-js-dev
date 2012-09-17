@@ -142,7 +142,7 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		formBind: true,
 		disabled: true,
 		handler: function(me, e) {
-			/*
+			
 			Ext.Ajax.request({
 				url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
 				params: {
@@ -154,11 +154,11 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 					var collectionId = jsonResponse.collection;
 					var baseUrl = jsonResponse.url;
 					var success = jsonResponse.success;
-					*/
-					var baseUrl = "http://hyun-imac.vbi.vt.edu:8888";
-					var authToken = "396aad9c4f921985878e0b66c66f665cb5b608baf5333976c61a3289bbc6eef703fd456e4ee4e571";
-					var collectionId = "41216877-ccbc-42b9-ba10-bfca2afd9452";
-					var success = true;
+					
+					//var baseUrl = "http://hyun-imac.vbi.vt.edu:8888";
+					//var authToken = "396aad9c4f921985878e0b66c66f665cb5b608baf5333976c61a3289bbc6eef703fd456e4ee4e571";
+					//var collectionId = "41216877-ccbc-42b9-ba10-bfca2afd9452";
+					//var success = true;
 					//console.log("token="+authToken,"collection="+collectionId);
 					
 					
@@ -166,15 +166,6 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 					
 						uploader.params = {"baseUrl": baseUrl, "authToken":authToken, "collectionId": collectionId};
 						var form = me.up('form').getForm();
-						/*
-						var params = new Object();
-						params.file0_content = "expression";
-						params.file0_orientation = "svg";
-						if (form.findField("file1").getValue() != "") {
-							params.file1_type = "txt";
-							params.file1_format = "list";
-							params.file1_content = "sample";
-						}*/
 						var params = {
 							file0_content: "expression",
 							file0_orientation: "svg"
@@ -239,10 +230,10 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 						// "create_collection" mode is failed
 						Ext.Msg.alert("Status", jsonResponse.msg);
 					}
-					/*
+					
 				}
 			});
-			*/
+			
 		}
 	}]
 });

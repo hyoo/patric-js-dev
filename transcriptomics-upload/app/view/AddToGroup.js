@@ -37,9 +37,6 @@ Ext.define('TranscriptomicsUploader.view.AddToGroup', {
 					return false;
 				}
 				
-				//console.log(form, newValue, oldValue);
-				//console.log(form.child("#groupName"));
-				
 				if (newValue == "None") {
 					form.child("#groupName").setDisabled(true);
 					form.child("#groupDesc").setDisabled(true);

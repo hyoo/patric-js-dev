@@ -21,9 +21,9 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		xtype: 'combobox',
 		name: 'file0_type',
 		fieldLabel: 'File Type',
-		width: 300,
+		labelWidth: 180,
+		width: 350,
 		value: 'txt',
-		padding: '0 0 0 50px',
 		store: 'FileTypes',
 		queryMode: 'local',
 		displayField: 'text',
@@ -32,12 +32,13 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 	}, {
 		xtype: 'container',
 		layout: 'hbox',
-		padding: '0 0 0 50px',
+		padding: '0 0 5px 0',
 		items: [{
 			xtype: 'combobox',
 			name: 'file0_format',
 			fieldLabel: 'File Format',
-			width: 300,
+			labelWidth: 180,
+			width: 350,
 			value: 'matrix',
 			store: 'FileFormats',
 			queryMode: 'local',
@@ -55,12 +56,18 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 			padding: '0 0 0 15px'
 		}]
 	}, {
-		xtype: 'displayfield',
-		value: ' '
+		xtype: 'container',
+		padding: '5 80',
+		items: [{
+			xtype: 'imagecomponent',
+			src: '/patric/images/transcriptomics_uploader_rule.png'
+		}, {
+			xtype: 'imagecomponent',
+			src: '/patric/images/transcriptomics_uploader_rule.png'
+		}]
 	}, {
 		xtype: 'container',
 		layout: 'hbox',
-		padding: '0px',
 		items: [{
 			xtype: 'filefield',
 			name: 'file0',
@@ -83,38 +90,49 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 			padding: '0 20px'
 		}]
 	},{
-		xtype: 'displayfield',
-		padding: '0 0 0 190px',
-		value: '--- or ---'
+		xtype: 'imagecomponent',
+		padding: '5 80',
+		src: '/patric/images/transcriptomics_uploader_rule_or.png'
 	},{
 		xtype: 'textfield',
-		//name: 'file0_url',
 		name: 'remoteData_1',
 		fieldLabel: 'Specify a URL for a file',
 		labelWidth: 180,
-		anchor: '100%',
-		validator: function (value) {
-			return true;
-			/*
-			var file1 = this.up('panel').getComponent("file0");
-			if (file1.isValid() && file1.getValue()!="") {
-				return true;
-			} else {
-				// validate url form
-				if (Ext.form.field.VTypes.url(value)) { 
-					return true;
-				} else {
-					return false;
-				}
-			}*/
-		}
+		anchor: '100%'
 	},{
 		xtype: 'displayfield',
+		padding: '15 0 0 0',
 		value: '<b>Specify the sample metadata to upload (optional)</b>'
+	}, {
+		// sample file type
+		xtype: 'container',
+		layout: 'hbox',
+		padding: '0 0 5px 0',
+		items: [{
+			xtype: 'combobox',
+			name: 'file1_type',
+			fieldLabel: 'File Type',
+			labelWidth: 180,
+			width: 350,
+			value: 'txt',
+			store: 'FileTypes',
+			queryMode: 'local',
+			displayField: 'text',
+			valueField: 'name',
+			editable: false
+		}, {
+			xtype: 'component',
+			autoEl: {
+				tag: 'a',
+				href: 'http://enews.patricbrc.org',
+				html: "download template",
+				target: '_blank'
+			},
+			padding: '0 0 0 15px'
+		}]
 	}, {
 		xtype: 'container',
 		layout: 'hbox',
-		padding: '0px',
 		items: [{
 			xtype: 'filefield',
 			name: 'file1',
@@ -155,12 +173,13 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 					var baseUrl = jsonResponse.url;
 					var success = jsonResponse.success;
 					
-					//var baseUrl = "http://hyun-imac.vbi.vt.edu:8888";
-					//var authToken = "396aad9c4f921985878e0b66c66f665cb5b608baf5333976c61a3289bbc6eef703fd456e4ee4e571";
-					//var collectionId = "41216877-ccbc-42b9-ba10-bfca2afd9452";
-					//var success = true;
+					/*
+					var baseUrl = uploader.params.baseUrl;
+					var authToken = uploader.params.authToken;
+					var collectionId = uploader.params.collectionId;
+					var success = true;
 					//console.log("token="+authToken,"collection="+collectionId);
-					
+					*/
 					
 					if (success) {
 					
@@ -170,15 +189,15 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 							file0_content: "expression",
 							file0_orientation: "svg"
 						};
+						// sample metadata (optional)
 						if (form.findField("file1").getValue() != "") {
 							Ext.applyIf(params, {
-								file1_type: "txt",
 								file1_format: "list",
 								file1_content: "sample"
 							});
 						}
+						// url upload
 						if (form.findField("remoteData_1").getValue() != "") {
-							// url upload
 							Ext.applyIf (params, {
 								remoteData_1_type: form.findField("file0_type").getValue(),
 								remoteData_1_format: form.findField("file0_format").getValue(),
@@ -190,7 +209,6 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 							form.submit({
 								url: baseUrl+'/Collection/'+collectionId+"?http_accept=application/json&http_authorized_session=polyomic%20authorization_token%3D"+authToken,
 								params: params,
-								//waitMsg: 'Uploading your file...',
 								success: function(fm, action) {
 									//console.log('success', action);
 									

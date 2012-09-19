@@ -30,20 +30,28 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 			
 			header = p.snapshot[0].line.split("\t");
 			
-			for (i=1; i<=header.length; i++) {
-				fields.push("C"+i);
-				cols.push({
-					text: "Column "+i,
-					dataIndex: "C"+i
-				})
+			for (i=0; i<header.length; i++) {
+				if (i==0) {
+					fields.push("C"+i);
+					cols.push({
+						text: "ID",
+						dataIndex: "C"+i
+					});
+				} else {
+					fields.push("C"+i);
+					cols.push({
+						text: "Column "+i,
+						dataIndex: "C"+i
+					});
+				}
 			}
 			
 			for (rowId=1; rowId<p.snapshot.length; rowId++) {
 				
 				row = p.snapshot[rowId].line.split("\t");
 				tmpDataRow = {};
-				for (i=1; i<=header.length; i++) {
-					tmpDataRow["C"+i] = row[i-1];
+				for (i=0; i<header.length; i++) {
+					tmpDataRow["C"+i] = row[i];
 				}
 				data.push(tmpDataRow);
 			}
@@ -63,7 +71,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 	items: [{
 		xtype: 'displayfield',
 		itemId: 'parsed_label',
-		value: '<b>my-super-cool-data.csv (1232 gene IDs, 43 samples)</b>'
+		value: ''
 	}, {
 		itemId: 'parsed_result',
 		height: 100,
@@ -71,34 +79,12 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 		readOnly: true
 	}, {
 		xtype: 'displayfield',
-		value: '<b>Specify organism name and ID typ to map data into PATRIC</b>'
-	},{
-		xtype: 'combobox',
-		fieldLabel: 'Organism Name',
-		name: "organismName",
-		anchor: '100%',
-		store: 'GenomeNames',
-		typeAhead: false,
-		listConfig: {
-			itemSelector: 'div.search-item',
-			loadingText: 'Searching...',
-			getInnerTpl: function() {
-				return '<div class="search-item">{display_name}</div>';
-			}
-		},
-		hideTrigger: true,
-		listeners: {
-			scope: this,
-			select: function(me, record) {
-				var org = record[0].data;
-				uploader.params.organism = org;
-				me.setValue(org.display_name);
-				Ext.getCmp("map_genes_btn").setDisabled(false);
-			}
-		}
+		padding: '10 0 0 0',
+		value: '<b>Specify ID type to map data into PATRIC</b>'
 	}, {
 		xtype: 'container',
 		layout: 'hbox',
+		padding: '0 0 5px 0',
 		items: [{
 			xtype: 'combobox',
 			fieldLabel: 'Gene ID Type',
@@ -136,12 +122,9 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 			text: ')'
 		}]
 	}, {
-		//spacer between lines
-		xtype: 'displayfield',
-		value: ''
-	}, {
 		xtype: 'container',
 		layout: 'hbox',
+		padding: '10 0 0 0',
 		items: [{
 			xtype: 'displayfield',
 			value: '<b>Map your genes into PATRIC</b>'
@@ -150,40 +133,29 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 			id: 'map_genes_btn',
 			text: 'Map Genes',
 			margin: '0 0 0 20px',
-			disabled: true,
+			//disabled: true,
 			handler: function(me) {
 				var form = me.up('form').getForm();
-				var organismName = form.findField("organismName").getValue();
-				
-				if (organismName == "" || organismName == undefined) {
-					Ext.Msg.alert("Status", "Please specify your organism name.");
-					return false;
-				}
-				
 				var collectionId 	= uploader.params.collectionId;
-				var ncbi_taxon_id	= uploader.params.organism.ncbi_taxon_id;	// not sure how to use this
 				var gene_id_type	= form.findField("geneIdType").getValue();
 				
 				//console.log(ncbi_taxon_id, form, gene_id_type);
 				var myMask = new Ext.LoadMask(uploader, {msg:"Mapping genes"});
 				myMask.show();
 				
-				
 				Ext.Ajax.request({
 					url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
 					params: {
 						mode: 'map_genes',
 						collectionId: collectionId,
-						organismName: organismName,
-						ncbiTaxonId: ncbi_taxon_id,
 						geneIdType: gene_id_type
 					},
 					timeout: 60000,
 					success: function(response) {
 						mapped_result = Ext.JSON.decode(response.responseText);
 						uploader.params.mapping = mapped_result;
-						//console.log(mapped_result);
 						form.findField("mapping_result").setValue(mapped_result.msg);
+						
 						//enable next button
 						Ext.getCmp("next_btn_to_experiment").setDisabled(false);
 						

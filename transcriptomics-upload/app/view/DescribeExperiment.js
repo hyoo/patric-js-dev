@@ -11,7 +11,7 @@ Ext.define('TranscriptomicsUploader.view.DescribeExperiment', {
 	border: false,
 	bodyPadding: 10,
 	fieldDefaults: {
-		labelWidth: 150,
+		labelWidth: 110,
 		labelAlign: 'right',
 		anchor: '100%'
 	},	
@@ -27,8 +27,21 @@ Ext.define('TranscriptomicsUploader.view.DescribeExperiment', {
 	}, {
 		xtype: 'textareafield',
 		name: 'experiment_description',
-		fieldLabel: 'Experiment Description',
-		emptyText: 'Description'
+		fieldLabel: 'Experiment <br/> Description',
+		emptyText: 'Description (optional)'
+	}, {
+		xtype: 'textfield',
+		name: "organism_name",
+		fieldLabel: 'Organism Name',
+		emptyText: 'Organism Name (optional)'
+	}, {
+		xtype: 'numberfield',
+		name: "pubmed_id",
+		fieldLabel: 'Pubmed ID',
+		hideTrigger: true,
+		keyNavEnabled: false,
+		mouseWheelEnabled: false,
+		emptyText: 'Pubmed ID (optional)'
 	}],
 	buttons: [{
 		text: 'Previous',
@@ -54,7 +67,9 @@ Ext.define('TranscriptomicsUploader.view.DescribeExperiment', {
 					collectionId: collectionId,
 					extra: Ext.JSON.encode(extra),
 					experiment_title: form.findField("experiment_title").getValue(),
-					experiment_description: form.findField("experiment_description").getValue()
+					experiment_description: form.findField("experiment_description").getValue(),
+					organism_name: form.findField("organism_name").getValue(),
+					pubmed_id: form.findField("pubmed_id").getValue()
 				},
 				timeout: 60000,
 				success: function(response) {

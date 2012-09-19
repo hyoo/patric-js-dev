@@ -12,17 +12,11 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 		dataIndex: 'title', 
 		flex: 4,
 		align: 'left',
-		renderer: BasicRenderer
-	}, {
-		text: 'Edit', 
-		dataIndex: 'expid', 
-		flex: 1,
 		renderer: function(value, metadata, record, rowIndex, colIndex, store) {
-			//return Ext.String.format('<a href="Feature?cType=feature&cId={0}">E</a>', value);
-			if (typeof value == "number") {
-				return Ext.String.format('<img src="/patric/images/icon_txt.gif" onclick="launchExperimentDetail({0})" />', value);
+			if (typeof record.get('expid') == "number") {
+				return Ext.String.format('<a href="javascript:void(0)" onclick="launchExperimentDetail({1})">{0}</a>', value, record.get('expid'));
 			} else {
-				return Ext.String.format('<img src="/patric/images/icon_txt.gif" onclick="launchExperimentDetail(\'{0}\')" />', value);
+				return Ext.String.format('<a href="javascript:void(0)" onclick="launchExperimentDetail(\'{1}\')">{0}</a>', value, record.get('expid'));
 			}
 		}
 	}, {

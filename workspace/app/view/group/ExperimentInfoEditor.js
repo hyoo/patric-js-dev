@@ -55,6 +55,13 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		value: ''
 	}, {
 		xtype: 'displayfield',
+		name: 'pmid', 
+		itemId: 'pmid', 
+		fieldLabel: 'Pubmed ID',
+		labelWidth: 80,
+		value: ''
+	}, {
+		xtype: 'displayfield',
 		name: 'description', 
 		itemId: 'description', 
 		fieldLabel: 'Description',
@@ -104,15 +111,21 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 			samples: subtitle,
 			description: record.get("desc"), 
 			organism: record.get("organism"),
+			pmid: record.get("pmid"),
 			updated: Ext.Date.format(Ext.Date.parse(record.get("mdate"), 'Y-m-d H:i:s'), 'M j, Y'),
 			created: Ext.Date.format(Ext.Date.parse(record.get("cdate"), 'Y-m-d H:i:s'), 'M j, Y'),
 			file: record.get("origFileName")
 		});
 		
+		if (record.get("source") == "PATRIC") {
+			this.getComponent('editInfoBtn').setDisabled(true);
+		} else {
+			this.getComponent('editInfoBtn').setDisabled(false);
+		}
 	}, 
 	
 	startEdit: function() {
-		
+		//console.log(this.child('#title'));
 		this.remove('title');
 		this.insert(0, {
 			xtype: 'textfield',
@@ -122,9 +135,27 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 			labelAlign: 'top',
 			allowBlank: false
 		});
-		
-		this.remove('description');
+		this.remove('organism');
+		this.insert(3, {
+			xtype: 'textfield',
+			name: 'organism', 
+			itemId: 'organism', 
+			fieldLabel: 'Platform Organism',
+			labelAlign: 'top'
+		})
+		this.remove('pmid');
 		this.insert(4, {
+			xtype: 'numberfield',
+			name: 'pmid', 
+			itemId: 'pmid', 
+			fieldLabel: 'Pubmed ID',
+			labelWidth: 80,
+			hideTrigger: true,
+			keyNavEnabled: false,
+			mouseWheelEnabled: false
+		})
+		this.remove('description');
+		this.insert(5, {
 			xtype: 'textareafield',
 			name: 'description', 
 			itemId: 'description', 
@@ -133,8 +164,7 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 			allowBlank: true,
 			grow: true, 
 			growMin: 20, 
-			growMax: 100, 
-			value: 'none'
+			growMax: 100
 		});
 		
 		this.loadRecord(this.record);		
@@ -146,6 +176,8 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		var newInfo = this.getForm().getValues();
 		this.record.set("title", newInfo.title);
 		this.record.set("desc", newInfo.description);
+		this.record.set("organism", newInfo.organism);
+		this.record.set("pmid", newInfo.pmid);
 		Ext.getStore('ExpressionExperiments').sync();
 		
 		this.disableFields();
@@ -167,8 +199,26 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 				marginBottom: '0px'
 			}
 		});
-		this.remove('description');
+		this.remove('organism');
+		this.insert(3, {
+			xtype: 'displayfield',
+			name: 'organism', 
+			itemId: 'organism', 
+			fieldLabel: 'Platform Organism',
+			labelAlign: 'top'
+		});
+		
+		this.remove('pmid');
 		this.insert(4, {
+			xtype: 'displayfield',
+			name: 'pmid', 
+			itemId: 'pmid', 
+			fieldLabel: 'Pubmed ID',
+			labelWidth: 80,
+		});
+		
+		this.remove('description');
+		this.insert(5, {
 			xtype: 'displayfield',
 			name: 'description', 
 			itemId: 'description', 

@@ -45,8 +45,8 @@ Ext.define('VBI.Workspace.view.Toolbar.button.GeneList', {
 	scale: 'small',  
 	iconAlign: 'left', 
 	text: 'Gene List',
-	width: 110/*,
-	icon: '/patric/images/toolbar_workspace_add.png'*/
+	width: 110,
+	icon: '/patric/images/toolbar_icon_genelist.png'
 });
 
 /**

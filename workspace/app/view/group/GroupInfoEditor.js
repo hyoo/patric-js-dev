@@ -25,7 +25,7 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 		stateful: false,
 		tpl: [
 			'<tpl for=".">',
-				'<div class="thumb-wrap">',
+				'<div>',
 					'<img src="{thumb}" alt="{title}" title="{title}" />',
 					'<span class="title">{title}</span>',
 					'<div>{desc}</div>',

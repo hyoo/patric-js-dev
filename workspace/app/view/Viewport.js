@@ -23,8 +23,45 @@ Ext.define('VBI.Workspace.view.Viewport', {
 			align: 'stretch'
 		},
 		items: [{
-			xtype: 'stationslist', //source list
-			width: 150
+			xtype: 'panel',
+			layout: 'vbox',
+			border: false,
+			items: [{
+				xtype: 'stationslist', //source list
+				border: false,
+				width: 150,
+				height: 300
+			}, {
+				xtype: 'panel',
+				layout: 'vbox',
+				border: false,
+				height: 250,
+				cls: 'no-underline-links',
+				items: [{
+					xtype: 'component',
+					autoEl: {
+						tag: 'img',
+						src: "/patric/images/transcriptomics_uploader_ad.png"
+					},
+					margin: '0 25px'
+				}, {
+					xtype: 'displayfield',
+					width: 130,
+					margin: '0 0 0 10px',
+					value: '<a href="javascript:void(0)" onclick="(function() { uploader = Ext.create(\'TranscriptomicsUploader.view.Viewport\',{}).show();})();">Upload your transcriptomics data</a> to analyze using PATRIC tools and to compare with other published datasets.'
+				}, {
+					xtype: 'component',
+					overCls: 'no-underline-links',
+					autoEl: {
+						tag: 'a',
+						href: 'http://enews.patricbrc.org',
+						html: "Learn more",
+						target: '_blank',
+						cls: 'double-arrow-link'
+					},
+					padding: '0 0 0 10px'
+				}]
+			}]
 		}, {
 			xtype: 'panel',
 			id: 'workspace_view',

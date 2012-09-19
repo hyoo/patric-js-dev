@@ -119,10 +119,10 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 					
 					if (selection != undefined) {
 						if (typeof expId == "number") {
-							param = "&expId=" + expId + "&sampleId=" + selection.join(",");
+							param = "&expId=" + expId + "&sampleId=" + selection.join(",") + "&colId=";
 						} 
 						else if (typeof expId == "string") {
-							param = "&colId=" + expId + ":" + selection.join("+").replace(new RegExp(expId, 'g'), '');
+							param = "&expId=&sampleId=&colId=" + expId + ":" + selection.join("+").replace(new RegExp(expId, 'g'), '');
 						}
 					
 						this.fireEvent('runGeneList', param);

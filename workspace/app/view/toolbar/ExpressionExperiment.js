@@ -20,7 +20,7 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 		}
 		return groupList;
 	},
-	getSelectedID: function() {
+	getSelectedID: function(type) {
 		var selection;
 		
 		if (Ext.getCmp('workspace_view').activeItem == "groupview") {
@@ -35,7 +35,11 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 		} else {
 			var selectedIDs = new Array();
 			Ext.Array.each(selection, function(item) {
-				selectedIDs.push(item.get("expid"));
+				if (type != undefined) {
+					selectedIDs.push(item.get(type));
+				} else {
+					selectedIDs.push(item.get("expid"));
+				}
 			});
 			return selectedIDs;
 		}
@@ -187,7 +191,7 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 			items: [{
 				xtype: 'tbar_btn_genelist',
 				handler: function(btn, e) {
-					var selection = btn.findParentByType('toolbar').getSelectedID(),
+					var selection = btn.findParentByType('toolbar').getSelectedID("eid"),
 						expIds = new Array(),
 						colIds = new Array();
 					
@@ -199,8 +203,9 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 							colIds.push(item);
 						}
 					});
-					var param = "&expId=" + expIds.join(",") + "&colId=" + colIds.join(",");
+					var param = "&expId=" + expIds.join(",") + "&sampleId=&colId=" + colIds.join(",");
 					if (expIds.length > 0 || colIds.length >0) {
+						//console.log (expIds);
 						this.fireEvent('runGeneList', param);
 					}
 				}

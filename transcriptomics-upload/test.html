@@ -16,9 +16,14 @@
 	Ext.Loader.setConfig({enabled: true});
 </script>
 -->
+<script type="text/javascript">
+function launch() {
+	uploader = Ext.create('TranscriptomicsUploader.view.Viewport',{}).show();
+}
+</script>
 </head>
 
 <body>
-	<div id="target_panel"></div>
+	<input type="button" onclick="launch()" value="Click here to launch Uploader Window">
 </body> 
 </html>

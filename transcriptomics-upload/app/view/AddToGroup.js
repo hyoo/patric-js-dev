@@ -112,7 +112,7 @@ Ext.define('TranscriptomicsUploader.view.AddToGroup', {
 					},
 					submitEmptyText: false,
 					success: function(fm, action) {
-						Ext.Msg.alert('Success', 'Saved in workspace');
+						//Ext.Msg.alert('Success', 'Saved in workspace');
 						uploader.close();
 					},
 					failure: function(fm, action) {

@@ -25,7 +25,7 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 		flex: 1,
 		renderer: function(value, metadata, record, rowIndex, colIndex, store) {
 			if (value != undefined && value != "") {
-				return Ext.String.format('<a href="http://www.ncbi.nlm.nih.gov/pubmed/{0}">{0}</a>', value);
+				return Ext.String.format('<a href="http://www.ncbi.nlm.nih.gov/pubmed/{0}" target="_blank">{0}</a>', value);
 			} else {
 				return "";
 			}

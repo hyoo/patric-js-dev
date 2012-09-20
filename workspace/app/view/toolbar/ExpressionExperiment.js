@@ -191,21 +191,25 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 			items: [{
 				xtype: 'tbar_btn_genelist',
 				handler: function(btn, e) {
-					var selection = btn.findParentByType('toolbar').getSelectedID("eid"),
+					var selection = btn.findParentByType('toolbar').getSelectedID(),
 						expIds = new Array(),
-						colIds = new Array();
+						colIds = new Array(),
+						store = Ext.getStore("ExpressionExperiments");
+					//console.log(selection);
 					
-					Ext.Array.each(selection, function(item) {
-						if (typeof item == "number") {
-							expIds.push(item);
+					Ext.Array.each(selection, function(expid) {
+						item = store.getById(expid);
+						
+						if (item.get("source") == "PATRIC") {
+							expIds.push(item.get("eid"));
 						}
-						else if (typeof item == "string") {
-							colIds.push(item);
+						else if (item.get("source") == "me") {
+							colIds.push(item.get("expid"));
 						}
 					});
 					var param = "&expId=" + expIds.join(",") + "&sampleId=&colId=" + colIds.join(",");
 					if (expIds.length > 0 || colIds.length >0) {
-						//console.log (expIds);
+						//console.log (expIds, colIds);
 						this.fireEvent('runGeneList', param);
 					}
 				}

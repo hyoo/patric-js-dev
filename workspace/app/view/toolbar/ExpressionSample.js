@@ -115,13 +115,14 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 				handler: function(btn, e) {
 					var selection = btn.findParentByType('toolbar').getSelectedID(),
 						expId = Ext.getCmp('workspace_experimentinfoeditor').record.get("expid"),
+						store = Ext.getStore("ExpressionExperiments"),
 						param = "";
-					
+					//console.log(selection);
 					if (selection != undefined) {
-						if (typeof expId == "number") {
+						if (store.getById(expId).get("source")=="PATRIC") {
 							param = "&expId=" + expId + "&sampleId=" + selection.join(",") + "&colId=";
 						} 
-						else if (typeof expId == "string") {
+						else if (store.getById(expId).get("source")=="me") {
 							param = "&expId=&sampleId=&colId=" + expId + ":" + selection.join("+").replace(new RegExp(expId, 'g'), '');
 						}
 					

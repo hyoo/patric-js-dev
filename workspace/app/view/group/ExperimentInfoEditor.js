@@ -111,7 +111,7 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 			samples: subtitle,
 			description: record.get("desc"), 
 			organism: record.get("organism"),
-			pmid: record.get("pmid"),
+			pmid: (record.get("pmid")!=0)?record.get("pmid"):"",
 			updated: Ext.Date.format(Ext.Date.parse(record.get("mdate"), 'Y-m-d H:i:s'), 'M j, Y'),
 			created: Ext.Date.format(Ext.Date.parse(record.get("cdate"), 'Y-m-d H:i:s'), 'M j, Y'),
 			file: record.get("origFileName")

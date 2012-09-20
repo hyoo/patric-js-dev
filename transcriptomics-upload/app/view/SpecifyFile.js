@@ -75,19 +75,20 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 			buttonText: 'Choose File',
 			fieldLabel: 'Specify a file on your computer',
 			labelWidth: 180,
-			anchor: '100%',
+			width: 256,
 			listeners: {
 				'change': function (me, value, eOpts) {
 					var arr = value.split("\\");
 					var filename = arr[arr.length-1];
+					//console.log(arr, filename, me.up('form').getForm().findField("expression_filename"));
 					me.up('form').getForm().findField("expression_filename").setValue(filename);
 				}
 			}
 		}, {
 			xtype: 'displayfield',
 			name: 'expression_filename',
-			value: '',
-			padding: '0 20px'
+			//value: '(no file has chosen)',
+			padding: '0 0 0 20px'
 		}]
 	},{
 		xtype: 'imagecomponent',
@@ -140,7 +141,7 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 			buttonText: 'Choose File',
 			fieldLabel: 'Specify a file on your computer',
 			labelWidth: 180,
-			anchor: '100%',
+			width: 256,
 			listeners: {
 				'change': function (me, value, eOpts) {
 					var arr = value.split("\\");
@@ -151,8 +152,8 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		}, {
 			xtype: 'displayfield',
 			name: 'sample_filename',
-			value: '',
-			padding: '0 20px'
+			//value: '(no file has chosen)',
+			padding: '0 0 0 20px'
 		}]
 	}],
 	buttons: [{

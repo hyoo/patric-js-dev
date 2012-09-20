@@ -127,7 +127,8 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 		padding: '10 0 0 0',
 		items: [{
 			xtype: 'displayfield',
-			value: '<b>Map your genes into PATRIC</b>'
+			value: '<b>Map your genes into PATRIC</b>',
+			width: 200
 		}, {
 			xtype: 'button',
 			id: 'map_genes_btn',

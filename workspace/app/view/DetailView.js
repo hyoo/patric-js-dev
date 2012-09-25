@@ -105,12 +105,12 @@ Ext.define('VBI.Workspace.view.DetailView', {
 			store: 'ExpressionSamples',
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.ExpressionSample'),
-			dockedItems: [{
+			/*dockedItems: [{
 				xtype: 'patricpagingtoolbar',
 				store: 'ExpressionSamples',
 				dock: 'bottom',
 				displayInfo: true
-			}],
+			}],*/
 			selModel: Ext.create('Ext.selection.CheckboxModel')
 		}]
 	}]

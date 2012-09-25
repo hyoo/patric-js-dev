@@ -27,31 +27,64 @@ Ext.define('VBI.Workspace.controller.Experiment', {
 		button.pressed ? target.startEdit() : target.finishEdit();
 	},
 	downloadExperiments: function(type) {
-		var idList = new Array();
-		var store = Ext.getStore("ExpressionExperiments");
+		var store = Ext.getStore("ExpressionExperiments"),
+			PATRICExperiments = new Array(),
+			USERExperiments = new Array();
+		
 		Ext.Array.each(store.getRange(), function(item) {
-			idList.push(item.internalId);
+			
+			if (item.get("source") == "PATRIC") {
+				//PATRICExperiments.push(item.internalId);
+				PATRICExperiments.push({trackType:"ExpressionExperiment", internalId: item.internalId});
+			} else if (item.get("source") == "me") {
+				USERExperiments.push(item.internalId);
+			}
 		});
+		
+		var fids = {
+			"PATRICExperiments": PATRICExperiments,
+			"USERExperiments": USERExperiments
+		};
+		
 		Ext.getDom("fTableForm").action = "/patric-searches-and-tools/jsp/grid_download_handler.jsp";
 		Ext.getDom("fTableForm").target = "";
 		Ext.getDom("tablesource").value = "Workspace";
 		Ext.getDom("fileformat").value = type;
-		Ext.getDom("fids").value = idList.join(",");
+		//Ext.getDom("fids").value = idList.join(",");
 		Ext.getDom("idType").value = "ExpressionExperiment";
-		Ext.getDom("fTableForm").submit();
+		
+		Ext.Ajax.request({
+			url: "/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=WSSupport&action=getToken",
+			success: function(response) {
+				fids.token = response.responseText;
+				Ext.getDom("fids").value = Ext.JSON.encode(fids);
+				Ext.getDom("fTableForm").submit();
+			}
+		});
 	},
 	downloadSamples: function(type) {
-		var idList = new Array();
-		var store = Ext.getStore("ExpressionSamples");
-		Ext.Array.each(store.getRange(), function(item) {
-			idList.push(item.internalId);
-		});
+		var store	= Ext.getStore("ExpressionSamples"),
+			expInfo	= Ext.getCmp('workspace_experimentinfoeditor').record,
+			fids = {
+				source: expInfo.get("source"),
+				eid: expInfo.get("eid"),
+				expId: expInfo.get("expid")
+			};
+		
 		Ext.getDom("fTableForm").action = "/patric-searches-and-tools/jsp/grid_download_handler.jsp";
 		Ext.getDom("fTableForm").target = "";
 		Ext.getDom("tablesource").value = "Workspace";
 		Ext.getDom("fileformat").value = type;
-		Ext.getDom("fids").value = idList.join(",");
+		//Ext.getDom("fids").value = idList.join(",");
 		Ext.getDom("idType").value = "ExpressionSample";
-		Ext.getDom("fTableForm").submit();
+		
+		Ext.Ajax.request({
+			url: "/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=WSSupport&action=getToken",
+			success: function(response) {
+				fids.token = response.responseText;
+				Ext.getDom("fids").value = Ext.JSON.encode(fids);
+				Ext.getDom("fTableForm").submit();
+			}
+		});
 	}
 });

@@ -27,5 +27,11 @@ Ext.define('VBI.Workspace.view.StationsList', {
 			var node = this.getStore().getNodeById(2);
 			this.fireEvent('itemclick', this.getView(), node);
 		}
+		else if (station == "ExpressionExperiments")
+		{
+			this.getView().select(3);
+			var node = this.getStore().getNodeById(4);
+			this.fireEvent('itemclick', this.getView(), node);
+		}
 	}
 });

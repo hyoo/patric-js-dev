@@ -52,7 +52,7 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 					disableCaching: false
 				});
 			}
-		}, */
+		}, 
 		{
 			text: '(status)',
 			handler: function() {
@@ -63,8 +63,8 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 					}
 				});
 			}
-		},
-		'-', 
+		}, 
+		'-', */
 		{
 			xtype: 'button',
 			itemId: 'btnItemView',

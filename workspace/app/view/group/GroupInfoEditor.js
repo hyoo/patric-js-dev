@@ -81,7 +81,7 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 	 * @param {Ext.data.Model} record The data record to load.
 	 */
 	loadRecord: function(record) {
-		console.log(record.data);
+		//console.log(record.data);
 		
 		this.record = record;
 		var title, desc;

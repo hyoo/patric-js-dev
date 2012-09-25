@@ -43,7 +43,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 						src: "/patric/images/transcriptomics_uploader_ad.png"
 					},
 					margin: '0 25px',
-					height: 100
+					height: 99
 				}, {
 					xtype: 'displayfield',
 					width: 130,

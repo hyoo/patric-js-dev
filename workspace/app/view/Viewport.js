@@ -35,7 +35,6 @@ Ext.define('VBI.Workspace.view.Viewport', {
 				xtype: 'panel',
 				layout: 'vbox',
 				border: false,
-				height: 250,
 				cls: 'no-underline-links',
 				items: [{
 					xtype: 'component',
@@ -43,7 +42,8 @@ Ext.define('VBI.Workspace.view.Viewport', {
 						tag: 'img',
 						src: "/patric/images/transcriptomics_uploader_ad.png"
 					},
-					margin: '0 25px'
+					margin: '0 25px',
+					height: 100
 				}, {
 					xtype: 'displayfield',
 					width: 130,

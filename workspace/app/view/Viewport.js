@@ -42,8 +42,8 @@ Ext.define('VBI.Workspace.view.Viewport', {
 					xtype: 'component',
 					autoEl: {
 						tag: 'img',
-						style: "cursor:hand",
 						onclick: "launchTranscriptomicsUploader()",
+						style: "cursor: pointer",
 						src: "/patric/images/transcriptomics_uploader_ad.png"
 					},
 					margin: '0 25px',

@@ -7,8 +7,8 @@ Ext.define('VBI.Workspace.view.DetailView', {
 		'VBI.Workspace.view.toolbar.Group',
 		'VBI.Workspace.view.toolbar.ExpressionSample',
 		'VBI.Workspace.view.columns.Genome', 
-		'VBI.Workspace.view.columns.Feature'],
-	id: 'workspace_detailview',
+		'VBI.Workspace.view.columns.Feature'
+	],
 	border: false,
 	layout: 'border',
 	items: [{
@@ -20,10 +20,12 @@ Ext.define('VBI.Workspace.view.DetailView', {
 		activeItem: 'groupinfo',
 		items:[{
 			itemId: 'groupinfo',
-			xtype: 'groupinfoeditor'
+			xtype: 'groupinfoeditor',
+			id: 'workspace_groupinfoeditor'
 		}, {
 			itemId: 'experimentinfo',
-			xtype: 'experimentinfoeditor'
+			xtype: 'experimentinfoeditor',
+			id: 'workspace_experimentinfoeditor'
 		}]
 	}, {
 		itemId: 'panel_toolbar',
@@ -34,8 +36,7 @@ Ext.define('VBI.Workspace.view.DetailView', {
 		activeItem: 'group',
 		items: [{
 			itemId: 'group',
-			xtype: 'grouptoolbar',
-			height: 80
+			xtype: 'grouptoolbar'
 		}, {
 			itemId: 'feature',
 			xtype: 'featuretoolbar'
@@ -44,7 +45,8 @@ Ext.define('VBI.Workspace.view.DetailView', {
 			xtype: 'genometoolbar'
 		}, {
 			itemId: 'experiment',
-			xtype: 'expressionexperimenttoolbar'
+			xtype: 'expressionexperimenttoolbar',
+			id: 'expressionexperimenttoolbar'
 		}, {
 			itemId: 'sample',
 			xtype: 'expressionsampletoolbar'
@@ -105,12 +107,6 @@ Ext.define('VBI.Workspace.view.DetailView', {
 			store: 'ExpressionSamples',
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.ExpressionSample'),
-			/*dockedItems: [{
-				xtype: 'patricpagingtoolbar',
-				store: 'ExpressionSamples',
-				dock: 'bottom',
-				displayInfo: true
-			}],*/
 			selModel: Ext.create('Ext.selection.CheckboxModel')
 		}]
 	}]

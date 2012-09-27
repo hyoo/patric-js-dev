@@ -5,7 +5,6 @@ Ext.define('VBI.Workspace.view.StationsList', {
 	rootVisible: false,
 	hideHeaders: true,
 	useArrows: true,
-	id: 'workspace_station',
 	stateful: false,
 	columns:[{
 		xtype: 'treecolumn',

@@ -16,6 +16,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 		dockedItems: [{
 			dock: 'top',
 			xtype: 'globaltoolbar',
+			id: 'workspace_globaltoolbar',
 			height: 30
 		}],
 		layout: {
@@ -28,6 +29,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 			border: false,
 			items: [{
 				xtype: 'stationslist', //source list
+				id: 'workspace_station',
 				border: false,
 				width: 150,
 				height: 300
@@ -89,7 +91,8 @@ Ext.define('VBI.Workspace.view.Viewport', {
 				xtype: 'groupview'
 			}, {
 				itemId: 'detailview',
-				xtype: 'detailview'
+				xtype: 'detailview',
+				id: 'workspace_detailview'
 			}]
 		}]
 	},

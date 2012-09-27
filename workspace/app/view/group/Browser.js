@@ -1,9 +1,6 @@
 Ext.define('VBI.Workspace.view.group.Browser', {
 	extend: 'Ext.view.View',
 	alias : 'widget.groupbrowser',
-	store: 'Groups', 
-	id: 'workspace_groupbrowser',
-	stateful: false,
 	tpl: [
 			'<tpl for=".">',
 				'<div class="thumb-wrap">',

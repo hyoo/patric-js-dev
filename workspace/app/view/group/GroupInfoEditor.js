@@ -8,7 +8,6 @@
 Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 	extend: 'Ext.form.Panel',
 	alias: 'widget.groupinfoeditor',
-	id: 'workspace_groupinfoeditor',
 	stateful: false,
 	width: 225, 
 	minWidth: 225, 

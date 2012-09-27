@@ -1,8 +1,6 @@
 Ext.define('VBI.Workspace.view.toolbar.Global', {
 	extend: 'Ext.toolbar.Toolbar',
 	alias: 'widget.globaltoolbar',
-	id: 'workspace_globaltoolbar',
-	stateful: false,
 	switchViewButtons: function(cView) {
 		if (cView == null) {
 			cView = Ext.getCmp('workspace_view').activeItem;

@@ -1,8 +1,6 @@
 Ext.define('VBI.Workspace.view.toolbar.Feature', {
 	extend: 'Ext.toolbar.Toolbar',
 	alias: 'widget.featuretoolbar',
-	stateful: false,
-	height: 70,
 	getSelectedGroup: function() {
 		var viewport = Ext.getCmp('workspace_view');
 		var selection;
@@ -161,14 +159,12 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 	}, '-',
 	{
 		title: 'View',
-		columns: 1,
 		xtype: 'buttongroup',
 		items: [{
 			scale: 'small',
 			iconAlign: 'left',
 			text: 'FASTA',
 			width: 110,
-			//icon: '/patric/images/toolbar_fasta.png',
 			xtype: 'splitbutton',
 			menu: [{
 				scale: 'small',
@@ -216,7 +212,6 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 	},
 	{
 		title: 'Download',
-		columns: 1,
 		xtype: 'buttongroup',
 		width: 115,
 		items: [

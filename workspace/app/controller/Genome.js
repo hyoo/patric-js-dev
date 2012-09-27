@@ -8,8 +8,9 @@ Ext.define('VBI.Workspace.controller.Genome', {
 		});
 	},
 	downloadGrid: function(type) {
-		var idList = new Array();
-		var store = Ext.getStore("Genomes");
+		var idList = new Array(),
+			store = Ext.getStore("Genomes");
+			
 		Ext.Array.each(store.getRange(), function(item) {
 			idList.push(item.internalId);
 		});

@@ -1,7 +1,6 @@
 Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 	extend: 'Ext.toolbar.Toolbar',
 	alias: 'widget.expressionsampletoolbar',
-	stateful: false,
 	getSelectedID: function() {
 		var selection = Ext.getCmp('workspace_detailview').child('#panel_grid').child('#experimentdetail').getSelectionModel().getSelection();
 		
@@ -107,7 +106,6 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 			}]
 		}, */{
 			title: 'View',
-			columns: 1,
 			xtype: 'buttongroup',
 			width: 115,
 			items: [{
@@ -132,7 +130,6 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 			}]
 		}, {
 			title: 'Download',
-			columns: 1,
 			xtype: 'buttongroup',
 			width: 115,
 			items: [{

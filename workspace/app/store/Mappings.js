@@ -73,11 +73,6 @@ Ext.define('VBI.Workspace.store.Mappings', {
 		}
 		
 		return tracks;
-		/*
-		return Ext.Array.sort(Ext.Array.unique(tracks), function(a,b) {
-			return a-b;
-		});
-		*/
 	},
 	getTagsByTrack: function(trackId) {
 		var target = new Array();	

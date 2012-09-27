@@ -43,15 +43,17 @@ Ext.define('VBI.Workspace.controller.Station', {
 			var targetTracks = storeMap.getFilteredTracks();
 			//console.log(targetTracks);
 			
-			if (selectedType == "Feature") {
+			if (selectedType === "Feature") {
 				storeFeatures.filterByTracks(targetTracks);
-				this.showFeatureListPanel();
-			} else if (selectedType == "Genome") {
+				this.showListPanel('featureview');
+			} 
+			else if (selectedType === "Genome") {
 				storeGenomes.filterByTracks(targetTracks);
-				this.showGenomeListPanel();
-			} else if (selectedType == "ExpressionExperiment") {
+				this.showListPanel('genomeview');
+			} 
+			else if (selectedType === "ExpressionExperiment") {
 				storeExpressionExperiments.filterByTracks(targetTracks);
-				this.showExperimentListPanel();
+				this.showListPanel('experimentview');
 			}
 			
 		// 3.5 update column browser tags
@@ -66,16 +68,8 @@ Ext.define('VBI.Workspace.controller.Station', {
 			storeGroups.clearFilter();
 			storeGroups.filter("type", selectedType);
 	},
-	showFeatureListPanel: function() {
+	showListPanel: function(viewType) {
 		Ext.getCmp('workspace_view').getLayout().setActiveItem(Ext.getCmp('workspace_view').activeItem);
-		Ext.getCmp('workspace_listview').getLayout().setActiveItem('featureview');
-	},
-	showGenomeListPanel: function() {
-		Ext.getCmp('workspace_view').getLayout().setActiveItem(Ext.getCmp('workspace_view').activeItem);
-		Ext.getCmp('workspace_listview').getLayout().setActiveItem('genomeview');
-	},
-	showExperimentListPanel: function() {
-		Ext.getCmp('workspace_view').getLayout().setActiveItem(Ext.getCmp('workspace_view').activeItem);
-		Ext.getCmp('workspace_listview').getLayout().setActiveItem('experimentview');
+		Ext.getCmp('workspace_listview').getLayout().setActiveItem(viewType);
 	}
 });

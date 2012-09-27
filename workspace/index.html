@@ -15,6 +15,16 @@
 		var popup; 
 		function updateCartInfo() {};
 	</script>
+	<script type="text/javascript">
+	function launchTranscriptomicsUploader() {
+		uploader = Ext.create('TranscriptomicsUploader.view.Viewport',{
+			callback: function() {
+				// customize ending behavior either to refresh workspace or add message to the launch button
+				Ext.getCmp("expressionexperimenttoolbar").refreshWorkspaceViews();
+			}
+		}).show();
+	}
+	</script>
 	<script type="text/javascript" src="app.js"></script>
 	<link rel="stylesheet" type="text/css" href="/patric/css/patric.css" />
 	<link rel="stylesheet" type="text/css" href="/patric/css/main.css" />

@@ -40,6 +40,8 @@ Ext.define('VBI.Workspace.view.Viewport', {
 					xtype: 'component',
 					autoEl: {
 						tag: 'img',
+						style: "cursor:hand",
+						onclick: "launchTranscriptomicsUploader()",
 						src: "/patric/images/transcriptomics_uploader_ad.png"
 					},
 					margin: '0 25px',
@@ -48,7 +50,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 					xtype: 'displayfield',
 					width: 130,
 					margin: '0 0 0 10px',
-					value: '<a href="javascript:void(0)" onclick="(function() { uploader = Ext.create(\'TranscriptomicsUploader.view.Viewport\',{}).show();})();">Upload your transcriptomics data</a> to analyze using PATRIC tools and to compare with other published datasets.'
+					value: '<a href="javascript:void(0)" onclick="launchTranscriptomicsUploader()">Upload your transcriptomics data</a> to analyze using PATRIC tools and to compare with other published datasets.'
 				}, {
 					xtype: 'component',
 					overCls: 'no-underline-links',

@@ -1,6 +1,7 @@
 Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 	extend: 'Ext.toolbar.Toolbar',
 	alias: 'widget.expressionexperimenttoolbar',
+	id: 'expressionexperimenttoolbar',
 	stateful: false,
 	/* need to implement to work with experiment data */
 	getSelectedGroup: function() {
@@ -231,13 +232,23 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 					handler: function() {
 						this.fireEvent('downloadGrid','txt');
 					}
-				},
-				{
+				}, {
 					xtype: 'tbar_menu_dn_tb_xls',
 					handler: function() {
 						this.fireEvent('downloadGrid','xlsx');
 					}
 				}]
+			}]
+		}, {
+			title: 'Upload',
+			columns: 1,
+			xtype: 'buttongroup',
+			width: 135,
+			items: [{
+				scale: 'large',
+				text: 'Upload your data',
+				icon: '/patric/images/transcriptomics_uploader_icon.png',
+				handler: launchTranscriptomicsUploader
 			}]
 		}, '->', '-',
 		{

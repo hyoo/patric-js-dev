@@ -122,9 +122,11 @@ Ext.define('VBI.Workspace.view.Toolbar.window.AddToGroup', {
 	alias: 'widget.tbar_window_addtogroup',
 	layout:'fit',
 	width:350,
-	height:280,
+	height:300,
 	closeAction:'hide',
-	plain: true,
 	modal: true,
-	items: [ATGform]
+	items: [{
+		xtype: 'addtoworkspace',
+		id: 'ATGform'
+	}]
 });

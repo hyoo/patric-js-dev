@@ -156,7 +156,7 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 			handler: function(btn, e) {
 				var idList = btn.findParentByType('toolbar').getSelectedID(),
 					me = this;
-						
+				
 				if (idList == null) { return false; }
 					
 				var btnGroupPopupSave = new Ext.Button({
@@ -169,13 +169,12 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 				});
 						
 				popup = Ext.create('VBI.Workspace.view.Toolbar.window.AddToGroup', {
-						title: 'Add Selected Experiments to Group',
-						buttons: [btnGroupPopupSave,{
-							text: 'Cancel',
-							handler: function(){popup.hide();}
-						}]
+					title: 'Add Selected Experiments to Group',
+					buttons: [btnGroupPopupSave,{
+						text: 'Cancel',
+						handler: function(){popup.hide();}
+					}]
 				}).show();
-				loadATGCombo();
 			}
 		}]
 	}, {

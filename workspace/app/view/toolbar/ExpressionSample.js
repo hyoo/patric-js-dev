@@ -101,7 +101,6 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 								handler: function(){popup.hide();}
 							}]
 					}).show();
-					loadATGCombo();
 				}
 			}]
 		}, */{

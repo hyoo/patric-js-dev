@@ -145,15 +145,14 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 						me.findParentByType('toolbar').refreshWorkspaceViews();
 					}
 				});
-					 	
+				
 				popup = Ext.create('VBI.Workspace.view.Toolbar.window.AddToGroup', {
-						title: 'Add Selected Features to Group',
-						buttons: [btnGroupPopupSave,{
-							text: 'Cancel',
-							handler: function(){popup.hide();}
-						}]
+					title: 'Add Selected Features to Group',
+					buttons: [btnGroupPopupSave,{
+						text: 'Cancel',
+						handler: function(){popup.hide();}
+					}]
 				}).show();
-				loadATGCombo();
 			}
 		}]
 	}, '-',

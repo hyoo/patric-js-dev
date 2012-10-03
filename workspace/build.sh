@@ -1,10 +1,10 @@
-rm Workspace.debug.js
-cat app/model/* >> Workspace.debug.js
-cat app/store/* >> Workspace.debug.js
-cat app/view/*/* >> Workspace.debug.js
-cat app/view/*.js >> Workspace.debug.js
-cat app/controller/*.js >> Workspace.debug.js
-cat app.js >> Workspace.debug.js
-java -jar ../yuicompressor-2.4.7.jar Workspace.debug.js > Workspace.js
-#cp Workspace.debug.js ../../js/vbi/Workspace.debug.js
-#cp Workspace.js ../../js/vbi/Workspace.js
+rm Workspace.js
+cat app/model/* >> Workspace.js
+cat app/store/* >> Workspace.js
+cat app/view/*/* >> Workspace.js
+cat app/view/*.js >> Workspace.js
+cat app/controller/*.js >> Workspace.js
+cat app.js >> Workspace.js
+java -jar ../yuicompressor-2.4.7.jar Workspace.js > Workspace.min.js
+cp Workspace.js ../../js/vbi/Workspace.js
+cp Workspace.min.js ../../js/vbi/Workspace.min.js

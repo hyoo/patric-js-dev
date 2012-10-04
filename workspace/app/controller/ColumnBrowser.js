@@ -59,7 +59,7 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 				var targetTracks = storeMap.getFilteredTracks();
 				storeFeatures.filterByTracks(targetTracks);
 				storeGenomes.filterByTracks(targetTracks);
-				//storeExpressionExperiments.filterByTracks(targetTracks);
+				storeExpressionExperiments.filterByTracks(targetTracks);
 				
 			// 3. update Tags
 				var targetStringTags = storeMap.getTagsByTrack(targetTracks);

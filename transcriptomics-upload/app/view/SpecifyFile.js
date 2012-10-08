@@ -49,9 +49,19 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 			xtype: 'component',
 			autoEl: {
 				tag: 'a',
-				href: 'http://enews.patricbrc.org',
+				href: 'http://enews.patricbrc.org/faqs/transcriptomics-faqs/upload-transcriptomics-data-to-workspace-faqs/#gene-matrix',
 				html: "what's this?",
 				target: '_blank'
+			},
+			listeners: {
+				afterrender: function(link) {
+					link.mon(link.el, 'click', function() { 
+						Ext.create('Ext.tip.ToolTip', {
+							target: link.el,
+							html: 'File format describes how the expression data is orgnaized in your source file.  Gene Matrix format specifies gene identifiers in rows, samples in columns, and interior cells contain expression values as log-ratio.  Gene List format specifies gene ID, sample, and expressions value as log-ratio per row.'
+						});
+					}, this);
+				}
 			},
 			padding: '0 0 0 15px'
 		}]
@@ -87,7 +97,6 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		}, {
 			xtype: 'displayfield',
 			name: 'expression_filename',
-			//value: '(no file has chosen)',
 			padding: '0 0 0 20px'
 		}]
 	},{
@@ -99,7 +108,21 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		name: 'remoteData_1',
 		fieldLabel: 'Specify a URL for a file',
 		labelWidth: 180,
-		anchor: '100%'
+		anchor: '100%',
+		validator: function(value) {
+			var file1 = this.up('form').getForm().findField("file0");
+			
+			if (file1.isValid() && file1.getValue()!="") {
+				return true;
+			} else {
+				// validate url form
+				if (Ext.form.field.VTypes.url(value)) { 
+					return true;
+				} else {
+					return false;
+				}
+			}
+		}
 	},{
 		xtype: 'displayfield',
 		padding: '15 0 0 0',
@@ -152,7 +175,6 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 		}, {
 			xtype: 'displayfield',
 			name: 'sample_filename',
-			//value: '(no file has chosen)',
 			padding: '0 0 0 20px'
 		}]
 	}],
@@ -213,7 +235,14 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 								success: function(fm, action) {
 									//console.log('success', action);
 									
-									var myMask = new Ext.LoadMask(uploader, {msg:"Uploading your file"});
+									// clear filenames
+									fm.findField("expression_filename").setValue("");
+									fm.findField("sample_filename").setValue("");
+									//fm.findField("file0").setValue();
+									//fm.findField("file0").validate();
+									
+									// parse
+									var myMask = new Ext.LoadMask(uploader.body, {msg:"Uploading your file"});
 									myMask.show();
 									
 									Ext.Ajax.request({

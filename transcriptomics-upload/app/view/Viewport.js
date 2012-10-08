@@ -2,6 +2,7 @@ Ext.define('TranscriptomicsUploader.view.Viewport', {
 	extend: 'Ext.window.Window', 
 	title: 'Upload Transcriptomics Data to Workspace',
 	width: 600,
+	resizable: false,
 	id: "uploader",
 	params: {
 		//collectionId: "80ed8f0c-a155-4d3b-b1ed-c7a64f5c9cef",

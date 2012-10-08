@@ -17,7 +17,7 @@ Ext.define('TranscriptomicsUploader.view.DescribeExperiment', {
 	},	
 	items: [{
 		xtype: 'displayfield',
-		value: '<b>Provide additional information for this experiment data</b>'
+		value: '<b>Provide additional information for this experiment</b>'
 	}, {
 		xtype: 'textfield',
 		name: 'experiment_title',

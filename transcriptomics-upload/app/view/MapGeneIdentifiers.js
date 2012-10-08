@@ -34,7 +34,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 				if (i==0) {
 					fields.push("C"+i);
 					cols.push({
-						text: "ID",
+						text: "Gene ID",
 						dataIndex: "C"+i
 					});
 				} else {
@@ -80,7 +80,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 	}, {
 		xtype: 'displayfield',
 		padding: '10 0 0 0',
-		value: '<b>Specify ID type to map data into PATRIC</b>'
+		value: '<b>Specify Gene ID type to map data into PATRIC</b>'
 	}, {
 		xtype: 'container',
 		layout: 'hbox',
@@ -100,9 +100,19 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 			xtype: 'component',
 			autoEl: {
 				tag: 'a',
-				href: 'http://enews.patricbrc.org',
+				href: 'http://enews.patricbrc.org/faqs/transcriptomics-faqs/upload-transcriptomics-data-to-workspace-faqs/#gene-id-type',
 				html: "what's this?",
 				target: '_blank'
+			},
+			listeners: {
+				afterrender: function(link) {
+					link.mon(link.el, 'click', function() { 
+						Ext.create('Ext.tip.ToolTip', {
+							target: link.el,
+							html: 'Gene ID Type describes the gene identifier scheme used in your source file.  PATRIC uses Gene ID Type to map your data to existing PATRIC functional annotations.'
+						});
+					}, this);
+				}
 			},
 			padding: '0 0 0 15px'
 		}, {
@@ -113,7 +123,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 			xtype: 'component',
 			autoEl: {
 				tag: 'a',
-				href: 'http://enews.patricbrc.org',
+				href: 'http://enews.patricbrc.org/faqs/transcriptomics-faqs/upload-transcriptomics-data-to-workspace-faqs',
 				html: "FAQ",
 				target: '_blank'
 			}
@@ -141,7 +151,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 				var gene_id_type	= form.findField("geneIdType").getValue();
 				
 				//console.log(ncbi_taxon_id, form, gene_id_type);
-				var myMask = new Ext.LoadMask(uploader, {msg:"Mapping genes"});
+				var myMask = new Ext.LoadMask(uploader.body, {msg:"Mapping genes"});
 				myMask.show();
 				
 				Ext.Ajax.request({

@@ -103,7 +103,11 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 					}).show();
 				}
 			}]
-		}, */{
+		}, */
+		{
+			xtype: 'tbspacer',
+			width: 220
+		}, {
 			title: 'View',
 			xtype: 'buttongroup',
 			width: 115,

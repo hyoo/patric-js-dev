@@ -234,10 +234,10 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 	}, {
 		title: 'Upload',
 		xtype: 'buttongroup',
-		width: 135,
+		width: 155,
 		items: [{
 			scale: 'large',
-			text: 'Upload your data',
+			text: 'Transcriptomics Data',
 			icon: '/patric/images/transcriptomics_uploader_icon.png',
 			handler: launchTranscriptomicsUploader
 		}]

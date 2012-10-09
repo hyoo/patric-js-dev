@@ -8,7 +8,7 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 		flex: 1,
 		align: 'left'
 	}, {
-		text: 'Experiment Title', 
+		text: 'Title', 
 		dataIndex: 'title', 
 		flex: 4,
 		align: 'left',
@@ -17,6 +17,25 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 				return Ext.String.format('<a href="javascript:void(0)" onclick="launchExperimentDetail({1})">{0}</a>', value, record.get('expid'));
 			} else {
 				return Ext.String.format('<a href="javascript:void(0)" onclick="launchExperimentDetail(\'{1}\')">{0}</a>', value, record.get('expid'));
+			}
+		}
+	}, {
+		text: 'Samples', 
+		dataIndex: 'samples',
+		flex: 1
+	}, {
+		text: 'Genes', 
+		dataIndex: 'genes',
+		flex: 1,
+		renderer: function(value, metadata, record, rowIndex, colIndex, store) {
+			if (record.get("source") != "PATRIC") {
+				return value;
+			}
+			if (value != 0) {
+				return Ext.String.format('<a href="TranscriptomicsGene?cType=&cId=&dm=result&expId={1}&sampleId=&log_ratio=0&zscore=0">{0}</a>', 
+					value, record.get("eid"));
+			} else {
+				return 0;
 			}
 		}
 	}, {
@@ -30,10 +49,6 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 				return "";
 			}
 		}
-	}, {
-		text: 'Samples', 
-		dataIndex: 'samples',
-		flex: 1
 	}, {		
 		text: 'Organism', 
 		dataIndex: 'organism', 

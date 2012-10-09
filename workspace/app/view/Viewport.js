@@ -58,7 +58,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 					overCls: 'no-underline-links',
 					autoEl: {
 						tag: 'a',
-						href: 'http://enews.patricbrc.org',
+						href: 'http://enews.patricbrc.org/faqs/transcriptomics-faqs/upload-transcriptomics-data-to-workspace-faqs/',
 						html: "Learn more",
 						target: '_blank',
 						cls: 'double-arrow-link'

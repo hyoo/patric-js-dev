@@ -2,11 +2,10 @@ Ext.define('VBI.Workspace.model.ExpressionExperiment', {
 	extend: 'Ext.data.Model',
 	idProperty: 'expid',
 	fields: [ 	
-		'source', 'accession', 'author', 'description',
-		{name:'eid', type:'int'}, 'expid', 'growthcond', 'institution',
-		'modification', 'organism', 'pi', {name:'platforms', type:'int'},
-		{name:'pmid', type:'int'}, {name:'samples', type:'int'},
-		'strain', 'substrain', 'title', 'timeseries', 'treatment',
-		'origFileName', 'desc', 'cdate', 'mdate'
+		'accession', 'author', 'condition', 'description', {name:'eid', type:'int'},
+		'expid', 'genes', 'institution', 'mutant', 'organism',
+		'pi', {name:'platforms', type:'int'}, {name:'pmid', type:'int'}, 'release_date', {name:'samples', type:'int'},
+		'strain', 'timeseries', 'title',
+		'source', 'origFileName', 'desc', 'cdate', 'mdate'
 	]
 });

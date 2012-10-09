@@ -50,22 +50,22 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		name: 'organism', 
 		itemId: 'organism', 
 		fieldLabel: 'Platform Organism',
-		labelAlign: 'top',
-		value: ''
+		labelAlign: 'top'
 	}, {
 		xtype: 'displayfield',
 		name: 'pmid', 
 		itemId: 'pmid', 
 		fieldLabel: 'Pubmed ID',
 		labelWidth: 80,
-		value: ''
+		renderer: function(value, record) {
+			return Ext.String.format('<a href="http://www.ncbi.nlm.nih.gov/pubmed/{0}" target=_blank>{0}</a>', value);
+		}
 	}, {
 		xtype: 'displayfield',
 		name: 'description', 
 		itemId: 'description', 
 		fieldLabel: 'Description',
-		labelAlign: 'top',
-		value: ''
+		labelAlign: 'top'
 	}, {
 		xtype: 'displayfield',
 		name: 'updated',
@@ -214,6 +214,9 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 			itemId: 'pmid', 
 			fieldLabel: 'Pubmed ID',
 			labelWidth: 80,
+			renderer: function(value, record) {
+				return Ext.String.format('<a href="http://www.ncbi.nlm.nih.gov/pubmed/{0}" target=_blank>{0}</a>', value);
+			}
 		});
 		
 		this.remove('description');
@@ -222,8 +225,7 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 			name: 'description', 
 			itemId: 'description', 
 			fieldLabel: 'Description',
-			labelAlign: 'top',
-			value: ''
+			labelAlign: 'top'
 		});
 		this.loadRecord(this.record);
 		this.getComponent('editInfoBtn').setText('Edit');

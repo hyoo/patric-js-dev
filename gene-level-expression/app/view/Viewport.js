@@ -18,7 +18,12 @@ Ext.define('CoordView.view.Viewport', {
 			region: 'south',
 			border: false,
 			height: 400,
-			xtype: 'featuregrid'
+			xtype: 'featuregrid',
+			dockedItems: [{
+				xtype: 'toolbar',
+				height: 20,
+				dock: 'top'
+			}]
 		},
 		{
 			region: 'center',
@@ -116,8 +121,7 @@ Ext.define('CoordView.view.Viewport', {
 								title: 'All',
 								iconCls: 'icon-pie-chart',
 								id: 'CategoryPieStrain',
-								store: 'Strains',
-								theme: 'Category3'
+								store: 'Strains'
 							},{
 								xtype: 'categorybarchart',
 								title: 'Top 5',
@@ -128,7 +132,7 @@ Ext.define('CoordView.view.Viewport', {
 						},
 						{
 							xtype: 'tabpanel',
-							title: 'Mutant',
+							title: 'Gene Modification',
 							tabPosition: 'left',
 							bodyBorder: false,
 							tabBar: {
@@ -140,8 +144,7 @@ Ext.define('CoordView.view.Viewport', {
 								title: 'All',
 								iconCls: 'icon-pie-chart',
 								id: 'CategoryPieMutant',
-								store: 'Mutants',
-								theme: 'Category4'
+								store: 'Mutants'
 							},{
 								xtype: 'categorybarchart',
 								title: 'Top 5',
@@ -152,7 +155,7 @@ Ext.define('CoordView.view.Viewport', {
 						},
 						{
 							xtype: 'tabpanel',
-							title: 'Condition',
+							title: 'Experimental Condition',
 							tabPosition: 'left',
 							bodyBorder: false,
 							tabBar: {

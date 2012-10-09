@@ -26,16 +26,16 @@ Ext.define('CoordView.store.Genes', {
 	listeners: {
 		beforeload: function(store, operation, eOpts) {
 			store.proxy.extraParams = Ext.Object.merge(store.proxy.extraParams, CoordView.param);
-			Ext.get("p-featuregrid").mask("loading");
+			//Ext.get("p-featuregrid").mask("loading");
 		},
 		load: function(){
 			this.updateRecordCount();
-			Ext.get("p-featuregrid").unmask();
+			//Ext.get("p-featuregrid").unmask();
 		}
 	},
 	updateRecordCount: function() {
 		count = this.getCount();
-		(count==1) ? countStr=count+' record' : countStr=count+' records';
+		(count==1) ? countStr=count+' sample' : countStr=count+' samples';
 		Ext.getCmp('filterReport').setText("<b>"+countStr+"</b>");
 	},
 	filterField: function(fieldname, cutoff) {

@@ -22,7 +22,9 @@ Ext.define('CoordView.view.CategoryPieChart', {
 			field: 'category',
 			display: 'rotate',
 			contrast: true
-		}/*,
+		}
+		//,colorSet: ['#32220f','blue','green','pink','lightblue','gray']
+		/*,
 		listeners: {
 			'itemmouseup': function(item, obj){
 				console.log(item);

@@ -102,7 +102,7 @@ Ext.define('CoordView.view.FilterPanel', {
 			text: 'Show All Samples',
 			handler: function() {
 				// reset interface
-				this.ownerCt.getComponent("keyword").setValue('');
+				//this.ownerCt.getComponent("keyword").setValue('');
 				this.ownerCt.getComponent("log_ratio").setValue(0);
 				this.ownerCt.getComponent("zscore").setValue(0);
 				// fire filter

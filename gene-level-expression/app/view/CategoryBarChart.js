@@ -13,7 +13,9 @@ Ext.define('CoordView.view.CategoryBarChart', {
 			type: 'Numeric',
 			position: 'bottom',
 			fields: ['count'],
-			title: 'Genes'
+			title: 'Genes',
+			minimum: 0,
+			majorTickSteps: 1
 		},
 		{
 			type: 'Category',

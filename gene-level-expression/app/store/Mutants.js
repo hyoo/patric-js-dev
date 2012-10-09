@@ -31,10 +31,13 @@ Ext.define('CoordView.store.Mutants', {
 			if (successful) {
 				var data = new Array();
 				for (i=0; i<records.length; i++) {
-					if (records[i].get("rownum") < 6) {
-						data[i] = records[i].data;
+					if (records[i].get("rownum") < 7) {
+						if (records[i].get("category")!="N/A") {
+							data[i] = records[i].data;
+						}
 					}
 				}
+				data = Ext.Array.clean(data);
 				//console.log("loading to top5 store:", data);
 				Ext.getStore('MutantsTop5').loadData(data);
 				Ext.getStore('MutantsTop5').sort('count', 'ASC');

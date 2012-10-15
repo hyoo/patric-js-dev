@@ -35,7 +35,7 @@ Ext.define('CoordView.store.Genes', {
 	},
 	updateRecordCount: function() {
 		count = this.getCount();
-		(count==1) ? countStr=count+' sample' : countStr=count+' samples';
+		(count==1) ? countStr=count+' comparison' : countStr=count+' comparisons';
 		Ext.getCmp('filterReport').setText("<b>"+countStr+"</b>");
 	},
 	filterField: function(fieldname, cutoff) {

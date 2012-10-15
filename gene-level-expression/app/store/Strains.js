@@ -39,7 +39,7 @@ Ext.define('CoordView.store.Strains', {
 						}
 					}
 				}
-				data = Ext.Array.clean(data);
+				data = Ext.Array.splice(Ext.Array.clean(data), 0, 5);
 				//console.log("loading to top5 store:", data);
 				Ext.getStore('StrainsTop5').loadData(data);
 				Ext.getStore('StrainsTop5').sort('count', 'ASC');

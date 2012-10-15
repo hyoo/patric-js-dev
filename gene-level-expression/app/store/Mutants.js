@@ -37,7 +37,7 @@ Ext.define('CoordView.store.Mutants', {
 						}
 					}
 				}
-				data = Ext.Array.clean(data);
+				data = Ext.Array.splice(Ext.Array.clean(data), 0, 5);
 				//console.log("loading to top5 store:", data);
 				Ext.getStore('MutantsTop5').loadData(data);
 				Ext.getStore('MutantsTop5').sort('count', 'ASC');

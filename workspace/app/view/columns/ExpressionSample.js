@@ -43,7 +43,7 @@ Ext.define('VBI.Workspace.view.columns.ExpressionSample', {
 		align: 'left',
 		hidden: true
 	}, {
-		text: 'Sample', 
+		text: 'Title', 
 		dataIndex: 'expname', 
 		flex: 4,
 		align: 'left',

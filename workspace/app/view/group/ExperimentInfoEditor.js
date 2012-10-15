@@ -100,9 +100,9 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		
 		var subtitle;
 		if (record.get("samples") > 1) {
-			subtitle = "(" + record.get("samples") + " samples)";
+			subtitle = "(" + record.get("samples") + " comparisons)";
 		} else {
-			subtitle = "(" + record.get("samples") + " sample)";
+			subtitle = "(" + record.get("samples") + " comparison)";
 		}
 		
 		this.getForm().setValues({

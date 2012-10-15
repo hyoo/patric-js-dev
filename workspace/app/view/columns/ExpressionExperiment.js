@@ -20,7 +20,7 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 			}
 		}
 	}, {
-		text: 'Samples', 
+		text: 'Comparisons', 
 		dataIndex: 'samples',
 		flex: 1
 	}, {

@@ -238,7 +238,7 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 		items: [{
 			scale: 'large',
 			text: 'Transcriptomics Data',
-			icon: '/patric/images/transcriptomics_uploader_icon.png',
+			icon: '/patric/images/transcriptomics_uploader_icon_32x32.png',
 			handler: launchTranscriptomicsUploader
 		}]
 	}, '->', '-',

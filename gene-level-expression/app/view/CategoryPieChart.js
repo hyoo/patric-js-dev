@@ -23,7 +23,6 @@ Ext.define('CoordView.view.CategoryPieChart', {
 			display: 'rotate',
 			contrast: true
 		}
-		//,colorSet: ['#32220f','blue','green','pink','lightblue','gray']
 		/*,
 		listeners: {
 			'itemmouseup': function(item, obj){
@@ -34,5 +33,6 @@ Ext.define('CoordView.view.CategoryPieChart', {
 				return true;
 			}
 		}*/
-	}]
+	}],
+	theme: 'PATRIC'
 });

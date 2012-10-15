@@ -29,8 +29,10 @@ Ext.define('CoordView.view.CategoryBarChart', {
 			xField: 'category',
 			label: {
 				display: 'insideEnd',
-				field: 'count'
+				field: 'count',
+				contrast: true
 			}
 		}
-	]
+	],
+	theme: 'PATRIC'
 });

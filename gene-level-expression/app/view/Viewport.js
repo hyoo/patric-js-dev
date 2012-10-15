@@ -1,7 +1,14 @@
+Ext.chart.theme.PATRIC = Ext.extend(Ext.chart.theme.Base, {
+	constructor: function(config) {
+		Ext.chart.theme.Base.prototype.constructor.call(this, Ext.apply({
+			colors: ['rgb(56, 93, 117)','rgb(109,156,47)','rgb(246, 218, 98)','rgb(147, 181, 208)','rgb(172, 233, 93)','rgb(206, 192, 142)']
+		}, config));
+	}
+});
+
 Ext.define('CoordView.view.Viewport', {
 	extend: 'Ext.panel.Panel', 
 	renderTo: 'expression_panel',
-	//title: '',
 	layout: 'border',
 	minHeight: 600,
 	minWidth: 700,
@@ -41,13 +48,13 @@ Ext.define('CoordView.view.Viewport', {
 							title: 'Log Ratio',
 							id: 'p-chartlogratio',
 							store: 'LogRatios',
-							theme: 'Category1',
+							theme: 'PATRIC',
 							axes: [
 								{
 									type: 'Numeric',
 									position: 'left',
 									fields: ['count'],
-									title: 'Samples',
+									title: 'Comparisons',
 									minimum: 0
 								},
 								{
@@ -63,7 +70,8 @@ Ext.define('CoordView.view.Viewport', {
 									xField: 'category',
 									label: {
 										display: 'insideEnd',
-										field: 'count'
+										field: 'count',
+										contrast: true
 									}
 								}
 							]
@@ -73,13 +81,13 @@ Ext.define('CoordView.view.Viewport', {
 							title: 'Z-score',
 							id: 'p-chartzscore',
 							store: 'ZScores',
-							theme: 'Category2',
+							theme: 'PATRIC',
 							axes: [
 								{
 									type: 'Numeric',
 									position: 'left',
 									fields: ['count'],
-									title: 'Samples',
+									title: 'Comparisons',
 									minimum: 0
 								},
 								{
@@ -95,7 +103,8 @@ Ext.define('CoordView.view.Viewport', {
 									xField: 'category',
 									label: {
 										display: 'insideEnd',
-										field: 'count'
+										field: 'count',
+										contrast: true
 									}
 								}
 							]
@@ -167,8 +176,7 @@ Ext.define('CoordView.view.Viewport', {
 								title: 'All',
 								iconCls: 'icon-pie-chart',
 								id: 'CategoryPieCondition',
-								store: 'Conditions',
-								theme: 'Category5'
+								store: 'Conditions'
 							},{
 								xtype: 'categorybarchart',
 								title: 'Top 5',

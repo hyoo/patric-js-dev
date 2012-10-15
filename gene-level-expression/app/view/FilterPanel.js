@@ -99,7 +99,7 @@ Ext.define('CoordView.view.FilterPanel', {
 		},
 		{
 			xtype: 'button',
-			text: 'Show All Samples',
+			text: 'Show All Comparisons',
 			handler: function() {
 				// reset interface
 				//this.ownerCt.getComponent("keyword").setValue('');

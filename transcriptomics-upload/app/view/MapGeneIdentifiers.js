@@ -21,7 +21,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 			return false;
 		}
 		var p = uploader.params.parsed;
-		var strLabel =  "<b>"+p.origFileName+" ("+p.countGeneIDs+" gene IDs, "+p.countSamples+" samples)";
+		var strLabel =  "<b>"+p.origFileName+" ("+p.countGeneIDs+" gene IDs, "+p.countSamples+" comparisons)";
 		me.getComponent("parsed_label").setValue(strLabel);
 		
 		var data = [], fields = [], cols = [], grid, header;

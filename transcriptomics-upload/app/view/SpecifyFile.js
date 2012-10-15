@@ -126,7 +126,7 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 	},{
 		xtype: 'displayfield',
 		padding: '15 0 0 0',
-		value: '<b>Specify the sample metadata to upload (optional)</b>'
+		value: '<b>Specify the comparison metadata to upload (optional)</b>'
 	}, {
 		// sample file type
 		xtype: 'container',

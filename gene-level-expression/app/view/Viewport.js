@@ -37,13 +37,39 @@ Ext.define('VBI.GeneExpression.view.Viewport', {
 		xtype: 'featuregrid',
 		dockedItems: [{
 			xtype: 'toolbar',
-			height: 20,
+			height: 30,
 			dock: 'top',
 			items: ['->', {
+				xtype: 'tbtext',
+				text: 'Download table in '
+			}, {
+				xtype: 'tbspacer',
+				width: 5
+			}, {
 				xtype: 'button',
-				
+				scale: 'small',
+				iconAlign: 'left',
+				text: 'Excel file (.xlsx)',
+				icon: '/patric/images/toolbar_excel.png',
+				handler: function(me) {
+					me.fireEvent('downloadGrid','xlsx');
+				}
+			}, '|', 
+			{
+				xtype: 'button',
+				scale: 'small',
+				iconAlign: 'left',
+				text: 'Text file (.txt)',
+				icon: '/patric/images/toolbar_text.png',
+				handler: function(me) {
+					me.fireEvent('downloadGrid','txt');
+				}
 			}]
-		}]
+		}/*, {
+			xtype: 'pagingtoolbar',
+			dock: 'bottom',
+			store: 'Genes'
+		}*/]
 	}, {
 		region: 'center',
 		layout: {

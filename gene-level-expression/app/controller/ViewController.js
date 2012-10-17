@@ -19,6 +19,9 @@ Ext.define('VBI.GeneExpression.controller.ViewController', {
 				reset: this.resetFilter,
 				filter: this.doFilter,
 				showall: this.showAll
+			},
+			'featuregrid > toolbar button': {
+				downloadGrid: this.downloadGrid
 			}/*,
 			'categorypiechart': {
 				filter: this.doFilter
@@ -62,5 +65,22 @@ Ext.define('VBI.GeneExpression.controller.ViewController', {
 		Ext.getStore('Strains').load();
 		Ext.getStore('Mutants').load();
 		Ext.getStore('Conditions').load();
+	},
+	downloadGrid: function(type) {
+		
+		var idList = new Array();
+		var store = Ext.getStore("Genes");
+		Ext.Array.each(store.getRange(), function(item) {
+			idList.push(item.get('pid'));
+		});
+		var fids = {"na_feature_id":VBI.GeneExpression.param.featureId, "pid": idList.join(',')};
+		
+		Ext.getDom("fTableForm").action = "/patric-searches-and-tools/jsp/grid_download_handler.jsp";
+		Ext.getDom("fTableForm").target = "";
+		Ext.getDom("tablesource").value = "GeneExpression";
+		Ext.getDom("fileformat").value = type;
+		Ext.getDom("fids").value = Ext.JSON.encode(fids);
+		Ext.getDom("idType").value = "GeneExpression-Pid";
+		Ext.getDom("fTableForm").submit();
 	}
 });

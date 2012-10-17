@@ -1,12 +1,12 @@
 /**
- * @class CoordView.store.Mutants
+ * @class VBI.GeneExpression.store.Mutants
  * @extends Ext.data.Store
  *
- * This class implements the store for accessions.
+ * This class implements a store for one of metadata, Gene Modification.
  */
-Ext.define('CoordView.store.Mutants', {
+Ext.define('VBI.GeneExpression.store.Mutants', {
 	extend: 'Ext.data.Store',
-	model: 'CoordView.model.CategoryCount',
+	model: 'VBI.GeneExpression.model.CategoryCount',
 	proxy: {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
@@ -25,9 +25,10 @@ Ext.define('CoordView.store.Mutants', {
 	autoLoad: true,
 	listeners: {
 		beforeload: function(me, operation, eOpts) {
-			me.proxy.extraParams = Ext.Object.merge(me.proxy.extraParams, CoordView.param);
+			me.proxy.extraParams = Ext.Object.merge(me.proxy.extraParams, VBI.GeneExpression.param);
 		},
 		load: function(me, records, successful, eOpts) {
+			// copy top 5 data points (exclude N/A) to Top5 store
 			if (successful) {
 				var data = new Array();
 				for (i=0; i<records.length; i++) {
@@ -38,7 +39,6 @@ Ext.define('CoordView.store.Mutants', {
 					}
 				}
 				data = Ext.Array.splice(Ext.Array.clean(data), 0, 5);
-				//console.log("loading to top5 store:", data);
 				Ext.getStore('MutantsTop5').loadData(data);
 				Ext.getStore('MutantsTop5').sort('count', 'ASC');
 			}

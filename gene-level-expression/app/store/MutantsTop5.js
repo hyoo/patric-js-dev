@@ -1,11 +1,10 @@
 /**
- * @class CoordView.store.Conditions
+ * @class VBI.GeneExpression.store.MutantsTop5
  * @extends Ext.data.Store
  *
- * This class implements the store for accessions.
  */
-Ext.define('CoordView.store.MutantsTop5', {
+Ext.define('VBI.GeneExpression.store.MutantsTop5', {
 	extend: 'Ext.data.Store',
-	model: 'CoordView.model.CategoryCount',
+	model: 'VBI.GeneExpression.model.CategoryCount',
 	autoLoad: false
 });

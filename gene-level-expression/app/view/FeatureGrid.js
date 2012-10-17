@@ -1,26 +1,25 @@
 /**
- * @class CoordView.view.GenomeGrid
+ * @class VBI.GeneExpression.view.FeatureGrid
  * @extends Ext.grid.Panel
- * @xtype genomegrid
+ * @xtype featuregrid
  *
- * This class implements a grid of players.
+ * This class implements a grid of genes
  */
 function BasicRenderer(value, metadata, record, rowIndex, colIndex, store){
 	metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 	return value;
 };
 
-Ext.define('CoordView.view.FeatureGrid', {
+Ext.define('VBI.GeneExpression.view.FeatureGrid', {
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.featuregrid',
-	id: 'p-featuregrid',
 	store: 'Genes',
 	autoScroll: true,
 	columns: [
 		{dataIndex: 'exp_platform',		header: 'Platform',		flex: 1, hidden: true},
 		{dataIndex: 'exp_samples',		header: 'Samples',		flex: 1, hidden: true},
 		{dataIndex: 'exp_locustag',		header: 'Locus Tag',	flex: 1, hidden: true},
-		{dataIndex: 'exp_name',			header: 'Title',		flex: 4,	renderer:BasicRenderer},
+		{dataIndex: 'exp_name',			header: 'Title',		flex: 4, renderer:BasicRenderer},
 		{dataIndex: 'pmid',				header: 'PubMed',		flex: 1, 
 			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
 				if (value != undefined && value != "") {
@@ -39,7 +38,7 @@ Ext.define('CoordView.view.FeatureGrid', {
 				}
 			}
 		},
-		{dataIndex: 'exp_strain',		header: 'Strain',		flex: 1,	renderer:BasicRenderer},
+		{dataIndex: 'exp_strain',		header: 'Strain',		flex: 1, renderer:BasicRenderer},
 		{dataIndex: 'exp_mutant',		header: 'Gene Modification', flex: 1,	renderer:BasicRenderer},
 		{dataIndex: 'exp_condition',	header: 'Experimental Condition', flex: 2,	renderer:BasicRenderer},
 		{dataIndex: 'exp_timepoint',	header: 'Time Point',	flex: 1,	align: 'center'},

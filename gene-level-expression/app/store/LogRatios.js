@@ -1,12 +1,12 @@
 /**
- * @class CoordView.store.LogRatios
+ * @class VBI.GeneExpression.store.LogRatios
  * @extends Ext.data.Store
  *
- * This class implements the store for accessions.
+ * This class implements a store for Log Ratios.
  */
-Ext.define('CoordView.store.LogRatios', {
+Ext.define('VBI.GeneExpression.store.LogRatios', {
 	extend: 'Ext.data.Store',
-	model: 'CoordView.model.CategoryCount',
+	model: 'VBI.GeneExpression.model.CategoryCount',
 	proxy: {
 		type: 'ajax',
 		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
@@ -25,7 +25,7 @@ Ext.define('CoordView.store.LogRatios', {
 	autoLoad: true,
 	listeners: {
 		beforeload: function(me, operation, eOpts) {
-			me.proxy.extraParams = Ext.Object.merge(me.proxy.extraParams, CoordView.param);
+			me.proxy.extraParams = Ext.Object.merge(me.proxy.extraParams, VBI.GeneExpression.param);
 			Ext.get("p-chartlogratio").mask("loading");
 		},
 		load: function() {

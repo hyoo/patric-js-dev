@@ -1,11 +1,13 @@
-Ext.define('CoordView.controller.ViewController', {
+/**
+ * @class VBI.GeneExpression.controller.ViewController
+ * @extends Ext.app.Controller
+ *
+ * This class implements a controller.
+ */
+Ext.define('VBI.GeneExpression.controller.ViewController', {
 	extend: 'Ext.app.Controller',
-	id: 'ViewController',
 	models: ['Gene', 'CategoryCount'],
-	views: [
-		'FilterPanel', 'FeatureGrid',
-		'CategoryPieChart', 'CategoryBarChart'
-	],
+	views: ['FilterPanel', 'FeatureGrid', 'CategoryPieChart', 'CategoryBarChart'],
 	stores: [
 		'Genes',
 		'Strains', 'Mutants', 'Conditions', 'StrainsTop5', 'MutantsTop5', 'ConditionsTop5',
@@ -25,7 +27,7 @@ Ext.define('CoordView.controller.ViewController', {
 	},
 	resetFilter: function() {
 		var param = new Object({keyword:'', threshold:'', strain:'', mutant:'', condition:''});
-		CoordView.param = Ext.Object.merge(CoordView.param, param);
+		VBI.GeneExpression.param = Ext.Object.merge(VBI.GeneExpression.param, param);
 		
 		// reload
 		Ext.getStore('Genes').clearFilter();
@@ -38,10 +40,10 @@ Ext.define('CoordView.controller.ViewController', {
 	},
 	doFilter: function(param) {
 		if (param != null) {
-			CoordView.param = Ext.Object.merge(CoordView.param, param);
+			VBI.GeneExpression.param = Ext.Object.merge(VBI.GeneExpression.param, param);
 		}
 		
-		Ext.getStore('Genes').filterOnFly(CoordView.param);
+		Ext.getStore('Genes').filterOnFly(VBI.GeneExpression.param);
 		Ext.getStore('LogRatios').load();
 		Ext.getStore('ZScores').load();
 		Ext.getStore('Strains').load();
@@ -50,10 +52,10 @@ Ext.define('CoordView.controller.ViewController', {
 	},
 	showAll: function() {
 		var param = new Object({sampleId:'', keyword:'', threshold:'', strain:'', mutant:'', condition:''});
-		CoordView.param = Ext.Object.merge(CoordView.param, param);
+		VBI.GeneExpression.param = Ext.Object.merge(VBI.GeneExpression.param, param);
 		
 		// reload
-		Ext.getStore('Genes').proxy.extraParams = Ext.Object.merge(Ext.getStore('Genes').proxy.extraParams,CoordView.param);
+		Ext.getStore('Genes').proxy.extraParams = Ext.Object.merge(Ext.getStore('Genes').proxy.extraParams, VBI.GeneExpression.param);
 		Ext.getStore('Genes').load();
 		Ext.getStore('LogRatios').load();
 		Ext.getStore('ZScores').load();

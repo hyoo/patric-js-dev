@@ -1,11 +1,11 @@
 /**
- * @class CoordView.model.Gene
+ * @class VBI.GeneExpression.model.Gene
  * @extends Ext.data.Model
  *
- * This class defines the data model for expression level of a gene.
+ * This class defines a data model for gene properties combined with relevant expression data.
  *
  */
-Ext.define('CoordView.model.Gene', {
+Ext.define('VBI.GeneExpression.model.Gene', {
 	extend: 'Ext.data.Model',
 	idProperty: 'pid',
 	fields: [

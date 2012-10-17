@@ -1,5 +1,5 @@
 Ext.application({
-	name: 'CoordView',
+	name: 'VBI.GeneExpression',
 	controllers: ['ViewController'],
 	param: {},
 	autoCreateViewport: true,
@@ -14,6 +14,6 @@ Ext.application({
 			fp.getComponent("log_ratio").setValue(param.log_ratio);
 			fp.getComponent("zscore").setValue(param.zscore);
 		}
-		CoordView.param = param;
+		VBI.GeneExpression.param = param;
 	}
 });	

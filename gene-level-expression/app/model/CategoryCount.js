@@ -1,11 +1,10 @@
 /**
- * @class CoordView.model.CategoryCount
+ * @class VBI.GeneExpression.model.CategoryCount
  * @extends Ext.data.Model
- *
- * This class defines the data model for category-and-count in order to feed data to draw a chart.
- *
+ * 
+ * This class defines a data model for category-and-count data in order to draw a chart.
  */
-Ext.define('CoordView.model.CategoryCount', {
+Ext.define('VBI.GeneExpression.model.CategoryCount', {
 	extend: 'Ext.data.Model',
 	idProperty: 'rownum',
 	fields: [

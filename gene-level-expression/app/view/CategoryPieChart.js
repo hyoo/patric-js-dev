@@ -1,11 +1,11 @@
 /**
- * @class CoordView.view.ChartCondition
- * @extends Ext.panel.Panel
- * @xtype chartcondition
+ * @class VBI.GeneExpression.view.CategoryPieChart
+ * @extends Ext.chart.Chart
+ * @xtype categorypiechart
  *
- * This class implements a chart of condition types.
+ * This class implements a default setting for pie chart.
  */
-Ext.define('CoordView.view.CategoryPieChart', {
+Ext.define('VBI.GeneExpression.view.CategoryPieChart', {
 	extend: 'Ext.chart.Chart',
 	alias: 'widget.categorypiechart',
 	animate: true,

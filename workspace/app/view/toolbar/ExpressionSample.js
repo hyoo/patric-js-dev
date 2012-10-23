@@ -117,9 +117,14 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 					var selection = btn.findParentByType('toolbar').getSelectedID(),
 						expId = Ext.getCmp('workspace_experimentinfoeditor').record.get("expid"),
 						store = Ext.getStore("ExpressionExperiments"),
+						maxComparisions = 100,
 						param = "";
 					//console.log(selection);
 					if (selection != undefined) {
+						if (selection.length >= maxComparisions) {
+							alert("You have exceeded the limit of comparisons. Please lower than "+maxComparisions);
+							return false;
+						}
 						if (store.getById(expId).get("source")=="PATRIC") {
 							param = "&expId=" + expId + "&sampleId=" + selection.join(",") + "&colId=";
 						} 

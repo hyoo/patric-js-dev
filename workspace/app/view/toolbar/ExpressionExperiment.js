@@ -188,12 +188,15 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 					expIds = new Array(),
 					colIds = new Array(),
 					store = Ext.getStore("ExpressionExperiments"),
+					countComparisons = 0,
+					maxComparisions = 100,
 					param;
 				//console.log(selection);
 					
 				Ext.Array.each(selection, function(expid) {
 					item = store.getById(expid);
-						
+					countComparisons += item.get("samples");
+					
 					if (item.get("source") == "PATRIC") {
 						expIds.push(item.get("eid"));
 					}
@@ -201,6 +204,12 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionExperiment', {
 						colIds.push(item.get("expid"));
 					}
 				});
+				//console.log(countComparisons);
+				if (countComparisons >= maxComparisions) {
+					alert("You have exceeded the limit of comparisons. Please lower than "+maxComparisions);
+					return false;
+				}
+				
 				param = "&expId=" + expIds.join(",") + "&sampleId=&colId=" + colIds.join(",");
 				if (expIds.length > 0 || colIds.length >0) {
 					//console.log (expIds, colIds);

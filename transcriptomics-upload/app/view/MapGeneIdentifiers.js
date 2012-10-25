@@ -182,6 +182,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 		}]
 	},{
 		xtype: 'displayfield',
+		itemId: 'mapping_result',
 		name: 'mapping_result',
 		value: 'You must map your genes into PATRIC before procedding to the next step'
 	}],
@@ -190,6 +191,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 		handler: function() {
 			Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step01");
 			Ext.getCmp("uploader").getComponent("steps").setActiveTab("step01");
+			this.findParentByType('panel').child('#mapping_result').reset();
 			//console.log(uploader.params);
 		}
 	}, {

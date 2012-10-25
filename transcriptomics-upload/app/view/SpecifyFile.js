@@ -245,27 +245,34 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 									var myMask = new Ext.LoadMask(uploader.body, {msg:"Uploading your file"});
 									myMask.show();
 									
-									Ext.Ajax.request({
-										url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
-										params: {
-											mode: 'parse_collection',
-											collectionId: collectionId
-										},
-										timeout: 60000,
-										success: function(response) {
-											uploader.params.parsed = Ext.JSON.decode(response.responseText);
-											
-											Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step02");
-											Ext.getCmp("uploader").getComponent("steps").setActiveTab("step02");
-											
-											Ext.getCmp("MapGeneIdentifiersPanel").initParsedResult();
-											
-											myMask.hide();
-										},
-										failure: function(response) {
-											console.log('Parsing failed', response);
-										}
-									});
+									Ext.Function.defer(function() {
+										Ext.Ajax.request({
+											url: '/portal/portal/patric/BreadCrumb/TranscriptomicsUploaderWindow?action=b&cacheability=PAGE',
+											params: {
+												mode: 'parse_collection',
+												collectionId: collectionId
+											},
+											timeout: 300000,
+											success: function(response) {
+												uploader.params.parsed = Ext.JSON.decode(response.responseText);
+												myMask.hide();
+												
+												if (uploader.params.parsed.success == true) {
+													
+													Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step02");
+													Ext.getCmp("uploader").getComponent("steps").setActiveTab("step02");
+													
+													Ext.getCmp("MapGeneIdentifiersPanel").initParsedResult();
+													
+												} else {
+													Ext.Msg.alert('Fail', uploader.params.parsed.msg);
+												}
+											},
+											failure: function(response) {
+												console.log('Parsing failed', response);
+											}
+										});
+									}, 1000);
 								},
 								failure: function(fm, action) {
 									console.log('Form submission failed', action);

@@ -161,7 +161,7 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 						collectionId: collectionId,
 						geneIdType: gene_id_type
 					},
-					timeout: 60000,
+					timeout: 300000,
 					success: function(response) {
 						mapped_result = Ext.JSON.decode(response.responseText);
 						uploader.params.mapping = mapped_result;

@@ -13,7 +13,7 @@ Ext.define('VBI.GeneExpression.view.CategoryBarChart', {
 		type: 'Numeric',
 		position: 'bottom',
 		fields: ['count'],
-		title: 'Genes',
+		title: 'Comparisions',
 		minimum: 0,
 		majorTickSteps: 1
 	}, {

@@ -165,7 +165,22 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 					success: function(response) {
 						mapped_result = Ext.JSON.decode(response.responseText);
 						uploader.params.mapping = mapped_result;
-						form.findField("mapping_result").setValue(mapped_result.msg);
+						//form.findField("mapping_result").setValue(mapped_result.msg);
+						//console.log(mapped_result);
+						
+						pPanel = me.findParentByType('panel');
+						pPanel.child('#mapping_result').child('#msg').setValue(mapped_result.msg);
+						var icon;
+						if (mapped_result.geneMissed == 0) {
+							icon = '/patric/images/icon-green-check-22x22.png';
+						}
+						else if (mapped_result.geneMissed == mapped_result.geneTotal) {
+							icon = '/patric/images/icon-red-x-22x22.png';
+						}
+						else {
+							icon = '/patric/images/icon-orange-warning-22x22.png';
+						}
+						pPanel.child('#mapping_result').child('#icon').setSrc(icon);
 						
 						//enable next button
 						Ext.getCmp("next_btn_to_experiment").setDisabled(false);
@@ -181,17 +196,31 @@ Ext.define('TranscriptomicsUploader.view.MapGeneIdentifiers', {
 			}
 		}]
 	},{
-		xtype: 'displayfield',
+		xtype: 'container',
+		layout: 'hbox',
+		padding: '15px 0 0 0',
 		itemId: 'mapping_result',
-		name: 'mapping_result',
-		value: 'You must map your genes into PATRIC before procedding to the next step'
+		items: [{
+			xtype: 'imagecomponent',
+			itemId: 'icon',
+			src: '',
+			height: 22,
+			width: 22
+		}, {
+			xtype: 'displayfield',
+			itemId: 'msg',
+			name: 'mapping_result',
+			padding: '0 0 0 3px',
+			value: 'You must map your genes into PATRIC before procedding to the next step'
+		}]
 	}],
 	buttons: [{
 		text: 'Previous',
 		handler: function() {
 			Ext.getCmp("uploader").getComponent("breadcrumb").setActiveTab("step01");
 			Ext.getCmp("uploader").getComponent("steps").setActiveTab("step01");
-			this.findParentByType('panel').child('#mapping_result').reset();
+			this.findParentByType('panel').child('#mapping_result').child('#msg').reset();
+			this.findParentByType('panel').child('#mapping_result').child('#icon').setSrc('');
 			//console.log(uploader.params);
 		}
 	}, {

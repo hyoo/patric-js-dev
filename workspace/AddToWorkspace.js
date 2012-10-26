@@ -205,7 +205,6 @@ function getCartWindow(workspace_type) {
 	popup = Ext.create('Ext.Window', {
 		layout:'fit',
 		width:350,
-		height:300,
 		closeAction:'hide',
 		modal: true,
 		title: "Add Selected " + workspace_type + "(s) to Workspace",

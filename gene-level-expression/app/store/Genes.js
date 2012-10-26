@@ -52,7 +52,11 @@ Ext.define('VBI.GeneExpression.store.Genes', {
 	filterOnFly: function(param) {
 		this.clearFilter();
 		if (param.keyword != null && param.keyword != "") {
-			this.filter("exp_name", param.keyword);
+			//this.filter("exp_name", param.keyword);
+			this.filter([
+				Ext.create('Ext.util.Filter', {property: "exp_name", value: param.keyword, root: 'data', anyMatch: true})
+			]);
+			// TODO: add search on accession, strain, mutant, condition, and timepoint, (pmid if possible)
 		}
 		if (param.log_ratio > 0) {
 			this.filterField("exp_pratio", param.log_ratio);
@@ -61,9 +65,10 @@ Ext.define('VBI.GeneExpression.store.Genes', {
 			this.filterField("exp_zscore", param.zscore);
 		}
 		//other filters
+		/*
 		if (param.accession != null && param.accession != "") {
 			this.filter("exp_accession", param.accession);
-		}
+		}*/
 		
 		this.updateRecordCount();
 	}

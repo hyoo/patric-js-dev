@@ -193,22 +193,21 @@ Ext.define('VBI.Workspace.view.toolbar.Genome', {
 		items: [{
 			xtype: 'tbar_btn_showhide',
 			menu: [],
-			listeners: {
-				menutriggerover: function(me) {
-					if (me.menu.items.length == 0) {
-						var grid = me.findParentByType("gridpanel");
+			handler: function(me) {
+				if (me.menu.items.length == 0) {
+					var grid = me.findParentByType("gridpanel");
 					
-						if (grid != null) {
-							me.menu = grid.headerCt.getMenu().items.items[3].menu;
-						} else {
-							var view = me.findParentByType("detailview")
-							if (view != null) {
-								grid = view.child("#panel_grid").child("#genomeview");
-								me.menu = grid.headerCt.getMenu().items.items[3].menu;
-							}
+					if (grid != null) {
+						me.menu = grid.headerCt.getMenu().child("#columnItem").menu;
+					} else {
+						var view = me.findParentByType("detailview")
+						if (view != null) {
+							grid = view.child("#panel_grid").child("#genomeview");
+							me.menu = grid.headerCt.getMenu().child("#columnItem").menu;
 						}
-						//console.log(grid.headerCt.getMenu().child("#columnItem").menu);
 					}
+					//console.log(grid.headerCt.getMenu().child("#columnItem").menu);
+					me.showMenu();
 				}
 			}
 		}]

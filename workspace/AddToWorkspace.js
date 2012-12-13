@@ -1,4 +1,3 @@
-var btnGroupPopupSave = new Ext.Button({text:'Save to Workspace'});
 var popup, signup_popup;
 
 function addSelectedItems(workspace_type){
@@ -197,6 +196,8 @@ Ext.define('AddToWorkspace', {
 
 // cart-window
 function getCartWindow(workspace_type) {
+	var Page = $Page, btnGroupPopupSave = Page.getCartSaveButton();
+
 	store =  Ext.create('WorkspaceGroups', {
 		id: 'WorkspaceGroups',
 		group_type: workspace_type

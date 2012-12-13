@@ -49,6 +49,15 @@ Ext.define('VBI.Workspace.view.Toolbar.button.GeneList', {
 	icon: '/patric/images/toolbar_icon_genelist.png'
 });
 
+Ext.define('VBI.Workspace.view.Toolbar.button.ShowHide', {
+	extend: 'Ext.Button',
+	alias: 'widget.tbar_btn_showhide',
+	scale: 'large',
+	iconAlign: 'left',
+	icon: '/patric/images/toolbar_cart.png',
+	text: 'Show/Hide'
+});
+
 /**
 * define menu Items
 */

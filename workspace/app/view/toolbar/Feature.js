@@ -159,54 +159,33 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 	{
 		title: 'View',
 		xtype: 'buttongroup',
+		columns: 1,
 		items: [{
 			scale: 'small',
 			iconAlign: 'left',
-			text: 'FASTA',
-			width: 110,
-			xtype: 'splitbutton',
-			menu: [{
-				scale: 'small',
-				iconAlign: 'left',
-				text: 'FASTA DNA',
-				icon: '/patric/images/toolbar_dna.png',
-				handler: function(me) {
-					var idList = me.findParentByType('featuretoolbar').getSelectedID();
-					if (idList == null) { 
-						return false; 
-					} else {
-						this.fireEvent('ShowDownloadFasta', 'display', 'dna', idList.join(","));
-					}
+			text: 'FASTA DNA',
+			icon: '/patric/images/toolbar_dna.png',
+			handler: function(me) {
+				var idList = me.findParentByType('featuretoolbar').getSelectedID();
+				if (idList == null) { 
+					return false; 
+				} else {
+					this.fireEvent('ShowDownloadFasta', 'display', 'dna', idList.join(","));
 				}
-			},
-			{
-				scale: 'small',
-				iconAlign: 'left',
-				text: 'FASTA Protein',
-				icon: '/patric/images/toolbar_protein.png',
-				handler: function(me) {
-					var idList = me.findParentByType('featuretoolbar').getSelectedID();
-					if (idList == null) { 
-						return false; 
-					} else {
-						this.fireEvent('ShowDownloadFasta', 'display', 'protein', idList.join(","));
-					}
+			}
+		}, {
+			scale: 'small',
+			iconAlign: 'left',
+			text: 'FASTA Protein',
+			icon: '/patric/images/toolbar_protein.png',
+			handler: function(me) {
+				var idList = me.findParentByType('featuretoolbar').getSelectedID();
+				if (idList == null) { 
+					return false; 
+				} else {
+					this.fireEvent('ShowDownloadFasta', 'display', 'protein', idList.join(","));
 				}
-			},
-			{
-				scale: 'small',
-				iconAlign: 'left',
-				text: 'FASTA DNA/Protein',
-				icon: '/patric/images/toolbar_dna_protein.png',
-				handler: function(me) {
-					var idList = me.findParentByType('featuretoolbar').getSelectedID();
-					if (idList == null) { 
-						return false; 
-					} else {
-						this.fireEvent('ShowDownloadFasta', 'display', 'both', idList.join(","));
-					}
-				}
-			}]
+			}
 		}]
 	},
 	{
@@ -281,6 +260,26 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 		title: 'Tools',
 		xtype: 'buttongroup',
 		items: [{
+			scale: 'large',  
+			//rowspan: 2, 
+			iconAlign: 'left', 
+			width:80,
+			text:'Pathway<br/>Summary', 
+			handler: function(me) {
+				/*
+				if(Page.exemptList.some(function(element, index, array){return name == element;}))
+					submitEnrichment(name);
+				else
+					callOperation('DoPathwayEnrichment', 'No item(s) are selected. To run pathway summary tool, at least one item must be selected.'); 
+				*/
+				var idList = me.findParentByType('featuretoolbar').getSelectedID();
+				if (idList == null) { 
+					return false; 
+				} else {
+					processFigfamSelectedItems("", "pathway_enrichment", "", "", "", idList.join(","));
+				}
+			}
+		}, {
 			xtype: 'tbar_btn_msa',
 			width: 80,
 			handler: function(me) {
@@ -826,6 +825,29 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 					}
 					]
 				}]
+			}
+		}]
+	},
+	{
+		title: 'Columns',
+		xtype: 'buttongroup',
+		items: [{
+			xtype: 'tbar_btn_showhide',
+			menu: {xtype: 'menu'},
+			listeners: {
+				render: function(me) {
+					var grid = me.findParentByType("gridpanel");
+					
+					if (grid != null) {
+						me.menu = grid.headerCt.getMenu().items.items[3].menu;
+					} else {
+						var view = me.findParentByType("detailview")
+						if (view != null) {
+							grid = view.child("#panel_grid").child("#featureview");
+							me.menu = grid.headerCt.getMenu().items.items[3].menu;
+						}
+					}
+				}
 			}
 		}]
 	}, '->', '-',

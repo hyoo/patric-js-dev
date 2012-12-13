@@ -3,9 +3,7 @@ Ext.define('VBI.Workspace.controller.Feature', {
 	init: function() {
 		this.control({
 			'featuretoolbar button': {
-				runMSAFeature: this.runMSAFeature
-			},
-			'featuretoolbar menuitem': {
+				runMSAFeature: this.runMSAFeature,
 				ShowDownloadFasta: this.ShowDownloadFasta,
 				downloadGrid: this.downloadGrid,
 				callIDMapping: this.runIDMapping

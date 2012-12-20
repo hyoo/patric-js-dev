@@ -54,7 +54,7 @@ Ext.define('VBI.Workspace.view.Toolbar.button.ShowHide', {
 	alias: 'widget.tbar_btn_showhide',
 	scale: 'large',
 	iconAlign: 'left',
-	icon: '/patric/images/toolbar_cart.png',
+	icon: '/patric/images/toolbar_hideshow.png',
 	text: 'Show/Hide'
 });
 

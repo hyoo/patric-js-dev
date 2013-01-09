@@ -100,7 +100,8 @@ Ext.define('VBI.Workspace.view.Viewport', {
 		var me = this;
 		me.callParent(arguments);
 		me.width = Ext.Element.getViewportWidth() - 15;
-		me.height = Math.max(580, Ext.Element.getViewportHeight() - 320);
+		//set maxHeight to 550 to support 13' display
+		me.height = Math.max(550, Ext.Element.getViewportHeight() - 320);
 	},
 	initComponent : function() {
 		var me = this,
@@ -112,7 +113,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 	},
 	fireResize: function(width, height) {
 		if (width != this.width || height != this.height) {
-			this.setSize(width - 15, Math.max(580, height - 320));
+			this.setSize(width - 15, Math.max(550, height - 320));
 		}
 	}
 });

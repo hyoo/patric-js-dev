@@ -16,7 +16,7 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 	items: [
 		{
 			xtype: 'tbtext',
-			text: ''
+			text: '<b>Workspace</b>'
 		},
 		'->', /*
 		{

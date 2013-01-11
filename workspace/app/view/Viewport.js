@@ -9,9 +9,9 @@ Ext.define('VBI.Workspace.view.Viewport', {
 		'VBI.Workspace.view.GroupView',
 		'VBI.Workspace.view.DetailView'
 	],
-	layout: 'fit',
-	border: false,
-	items: {
+	layout: 'border',
+	items: [{
+		region: 'center',
 		xtype: 'panel',
 		dockedItems: [{
 			dock: 'top',
@@ -19,13 +19,10 @@ Ext.define('VBI.Workspace.view.Viewport', {
 			id: 'workspace_globaltoolbar',
 			height: 30
 		}],
-		layout: {
-			type: 'hbox',
-			align: 'stretch'
-		},
+		layout: 'border',
 		items: [{
+			region: 'west',
 			xtype: 'panel',
-			layout: 'vbox',
 			border: false,
 			items: [{
 				xtype: 'stationslist', //source list
@@ -67,6 +64,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 				}]
 			}]
 		}, {
+			region: 'center',
 			xtype: 'panel',
 			id: 'workspace_view',
 			layout: 'card',
@@ -81,7 +79,6 @@ Ext.define('VBI.Workspace.view.Viewport', {
 					this.fireEvent('updateview');
 				}
 			},
-			flex: 1,
 			border: false,
 			items: [{
 				itemId: 'listview',
@@ -95,7 +92,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 				id: 'workspace_detailview'
 			}]
 		}]
-	},
+	}],
 	onRender: function() {
 		var me = this;
 		me.callParent(arguments);

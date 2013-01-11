@@ -29,6 +29,7 @@ Ext.define('VBI.Workspace.store.ExpressionExperiments', {
 		},
 		noCache: false
 	},
+	pageSize: 20,
 	//stateId: 'workspace_pagesize',
 	remoteSort: false,
 	filterByTracks: function(tracks) {

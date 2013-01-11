@@ -19,6 +19,7 @@ Ext.define('VBI.Workspace.store.Features', {
 		},
 		noCache: false
 	},
+	pageSize: 20,
 	stateId: 'workspace_pagesize',
 	remoteSort: true,
 	filterByTracks: function(tracks) {

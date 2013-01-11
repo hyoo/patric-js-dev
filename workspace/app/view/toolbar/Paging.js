@@ -1,9 +1,12 @@
 Ext.define('VBI.Workspace.view.toolbar.Paging', {
-	extend: 'Ext.PagingToolbar',
+	extend: 'Ext.toolbar.Paging',
 	alias: 'widget.patricpagingtoolbar',
 	beforePageSizeText: 'Show',
 	afterPageSizeText: 'per page',
 	displayMsg : 'Displaying record {0} - {1} of {2}',
+	displayInfo: true,
+	pageSize: 20,
+	maskOnDisable: true,
 	getPagingItems: function() {
 		var me = this;
 		return [{
@@ -34,6 +37,7 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			minValue: 1,
 			hideTrigger: true,
 			enableKeyEvents: true,
+			keyNavEnabled: false,
 			selectOnFocus: true,
 			submitValue: false,
 			width: me.inputItemWidth,
@@ -103,22 +107,20 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 				scope: me,
 				specialKey: function(field, e) {
 					if (e.getKey() == e.ENTER) {
-						this.doRefresh();
-					}
-				}
-			},
-			onChange: function(newValue, oldValue, options) {
-				var	value = newValue,
-					valueIsNull = value === null;
+						//this.doRefresh();
+						var	value = field.getValue(),
+							valueIsNull = value === null;
 					
-				if (valueIsNull == false) {
-					if (Ext.isString(me.store)) {
-						var store = Ext.getStore(me.store);
-						store.currentPage = 1;
-						store.pageSize = value;
-					} else {
-						me.store.currentPage = 1;
-						me.store.pageSize = value;
+						if (valueIsNull == false) {
+							if (Ext.isString(me.store)) {
+								var store = Ext.getStore(me.store);
+								store.currentPage = 1;
+								store.pageSize = value;
+							} else {
+								me.store.currentPage = 1;
+								me.store.pageSize = value;
+							}
+						}
 					}
 				}
 			}

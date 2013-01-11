@@ -25,7 +25,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 		id: 'workspace_listview',
 		stateful: false,
 		flex: 1,
-		border: true,
+		border: false,
 		items: [{
 			// list of features
 			itemId: 'featureview',
@@ -39,8 +39,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 			}, {
 				xtype: 'patricpagingtoolbar',
 				store: 'Features',
-				dock: 'bottom',
-				displayInfo: true
+				dock: 'bottom'
 			}],
 			selModel: Ext.create('Ext.selection.CheckboxModel')
 		}, {
@@ -56,8 +55,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 			}, {
 				xtype: 'patricpagingtoolbar',
 				store: 'Genomes',
-				dock: 'bottom',
-				displayInfo: true
+				dock: 'bottom'
 			}],
 			selModel: Ext.create('Ext.selection.CheckboxModel')
 		}, {
@@ -73,8 +71,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 			}, {
 				xtype: 'patricpagingtoolbar',
 				store: 'ExpressionExperiments',
-				dock: 'bottom',
-				displayInfo: true
+				dock: 'bottom'
 			}],
 			selModel: Ext.create('Ext.selection.CheckboxModel')
 		}]

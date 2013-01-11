@@ -25,7 +25,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 			xtype: 'panel',
 			border: false,
 			items: [{
-				xtype: 'stationslist', //source list
+				xtype: 'stationslist',
 				id: 'workspace_station',
 				border: false,
 				width: 150,

@@ -14,6 +14,7 @@ Ext.application({
 		var task = new Ext.util.DelayedTask(function() {
 				Ext.getCmp('workspace_station').setDefault("Features");
 				Ext.getCmp('workspace_globaltoolbar').switchViewButtons();
+				Ext.fly(document.body).setStyle('overflow', 'auto');
 		});
 		task.delay(500);
 	},

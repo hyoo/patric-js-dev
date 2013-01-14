@@ -8,7 +8,6 @@
 Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 	extend: 'Ext.form.Panel',
 	alias: 'widget.experimentinfoeditor',
-	stateful: false,
 	width: 225, 
 	minWidth: 225, 
 	bodyPadding: 5, 

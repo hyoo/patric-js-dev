@@ -68,6 +68,7 @@ Ext.define('VBI.Workspace.view.Viewport', {
 			xtype: 'panel',
 			id: 'workspace_view',
 			layout: 'card',
+			stateful: true,
 			activeItem: 'listview',
 			stateEvents:['updateview'],
 			getState: function() {

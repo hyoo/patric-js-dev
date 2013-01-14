@@ -8,7 +8,6 @@
 Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 	extend: 'Ext.form.Panel',
 	alias: 'widget.groupinfoeditor',
-	stateful: false,
 	width: 225, 
 	minWidth: 225, 
 	bodyPadding: 5, 
@@ -21,7 +20,6 @@ Ext.define('VBI.Workspace.view.group.GroupInfoEditor', {
 	items: [{
 		xtype: 'component', 
 		id: 'group-viewer-thumb',
-		stateful: false,
 		tpl: [
 			'<tpl for=".">',
 				'<div>',

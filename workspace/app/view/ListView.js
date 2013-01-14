@@ -23,7 +23,6 @@ Ext.define('VBI.Workspace.view.ListView', {
 		layout: 'card',
 		activeItem: 'featureview',
 		id: 'workspace_listview',
-		stateful: false,
 		flex: 1,
 		border: false,
 		items: [{

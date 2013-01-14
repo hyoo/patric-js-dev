@@ -1,14 +1,19 @@
 Ext.Loader.setConfig({
 	enabled: true
 });
-
+/*
 Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider', {
 	expires: new Date(new Date().getTime()+(1000*60*60*24*7))
 }));
-
+*/
 Ext.application({
 	name: 'VBI.Workspace',
 	autoCreateViewport: true,
+	init: function() {
+		Ext.state.Manager.setProvider(new Ext.state.CookieProvider({
+			expires: new Date(new Date().getTime()+(1000*60*60*24*7))
+		}));
+	},
 	launch: function() {
 		// This is fired as soon as the page is ready
 		var task = new Ext.util.DelayedTask(function() {

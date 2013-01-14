@@ -9,7 +9,6 @@ Ext.define('VBI.Workspace.view.ColumnBrowser', {
 	items: [{
 		xtype: 'grid', //column browser
 		id: 'columnbrowser_groups',
-		stateful: false,
 		flex: 1,
 		border: true,
 		store: 'ColumnBrowser.Groups',
@@ -41,7 +40,6 @@ Ext.define('VBI.Workspace.view.ColumnBrowser', {
 	}, {
 		xtype: 'grid',
 		id: 'columnbrowser_tags',
-		stateful: false,
 		flex: 1,
 		border: true,
 		store: 'ColumnBrowser.Tags',

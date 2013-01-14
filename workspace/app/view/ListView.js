@@ -32,6 +32,9 @@ Ext.define('VBI.Workspace.view.ListView', {
 			store: 'Features',
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.Feature'),
+			stateful: true,
+			stateId: 'workspace_featurecolumns',
+			stateEvents: ['hide', 'show', 'columnmove', 'columnresize'],
 			dockedItems: [{
 				xtype: 'featuretoolbar',
 				dock: 'top'
@@ -48,6 +51,9 @@ Ext.define('VBI.Workspace.view.ListView', {
 			store: 'Genomes',
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.Genome'),
+			stateful: true,
+			stateId: 'workspace_genomecolumns',
+			stateEvents: ['hide', 'show', 'columnmove', 'columnresize'],
 			dockedItems: [{
 				xtype: 'genometoolbar',
 				dock: 'top'
@@ -64,6 +70,9 @@ Ext.define('VBI.Workspace.view.ListView', {
 			store: 'ExpressionExperiments',
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.ExpressionExperiment'),
+			stateful: true,
+			stateId: 'workspace_experimentcolumns',
+			stateEvents: ['hide', 'show', 'columnmove', 'columnresize'],
 			dockedItems: [{
 				xtype: 'expressionexperimenttoolbar',
 				dock: 'top'

@@ -87,6 +87,7 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			width: 50,
 			margins: '-1 2 3 2',
 			value: me.pageSize,
+			stateful: true,
 			stateId: 'workspace_pagesize',
 			stateEvents:['change'],
 			getState: function() {
@@ -94,13 +95,10 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 				return { pageSize: this.value };
 			},
 			applyState: function(state) {
-				//console.log(state.pageSize, this.value);
-				if ((state == undefined || state.pageSize == undefined) && this.value == undefined) {
-					var state = { pageSize: 100 };
+				//console.log(state.pageSize, this.value, me.pageSize);
+				if (state != undefined && this.value != state.pageSize) {
 					this.setValue(state.pageSize);
-				}
-				else if (state != undefined && this.value != state.pageSize) {
-					this.setValue(state.pageSize);
+					me.getStore().pageSize = state.pageSize;
 				}
 			},
 			listeners: {
@@ -139,9 +137,11 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 	},
 	initComponent: function() {
 		var me = this;
+		//getting store
 		if (me.store != null && typeof me.store == 'string') {
 			me.store = Ext.getStore(me.store);
 		}
+		//set pageSize
 		if (me.store != null && me.store.pageSize != null) {
 			if (typeof me.store.pageSize == 'string') {
 				me.pageSize = parseInt(me.store.pageSize);

@@ -66,7 +66,7 @@ Ext.define('VBI.Workspace.view.DetailView', {
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.Feature'),
 			stateful: true,
-			stateId: 'workspace_featurecolumns',
+			stateId: 'featurelist',
 			stateEvents: ['hide', 'show', 'columnmove', 'columnresize'],
 			dockedItems: [{
 				xtype: 'patricpagingtoolbar',
@@ -83,7 +83,7 @@ Ext.define('VBI.Workspace.view.DetailView', {
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.Genome'),
 			stateful: true,
-			stateId: 'workspace_genomecolumns',
+			stateId: 'genomelist',
 			stateEvents: ['hide', 'show', 'columnmove', 'columnresize'],
 			dockedItems: [{
 				xtype: 'patricpagingtoolbar',
@@ -100,7 +100,7 @@ Ext.define('VBI.Workspace.view.DetailView', {
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.ExpressionExperiment'),
 			stateful: true,
-			stateId: 'workspace_experimentcolumns',
+			stateId: 'expressionexperimentlist',
 			stateEvents: ['hide', 'show', 'columnmove', 'columnresize'],
 			dockedItems: [{
 				xtype: 'patricpagingtoolbar',

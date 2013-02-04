@@ -5,8 +5,10 @@ Ext.define('VBI.Workspace.controller.Feature', {
 			'featuretoolbar button': {
 				runMSAFeature: this.runMSAFeature,
 				ShowDownloadFasta: this.ShowDownloadFasta,
-				downloadGrid: this.downloadGrid,
 				callIDMapping: this.runIDMapping
+			},
+			'featuretoolbar menuitem': {
+				downloadGrid: this.downloadGrid
 			}
 		});
 	},

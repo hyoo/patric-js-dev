@@ -9,6 +9,7 @@ Ext.define('VBI.Workspace.view.GroupView', {
 	dockedItems:[{
 		xtype: 'grouptoolbar'
 	}],
+	autoScroll: true,
 	items:[{
 		xtype: 'groupbrowser',
 		id: 'workspace_groupbrowser',

@@ -6,10 +6,6 @@ Ext.application({
 	name: 'VBI.Workspace',
 	autoCreateViewport: true,
 	init: function() {
-		Ext.state.Manager.setProvider(new Ext.state.CookieProvider({
-			expires: new Date(new Date().getTime()+(1000*60*60*24*7))
-		}));
-		//Ext.state.Manager.setProvider(new Ext.state.LocalStorageProvider());
 	},
 	launch: function() {
 		// This is fired as soon as the page is ready

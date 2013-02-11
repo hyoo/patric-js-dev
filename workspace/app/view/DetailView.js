@@ -7,7 +7,8 @@ Ext.define('VBI.Workspace.view.DetailView', {
 		'VBI.Workspace.view.toolbar.Group',
 		'VBI.Workspace.view.toolbar.ExpressionSample',
 		'VBI.Workspace.view.columns.Genome', 
-		'VBI.Workspace.view.columns.Feature'
+		'VBI.Workspace.view.columns.Feature',
+		'VBI.Workspace.selection.CheckboxModel'
 	],
 	border: false,
 	layout: 'border',

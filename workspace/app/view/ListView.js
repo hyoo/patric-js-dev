@@ -1,26 +1,3 @@
-Ext.define('VBI.Workspace.selection.CheckboxModel', {
-	extend: 'Ext.selection.CheckboxModel',
-	getHeaderConfig: function() {
-		var me = this,
-			showCheck = me.showHeaderCheckbox !== false;
-		return {
-			id: me.id, //added
-			isCheckerHd: showCheck,
-			text : '&#160;',
-			width: me.headerWidth,
-			sortable: false,
-			draggable: false,
-			resizable: false,
-			hideable: false,
-			menuDisabled: true,
-			dataIndex: '',
-			cls: showCheck ? Ext.baseCSSPrefix + 'column-header-checkbox ' : '',
-			renderer: Ext.Function.bind(me.renderer, me),
-			editRenderer: me.editRenderer || me.renderEmpty,
-			locked: me.hasLockedHeader()
-		};
-	}
-});
 Ext.define('VBI.Workspace.view.ListView', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.listview',
@@ -28,7 +5,8 @@ Ext.define('VBI.Workspace.view.ListView', {
 		'VBI.Workspace.view.ColumnBrowser',
 		'VBI.Workspace.view.toolbar.Feature', 'VBI.Workspace.view.columns.Feature',
 		'VBI.Workspace.view.toolbar.Genome', 'VBI.Workspace.view.columns.Genome',
-		'VBI.Workspace.view.toolbar.ExpressionExperiment', 'VBI.Workspace.view.columns.ExpressionExperiment'
+		'VBI.Workspace.view.toolbar.ExpressionExperiment', 'VBI.Workspace.view.columns.ExpressionExperiment',
+		'VBI.Workspace.selection.CheckboxModel'
 	],
 	border: false,
 	layout: 'border',

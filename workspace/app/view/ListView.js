@@ -1,3 +1,26 @@
+Ext.define('VBI.Workspace.selection.CheckboxModel', {
+	extend: 'Ext.selection.CheckboxModel',
+	getHeaderConfig: function() {
+		var me = this,
+			showCheck = me.showHeaderCheckbox !== false;
+		return {
+			id: me.id, //added
+			isCheckerHd: showCheck,
+			text : '&#160;',
+			width: me.headerWidth,
+			sortable: false,
+			draggable: false,
+			resizable: false,
+			hideable: false,
+			menuDisabled: true,
+			dataIndex: '',
+			cls: showCheck ? Ext.baseCSSPrefix + 'column-header-checkbox ' : '',
+			renderer: Ext.Function.bind(me.renderer, me),
+			editRenderer: me.editRenderer || me.renderEmpty,
+			locked: me.hasLockedHeader()
+		};
+	}
+});
 Ext.define('VBI.Workspace.view.ListView', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.listview',
@@ -43,7 +66,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 				store: 'Features',
 				dock: 'bottom'
 			}],
-			selModel: Ext.create('Ext.selection.CheckboxModel')
+			selModel: Ext.create('VBI.Workspace.selection.CheckboxModel', {id:'Feature_Feature_col'})
 		}, {
 			// list of genomes
 			itemId: 'genomeview',
@@ -62,7 +85,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 				store: 'Genomes',
 				dock: 'bottom'
 			}],
-			selModel: Ext.create('Ext.selection.CheckboxModel')
+			selModel: Ext.create('VBI.Workspace.selection.CheckboxModel', {id:'Genome_Genome_col'})
 		}, {
 			// list of expression experiments
 			itemId: 'experimentview',
@@ -71,7 +94,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.ExpressionExperiment'),
 			stateful: true,
-			stateId: 'expressionexperimentlist',
+			stateId: 'experimentlist',
 			stateEvents: ['hide', 'show', 'columnmove', 'columnresize'],
 			dockedItems: [{
 				xtype: 'expressionexperimenttoolbar',
@@ -81,7 +104,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 				store: 'ExpressionExperiments',
 				dock: 'bottom'
 			}],
-			selModel: Ext.create('Ext.selection.CheckboxModel')
+			selModel: Ext.create('VBI.Workspace.selection.CheckboxModel', {id:'GENEXP_Experiment_col'})
 		}]
 	}]
 });

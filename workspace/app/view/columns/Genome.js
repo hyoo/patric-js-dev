@@ -3,21 +3,21 @@ function renderGenomeName(value, metadata, record, rowIndex, colIndex, store) {
 	return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.genome_info_id, value);
 };
 function renderGenomeBrowserByGenome(alue, metadata, record, rowIndex, colIndex, store) {
-	var tracks = "DNA,CDS(PATRIC),gene(PATRIC),RNA(PATRIC)";
+	var tracks = "DNA,CDS(PATRIC),RNA(PATRIC)";
 	return Ext.String.format('<a href="GenomeBrowser?cType=genome&cId={0}&loc={2}..{3}&tracks={4}"><img src="/patric/images/icon_genome_browser.gif" alt="Genome Browser" style="margin:-4px" /></a>', 
 			record.data.genome_info_id, '', 0, 10000, tracks);
 };
 function renderCDS_Count_RAST(value, metadata, record, rowIndex, colIndex, store) {
-	if(value != "0"){
+	if(value != 0){
 		metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 		return Ext.String.format('<a href="FeatureTable?cType=genome&amp;cId={0}&amp;featuretype=CDS&amp;annotation=PATRIC&amp;filtertype=">{1}</a>', record.data.genome_info_id, value);
 	}else{
 		metadata.tdAttr = 'data-qtip="0" data-qclass="x-tip"';
-		return "0";
+		return 0;
 	}
 };
 function renderCDS_Count_BRC(value, metadata, record, rowIndex, colIndex, store) {
-	if(value != "0"){ 
+	if(value != 0){ 
 		metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 		return Ext.String.format('<a href="FeatureTable?cType=genome&amp;cId={0}&amp;featuretype=CDS&amp;annotation=BRC&amp;filtertype=">{1}</a>', record.data.genome_info_id, value);
 	}else{
@@ -26,7 +26,7 @@ function renderCDS_Count_BRC(value, metadata, record, rowIndex, colIndex, store)
 	}
 };
 function renderCDS_Count_RefSeq(value, metadata, record, rowIndex, colIndex, store) {
-	if(value != "0"){
+	if(value != 0){
 		metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 		return Ext.String.format('<a href="FeatureTable?cType=genome&amp;cId={0}&amp;featuretype=CDS&amp;annotation=RefSeq&amp;filtertype=">{1}</a>', record.data.genome_info_id, value);
 	}else{

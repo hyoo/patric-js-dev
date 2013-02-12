@@ -1,12 +1,11 @@
 function renderGenomeName (value, metadata, record, rowIndex, colIndex, store) {
 	metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 	return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.gid, value);
-}
-
+};
 function renderLocustag (value, metadata, record, rowIndex, colIndex, store) {
 	metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
 	return Ext.String.format('<a href="Feature?cType=feature&cId={0}">{1}</a>', record.data.na_feature_id, value);
-}
+};
 
 Ext.define('VBI.Workspace.view.columns.Feature', {
 	defaults: {

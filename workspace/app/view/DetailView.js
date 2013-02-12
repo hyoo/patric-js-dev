@@ -2,13 +2,10 @@ Ext.define('VBI.Workspace.view.DetailView', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.detailview',
 	requires: [
-		'VBI.Workspace.view.group.GroupInfoEditor',
-		'VBI.Workspace.view.group.ExperimentInfoEditor',
-		'VBI.Workspace.view.toolbar.Group',
-		'VBI.Workspace.view.toolbar.ExpressionSample',
-		'VBI.Workspace.view.columns.Genome', 
-		'VBI.Workspace.view.columns.Feature',
-		'VBI.Workspace.selection.CheckboxModel'
+		'VBI.Workspace.view.group.GroupInfoEditor', 'VBI.Workspace.view.group.ExperimentInfoEditor',
+		'VBI.Workspace.view.toolbar.Group', 'VBI.Workspace.view.toolbar.ExpressionSample',
+		'VBI.Workspace.view.columns.Genome', 'VBI.Workspace.view.columns.Feature',
+		'VBI.Workspace.view.selection.CheckboxModel'
 	],
 	border: false,
 	layout: 'border',
@@ -62,7 +59,7 @@ Ext.define('VBI.Workspace.view.DetailView', {
 		items: [{
 			// feature group detail view
 			itemId: 'featureview',
-			xtype: 'grid',
+			xtype: 'gridpanel',
 			store: 'Features',
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.Feature'),
@@ -75,11 +72,11 @@ Ext.define('VBI.Workspace.view.DetailView', {
 				dock: 'bottom',
 				displayInfo: true
 			}],
-			selModel: Ext.create('VBI.Workspace.selection.CheckboxModel', {id:'Feature_Feature_col'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'Feature_Feature'})
 		}, {
 			// genome group detail view
 			itemId: 'genomeview',
-			xtype: 'grid',
+			xtype: 'gridpanel',
 			store: 'Genomes',
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.Genome'),
@@ -92,11 +89,11 @@ Ext.define('VBI.Workspace.view.DetailView', {
 				dock: 'bottom',
 				displayInfo: true
 			}],
-			selModel: Ext.create('VBI.Workspace.selection.CheckboxModel', {id:'Genome_Genome_col'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'Genome_Genome'})
 		}, {
 			// expression experiment group detail view
 			itemId: 'experimentview',
-			xtype: 'grid',
+			xtype: 'gridpanel',
 			store: 'ExpressionExperiments',
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.ExpressionExperiment'),
@@ -109,18 +106,18 @@ Ext.define('VBI.Workspace.view.DetailView', {
 				dock: 'bottom',
 				displayInfo: true
 			}],
-			selModel: Ext.create('VBI.Workspace.selection.CheckboxModel', {id:'Experiment_GENEXP_Experiment_col'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'Experiment_GENEXP_Experiment'})
 		}, {
 			// expression experiment detail view
 			itemId: 'experimentdetail',
-			xtype: 'grid',
+			xtype: 'gridpanel',
 			store: 'ExpressionSamples',
 			border: false,
 			columns: Ext.create('VBI.Workspace.view.columns.ExpressionSample'),
 			stateful: true,
 			stateId: 'comparisonlist',
 			stateEvents: ['hide', 'show', 'columnmove', 'columnresize'],
-			selModel: Ext.create('VBI.Workspace.selection.CheckboxModel', {id:'Sample_GENEXP_Sample_col'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'Sample_GENEXP_Sample'})
 		}]
 	}]
 });

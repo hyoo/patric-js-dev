@@ -1,4 +1,4 @@
-Ext.define('VBI.Workspace.selection.CheckboxModel', {
+Ext.define('VBI.Workspace.view.selection.CheckboxModel', {
 	extend: 'Ext.selection.CheckboxModel',
 	getHeaderConfig: function() {
 		var me = this,

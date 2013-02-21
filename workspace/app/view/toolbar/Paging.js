@@ -88,19 +88,30 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			margins: '-1 2 3 2',
 			value: me.pageSize,
 			stateful: true,
-			stateId: 'workspace_pagesize',
-			stateEvents:['change'],
-			getState: function() {
-				//console.log("getState:"+this.value);
-				return { pageSize: this.value };
-			},
+			stateId: 'pagesize',
+			stateEvents: ['savePageSize'],
 			applyState: function(state) {
+				if(state.hasOwnProperty('value')) {
+					me.store.pageSize = state.value;
+					this.setValue(state.value);
+				}
+				/*
 				//console.log(state.pageSize, this.value, me.pageSize);
 				if (state != undefined && this.value != state.pageSize) {
 					this.setValue(state.pageSize);
 					me.getStore().pageSize = state.pageSize;
-				}
+				}*/
 			},
+			initComponent: function () {
+		        var me = this;
+		        if (me.allowOnlyWhitespace === false) {
+		            me.allowBlank = false;
+		        }
+		        me.callParent();
+		        me.addEvents('autosize', 'keydown', 'keyup', 'keypress', 'change');
+		        //me.addStateEvents('change');
+		        me.setGrowSizePolicy();
+		    },
 			listeners: {
 				scope: me,
 				specialKey: function(field, e) {
@@ -125,15 +136,51 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 		},
 		me.afterPageSizeText,
 		'-',
-		/* end of modification */
-		{
+		/*{
 			itemId: 'refresh',
 			tooltip: me.refreshText,
 			overflowText: me.refreshText,
 			iconCls: Ext.baseCSSPrefix + 'tbar-loading',
 			handler: me.doRefresh,
 			scope: me
-		}];
+		}*/
+		{
+			itemId: 'refresh',
+			text: 'Apply',
+			style: {
+				'border-color':'#81a4d0',
+				'background-color':'#dbeeff',
+				'background-image':'-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
+			},
+			handler: function(){
+				if (me.child('#pagesize').getValue() != pageSize) {
+					me.store.currentPage = 1;
+					me.store.pageSize = me.child('#pagesize').getValue();
+					me.store.load();
+				}
+			},
+			scope: me
+		},
+		'-', 
+		{
+			itemId: 'saveState',
+			text: 'Apply to ALL tables',
+			style: {
+				'border-color':'#81a4d0',
+				'background-color':'#dbeeff',
+				'background-image':'-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
+			},
+			handler: function(){
+				me.child('#pagesize').fireEvent('savePageSize');
+				if (me.child('#pagesize').getValue() != pageSize) {
+					me.store.currentPage = 1;
+					me.store.pageSize = me.child('#pagesize').getValue();
+					me.store.load();
+				}
+			},
+			scope: me
+		}
+		];
 	},
 	initComponent: function() {
 		var me = this;

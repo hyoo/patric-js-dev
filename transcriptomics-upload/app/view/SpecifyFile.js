@@ -148,7 +148,7 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 			xtype: 'component',
 			autoEl: {
 				tag: 'a',
-				href: 'http://enews.patricbrc.org',
+				href: 'http://enews.patricbrc.org/data-upload-templates/',
 				html: "download template",
 				target: '_blank'
 			},

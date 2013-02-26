@@ -26,7 +26,9 @@ function renderPubmedID (value, metadata, record, rowIndex, colIndex, store) {
 
 Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 	defaults: {
-		align: 'center'
+		align: 'center',
+		draggable: false,
+		resizable: false
 	},
 	items: [
 		{text:'Source',			id:'Experiment_source',		dataIndex:'source',		flex:1, align:'left'}, 

@@ -43,7 +43,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 				store: 'Features',
 				dock: 'bottom'
 			}],
-			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'Feature_Feature'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'checkBOX'})
 		}, {
 			// list of genomes
 			itemId: 'genomeview',
@@ -62,7 +62,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 				store: 'Genomes',
 				dock: 'bottom'
 			}],
-			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'Genome_Genome'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'checkBOX'})
 		}, {
 			// list of expression experiments
 			itemId: 'experimentview',
@@ -81,7 +81,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 				store: 'ExpressionExperiments',
 				dock: 'bottom'
 			}],
-			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'Experiment_GENEXP_Experiment'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'checkBOX'})
 		}]
 	}]
 });

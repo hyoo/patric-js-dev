@@ -259,18 +259,11 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 	{
 		title: 'Tools',
 		xtype: 'buttongroup',
+		columns: 2,
 		items: [{
-			scale: 'large',  
-			iconAlign: 'left', 
-			width:80,
-			text:'Pathway<br/>Summary', 
+			xtype: 'tbar_btn_pathway', 
+			width: 120,
 			handler: function(me) {
-				/*
-				if(Page.exemptList.some(function(element, index, array){return name == element;}))
-					submitEnrichment(name);
-				else
-					callOperation('DoPathwayEnrichment', 'No item(s) are selected. To run pathway summary tool, at least one item must be selected.'); 
-				*/
 				var idList = me.findParentByType('featuretoolbar').getSelectedID();
 				if (idList == null) { 
 					return false; 
@@ -280,7 +273,7 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 			}
 		}, {
 			xtype: 'tbar_btn_msa',
-			width: 80,
+			width: 140,
 			handler: function(me) {
 				var idList = me.findParentByType('featuretoolbar').getSelectedID();
 				if (idList == null) { 
@@ -849,6 +842,12 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 					//console.log(grid.headerCt.getMenu().child("#columnItem").menu.items.items.length);
 					me.showMenu();
 				}
+			}
+		}, {
+			text: 'Reset',
+			handler: function(me) {
+				var baseUrl = "/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=HTTPProvider&action=remove&name=featurelist";
+				
 			}
 		}]
 	}, '->', '-',

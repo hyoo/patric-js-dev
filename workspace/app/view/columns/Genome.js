@@ -37,7 +37,9 @@ function renderCDS_Count_RefSeq(value, metadata, record, rowIndex, colIndex, sto
 
 Ext.define('VBI.Workspace.view.columns.Genome', {
 	defaults: {
-		align: 'center'
+		align: 'center',
+		draggable: false,
+		resizable: false
 	},
 	items: [
 		{text:'Organism Name',			id:'Genome_genome_name',			dataIndex:'genome_name',				flex:2, align:'left', renderer:renderGenomeName},
@@ -60,7 +62,7 @@ Ext.define('VBI.Workspace.view.columns.Genome', {
 		{text:'Serovar',				id:'Genome_serovar',				dataIndex:'serovar',					flex:1, hidden:true},
 		{text:'Biovar',					id:'Genome_biovar',					dataIndex:'biovar',						flex:1, hidden:true},
 		{text:'Pathovar',				id:'Genome_pathovar',				dataIndex:'pathovar',					flex:1, hidden:true},
-		{text:'Culture Collection',		id:'Genome_culturelection',			dataIndex:'culturelection',				flex:1, hidden:true},
+		{text:'Culture Collection',		id:'Genome_culture_collection',		dataIndex:'culture_collection',			flex:1, hidden:true},
 		{text:'Type Strain',			id:'Genome_type_strain',			dataIndex:'type_strain',				flex:1, hidden:true},
 		{text:'Project Status', 		id:'Genome_project_status',			dataIndex:'project_status',				flex:1, hidden:true},
 		{text:'Availability', 			id:'Genome_availability',			dataIndex:'availability',				flex:1, hidden:true},

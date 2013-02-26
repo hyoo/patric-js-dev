@@ -5,7 +5,7 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 	afterPageSizeText: 'per page',
 	displayMsg : 'Displaying record {0} - {1} of {2}',
 	displayInfo: true,
-	pageSize: 20,
+	maxPageSize: 5000,
 	maskOnDisable: true,
 	getPagingItems: function() {
 		var me = this;
@@ -70,7 +70,7 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			handler: me.moveLast,
 			scope: me
 		},
-		'-', 
+		'->','-', 
 		/* modification start */
 		me.beforePageSizeText,
 		{
@@ -95,12 +95,6 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 					me.store.pageSize = state.value;
 					this.setValue(state.value);
 				}
-				/*
-				//console.log(state.pageSize, this.value, me.pageSize);
-				if (state != undefined && this.value != state.pageSize) {
-					this.setValue(state.pageSize);
-					me.getStore().pageSize = state.pageSize;
-				}*/
 			},
 			initComponent: function () {
 		        var me = this;
@@ -111,24 +105,19 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 		        me.addEvents('autosize', 'keydown', 'keyup', 'keypress', 'change');
 		        //me.addStateEvents('change');
 		        me.setGrowSizePolicy();
+		        if (Ext.state.Manager.get("pagesize") == undefined) {
+		        	me.setValue(20);
+		        }
 		    },
 			listeners: {
 				scope: me,
 				specialKey: function(field, e) {
 					if (e.getKey() == e.ENTER) {
-						//this.doRefresh();
 						var	value = field.getValue(),
 							valueIsNull = value === null;
 					
 						if (valueIsNull == false) {
-							if (Ext.isString(me.store)) {
-								var store = Ext.getStore(me.store);
-								store.currentPage = 1;
-								store.pageSize = value;
-							} else {
-								me.store.currentPage = 1;
-								me.store.pageSize = value;
-							}
+							me.updateStore();
 						}
 					}
 				}
@@ -153,11 +142,7 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 				'background-image':'-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
 			},
 			handler: function(){
-				if (me.child('#pagesize').getValue() != pageSize) {
-					me.store.currentPage = 1;
-					me.store.pageSize = me.child('#pagesize').getValue();
-					me.store.load();
-				}
+				me.updateStore();
 			},
 			scope: me
 		},
@@ -171,17 +156,43 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 				'background-image':'-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
 			},
 			handler: function(){
-				me.child('#pagesize').fireEvent('savePageSize');
-				if (me.child('#pagesize').getValue() != pageSize) {
-					me.store.currentPage = 1;
-					me.store.pageSize = me.child('#pagesize').getValue();
-					me.store.load();
+				if (me.updateStore() != false) {
+					me.child('#pagesize').fireEvent('savePageSize');
 				}
 			},
 			scope: me
-		}
+		},
+		'-'
 		];
 	},
+	showMessageTip: function(title, msg) {
+		var me = this,
+			tip = Ext.create('Ext.tip.QuickTip', {
+				target: me.child('#pagesize').el,
+				closable: true,
+				autoHide: false,
+				anchor: 'bottom',
+				bodyPadding: 10,
+				title: title,
+				html: msg
+			}).show();
+	},
+	updateStore: function() {
+		var me = this,
+			store = me.getStore(),
+			pagesize = me.child('#pagesize').getValue();
+
+		if (pagesize > me.maxPageSize) {
+			this.showMessageTip('Warning', 'Maximum number of visible rows must be smaller than ' + me.maxPageSize + '.');
+			return false;
+		} else {
+			if (pagesize != store.pageSize) {
+				store.currentPage = 1;
+				store.pageSize = pagesize;
+				store.load();
+			}
+		}
+	}/*,
 	initComponent: function() {
 		var me = this;
 		//getting store
@@ -197,5 +208,5 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			}
 		}
 		this.callParent();
-	}
+	}*/
 });

@@ -34,7 +34,9 @@ function linkToGeneListZScore(value, metadata, record, rowIndex, colIndex, store
 
 Ext.define('VBI.Workspace.view.columns.ExpressionSample', {
 	defaults: {
-		align:'center'
+		align:'center',
+		draggable: false,
+		resizable: false
 	},
 	items: [
 		{text:'Accession',						id:'Sample_accession',		dataIndex:'accession',		flex:1, align:'left' ,hidden:true}, 

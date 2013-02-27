@@ -1,6 +1,7 @@
 rm Workspace.js
 cat app/model/* >> Workspace.js
 cat app/store/* >> Workspace.js
+cat app/view/columns/HeaderContainer.js >> Workspace.js
 cat app/view/*/* >> Workspace.js
 cat app/view/*.js >> Workspace.js
 cat app/controller/*.js >> Workspace.js

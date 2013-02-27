@@ -67,6 +67,15 @@ Ext.define('VBI.Workspace.view.Toolbar.button.ShowHide', {
 	text: 'Show/Hide'
 });
 
+Ext.define('VBI.Workspace.view.Toolbar.button.ResetColumnState', {
+	extend: 'Ext.Button',
+	alias: 'widget.tbar_btn_resetcolumnstate',
+	scale: 'large',
+	iconAlign: 'left',
+	//icon: '/patric/images/toolbar_hideshow.png',
+	text: 'Reset<br/>Configs'
+});
+
 /**
 * define menu Items
 */

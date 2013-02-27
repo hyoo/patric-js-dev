@@ -4,6 +4,9 @@ Ext.define('VBI.Workspace.controller.Genome', {
 		this.control({
 			'genometoolbar menuitem': {
 				downloadGrid: this.downloadGrid
+			},
+			'genometoolbar button': {
+				resetColumnState: this.resetColumnState
 			}
 		});
 	},
@@ -21,5 +24,16 @@ Ext.define('VBI.Workspace.controller.Genome', {
 		Ext.getDom("fids").value = idList.join(",");
 		Ext.getDom("idType").value = "Genome";
 		Ext.getDom("fTableForm").submit();
+	},
+	resetColumnState: function() {
+		var baseUrl = "/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=HTTPProvider";
+		var param = "&action=remove&name=genomelist";
+		Ext.Ajax.request({
+			url: baseUrl+param,
+			method: 'GET',
+			success: function(response, opts) {
+				//console.log("resetColumnState: success");
+			}
+		});
 	}
 });

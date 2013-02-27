@@ -5,7 +5,8 @@ Ext.define('VBI.Workspace.controller.Feature', {
 			'featuretoolbar button': {
 				runMSAFeature: this.runMSAFeature,
 				ShowDownloadFasta: this.ShowDownloadFasta,
-				callIDMapping: this.runIDMapping
+				callIDMapping: this.runIDMapping,
+				resetColumnState: this.resetColumnState
 			},
 			'featuretoolbar menuitem': {
 				downloadGrid: this.downloadGrid
@@ -60,5 +61,16 @@ Ext.define('VBI.Workspace.controller.Feature', {
 		Ext.getDom("fids").value = idList.join(",");
 		Ext.getDom("idType").value = "Feature";
 		Ext.getDom("fTableForm").submit();
+	},
+	resetColumnState: function() {
+		var baseUrl = "/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=HTTPProvider";
+		var param = "&action=remove&name=featurelist";
+		Ext.Ajax.request({
+			url: baseUrl+param,
+			method: 'GET',
+			success: function(response, opts) {
+				//console.log("resetColumnState: success");
+			}
+		});
 	}
 });

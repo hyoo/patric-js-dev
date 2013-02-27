@@ -844,10 +844,9 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 				}
 			}
 		}, {
-			text: 'Reset',
+			xtype: 'tbar_btn_resetcolumnstate',
 			handler: function(me) {
-				var baseUrl = "/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=HTTPProvider&action=remove&name=featurelist";
-				
+				this.fireEvent("resetColumnState");
 			}
 		}]
 	}, '->', '-',

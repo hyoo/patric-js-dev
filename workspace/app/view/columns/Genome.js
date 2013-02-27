@@ -36,6 +36,7 @@ function renderCDS_Count_RefSeq(value, metadata, record, rowIndex, colIndex, sto
 };
 
 Ext.define('VBI.Workspace.view.columns.Genome', {
+	extend: 'VBI.Workspace.view.columns.HeaderContainer',
 	defaults: {
 		align: 'center'/*,
 		draggable: false,

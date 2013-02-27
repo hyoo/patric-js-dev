@@ -3,6 +3,7 @@ Ext.define('VBI.Workspace.view.ListView', {
 	alias: 'widget.listview',
 	requires: [
 		'VBI.Workspace.view.ColumnBrowser',
+		'VBI.Workspace.view.columns.HeaderContainer',
 		'VBI.Workspace.view.toolbar.Feature', 'VBI.Workspace.view.columns.Feature',
 		'VBI.Workspace.view.toolbar.Genome', 'VBI.Workspace.view.columns.Genome',
 		'VBI.Workspace.view.toolbar.ExpressionExperiment', 'VBI.Workspace.view.columns.ExpressionExperiment',

@@ -31,6 +31,7 @@ function renderGenomeBrowserByFeature(value, metadata, record, rowIndex, colInde
 			record.data.gid, record.data.accession, window_start, window_end, tracks);
 };
 Ext.define('VBI.Workspace.view.columns.Feature', {
+	extend: 'VBI.Workspace.view.columns.HeaderContainer',
 	defaults: {
 		align:'center'/*,
 		draggable: false,

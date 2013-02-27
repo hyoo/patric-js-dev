@@ -31,11 +31,11 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 		resizable: false
 	},
 	items: [
-		{text:'Source',			id:'Experiment_source',		dataIndex:'source',		flex:1, align:'left'}, 
-		{text:'Title',			id:'Experiment_title',		dataIndex:'title',		flex:4, align:'left', renderer:renderExperimentTitle}, 
-		{text:'Comparisons',	id:'Experiment_samples',	dataIndex:'samples',	flex:1},
-		{text:'Genes',			id:'Experiment_genes',		dataIndex:'genes',		flex:1, renderer:renderGeneCount}, 
-		{text:'PubMed',			id:'Experiment_pmid',		dataIndex:'pmid',		flex:1, renderer:renderPubmedID}, 
-		{text:'Organism',		id:'Experiment_organism',	dataIndex:'organism',	flex:3, align:'left', renderer:BasicRenderer}
+		{text:'Source',			itemId:'Experiment_source',		dataIndex:'source',		flex:1, align:'left'}, 
+		{text:'Title',			itemId:'Experiment_title',		dataIndex:'title',		flex:4, align:'left', renderer:renderExperimentTitle}, 
+		{text:'Comparisons',	itemId:'Experiment_samples',	dataIndex:'samples',	flex:1},
+		{text:'Genes',			itemId:'Experiment_genes',		dataIndex:'genes',		flex:1, renderer:renderGeneCount}, 
+		{text:'PubMed',			itemId:'Experiment_pmid',		dataIndex:'pmid',		flex:1, renderer:renderPubmedID}, 
+		{text:'Organism',		itemId:'Experiment_organism',	dataIndex:'organism',	flex:3, align:'left', renderer:BasicRenderer}
 	]
 });

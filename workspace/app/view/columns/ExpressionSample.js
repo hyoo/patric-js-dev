@@ -39,15 +39,15 @@ Ext.define('VBI.Workspace.view.columns.ExpressionSample', {
 		resizable: false
 	},
 	items: [
-		{text:'Accession',						id:'Sample_accession',		dataIndex:'accession',		flex:1, align:'left' ,hidden:true}, 
-		{text:'Title',							id:'Sample_expname',		dataIndex:'expname',		flex:4, align:'left', renderer:BasicRenderer}, 
-		{text:'Genes',							id:'Sample_genes',			dataIndex:'genes',			flex:1, renderer:linkToGeneList}, 
-		{text:'Significant genes(Log Ratio)',	id:'Sample_sig_log_ratio',	dataIndex:'sig_log_ratio',	flex:1, renderer:linkToGeneListFold}, 
-		{text:'Significant genes(Z Score)',		id:'Sample_sig_z_score',	dataIndex:'sig_z_score',	flex:1, renderer:linkToGeneListZScore}, 
-		{text:'Organism',						id:'Sample_organism',		dataIndex:'organism',		flex:1, align:'left', hidden: true, renderer:BasicRenderer}, 
-		{text:'Strain', 						id:'Sample_strain',			dataIndex:'strain',			flex:1, align:'left', renderer:BasicRenderer}, 
-		{text:'Gene Modification',				id:'Sample_mutant',			dataIndex:'mutant',			flex:1, align:'left', renderer:BasicRenderer}, 
-		{text:'Experimental Condition',			id:'Sample_condision',		dataIndex:'condition',		flex:1, align:'left', renderer:BasicRenderer}, 
-		{text:'Time Point',						id:'Sample_timepoint',		dataIndex:'timepoint',		flex:1, align:'left', renderer:BasicRenderer}
+		{text:'Accession',						itemId:'Sample_accession',		dataIndex:'accession',		flex:1, align:'left' ,hidden:true}, 
+		{text:'Title',							itemId:'Sample_expname',		dataIndex:'expname',		flex:4, align:'left', renderer:BasicRenderer}, 
+		{text:'Genes',							itemId:'Sample_genes',			dataIndex:'genes',			flex:1, renderer:linkToGeneList}, 
+		{text:'Significant genes(Log Ratio)',	itemId:'Sample_sig_log_ratio',	dataIndex:'sig_log_ratio',	flex:1, renderer:linkToGeneListFold}, 
+		{text:'Significant genes(Z Score)',		itemId:'Sample_sig_z_score',	dataIndex:'sig_z_score',	flex:1, renderer:linkToGeneListZScore}, 
+		{text:'Organism',						itemId:'Sample_organism',		dataIndex:'organism',		flex:1, align:'left', hidden: true, renderer:BasicRenderer}, 
+		{text:'Strain', 						itemId:'Sample_strain',			dataIndex:'strain',			flex:1, align:'left', renderer:BasicRenderer}, 
+		{text:'Gene Modification',				itemId:'Sample_mutant',			dataIndex:'mutant',			flex:1, align:'left', renderer:BasicRenderer}, 
+		{text:'Experimental Condition',			itemId:'Sample_condision',		dataIndex:'condition',		flex:1, align:'left', renderer:BasicRenderer}, 
+		{text:'Time Point',						itemId:'Sample_timepoint',		dataIndex:'timepoint',		flex:1, align:'left', renderer:BasicRenderer}
 	]
 });

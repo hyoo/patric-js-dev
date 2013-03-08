@@ -91,23 +91,27 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			stateId: 'pagesize',
 			stateEvents: ['savePageSize'],
 			applyState: function(state) {
-				if(state.hasOwnProperty('value')) {
-					me.store.pageSize = state.value;
-					this.setValue(state.value);
+				if (state != undefined && state.value != undefined) {
+					if (me.maxPageSize < state.value) {
+						this.setValue(me.maxPageSize);
+					} else {
+						me.store.pageSize = state.value;
+						this.setValue(state.value);
+					}
 				}
 			},
 			initComponent: function () {
-		        var me = this;
-		        if (me.allowOnlyWhitespace === false) {
-		            me.allowBlank = false;
-		        }
-		        me.callParent();
-		        me.addEvents('autosize', 'keydown', 'keyup', 'keypress', 'change');
-		        //me.addStateEvents('change');
-		        me.setGrowSizePolicy();
-		        if (Ext.state.Manager.get("pagesize") == undefined) {
-		        	me.setValue(20);
-		        }
+				var me = this;
+				if (me.allowOnlyWhitespace === false) {
+					me.allowBlank = false;
+				}
+				me.callParent();
+				me.addEvents('autosize', 'keydown', 'keyup', 'keypress', 'change');
+				//me.addStateEvents('change');
+				me.setGrowSizePolicy();
+				if (Ext.state.Manager.get("pagesize") == undefined || Ext.state.Manager.get("pagesize").value == undefined) {
+					me.setValue(20);
+				}
 		    },
 			listeners: {
 				scope: me,
@@ -124,15 +128,6 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			}
 		},
 		me.afterPageSizeText,
-		'-',
-		/*{
-			itemId: 'refresh',
-			tooltip: me.refreshText,
-			overflowText: me.refreshText,
-			iconCls: Ext.baseCSSPrefix + 'tbar-loading',
-			handler: me.doRefresh,
-			scope: me
-		}*/
 		{
 			itemId: 'refresh',
 			text: 'Apply',
@@ -157,7 +152,12 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			},
 			handler: function(){
 				if (me.updateStore() != false) {
+					
 					me.child('#pagesize').fireEvent('savePageSize');
+					
+					var dt = new Date();
+					dt.setTime(dt.getTime() + 1000);
+					while (new Date().getTime() < dt.getTime());
 				}
 			},
 			scope: me
@@ -183,16 +183,19 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			pagesize = me.child('#pagesize').getValue();
 
 		if (pagesize > me.maxPageSize) {
+
 			this.showMessageTip('Warning', 'Maximum number of visible rows must be smaller than ' + me.maxPageSize + '.');
 			return false;
+
 		} else {
+
 			if (pagesize != store.pageSize) {
 				store.currentPage = 1;
 				store.pageSize = pagesize;
 				store.load();
 			}
 		}
-	}/*,
+	},
 	initComponent: function() {
 		var me = this;
 		//getting store
@@ -208,5 +211,17 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			}
 		}
 		this.callParent();
-	}*/
+	},
+	listeners: {
+		afterlayout: function(me, e) {
+			var pgsize = me.child('#pagesize'),
+				global = Ext.state.Manager.get("pagesize");
+			if (global != undefined && global.value != undefined) {
+				if (pgsize.value != global.value) {
+					pgsize.setValue(global.value);
+					me.updateStore();
+				}
+			}
+		}
+	}
 });

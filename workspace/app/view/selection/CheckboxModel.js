@@ -4,7 +4,7 @@ Ext.define('VBI.Workspace.view.selection.CheckboxModel', {
 		var me = this,
 			showCheck = me.showHeaderCheckbox !== false;
 		return {
-			id: me.id, //added
+			itemId: me.itemId, //added
 			isCheckerHd: showCheck,
 			text : '&#160;',
 			width: me.headerWidth,

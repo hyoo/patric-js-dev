@@ -72,7 +72,7 @@ Ext.define('VBI.Workspace.view.DetailView', {
 				dock: 'bottom',
 				displayInfo: true
 			}],
-			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'checkBOX'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {itemId:'checkBOX'})
 		}, {
 			// genome group detail view
 			itemId: 'genomeview',
@@ -89,7 +89,7 @@ Ext.define('VBI.Workspace.view.DetailView', {
 				dock: 'bottom',
 				displayInfo: true
 			}],
-			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'checkBOX'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {itemId:'checkBOX'})
 		}, {
 			// expression experiment group detail view
 			itemId: 'experimentview',
@@ -106,7 +106,7 @@ Ext.define('VBI.Workspace.view.DetailView', {
 				dock: 'bottom',
 				displayInfo: true
 			}],
-			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'checkBOX'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {itemId:'checkBOX'})
 		}, {
 			// expression experiment detail view
 			itemId: 'experimentdetail',
@@ -117,7 +117,7 @@ Ext.define('VBI.Workspace.view.DetailView', {
 			stateful: true,
 			stateId: 'comparisonlist',
 			stateEvents: ['hide', 'show', 'columnmove', 'columnresize'],
-			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {id:'checkBOX'})
+			selModel: Ext.create('VBI.Workspace.view.selection.CheckboxModel', {itemId:'checkBOX'})
 		}]
 	}]
 });

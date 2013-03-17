@@ -33,9 +33,7 @@ function renderGenomeBrowserByFeature(value, metadata, record, rowIndex, colInde
 Ext.define('VBI.Workspace.view.columns.Feature', {
 	extend: 'VBI.Workspace.view.columns.HeaderContainer',
 	defaults: {
-		align:'center'/*,
-		draggable: false,
-		resizable: false*/
+		align:'center'
 	},
 	items: [
 		{text:'Genome Name',			itemId:'Feature_genome_name',		dataIndex:'genome_name',		flex:3, align:'left', renderer:renderGenomeName},

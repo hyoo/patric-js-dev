@@ -38,9 +38,7 @@ function renderCDS_Count_RefSeq(value, metadata, record, rowIndex, colIndex, sto
 Ext.define('VBI.Workspace.view.columns.Genome', {
 	extend: 'VBI.Workspace.view.columns.HeaderContainer',
 	defaults: {
-		align: 'center'/*,
-		draggable: false,
-		resizable: false*/
+		align: 'center'
 	},
 	items: [
 		{text:'Organism Name',			itemId:'Genome_genome_name',			dataIndex:'genome_name',				flex:2, align:'left', renderer:renderGenomeName},

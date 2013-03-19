@@ -36,23 +36,29 @@ Ext.define('VBI.Workspace.controller.Station', {
 			Ext.Array.each(storeCBGrp.getRange(), function(grp) {
 				targetTags.push(grp.get("tagId"));
 			});
-			//console.log("target tags:"+targetTags);
+			//console.log("target tags:",targetTags);
 			
 			storeMap.setTrackFilter("Group", targetTags);
 			storeMap.setTrackFilter("String", null);
 			var targetTracks = storeMap.getFilteredTracks();
-			//console.log(targetTracks);
+			//console.log("targetTracks:",targetTracks);
 			
 			if (selectedType === "Feature") {
-				storeFeatures.filterByTracks(targetTracks);
+				if (targetTags.length > 0) {
+					storeFeatures.filterByTracks(targetTracks);
+				}
 				this.showListPanel('featureview');
 			} 
 			else if (selectedType === "Genome") {
-				storeGenomes.filterByTracks(targetTracks);
+				if (targetTags.length > 0) {
+					storeGenomes.filterByTracks(targetTracks);
+				}
 				this.showListPanel('genomeview');
 			} 
 			else if (selectedType === "ExpressionExperiment") {
-				storeExpressionExperiments.filterByTracks(targetTracks);
+				if (targetTags.length > 0) {
+					storeExpressionExperiments.filterByTracks(targetTracks);
+				}
 				this.showListPanel('experimentview');
 			}
 			

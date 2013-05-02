@@ -23,7 +23,7 @@ Ext.define('VBI.GeneExpression.view.FeatureGrid', {
 			renderer: function(value, metadata, record, rowIndex, colIndex, store) {
 				var log_ratio = VBI.GeneExpression.param.log_ratio || 0,
 					zscore = VBI.GeneExpression.param.zscore || 0;
-				return Ext.String.format('<a href="TranscriptomicsGene?cType=taxon&cId={1}&dm=result&expId={2}&sampleId=&colId=&log_ratio={3}&zscore={4}" target="_blank">{0}</a>', value, 2, record.data.exp_id,  log_ratio, zscore);
+				return Ext.String.format('<a href="TranscriptomicsGene?cType=taxon&cId={1}&dm=result&expId={2}&sampleId={3}&colId=&log_ratio={4}&zscore={5}" target="_blank">{0}</a>', value, 2, record.data.exp_id, record.data.pid, log_ratio, zscore);
 			}
 		},
 		{dataIndex: 'pmid',				header: 'PubMed',		flex: 1, 

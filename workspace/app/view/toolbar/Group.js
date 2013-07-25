@@ -95,7 +95,7 @@ Ext.define('VBI.Workspace.view.toolbar.Group', {
 		columns: 3,
 		items: [{
 			text: 'Name Ascending',
-			icon: '/patric/js/extjs4/resources/themes/images/default/grid/hmenu-asc.gif',
+			icon: '/patric/images/hmenu-asc.gif',
 			handler: function() {
 				Ext.getStore('Groups').sort('name','ASC');
 			}
@@ -113,7 +113,7 @@ Ext.define('VBI.Workspace.view.toolbar.Group', {
 			}
 		}, {
 			text: 'Name Descending',
-			icon: '/patric/js/extjs4/resources/themes/images/default/grid/hmenu-desc.gif',
+			icon: '/patric/images/hmenu-desc.gif',
 			handler: function() {
 				Ext.getStore('Groups').sort('name','DESC');
 			}

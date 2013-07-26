@@ -6,6 +6,6 @@ Ext.define('VBI.Workspace.model.ExpressionExperiment', {
 		'expid', 'genes', 'institution', 'mutant', 'organism',
 		'pi', {name:'platforms', type:'int'}, 'pmid', 'release_date', {name:'samples', type:'int'},
 		'strain', 'timeseries', 'title',
-		'source', 'origFileName', 'desc', 'cdate', 'mdate'
+		'source', 'origFileName', 'desc', 'cdate', 'mdate', 'data_type'
 	]
 });

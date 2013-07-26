@@ -31,7 +31,8 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 		resizable: false
 	},
 	items: [
-		{text:'Source',			itemId:'Experiment_source',		dataIndex:'source',		flex:1, align:'left'}, 
+		{text:'Source',			itemId:'Experiment_source',		dataIndex:'source',		flex:1, align:'left'},
+		{text:'Data Type',		itemId:'Experiment_datatype',	dataIndex:'data_type',	flex:1, align:'left'},
 		{text:'Title',			itemId:'Experiment_title',		dataIndex:'title',		flex:4, align:'left', renderer:renderExperimentTitle}, 
 		{text:'Comparisons',	itemId:'Experiment_samples',	dataIndex:'samples',	flex:1},
 		{text:'Genes',			itemId:'Experiment_genes',		dataIndex:'genes',		flex:1, renderer:renderGeneCount}, 

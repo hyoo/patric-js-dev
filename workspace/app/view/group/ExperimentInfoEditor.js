@@ -38,7 +38,11 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		}
 	}, {
 		xtype: 'displayfield',
-		value: 'Transcriptomics Experiment', 
+		itemId: 'datatype',
+		name: 'datatype',
+		renderer: function(value, record) {
+			return value + ' Experiment';
+		},
 		fieldStyle: {
 			paddingBottom: '5px',
 			borderTop: '1px dashed #000000',
@@ -107,6 +111,7 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		this.getForm().setValues({
 			title: record.get("title"), 
 			samples: subtitle,
+			datatype: record.get("data_type") || 'Transcriptomics',
 			description: record.get("desc"), 
 			organism: record.get("organism"),
 			pmid: (record.get("pmid")!=0)?record.get("pmid"):"",
@@ -133,6 +138,24 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 			labelAlign: 'top',
 			allowBlank: false
 		});
+		this.remove('datatype');
+		this.insert(2, {
+			xtype: 'combobox',
+			name: 'datatype',
+			itemId: 'datatype',
+			store: {
+				xtype: 'store',
+				fields: ['name', 'text'],
+				data: [
+					{name:"Transcriptomics", text:'Transcriptomics'},
+					{name:"Proteomics", text:'Proteomics'},
+					{name:"Phenomics", text:'Phenomics'}]
+			},
+			queryMode: 'local',
+			displayField: 'text',
+			valueField: 'name',
+			editable: false
+		});
 		this.remove('organism');
 		this.insert(3, {
 			xtype: 'textfield',
@@ -140,7 +163,7 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 			itemId: 'organism', 
 			fieldLabel: 'Platform Organism',
 			labelAlign: 'top'
-		})
+		});
 		this.remove('pmid');
 		this.insert(4, {
 			xtype: 'numberfield',
@@ -151,7 +174,7 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 			hideTrigger: true,
 			keyNavEnabled: false,
 			mouseWheelEnabled: false
-		})
+		});
 		this.remove('description');
 		this.insert(5, {
 			xtype: 'textareafield',
@@ -173,9 +196,11 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 		
 		var newInfo = this.getForm().getValues();
 		this.record.set("title", newInfo.title);
+		this.record.set("data_type", newInfo.datatype);
 		this.record.set("desc", newInfo.description);
 		this.record.set("organism", newInfo.organism);
 		this.record.set("pmid", newInfo.pmid);
+		console.log(newInfo, this.record);
 		Ext.getStore('ExpressionExperiments').sync();
 		
 		this.disableFields();
@@ -197,6 +222,22 @@ Ext.define('VBI.Workspace.view.group.ExperimentInfoEditor', {
 				marginBottom: '0px'
 			}
 		});
+		
+		this.remove('datatype');
+		this.insert(2, {
+			xtype: 'displayfield',
+			itemId: 'datatype',
+			name: 'datatype',
+			renderer: function(value, record) {
+				return value + ' Experiment';
+			},
+			fieldStyle: {
+				paddingBottom: '5px',
+				borderTop: '1px dashed #000000',
+				borderBottom: '1px dashed #000000'
+			}
+		});
+		
 		this.remove('organism');
 		this.insert(3, {
 			xtype: 'displayfield',

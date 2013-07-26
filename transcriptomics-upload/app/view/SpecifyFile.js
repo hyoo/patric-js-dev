@@ -16,6 +16,28 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 	},
 	items: [{
 		xtype: 'displayfield',
+		value: '<b>Specify omic data type</b>'
+	}, {
+		xtype: 'combobox',
+		name: 'data_type',
+		fieldLabel: 'Data Type',
+		labelWidth: 180,
+		width: 350,
+		store: 'DataTypes',
+		queryMode: 'local',
+		displayField: 'text',
+		valueField: 'name',
+		editable: false,
+		afterRender: function() {
+			var viewport = this.findParentByType('window');
+			if (viewport.params != undefined 
+				&& viewport.params.metaData != undefined
+				&& viewport.params.metaData.data_type != undefined) {
+				this.setValue(viewport.params.metaData.data_type);
+			}
+		}
+	}, {
+		xtype: 'displayfield',
 		value: '<b>Specify the file type to upload</b>'
 	}, {
 		xtype: 'combobox',
@@ -195,6 +217,7 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 					var collectionId = jsonResponse.collection;
 					var baseUrl = jsonResponse.url;
 					var success = jsonResponse.success;
+					var expMetaData = {};
 					
 					/*
 					var baseUrl = uploader.params.baseUrl;
@@ -208,6 +231,10 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 					
 						uploader.params = {"baseUrl": baseUrl, "authToken":authToken, "collectionId": collectionId};
 						var form = me.up('form').getForm();
+						//
+						expMetaData["data_type"] = form.findField("data_type").getValue();
+						uploader.params["metaData"] = expMetaData;
+						
 						var params = {
 							file0_content: "expression",
 							file0_orientation: "svg"

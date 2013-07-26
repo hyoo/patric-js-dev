@@ -19,6 +19,24 @@ Ext.define('TranscriptomicsUploader.view.DescribeExperiment', {
 		xtype: 'displayfield',
 		value: '<b>Provide additional information for this experiment</b>'
 	}, {
+		xtype: 'combobox',
+		name: 'data_type',
+		fieldLabel: 'Data Type',
+		value: 'Transcriptomics',
+		store: 'DataTypes',
+		queryMode: 'local',
+		displayField: 'text',
+		valueField: 'name',
+		editable: false,
+		afterRender: function() {
+			var viewport = this.findParentByType('window');
+			if (viewport.params != undefined 
+				&& viewport.params.metaData != undefined
+				&& viewport.params.metaData.data_type != undefined) {
+				this.setValue(viewport.params.metaData.data_type);
+			}
+		}
+	}, {
 		xtype: 'textfield',
 		name: 'experiment_title',
 		fieldLabel: 'Experiment Title',
@@ -66,6 +84,7 @@ Ext.define('TranscriptomicsUploader.view.DescribeExperiment', {
 					mode: "save_experiment",
 					collectionId: collectionId,
 					extra: Ext.JSON.encode(extra),
+					data_type: form.findField("data_type").getValue(),
 					experiment_title: form.findField("experiment_title").getValue(),
 					experiment_description: form.findField("experiment_description").getValue(),
 					organism_name: form.findField("organism_name").getValue(),

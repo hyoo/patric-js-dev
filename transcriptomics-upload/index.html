@@ -15,7 +15,7 @@
 <script type="text/javascript">
 	Ext.Loader.setConfig({enabled: true});
 	function launch() {
-		uploader = Ext.create('TranscriptomicsUploader.view.Viewport',{}).show();
+		uploader = Ext.create('TranscriptomicsUploader.view.Viewport',{"params":{"metaData":{"data_type":"Phenomics"}}}).show();
 		//uploader = Ext.create('TranscriptomicsUploader',{}).show();
 	}
 </script>

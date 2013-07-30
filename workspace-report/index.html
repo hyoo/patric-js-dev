@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="http://cdn.sencha.io/ext-4.1.1a-gpl/resources/css/ext-all.css"/>
+	<script type="text/javascript" charset="utf-8" src="http://cdn.sencha.io/ext-4.1.1a-gpl/ext-all.js"></script>
+	<script type="text/javascript">
+	var  report = {};
+	// read user stat and save it as workspace_report.json
+	// http://stahl.vbi.vt.edu:8888/report/users
+	//
+	function getVariance(numArr) {
+		if (!Ext.isArray(numArr)) { return false; }
+		var avg = Ext.Array.mean(numArr),
+			i = numArr.length,
+			v = 0;
+		while (i--) {
+			v += Math.pow( (numArr[i] - avg), 2);
+		}
+		v /= numArr.length;
+		return v;
+	}
+	function getStandardDeviation(numArr) {
+		if (!Ext.isArray(numArr)) { return false; }
+		return Math.sqrt(getVariance(numArr));
+	}
+	function getCounts() {
+		var totalGroups = totalWorkspaces = totalCollections = uwG = uwW = uwC = 0;
+		var featureGroups = new Array();
+		var genomeGroups = new Array();
+		var fGpU = new Array();
+		var gGpU = new Array();
+		Ext.Object.each(report, function(uid) {
+			var user = report[uid];
+			//console.log(user);
+			if (user.totalGroups > 0) {
+				totalGroups += user.totalGroups;
+				uwG ++;
+			}
+			if (user.totalWorkspaces > 0) {
+				//totalWorkspaces += user.totalWorkspaces;
+				uwW ++;
+			}
+			if (user.totalCollections > 0) {
+				totalCollections += user.totalCollections;
+				uwC ++;
+			}
+			if (user.featureGroups.length > 0) {
+				featureGroups = Ext.Array.merge(featureGroups, user.featureGroups);
+				fGpU.push(user.featureGroups.length);
+			}
+			if (user.genomeGroups.length > 0) {
+				genomeGroups = Ext.Array.merge(genomeGroups, user.genomeGroups);
+				gGpU.push(user.genomeGroups.length);
+			}
+		});
+	
+		console.log("totalGroups: ", totalGroups);
+		//console.log("totalWorkspaces: ", totalWorkspaces);
+		console.log("totalCollections: ", totalCollections);
+		console.log("number of users having groups: ", uwG);
+		console.log("number of users having workspace: ", uwW);
+		console.log("number of users having collection: ", uwC);
+		console.log("genome groups stat ");
+		console.log("min:", Ext.Array.min(genomeGroups), "max:", Ext.Array.max(genomeGroups), " avg:", Ext.util.Format.round(Ext.Array.mean(genomeGroups),2), "std:", Ext.util.Format.round(getStandardDeviation(genomeGroups),2));
+		console.log("feature groups stat");
+		console.log("min:", Ext.Array.min(featureGroups), "max:", Ext.Array.max(featureGroups), " avg:", Ext.util.Format.round(Ext.Array.mean(featureGroups),2), "std:", Ext.util.Format.round(getStandardDeviation(featureGroups),2));
+		console.log("genome groups per user");
+		console.log("min:", Ext.Array.min(gGpU), "max:", Ext.Array.max(gGpU), " avg:", Ext.util.Format.round(Ext.Array.mean(gGpU),2), "std:", Ext.util.Format.round(getStandardDeviation(gGpU),2));
+		console.log("feature groups per user");
+		console.log("min:", Ext.Array.min(fGpU), "max:", Ext.Array.max(fGpU), " avg:", Ext.util.Format.round(Ext.Array.mean(fGpU),2), "std:", Ext.util.Format.round(getStandardDeviation(fGpU),2));
+	
+	}
+
+	Ext.onReady(function (){
+		Ext.Ajax.request({
+			url: 'workspace_report.json',
+			success: function(response){
+				report = Ext.JSON.decode(response.responseText);
+				getCounts();
+		    }
+		});
+	});
+	</script>
+<body>
+</body>
+</html>

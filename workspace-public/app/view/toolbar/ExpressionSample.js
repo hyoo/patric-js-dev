@@ -20,8 +20,16 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 		align: 'stretch'
 	},
 	items: [{
+			xtype: 'button',
+			scale: 'small',
+			iconAlign: 'left',
+			text: '<< Experiment list',
+			handler: function(btn, e) {
+				this.fireEvent('viewExpList');
+			}
+		}, {
 			xtype: 'tbspacer',
-			width: 220
+			width: 112
 		}, {
 			title: 'View',
 			xtype: 'buttongroup',
@@ -46,14 +54,6 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 						//console.log(param);
 						this.fireEvent('runGeneList', param);
 					}
-				}
-			}, {
-				xtype: 'button',
-				scale: 'small',
-				iconAlign: 'left',
-				text: 'Experiment list',
-				handler: function(btn, e) {
-					this.fireEvent('viewExpList');
 				}
 			}]
 		}, {

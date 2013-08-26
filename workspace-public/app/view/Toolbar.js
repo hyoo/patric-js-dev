@@ -59,9 +59,9 @@ Ext.define('VBI.Workspace.view.Toolbar.buttongroup.Help', {
 	alias: 'widget.tbar_btngrp_help',
 	title: 'Help',
 	items: [{
-		scale: 'large',
-		text: 'FAQs',
-		icon: '/patric/images/toolbar_faq.png',
+		scale: 'small',
+		text: 'PATRIC FAQs',
+		icon: '/patric/images/toolbar_faq_small.png',
 		handler: function() {
 			window.open("http://enews.patricbrc.org/faqs/", "_new", "menubar=1,resizable=1,scrollbars=1, fullscreen=1, toolbar=1,titlebar=1,status=1");
 		}

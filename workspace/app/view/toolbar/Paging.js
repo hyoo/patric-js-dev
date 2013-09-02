@@ -3,7 +3,7 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 	alias: 'widget.patricpagingtoolbar',
 	beforePageSizeText: 'Show',
 	afterPageSizeText: 'per page',
-	displayMsg : 'Displaying record {0} - {1} of {2}',
+	displayMsg: 'Displaying record {0} - {1} of {2}',
 	displayInfo: true,
 	maxPageSize: 5000,
 	maskOnDisable: true,
@@ -17,7 +17,7 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			disabled: true,
 			handler: me.moveFirst,
 			scope: me
-		},{
+		}, {
 			itemId: 'prev',
 			tooltip: me.prevText,
 			overflowText: me.prevText,
@@ -25,10 +25,8 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			disabled: true,
 			handler: me.movePrevious,
 			scope: me
-		},
-		'-',
-		me.beforePageText,
-		{
+		}, '-',
+		me.beforePageText, {
 			xtype: 'numberfield',
 			itemId: 'inputItem',
 			name: 'inputItem',
@@ -47,13 +45,11 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 				keydown: me.onPagingKeyDown,
 				blur: me.onPagingBlur
 			}
-		},{
+		}, {
 			xtype: 'tbtext',
 			itemId: 'afterTextItem',
 			text: Ext.String.format(me.afterPageText, 1)
-		},
-		'-',
-		{
+		}, '-', {
 			itemId: 'next',
 			tooltip: me.nextText,
 			overflowText: me.nextText,
@@ -61,7 +57,7 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			disabled: true,
 			handler: me.moveNext,
 			scope: me
-		},{
+		}, {
 			itemId: 'last',
 			tooltip: me.lastText,
 			overflowText: me.lastText,
@@ -69,11 +65,8 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			disabled: true,
 			handler: me.moveLast,
 			scope: me
-		},
-		'->','-', 
-		/* modification start */
-		me.beforePageSizeText,
-		{
+		}, '->', '-', /* modification start */
+		me.beforePageSizeText, {
 			xtype: 'numberfield',
 			itemId: 'pagesize',
 			cls: Ext.baseCSSPrefix + 'tbar-page-number',
@@ -100,7 +93,7 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 					}
 				}
 			},
-			initComponent: function () {
+			initComponent: function() {
 				var me = this;
 				if (me.allowOnlyWhitespace === false) {
 					me.allowBlank = false;
@@ -112,14 +105,14 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 				if (Ext.state.Manager.get("pagesize") == undefined || Ext.state.Manager.get("pagesize").value == undefined) {
 					me.setValue(20);
 				}
-		    },
+			},
 			listeners: {
 				scope: me,
 				specialKey: function(field, e) {
 					if (e.getKey() == e.ENTER) {
-						var	value = field.getValue(),
+						var value = field.getValue(),
 							valueIsNull = value === null;
-					
+
 						if (valueIsNull == false) {
 							me.updateStore();
 						}
@@ -127,43 +120,33 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 				}
 			}
 		},
-		me.afterPageSizeText,
-		{
+		me.afterPageSizeText, {
 			itemId: 'refresh',
 			text: 'Apply',
 			style: {
-				'border-color':'#81a4d0',
-				'background-color':'#dbeeff',
-				'background-image':'-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
+				'border-color': '#81a4d0',
+				'background-color': '#dbeeff',
+				'background-image': '-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
 			},
-			handler: function(){
+			handler: function() {
 				me.updateStore();
 			},
 			scope: me
-		},
-		'-', 
-		{
+		}, '-', {
 			itemId: 'saveState',
 			text: 'Apply to ALL tables',
 			style: {
-				'border-color':'#81a4d0',
-				'background-color':'#dbeeff',
-				'background-image':'-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
+				'border-color': '#81a4d0',
+				'background-color': '#dbeeff',
+				'background-image': '-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
 			},
-			handler: function(){
+			handler: function() {
 				if (me.updateStore() != false) {
-					
 					me.child('#pagesize').fireEvent('savePageSize');
-					
-					var dt = new Date();
-					dt.setTime(dt.getTime() + 1000);
-					while (new Date().getTime() < dt.getTime());
 				}
 			},
 			scope: me
-		},
-		'-'
-		];
+		}, '-'];
 	},
 	showMessageTip: function(title, msg) {
 		var me = this,
@@ -211,7 +194,7 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 			}
 		}
 		this.callParent();
-	},
+	}/*,
 	listeners: {
 		afterlayout: function(me, e) {
 			var pgsize = me.child('#pagesize'),
@@ -223,5 +206,5 @@ Ext.define('VBI.Workspace.view.toolbar.Paging', {
 				}
 			}
 		}
-	}
+	}*/
 });

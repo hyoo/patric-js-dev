@@ -33,7 +33,7 @@ Ext.define('VBI.GeneExpression.view.FilterPanel', {
 		value: 0,
 		store: Ext.create('Ext.data.Store', {
 			fields: ['name'],
-			data: [{name:"0"}, {name:"0.5"}, {name:"1"}, {name:"1.5"}, {name:"2"}, {name:"2.5"}, {name:"3"}, {name:">3"}]
+			data: [{name:"0"}, {name:"0.5"}, {name:"1"}, {name:"1.5"}, {name:"2"}, {name:"2.5"}, {name:"3"}]
 		}),		
 		editable: false
 	}, {
@@ -50,7 +50,7 @@ Ext.define('VBI.GeneExpression.view.FilterPanel', {
 		value: 0,
 		store: Ext.create('Ext.data.Store', {
 			fields: ['name'],
-			data: [{name:"0"}, {name:"0.5"}, {name:"1"}, {name:"1.5"}, {name:"2"}, {name:"2.5"}, {name:"3"}, {name:">3"}]
+			data: [{name:"0"}, {name:"0.5"}, {name:"1"}, {name:"1.5"}, {name:"2"}, {name:"2.5"}, {name:"3"}]
 		}),			
 		editable: false
 	}, {

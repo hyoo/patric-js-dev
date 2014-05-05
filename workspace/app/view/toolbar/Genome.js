@@ -210,12 +210,12 @@ Ext.define('VBI.Workspace.view.toolbar.Genome', {
 					me.showMenu();
 				}
 			}
-		}, {
+		}/*, {
 			xtype: 'tbar_btn_resetcolumnstate',
 			handler: function(me) {
 				this.fireEvent("resetColumnState");
 			}
-		}]
+		}*/]
 	}, '->', '-',
 	{
 		xtype: 'tbar_btngrp_help'

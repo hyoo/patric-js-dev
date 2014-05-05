@@ -9,17 +9,18 @@ Ext.define('VBI.Workspace.controller.Feature', {
 				resetColumnState: this.resetColumnState
 			},
 			'featuretoolbar menuitem': {
-				downloadGrid: this.downloadGrid
+				downloadGrid: this.downloadGrid,
+				callIDMapping: this.runIDMapping
 			}
 		});
 	},
 	runMSAFeature: function(selected) {
 		Ext.Ajax.request({
-			url: "/portal/portal/patric/FIGfamSorter/FigFamSorterWindow?action=b&cacheability=PAGE",
+			url: "/portal/portal/patric/FIGfam/FIGfamWindow?action=b&cacheability=PAGE",
 			method: 'POST',
 			params: {featureIds: selected, callType:"toAligner"},
 			success: function(response, opts) {
-				document.location.href = "TreeAlignerB?cType=&cId=&pk=" + response.responseText;
+				document.location.href = "MSA?cType=&cId=&pk=" + response.responseText;
 			}
 		});
 	},
@@ -29,7 +30,7 @@ Ext.define('VBI.Workspace.controller.Feature', {
 			method: 'POST',
 			params: {keyword: selected, from:'PATRIC ID', to:to, sraction:'save_params'},
 			success: function(response, opts) {
-				document.location.href = "IDMapping?cType=&cId=&dm=result&pk="+response.responseText+"#key="+Math.floor(Math.random()*10001)+"&pS=20&aP=1&dir=ASC&sort=genome_name,accession,start_max";
+				document.location.href = "IDMapping?cType=&cId=&dm=result&pk="+response.responseText;
 			}
 		});
 	},

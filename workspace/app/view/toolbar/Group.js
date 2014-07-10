@@ -83,7 +83,10 @@ Ext.define('VBI.Workspace.view.toolbar.Group', {
 			handler: function(me, e) {
 				var idList = me.findParentByType('grouptoolbar').getSelectedID();
 				if (idList == null) { return false; }
-						
+				if (idList.length <= 1 || idList.length > 3) {
+					Ext.Msg.alert("Alert", "Group Explorer works with 2 or 3 groups");
+					return false;
+				}
 				var type = me.findParentByType('grouptoolbar').getSelectedGroupType();
 						
 				me.fireEvent("runGroupExplorer", idList.join(","), type);

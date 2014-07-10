@@ -265,8 +265,8 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 									// clear filenames
 									fm.findField("expression_filename").setValue("");
 									fm.findField("sample_filename").setValue("");
-									//fm.findField("file0").setValue();
-									//fm.findField("file0").validate();
+									// fm.findField("file0").setValue();
+									// fm.findField("file0").validate();
 									
 									// parse
 									var myMask = new Ext.LoadMask(uploader.body, {msg:"Uploading your file"});
@@ -303,6 +303,8 @@ Ext.define('TranscriptomicsUploader.view.SpecifyFile', {
 								},
 								failure: function(fm, action) {
 									console.log('Form submission failed', action);
+									// var res = JSON.parse(action.response.responseText);
+									// console.log(res);
 								}
 							});
 						}

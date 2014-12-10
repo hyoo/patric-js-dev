@@ -5,6 +5,5 @@
  */
 Ext.define('VBI.GeneExpression.store.StrainsTop5', {
 	extend: 'Ext.data.Store',
-	model: 'VBI.GeneExpression.model.CategoryCount',
-	autoLoad: false
+	model: 'VBI.GeneExpression.model.CategoryCount'
 });

@@ -6,9 +6,8 @@
  */
 Ext.define('VBI.GeneExpression.model.CategoryCount', {
 	extend: 'Ext.data.Model',
-	idProperty: 'rownum',
+	idProperty: 'cateory',
 	fields: [
-		{name: 'rownum', type: 'int'},
 		{name: 'category', type: 'string'},
 		{name: 'count', type: 'int'}
 	]

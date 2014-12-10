@@ -13,7 +13,7 @@ Ext.define('VBI.GeneExpression.model.Gene', {
 		{name:'exp_pavg', type:'float', useNull:false}, {name:'exp_pratio', type:'float', useNull:false}, 
 		{name:'exp_zscore', type:'float', useNull:false},
 		'exp_name', 'exp_channels', 'exp_timepoint', 'exp_organism', 'exp_strain', 'exp_mutant', 'exp_condition', 'pmid',
-		'na_feature_id', 'patric_locus_tag', 'figfam_id', 
+		'feature_id', 'patric_locus_tag', 'figfam_id',
 		{name:'exp_geneid', type:'int'}
 	]
 });

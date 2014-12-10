@@ -8,21 +8,14 @@ Ext.define('VBI.GeneExpression.store.LogRatios', {
 	extend: 'Ext.data.Store',
 	model: 'VBI.GeneExpression.model.CategoryCount',
 	proxy: {
-		type: 'ajax',
-		url: '/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE',
-		extraParams: {
-			storeType: 'log_ratio'
-		},
-		pageParam: undefined,
-		startParam: undefined,
-		limitParam: undefined,
+		type: 'memory',
 		reader: {
 			type: 'json',
-			root: 'exp_stat'
+			root: 'log_ratio'
 		},
 		noCache: false
 	},
-	autoLoad: true,
+	autoLoad: false,
 	listeners: {
 		beforeload: function(me, operation, eOpts) {
 			me.proxy.extraParams = Ext.Object.merge(me.proxy.extraParams, VBI.GeneExpression.param);

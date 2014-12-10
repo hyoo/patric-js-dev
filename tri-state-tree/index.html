@@ -33,22 +33,21 @@
 }
 </style>-->
 <script type="text/javascript">
-Ext.onReady(function(){
-	store =  Ext.create('Ext.data.TreeStore', {
-		model: 'Ext.ux.tree.tristate.Model',
-		proxy: {
-			type: 'ajax',
-			url: 'TriStateTree.json',
-			noCache: false
-		}
-	});
-	
-	tree = Ext.create('Ext.tree.Panel', {
-		title:'Tri-State-Tree',
-		renderTo:'GenomeSelector',
+Ext.onReady(function() {
+	Ext.create('Ext.tree.Panel', {
+		title: 'Tri-State-Tree',
+		renderTo: 'GenomeSelector',
 		width: 400,
 		height: 400,
-		store: store,
+		store: Ext.create('Ext.data.TreeStore', {
+			model: 'Ext.ux.tree.tristate.Model',
+			proxy: {
+				type: 'ajax',
+				url: 'TriStateTree.json',
+				// url: 'AllBacteria.json',
+				noCache: false
+			}
+		}),
 		rootVisible: false,
 		hideHeaders: true,
 		viewConfig: {
@@ -59,13 +58,13 @@ Ext.onReady(function(){
 		columns: [{
 			xtype: 'tristatetreecolumn',
 			flex: 1,
-			dataIndex: 'name',
+			dataIndex: 'name'
 		}],
 		listeners: {
 			load: function() {
 				//this.getRootNode().expand(true,false);
 				r = this.getRootNode();
-				r.expand(false,false);
+				// r.expand(false,false);
 				r.firstChild.expand(false, false);
 			}
 		}

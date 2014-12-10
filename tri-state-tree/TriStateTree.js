@@ -87,103 +87,104 @@ Ext.define('Ext.ux.tree.tristate.Plugin', {
  * @class Ext.ux.tree.tristate.Column
  * @extends Ext.grid.column.Column
  * 
- * This class overides a renderer function in order to display a partial check state. 
- * Actual modifications are commented //= modification from/to here =//
- *
+ * see http://docs.sencha.com/extjs/4.2.1/#!/api/Ext.tree.Column for original code
  */
  
 Ext.define('Ext.ux.tree.tristate.Column', {
 	extend: 'Ext.grid.column.Column',
 	alias: 'widget.tristatetreecolumn',
-	renderer: function(value, metaData, record, rowIdx, colIdx, store, view) {
-		var buf = [],
-			format = Ext.String.format,
-			depth = record.getDepth(),
-			treePrefix = Ext.baseCSSPrefix + 'tree-',
-			elbowPrefix = treePrefix + 'elbow-',
-			expanderCls = treePrefix + 'expander',
-			imgText = '<img src="{1}" class="{0}" />',
-			checkboxText = '<input type="button" role="checkbox" class="{0}" {1} />',
-			formattedValue = value,
-			href = record.get('href'),
-			target = record.get('hrefTarget'),
-			cls = record.get('cls');
-		
-		while (record) {
-			if (!record.isRoot() || (record.isRoot() && view.rootVisible)) {
-				if (record.getDepth() === depth) {
-					buf.unshift(format(
-						imgText,
-						treePrefix + 'icon ' + treePrefix + 'icon' + (record.get('icon') ? '-inline ': (record.isLeaf() ? '-leaf ': '-parent ')) + (record.get('iconCls') || ''),
-						record.get('icon') || Ext.BLANK_IMAGE_URL
-					));
-					if (record.get('checked') !== null) {
-						//= modification from here =//
-						//console.log("  renderer called:"+record.get('name')+", partial="+record.get('partial')+", checked="+record.get('checked'));
-						buf.unshift(format(
-							checkboxText,
-							(treePrefix + 'checkbox') + (record.get('partial') ? ' ' + treePrefix + 'checkbox-partial': record.get('checked') ? ' ' + treePrefix + 'checkbox-checked': ''),
-							record.get('checked') ? 'aria-checked="true"': ''
-						));
-						if (record.get('checked')) {
-							metaData.tdCls += (' ' + Ext.baseCSSPrefix + 'tree-checked');
-						}
-						//= modification to here =//
-					}
-					if (record.isLast()) {
-						if (record.isExpandable()) {
-							buf.unshift(format(imgText, (elbowPrefix + 'end-plus ' + expanderCls), Ext.BLANK_IMAGE_URL));
-						} else {
-							buf.unshift(format(imgText, (elbowPrefix + 'end'), Ext.BLANK_IMAGE_URL));
-						}
-					} else {
-						if (record.isExpandable()) {
-							buf.unshift(format(imgText, (elbowPrefix + 'plus ' + expanderCls), Ext.BLANK_IMAGE_URL));
-						} else {
-							buf.unshift(format(imgText, (treePrefix + 'elbow'), Ext.BLANK_IMAGE_URL));
-						}
-					}
-				} else {
-					if (record.isLast() || record.getDepth() === 0) {
-						buf.unshift(format(imgText, (elbowPrefix + 'empty'), Ext.BLANK_IMAGE_URL));
-					} else if (record.getDepth() !== 0) {
-						buf.unshift(format(imgText, (elbowPrefix + 'line'), Ext.BLANK_IMAGE_URL));
-					}
-				}
-			}
-			record = record.parentNode;
-		}
-		// end of while
-		if (href) {
-			formattedValue = format('<a href="{0}" target="{1}">{2}</a>', href, target, formattedValue);
-		}
-		if (cls) {
-			metaData.tdCls += ' ' + cls;
-		}
-		return buf.join("") + formattedValue;
-	}
-});
+    tdCls: Ext.baseCSSPrefix + 'grid-cell-treecolumn',
 
-/*
-store =  Ext.create('Ext.data.TreeStore', {
-	model: 'Ext.ux.tree.tristate.Model',
-	proxy: {...}
-});
+    autoLock: true,
+    lockable: false,
+    draggable: false,
+    hideable: false,
 
-tree = Ext.create('Ext.tree.Panel', {
-	renderTo:'tree-div',
-	store: store,
-	rootVisible: false,
-	hideHeaders: true,
-	viewConfig: {
-		plugins: {
-			ptype: 'tristatetreeplugin'
-		}
-	},
-	columns: [{
-		xtype	: 'tristatetreecolumn',
-		flex	: 1,
-		dataIndex: 'name'
-	}]
+    iconCls: Ext.baseCSSPrefix + 'tree-icon',
+    checkboxCls: Ext.baseCSSPrefix + 'tree-checkbox',
+    elbowCls: Ext.baseCSSPrefix + 'tree-elbow',
+    expanderCls: Ext.baseCSSPrefix + 'tree-expander',
+    textCls: Ext.baseCSSPrefix + 'tree-node-text',
+    innerCls: Ext.baseCSSPrefix + 'grid-cell-inner-treecolumn',
+    isTreeColumn: true,
+
+    cellTpl: [
+        '<tpl for="lines">',
+            '<img src="{parent.blankUrl}" class="{parent.childCls} {parent.elbowCls}-img ',
+            '{parent.elbowCls}-<tpl if=".">line<tpl else>empty</tpl>"/>',
+        '</tpl>',
+        '<img src="{blankUrl}" class="{childCls} {elbowCls}-img {elbowCls}',
+            '<tpl if="isLast">-end</tpl><tpl if="expandable">-plus {expanderCls}</tpl>"/>',
+        '<tpl if="checked !== null">',
+            '<input type="button" role="checkbox" <tpl if="checked">aria-checked="true" </tpl>',
+                'class="{childCls} {checkboxCls}<tpl if="partial"> {checkboxCls}-partial<tpl elseif="checked"> {checkboxCls}-checked</tpl>"/>',
+        '</tpl>',
+        '<img src="{blankUrl}" class="{childCls} {baseIconCls} ',
+            '{baseIconCls}-<tpl if="leaf">leaf<tpl else>parent</tpl> {iconCls}"',
+            '<tpl if="icon">style="background-image:url({icon})"</tpl>/>',
+        '<tpl if="href">',
+            '<a href="{href}" target="{hrefTarget}" class="{textCls} {childCls}">{value}</a>',
+        '<tpl else>',
+            '<span class="{textCls} {childCls}">{value}</span>',
+        '</tpl>'
+    ],
+    initComponent: function() {
+        var me = this;
+
+        me.origRenderer = me.renderer;
+        me.origScope = me.scope || window;
+
+        me.renderer = me.treeRenderer;
+        me.scope = me;
+
+        me.callParent();
+    },
+    treeRenderer: function(value, metaData, record, rowIdx, colIdx, store, view){
+        var me = this,
+            cls = record.get('cls'),
+            renderer = me.origRenderer,
+            data = record.data,
+            parent = record.parentNode,
+            rootVisible = view.rootVisible,
+            lines = [],
+            parentData;
+
+        if (cls) {
+            metaData.tdCls += ' ' + cls;
+        }
+
+        while (parent && (rootVisible || parent.data.depth > 0)) {
+            parentData = parent.data;
+            lines[rootVisible ? parentData.depth : parentData.depth - 1] =
+                    parentData.isLast ? 0 : 1;
+            parent = parent.parentNode;
+        }
+
+        return me.getTpl('cellTpl').apply({
+            record: record,
+            baseIconCls: me.iconCls,
+            iconCls: data.iconCls,
+            icon: data.icon,
+            checkboxCls: me.checkboxCls,
+			partial: data.partial,
+            checked: data.checked,
+            elbowCls: me.elbowCls,
+            expanderCls: me.expanderCls,
+            textCls: me.textCls,
+            leaf: data.leaf,
+            expandable: record.isExpandable(),
+            isLast: data.isLast,
+            blankUrl: Ext.BLANK_IMAGE_URL,
+            href: data.href,
+            hrefTarget: data.hrefTarget,
+            lines: lines,
+            metaData: metaData,
+            // subclasses or overrides can implement a getChildCls() method, which can
+            // return an extra class to add to all of the cell's child elements (icon,
+            // expander, elbow, checkbox).  This is used by the rtl override to add the
+            // "x-rtl" class to these elements.
+            childCls: me.getChildCls ? me.getChildCls() + ' ' : '',
+            value: renderer ? renderer.apply(me.origScope, arguments) : value
+        });
+    }
 });
-*/

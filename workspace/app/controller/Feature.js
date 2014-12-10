@@ -28,14 +28,16 @@ Ext.define('VBI.Workspace.controller.Feature', {
 		Ext.Ajax.request({
 			url: "/portal/portal/patric/IDMapping/IDMappingWindow?action=b&cacheability=PAGE",
 			method: 'POST',
-			params: {keyword: selected, from:'PATRIC ID', to:to, sraction:'save_params'},
+			params: {keyword: selected, from:'feature_id', fromGroup:"PATRIC",
+				to:to, toGroup:(["seed_id","feature_id","alt_locus_tag","refseq_locus_tag","protein_id","gene_id","gi"].indexOf(to) > -1)?"PATRIC":"Other",
+				sraction:'save_params'},
 			success: function(response, opts) {
-				document.location.href = "IDMapping?cType=&cId=&dm=result&pk="+response.responseText;
+				document.location.href = "IDMapping?cType=taxon&cId=131567&dm=result&pk="+response.responseText;
 			}
 		});
 	},
 	ShowDownloadFasta: function(action, type, selected) {
-		Ext.getDom("fTableForm").action = "/patric-common/jsp/fasta_download_handler.jsp";
+		Ext.getDom("fTableForm").action = "/portal/portal/patric/FeatureTable/FeatureTableWindow?action=b&cacheability=PAGE&mode=fasta";
 		Ext.getDom("fastaaction").value = action;
 		Ext.getDom("fastascope").value = "Selected";
 		Ext.getDom("fastatype").value = type;

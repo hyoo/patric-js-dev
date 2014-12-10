@@ -1,25 +1,25 @@
 function renderGenomeName(value, metadata, record, rowIndex, colIndex, store) {
 	metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
-	return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.genome_info_id, value);
+	return Ext.String.format('<a href="Genome?cType=genome&cId={0}">{1}</a>', record.data.genome_id, value);
 };
 function renderGenomeBrowserByGenome(alue, metadata, record, rowIndex, colIndex, store) {
-	var tracks = "DNA,CDS(PATRIC),RNA(PATRIC)";
+	var tracks = "DNA,PATRICGenes,RefSeqGenes";
 	return Ext.String.format('<a href="GenomeBrowser?cType=genome&cId={0}&loc={2}..{3}&tracks={4}"><img src="/patric/images/icon_genome_browser.gif" alt="Genome Browser" style="margin:-4px" /></a>', 
-			record.data.genome_info_id, '', 0, 10000, tracks);
+			record.data.genome_id, '', 0, 10000, tracks);
 };
-function renderCDS_Count_RAST(value, metadata, record, rowIndex, colIndex, store) {
+function renderCDS_Count_PATRIC(value, metadata, record, rowIndex, colIndex, store) {
 	if (value != 0) {
 		metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
-		return Ext.String.format('<a href="FeatureTable?cType=genome&amp;cId={0}&amp;featuretype=CDS&amp;annotation=PATRIC&amp;filtertype=">{1}</a>', record.data.genome_info_id, value);
+		return Ext.String.format('<a href="FeatureTable?cType=genome&amp;cId={0}&amp;featuretype=CDS&amp;annotation=PATRIC&amp;filtertype=">{1}</a>', record.data.genome_id, value);
 	} else {
 		metadata.tdAttr = 'data-qtip="0" data-qclass="x-tip"';
 		return 0;
 	}
 };
-function renderCDS_Count_BRC(value, metadata, record, rowIndex, colIndex, store) {
+function renderCDS_Count_BRC1(value, metadata, record, rowIndex, colIndex, store) {
 	if (value != 0) { 
 		metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
-		return Ext.String.format('<a href="FeatureTable?cType=genome&amp;cId={0}&amp;featuretype=CDS&amp;annotation=BRC&amp;filtertype=">{1}</a>', record.data.genome_info_id, value);
+		return Ext.String.format('<a href="FeatureTable?cType=genome&amp;cId={0}&amp;featuretype=CDS&amp;annotation=BRC&amp;filtertype=">{1}</a>', record.data.genome_id, value);
 	} else {
 		metadata.tdAttr = 'data-qtip="0" data-qclass="x-tip"';
 		return 0;
@@ -28,7 +28,7 @@ function renderCDS_Count_BRC(value, metadata, record, rowIndex, colIndex, store)
 function renderCDS_Count_RefSeq(value, metadata, record, rowIndex, colIndex, store) {
 	if (value != 0) {
 		metadata.tdAttr = 'data-qtip="'+value+'" data-qclass="x-tip"';
-		return Ext.String.format('<a href="FeatureTable?cType=genome&amp;cId={0}&amp;featuretype=CDS&amp;annotation=RefSeq&amp;filtertype=">{1}</a>', record.data.genome_info_id, value);
+		return Ext.String.format('<a href="FeatureTable?cType=genome&amp;cId={0}&amp;featuretype=CDS&amp;annotation=RefSeq&amp;filtertype=">{1}</a>', record.data.genome_id, value);
 	} else {
 		metadata.tdAttr = 'data-qtip="0" data-qclass="x-tip"';
 		return 0;
@@ -42,21 +42,24 @@ Ext.define('VBI.Workspace.view.columns.Genome', {
 	},
 	items: [
 		{text:'Organism Name',			itemId:'Genome_genome_name',			dataIndex:'genome_name',				flex:2, align:'left', renderer:renderGenomeName},
+		{text:'NCBI Taxon ID',			itemId:'Genome_taxon_id',				dataIndex:'taxon_id',					flex:1, hidden:true},
 		{text:'Genome Status',			itemId:'Genome_genome_status',			dataIndex:'genome_status',				flex:1}, 
-		{text:'Genome Browser',			itemId:'Genome_genome_browser',			dataIndex:'genome_browser',				flex:1, hidden:true, sortable:false, renderer:renderGenomeBrowserByGenome},
+		{text:'Genome Browser',			itemId:'Genome_',						dataIndex:'genome_id',					flex:1, sortable:false, renderer:renderGenomeBrowserByGenome},
 		{text:'Size',					itemId:'Genome_genome_length',			dataIndex:'genome_length',				flex:1, hidden:true, align:'right'},
 		{text:'Chromosome',				itemId:'Genome_chromosomes',			dataIndex:'chromosomes',				flex:1, hidden:true},
 		{text:'Plasmids',				itemId:'Genome_plasmids',				dataIndex:'plasmids',					flex:1, hidden:true},
 		{text:'Contigs',				itemId:'Genome_contigs',				dataIndex:'contigs',					flex:1, hidden:true},
 		{text:'Sequences',				itemId:'Genome_sequences',				dataIndex:'sequences',					flex:1, hidden:true},
-		{text:'PATRIC CDS',				itemId:'Genome_rast_cds',				dataIndex:'rast_cds',					flex:1, renderer:renderCDS_Count_RAST},
-		{text:'Legacy BRC CDS',			itemId:'Genome_brc_cds',				dataIndex:'brc_cds',					flex:1, hidden:true, renderer:renderCDS_Count_BRC},
+		{text:'PATRIC CDS',				itemId:'Genome_patric_cds',				dataIndex:'patric_cds',					flex:1, renderer:renderCDS_Count_PATRIC},
+		{text:'Legacy BRC CDS',			itemId:'Genome_brc1_cds',				dataIndex:'brc1_cds',					flex:1, hidden:true, renderer:renderCDS_Count_BRC1},
 		{text:'RefSeq CDS',				itemId:'Genome_refseq_cds',				dataIndex:'refseq_cds',					flex:1, hidden:true, renderer:renderCDS_Count_RefSeq},
 		{text:'Isolation Country',		itemId:'Genome_isolation_country',		dataIndex:'isolation_country',			flex:1},
 		{text:'Host Name',				itemId:'Genome_host_name',				dataIndex:'host_name',					flex:1},
 		{text:'Disease', 				itemId:'Genome_disease',				dataIndex:'disease',					flex:1},
 		{text:'Collection Date', 		itemId:'Genome_collection_date',		dataIndex:'collection_date',			flex:1},
 		{text:'Completion Date', 		itemId:'Genome_completion_date',		dataIndex:'completion_date',			flex:1},
+		{text:'MLST', 					itemId:'Genome_mlst',					dataIndex:'mlst',						flex:1, hidden:true},
+		{text:'Other Typing', 			itemId:'Genome_other_typing',			dataIndex:'other_typing',				flex:1, hidden:true},
 		{text:'Strain',					itemId:'Genome_strain',					dataIndex:'strain', 					flex:1, hidden:true},
 		{text:'Serovar',				itemId:'Genome_serovar',				dataIndex:'serovar',					flex:1, hidden:true},
 		{text:'Biovar',					itemId:'Genome_biovar',					dataIndex:'biovar',						flex:1, hidden:true},
@@ -67,6 +70,9 @@ Ext.define('VBI.Workspace.view.columns.Genome', {
 		{text:'Availability', 			itemId:'Genome_availability',			dataIndex:'availability',				flex:1, hidden:true},
 		{text:'Sequencing Center',		itemId:'Genome_sequencing_centers',		dataIndex:'sequencing_centers', 		flex:1, hidden:true},
 		{text:'Publication', 			itemId:'Genome_publication',			dataIndex:'publication',				flex:1, hidden:true},
+		{text:'BioProject Accession',	itemId:'Genome_bioproject_accession',	dataIndex:'bioproject_accession',		flex:1, hidden:true},
+		{text:'BioSample Accession',	itemId:'Genome_biosample_accession',	dataIndex:'biosample_accession',		flex:1, hidden:true},
+		{text:'Assembly Accession',		itemId:'Genome_assembly_accession',		dataIndex:'assembly_accession',			flex:1, hidden:true},		
 		{text:'NCBI Project Id', 		itemId:'Genome_ncbi_project',			dataIndex:'ncbi_project_id',			flex:1, hidden:true},
 		{text:'RefSeq Project Id',		itemId:'Genome_refseq_project',			dataIndex:'refseq_project_id',			flex:1, hidden:true},
 		{text:'Genbank Accessions',		itemId:'Genome_genbank_accessions',		dataIndex:'genbank_accessions',			flex:1, hidden:true},
@@ -83,11 +89,15 @@ Ext.define('VBI.Workspace.view.columns.Genome', {
 		{text:'Longitude',				itemId:'Genome_longitude',				dataIndex:'longitude',		 			flex:1, hidden:true},
 		{text:'Altitude', 				itemId:'Genome_altitude',				dataIndex:'altitude',		 			flex:1, hidden:true},
 		{text:'Depth', 					itemId:'Genome_depth',					dataIndex:'depth', 			 			flex:1, hidden:true},
+		{text:'Other Environmental',	itemId:'Genome_other_environmental',	dataIndex:'other_environmental',		flex:1, hidden:true},
 		{text:'Host Gender',			itemId:'Genome_host_gender',			dataIndex:'host_gender',	 			flex:1, hidden:true},
 		{text:'Host Age', 				itemId:'Genome_host_age',				dataIndex:'host_age',		 			flex:1, hidden:true},
 		{text:'Host Health',			itemId:'Genome_host_health',			dataIndex:'host_health',	 			flex:1, hidden:true},
 		{text:'Body Sample Site',		itemId:'Genome_body_sample',			dataIndex:'body_sample_site',			flex:1, hidden:true},
 		{text:'Body Sample Subsite',	itemId:'Genome_body_sample',			dataIndex:'body_sample_subsite',		flex:1, hidden:true},
+		{text:'Other Clinical',			itemId:'Genome_other_clinical',			dataIndex:'other_clinical',				flex:1, hidden:true},
+		{text:'Antimicrobial Resistance', itemId:'Genome_antimicrobial_resistance',	dataIndex:'antimicrobial_resistance', flex:1, hidden:true},
+		{text:'Antimicrobial Resistance Evidence', itemId:'Genome_antimicrobial_resistance_evidence',	dataIndex:'antimicrobial_resistance_evidence', flex:1, hidden:true},
 		{text:'Gram Stain',				itemId:'Genome_gram_stain',				dataIndex:'gram_stain',					flex:1, hidden:true},
 		{text:'Cell Shape',				itemId:'Genome_cell_shape',				dataIndex:'cell_shape',					flex:1, hidden:true},
 		{text:'Motility',				itemId:'Genome_motility',				dataIndex:'motility',					flex:1, hidden:true},
@@ -97,6 +107,7 @@ Ext.define('VBI.Workspace.view.columns.Genome', {
 		{text:'Salinity',				itemId:'Genome_salinity',				dataIndex:'salinity', 					flex:1, hidden:true},
 		{text:'Oxygen Requirement',		itemId:'Genome_oxygen_requirement',		dataIndex:'oxygen_requirement', 		flex:1, hidden:true},
 		{text:'Habitat',				itemId:'Genome_habitat',				dataIndex:'habitat',					flex:1, hidden:true},
-		{text:'Others',					itemId:'Genome_comments',				dataIndex:'comments',					flex:1, hidden:true}
+		{text:'Comments',				itemId:'Genome_comments',				dataIndex:'comments',					flex:1, hidden:true},
+		{text:'Additional Metadata',	itemId:'Genome_additional_metadata',	dataIndex:'additional_metadata',		flex:1, hidden:true}
 	]
 });

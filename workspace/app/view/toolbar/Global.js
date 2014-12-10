@@ -20,38 +20,6 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 		},
 		'->', /*
 		{
-			text: '(new feature group)',
-			handler: function() {
-				Ext.Ajax.request({
-					url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=create',
-					params: {
-						group_name:'',
-						group_desc:'description2',
-						group_type:'Feature',	//Feature or Genome
-						tracks:'30098156,30169012,30176074,30216134,30255345,30285150,30330130,30312096,30300283,30405530,30558208,30532095,30509534,30465308,30653216,30639677,30645960,30722337,30680621,30938147', //na_feature_id or genome_info_id
-						tags:'tag1, tag2, tag3, tag4' //tags delimitted by comma (,)
-					},
-					disableCaching: false
-				});
-			}
-		},
-		{
-			text: '(new genome group)',
-			handler: function() {
-				Ext.Ajax.request({
-					url:'/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=create',
-					params: {
-						group_name:'genome group',
-						group_desc:'description',
-						group_type:'Genome',	//Feature or Genome
-						tracks:'38055,25663,113143', //na_feature_id or genome_info_id
-						tags:'' //tags delimitted by comma (,)
-					},
-					disableCaching: false
-				});
-			}
-		}, 
-		{
 			text: '(status)',
 			handler: function() {
 				Ext.Ajax.request({

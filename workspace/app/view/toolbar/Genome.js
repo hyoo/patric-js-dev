@@ -33,7 +33,7 @@ Ext.define('VBI.Workspace.view.toolbar.Genome', {
 		} else {
 			var selectedIDs = new Array();
 			Ext.Array.each(selection, function(item) {
-				selectedIDs.push(item.get("genome_info_id"));
+				selectedIDs.push(item.get("genome_id"));
 			});
 			return selectedIDs;
 		}

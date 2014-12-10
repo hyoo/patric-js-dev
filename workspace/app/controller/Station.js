@@ -16,8 +16,8 @@ Ext.define('VBI.Workspace.controller.Station', {
 			if (selectedType == "") { return false; }
 			
 			var storeMap = Ext.getStore('Mappings');
-			var storeCBGrp = Ext.getStore('ColumnBrowser.Groups');
-			var storeCBTag = Ext.getStore('ColumnBrowser.Tags');
+			var storeCBGrp = Ext.getStore('ColumnBrowser_Groups');
+			var storeCBTag = Ext.getStore('ColumnBrowser_Tags');
 			var storeFeatures = Ext.getStore('Features');
 			var storeGenomes = Ext.getStore('Genomes');
 			var storeGroups = Ext.getStore('Groups');

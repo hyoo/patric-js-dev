@@ -35,7 +35,7 @@ Ext.define('VBI.Workspace.controller.ColumnBrowser', {
 	onColumnBrowserFilter: function(type, selected) {
 		
 		var storeMap = Ext.getStore('Mappings');
-		var storeCBTag = Ext.getStore('ColumnBrowser.Tags');
+		var storeCBTag = Ext.getStore('ColumnBrowser_Tags');
 		var storeFeatures = Ext.getStore('Features');
 		var storeGenomes = Ext.getStore('Genomes');
 		var storeExpressionExperiments = Ext.getStore('ExpressionExperiments');

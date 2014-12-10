@@ -33,7 +33,7 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 		} else {
 			var selectedIDs = new Array();
 			Ext.Array.each(selection, function(item) {
-				selectedIDs.push(item.get("na_feature_id"));
+				selectedIDs.push(item.get("feature_id"));
 			});
 			return selectedIDs;
 		}
@@ -295,13 +295,13 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 					text:'<b>PATRIC Identifiers</b>',
 					style:'margin-left: 5px; margin-bottom: 0px; margin-right: 0px; margin-top: 5px;'
 				},{
-					text: 'PATRIC Locus Tag', 
+					text: 'SEED ID', 
 					handler: function(me){
 						var idList = me.findParentByType('featuretoolbar').getSelectedID();
 						if (idList == null) { 
 							return false; 
 						} else {
-							this.fireEvent("callIDMapping", "PATRIC Locus Tag", idList.join(","));
+							this.fireEvent("callIDMapping", "seed_id", idList.join(","));
 						}
 					}
 				},{
@@ -311,17 +311,17 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 						if (idList == null) { 
 							return false; 
 						} else {
-							this.fireEvent("callIDMapping", "PATRIC ID", idList.join(","));
+							this.fireEvent("callIDMapping", "feature_id", idList.join(","));
 						}
 					}
 				},{
-					text: 'PSEED ID', 
+					text: 'Alt Locus Tag', 
 					handler: function(me){
 						var idList = me.findParentByType('featuretoolbar').getSelectedID();
 						if (idList == null) { 
 							return false; 
 						} else {
-							this.fireEvent("callIDMapping", "PSEED ID", idList.join(","));
+							this.fireEvent("callIDMapping", "alt_locus_tag", idList.join(","));
 						}
 					}
 				},{
@@ -334,7 +334,7 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 						if (idList == null) { 
 							return false; 
 						} else {
-							this.fireEvent("callIDMapping", "RefSeq Locus Tag", idList.join(","));
+							this.fireEvent("callIDMapping", "refseq_locus_tag", idList.join(","));
 						}
 					}
 				},{
@@ -344,7 +344,7 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 						if (idList == null) { 
 							return false; 
 						} else {
-							this.fireEvent("callIDMapping", "RefSeq", idList.join(","));
+							this.fireEvent("callIDMapping", "protein_id", idList.join(","));
 						}
 					}
 				},{
@@ -354,7 +354,7 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 						if (idList == null) { 
 							return false; 
 						} else {
-							this.fireEvent("callIDMapping", "Gene ID", idList.join(","));
+							this.fireEvent("callIDMapping", "gene_id", idList.join(","));
 						}
 					}
 				},{
@@ -364,7 +364,7 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 						if (idList == null) { 
 							return false; 
 						} else {
-							this.fireEvent("callIDMapping", "GI", idList.join(","));
+							this.fireEvent("callIDMapping", "gi", idList.join(","));
 						}
 					}
 				},{
@@ -843,12 +843,12 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 					me.showMenu();
 				}
 			}
-		}/*, {
+		}, {
 			xtype: 'tbar_btn_resetcolumnstate',
 			handler: function(me) {
 				this.fireEvent("resetColumnState");
 			}
-		}*/]
+		}]
 	}, '->', '-',
 	{
 		xtype: 'tbar_btngrp_help'

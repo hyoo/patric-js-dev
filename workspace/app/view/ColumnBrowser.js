@@ -11,7 +11,7 @@ Ext.define('VBI.Workspace.view.ColumnBrowser', {
 		id: 'columnbrowser_groups',
 		flex: 1,
 		border: true,
-		store: 'ColumnBrowser.Groups',
+		store: 'ColumnBrowser_Groups',
 		columns: [{
 			header: 'Groups', 
 			dataIndex: 'name', 
@@ -42,7 +42,7 @@ Ext.define('VBI.Workspace.view.ColumnBrowser', {
 		id: 'columnbrowser_tags',
 		flex: 1,
 		border: true,
-		store: 'ColumnBrowser.Tags',
+		store: 'ColumnBrowser_Tags',
 		columns:[{
 			header: 'Tags', 
 			dataIndex: 'name', 

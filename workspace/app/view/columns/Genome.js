@@ -73,8 +73,6 @@ Ext.define('VBI.Workspace.view.columns.Genome', {
 		{text:'BioProject Accession',	itemId:'Genome_bioproject_accession',	dataIndex:'bioproject_accession',		flex:1, hidden:true},
 		{text:'BioSample Accession',	itemId:'Genome_biosample_accession',	dataIndex:'biosample_accession',		flex:1, hidden:true},
 		{text:'Assembly Accession',		itemId:'Genome_assembly_accession',		dataIndex:'assembly_accession',			flex:1, hidden:true},		
-		{text:'NCBI Project Id', 		itemId:'Genome_ncbi_project',			dataIndex:'ncbi_project_id',			flex:1, hidden:true},
-		{text:'RefSeq Project Id',		itemId:'Genome_refseq_project',			dataIndex:'refseq_project_id',			flex:1, hidden:true},
 		{text:'Genbank Accessions',		itemId:'Genome_genbank_accessions',		dataIndex:'genbank_accessions',			flex:1, hidden:true},
 		{text:'RefSeq Accessions',		itemId:'Genome_refseq_accessions',		dataIndex:'refseq_accessions',			flex:1, hidden:true},
 		{text:'Sequencing Platform',	itemId:'Genome_sequencing_platform',	dataIndex:'sequencing_platform',		flex:1, hidden:true},

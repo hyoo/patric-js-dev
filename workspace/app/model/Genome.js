@@ -40,8 +40,6 @@ Ext.define('VBI.Workspace.model.Genome', {
 		{name:'bioproject_accession', type:'string'},
 		{name:'biosample_accession', type:'string'},
 		{name:'assembly_accession', type:'string'},
-		{name:'ncbi_project_id',	type:'string'},
-		{name:'refseq_project_id',	type:'int'},
 		{name:'genbank_accessions',	type:'string'},
 		{name:'refseq_accessions',	type:'string'},
 		{name:'sequencing_status',	type:'string'},
